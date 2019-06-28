@@ -1,0 +1,37 @@
+[
+    {
+        "name": "a",
+        "status": "Closed",
+        "closed_tasks": ["i"]
+    },
+    {
+        "name": "b",
+        "status": "Closed",
+        "closed_tasks": ["ii", "iii"]
+    },
+    {
+        "name": "c",
+        "status": "In Progress",
+        "in_progress_tasks": ["xiii"],
+        "done_tasks": ["xi", "xii"]
+    },
+    {
+        "name": "d",
+        "status": "Closed",
+        "closed_tasks": ["iv", "v", "vi", "vii"]
+    },
+    {
+        "name": "e",
+        "status": "Open",
+        "open_tasks": ["xiv"]
+    },
+    {
+        "name": "f",
+        "status": "Open"
+    },
+    {
+        "name": "q",
+        "status": "Closed",
+        "closed_tasks": ["viii", "ix", "x"]
+    }
+]
