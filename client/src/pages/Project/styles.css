@@ -1,0 +1,32 @@
+.project-container {
+  padding: 15px;
+  display: flex;
+  height: 100vh;
+}
+
+.col {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.status-buttons {
+  display: flex;
+}
+
+.tasklist-wrapper,
+.sprintlist-wrapper,
+.projectcard-wrapper {
+  padding: 50px;
+}
+
+
+.tasklist-container,
+.sprintlist-container,
+.projectcard-container {
+  padding: 20px;
+  /* border: 1px solid black; */
+  /* background: #e0e0e0; */
+  border-radius: 12px;
+  box-shadow: 0 0 10px #b1b1b1;
+}

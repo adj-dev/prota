@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Auth from "./components/Auth";
 import API from "./utils/API";
+import Project from './pages/Project';
 
 class App extends Component {
   state = {
@@ -37,7 +38,7 @@ class App extends Component {
             component={
               !this.state.isLoggedIn
                 ? () => <Auth />
-                : () => <div>Logged In!</div>
+                : () => <Project />
             }
           />
           <Route exact path="/login" component={() => <Auth />} />
