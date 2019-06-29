@@ -1,6 +1,8 @@
 import axios from "axios";
 export default {
   getUser: () => axios.get("/api/user").then(response => response.data),
+  isLoggedIn: () =>
+    axios.get("/api/auth-status").then(response => response.data),
   getProject: id =>
     new Promise((resolve, reject) => {
       if (id === "4") {
