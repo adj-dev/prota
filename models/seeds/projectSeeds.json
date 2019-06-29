@@ -1,0 +1,35 @@
+[
+    {
+        "name": "1",
+        "created_by": "John",
+        "owners": ["John"],
+        "contributors": ["Andrew"]
+    },
+    {
+        "name": "2",
+        "created_by": "Andrew",
+        "owners": ["John", "Andrew"],
+        "contributors": ["Kieran", "Nue", "Adam"],
+        "open_sprints": ["e", "f"],
+        "in_progress_sprints": ["c"],
+        "closed_sprints": ["a", "b", "d"]
+    },
+    {
+        "name": "3",
+        "created_by": "Kieran",
+        "owners": ["John"],
+        "contributors": ["Kieran"]
+    },
+    {
+        "name": "4",
+        "created_by": "Adam",
+        "owners": ["Adam"],
+        "contributors": ["John", "Andrew"]
+    },
+    {
+        "name": "5",
+        "created_by": "Kieran",
+        "owners": ["Kieran"],
+        "closed_sprints": ["q"]
+    }
+]

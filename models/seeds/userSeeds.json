@@ -1,0 +1,22 @@
+[
+    {
+        "id": "John",
+        "projects": ["1", "2", "3", "4"]
+    },
+    {
+        "id": "Andrew",
+        "projects": ["1", "2", "4"]
+    },
+    {
+        "id": "Nue",
+        "projects": ["2"]
+    },
+    {
+        "id": "Adam",
+        "projects": ["2", "4"]
+    },
+    {
+        "id": "Kieran",
+        "projects": ["2", "3", "5"]
+    }
+]
