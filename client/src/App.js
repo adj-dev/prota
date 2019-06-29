@@ -1,28 +1,42 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
 import Auth from "./components/Auth";
 import API from "./utils/API";
+import Profile from "./pages/Profile";
+import ProjectTest from "./pages/ProjectTest";
 
 class App extends Component {
   state = {
-    isLoggedIn: false,
-    user: {}
+    isLoggedIn: true,
+    user: {},
+    projectId: ""
   };
 
-  componentDidMount() {
+  componentWillMount() {
+    console.log("mounting");
+    console.log("Logged In?", this.state.isLoggedIn);
     this.fetchUser();
   }
+  componentDidUpdate() {
+    console.log("Component mounted! State:");
+    console.log(this.state);
+  }
+
+  selectProjectHandler = id => {
+    this.setState({ projectId: id });
+  };
 
   fetchUser = () => {
     API.getUser()
       .then(user => {
-        console.log(user);
+        //console.log(user);
 
         if (user.error) {
           console.log("failed to fetch user");
-          return;
+          return this.setState({ isLoggedIn: false, user: {} });
         }
-        this.setState({ isLoggedIn: true, user: user });
+        return this.setState({ isLoggedIn: true, user: user });
       })
       .catch(err => console.log(err));
   };
@@ -31,16 +45,25 @@ class App extends Component {
     return (
       <div className="app">
         <BrowserRouter>
-          <Route
+          <PrivateRoute
+            isAuthenticated={this.state.isLoggedIn}
             exact
             path="/"
-            component={
-              !this.state.isLoggedIn
-                ? () => <Auth />
-                : () => <div>Logged In!</div>
-            }
+            component={() => (
+              <Profile
+                user={this.state.user}
+                selectProject={this.selectProjectHandler}
+                projectId={this.state.projectId}
+              />
+            )}
           />
-          <Route exact path="/login" component={() => <Auth />} />
+          <PrivateRoute
+            isAuthenticated={this.state.isLoggedIn}
+            id={this.state.projectId}
+            path="/project/:id"
+            component={ProjectTest}
+          />
+          <Route exact path="/login" component={Auth} />
         </BrowserRouter>
       </div>
     );
