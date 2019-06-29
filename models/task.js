@@ -23,7 +23,8 @@ var TaskSchema = new Schema({
     assignee: {
 		type: Schema.Types.ObjectId,
 		ref: "User"
-    }
+    },
+    comment: String
 });
 
 const Task = mongoose.model("Task", TaskSchema);

@@ -24,15 +24,7 @@ var ProjectSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     }],
-    open_sprints: [{
-        type: Schema.Types.ObjectId,
-        ref: "Sprint"
-    }],
-    in_progress_sprints: [{
-        type: Schema.Types.ObjectId,
-        ref: "Sprint"
-    }],
-    closed_sprints: [{
+    sprints: [{
         type: Schema.Types.ObjectId,
         ref: "Sprint"
     }]

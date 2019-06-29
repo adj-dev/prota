@@ -17,19 +17,7 @@ var SprintSchema = new Schema({
         enum: ["Open", "In Progress", "Closed"],
         required: true,
     },
-    open_tasks: [{
-        type: Schema.Types.ObjectId,
-        ref: "Task"
-    }],
-    in_progress_tasks: [{
-        type: Schema.Types.ObjectId,
-        ref: "Task"
-    }],
-    done_tasks: [{
-        type: Schema.Types.ObjectId,
-        ref: "Task"
-    }],
-    closed_tasks: [{
+    tasks: [{
         type: Schema.Types.ObjectId,
         ref: "Task"
     }]
