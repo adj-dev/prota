@@ -1,7 +1,64 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
+const passport = require("passport");
+// const cors = require("cors");
+
+// app.use("*", function(req, res, next) {
+//   //replace localhost:8080 to the ip address:port of your server
+//   res.header("Access-Control-Allow-Origin", "http://localhost:3001");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   res.header("Access-Control-Allow-Headers", "Content-Type");
+//   res.header("Access-Control-Allow-Credentials", true);
+//   next();
+// });
+
+//enable pre-flight
+// app.options("*", cors());
+
+let session = require("express-session")({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+});
+
+const GitHubStrategy = require("passport-github2").Strategy;
+
+let strategy = new GitHubStrategy(
+  {
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: "/auth/github/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    console.log("profile:", profile);
+
+    return cb(null, profile);
+  }
+);
+
+//use Github OAuth2 strategy
+passport.use(strategy);
+
+passport.serializeUser(function(user, cb) {
+  console.log("serializing user");
+  //console.log(user);
+
+  cb(null, user);
+});
+
+passport.deserializeUser(function(profile, cb) {
+  console.log(profile);
+  user = {
+    name: profile.displayName,
+    email: profile.emails[0].value,
+    id: profile.id,
+    projects: ["awdhflkwnee23ro2j3jr", "awdhflkw8dh3ro2j3jr"]
+  };
+  cb(null, user);
+});
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -10,8 +67,16 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+app.use(require("cookie-parser")());
+
+app.use(session);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Define API routes here
+
+app.use(require("./routes/authRoutes")(passport));
+app.use("/api", require("./routes/apiRoutes"));
 
 // Send every other request to the React app
 // Define any API routes before this runs
