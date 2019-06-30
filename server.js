@@ -4,6 +4,12 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const passport = require("passport");
+const mongoose = require("mongoose");
+
+//connect to MongodDB
+const MONGODB_URI = process.env.MONGODB_URI
+    || "mongodb://localhost/sitedb";
+mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 
 let session = require("express-session")({
   secret: process.env.SESSION_SECRET,
@@ -28,14 +34,26 @@ passport.use(strategy);
 passport.serializeUser((user, done) => done(null, user));
 
 passport.deserializeUser((profile, done) => {
-  console.log(profile);
+  if (!profile) done(null, {});
+  //console.log(profile);
   user = {
-    name: profile.displayName,
-    email: profile.emails[0].value,
-    id: profile.id,
-    projects: ["awdhflkwnee23ro2j3jr", "awdhflkw8dh3ro2j3jr"]
+    username: profile.username,
+    //email: profile.emails[0].value,
+    avatar_url: profile.photos[0].value,
+    display_name: profile.displayName,
+    //projects: ["awdhflkwnee23ro2j3jr", "awdhflkw8dh3ro2j3jr"]
   };
-  done(null, user);
+  if(profile.emails){
+    console.log("User has emails");
+    user.email = profile.emails[0].value;
+  } else {
+    console.log("User doesn't have an email");
+    user.email = "test@gmail.com";
+  };
+  console.log(user.email);
+  const userController = require('./controllers/userController');
+  userController.findOrCreate(user)
+    .then(dbUser => done(null, dbUser[0]));
 });
 
 // Define middleware here
