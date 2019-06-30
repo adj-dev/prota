@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const passport = require("passport");
 const mongoose = require("mongoose");
+const userController = require('./controllers/userController');
 
 //connect to MongodDB
 const MONGODB_URI = process.env.MONGODB_URI
@@ -38,20 +39,10 @@ passport.deserializeUser((profile, done) => {
   //console.log(profile);
   user = {
     username: profile.username,
-    //email: profile.emails[0].value,
-    avatar_url: profile.photos[0].value,
+    avatar_url: profile._json.avatar_url, //profile.photos[0].value, 
     display_name: profile.displayName,
-    //projects: ["awdhflkwnee23ro2j3jr", "awdhflkw8dh3ro2j3jr"]
-  };
-  if(profile.emails){
-    console.log("User has emails");
-    user.email = profile.emails[0].value;
-  } else {
-    console.log("User doesn't have an email");
-    user.email = "test@gmail.com";
-  };
-  console.log(user.email);
-  const userController = require('./controllers/userController');
+    email: (profile.emails ? profile.emails[0].value : null)
+  }
   userController.findOrCreate(user)
     .then(dbUser => done(null, dbUser[0]));
 });

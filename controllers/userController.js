@@ -15,7 +15,7 @@ module.exports = {
           .then(dbUser => res.json(dbUser))
           .catch(err => res.json(err));
     },
-
+    //adjust to createOrUpdate
     findOrCreate: function(user) {
         console.log("Find or Create");
 

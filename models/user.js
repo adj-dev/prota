@@ -8,7 +8,6 @@ var UserSchema = new Schema({
     },
     email: {
         type: String,
-        required: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/]
     },
     avatar_url: { //Github.photos[0].value
