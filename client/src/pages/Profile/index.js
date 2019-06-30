@@ -1,20 +1,16 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import ProjectList from "../../components/ProjectList";
-import API from "../../utils/API";
+import mockAPI from "../../utils/mockAPI";
 
 class Profile extends Component {
   state = {
-    user: null,
-    projects: [
-      { title: "Project 1", id: 1 },
-      { title: "Project 2", id: 2 },
-      { title: "Final Project", id: 3 }
-    ]
+    user: null
   };
   componentDidMount = () => {
     if (!this.state.user) {
-      API.getUser().then(user => {
+      mockAPI.getUser().then(user => {
+        console.log(user);
         this.setState({ user });
       });
     }
@@ -24,8 +20,12 @@ class Profile extends Component {
       <>
         {this.state.user ? (
           <div>
-            <div>{this.state.user.name}</div>
-            <ProjectList projects={this.state.projects} />
+            <div>{this.state.user.display_name}</div>
+            {this.state.user.projects ? (
+              <ProjectList projects={this.state.user.projects} />
+            ) : (
+              ""
+            )}
           </div>
         ) : (
           ""
