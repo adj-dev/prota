@@ -54,8 +54,9 @@ app.use(passport.session());
 
 // Define API routes here
 
-app.use(require("./routes/authRoutes")(passport));
+app.use("/auth", require("./routes/authRoutes")(passport));
 app.use("/api", require("./routes/apiRoutes"));
+app.use("/util", require("./routes/utilRoutes"));
 
 // Send every other request to the React app
 // Define any API routes before this runs
