@@ -15,7 +15,7 @@ module.exports = passport => {
     }
   );
 
-  router.get("/auth-status", (req, res) => {
+  router.get("/status", (req, res) => {
     req.user ? res.json(true) : res.json(false);
   });
 
