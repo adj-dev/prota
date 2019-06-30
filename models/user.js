@@ -2,9 +2,14 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-    id: {
+    username: {
         type: String,
         required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/]
     },
     projects: [{
         type: Schema.Types.ObjectId,
