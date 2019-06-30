@@ -31,7 +31,7 @@ passport.deserializeUser((profile, done) => {
   console.log(profile);
   user = {
     name: profile.displayName,
-    email: profile.emails[0].value,
+    // email: profile.emails[0].value,
     id: profile.id,
     projects: ["awdhflkwnee23ro2j3jr", "awdhflkw8dh3ro2j3jr"]
   };
