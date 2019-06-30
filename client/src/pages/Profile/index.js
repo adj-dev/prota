@@ -24,7 +24,7 @@ class Profile extends Component {
       <>
         {this.state.user ? (
           <div>
-            <div>{this.state.user.name}</div>
+            <div>{this.state.user.display_name}</div>
             <ProjectList projects={this.state.projects} />
           </div>
         ) : (
