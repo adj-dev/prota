@@ -31,7 +31,7 @@ export default class mockData {
       {
         _id: "1",
         name: "First Project",
-        created_by: "Andrew John",
+        created_by: "Andrew Johnson",
         owners: ["John", "Andrew"],
         contributors: ["Testee McTesterson", "Nhu", "Adam"],
         status: "ON_TRACK",
@@ -44,6 +44,24 @@ export default class mockData {
         owners: ["John", "Andrew"],
         contributors: ["Testee McTesterson", "Kieran", "Nhu", "Adam"],
         status: "AT_RISK",
+        sprints: this.sprints
+      },
+      {
+        _id: "3",
+        name: "Third Project",
+        created_by: "Andrew John",
+        owners: ["John", "Andrew"],
+        contributors: ["Testee McTesterson", "Nhu", "Adam"],
+        status: "ON_TRACK",
+        sprints: this.sprints
+      },
+      {
+        _id: "4",
+        name: "Fourth Project",
+        created_by: "Andrew John",
+        owners: ["John", "Andrew"],
+        contributors: ["Testee McTesterson", "Nhu", "Adam"],
+        status: "ON_TRACK",
         sprints: this.sprints
       }
     ];
