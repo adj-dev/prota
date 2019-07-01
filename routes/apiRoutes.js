@@ -1,44 +1,62 @@
 var router = require("express").Router();
-var projectController = require("../controllers/projectController");
-var sprintController = require("../controllers/projectController");
-var taskController = require("../controllers/projectController");
-var userController = require("../controllers/userController");
-
-
-
+var Controller = require('../controllers');
 //router.use(require("./protection"));
 
 //GET ROUTES:
 
 //Get User Data*
 router.get("/user", (req, res) => {
-    console.log("Hit /user route, user is: ",req.user);
+    //console.log("Hit /user route, user is: ",req.user);
     res.json(req.user);
 });
 
+router.get("/user/:userName", (req, res) => {
+    //console.log("Hit /user/:userName route, user is: ",req.user);
+    Controller.User.getOne(req.params.userName)
+        .then(result => res.json(result));
+});
+
+router.get("/user/:userName/fuzzy", (req, res) => {
+    //console.log("Get Fuzzy");
+    Controller.User.getFuzzy(req.params.userName)
+        .then(result => res.json(result));
+});
+
+//Get project data from db by user*
+router.get("/projects", (req, res) => {
+    //console.log("Hit /projects route, user is: ",req.user);
+    Controller.Project.getAllByUser("5d193074b909d55f1c48a7c9")
+        .then(results => res.json(results))
+        .catch(err => res.json(err));
+});
+
+//Get project data from db by project*
+router.get("/project/:projectId", (req, res) => {
+    
+});
 
 //Get sprint data from db by project*
 router.get("/sprints/:projectId", (req, res) => {
     console.log("Hit /sprints/:projectId route, user is: ",req.user);
-    sprintController
+    Controller.sprintController
         .getAllbyProject(req.params.projectId)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
 });
 
 //Get task data from db by sprint*
-router.get("/tasks/:sprintId", (req, res) => {
+router.get("/tasks/sprint/:sprintId", (req, res) => {
     console.log("Hit /tasks/:sprintId route, user is: ",req.user);
-    taskController
+    Controller.taskController
         .getAllbySprint(req.params.sprintId)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
 });
 
 //Get task data from db by user *
-router.get("/tasks/:user", (req, res) => {
+router.get("/tasks/user/:userId", (req, res) => {
     console.log("Hit /tasks/:user route, user is: ",req.user);
-    taskController
+    Controller.taskController
         .getAllByUser(req.params.user)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
@@ -47,19 +65,12 @@ router.get("/tasks/:user", (req, res) => {
 //POST ROUTES:
 
 //Find/Create a new user if necessary*
-router.post("/user", (req, res) => {
-    console.log("Hit /user route, user is: ",req.user);
-    userController
-        .findOrCreate(req.user) //Double check that this is correct
-        .then(results =>res.json(results))
-        .catch(err => res.json(err));
-});
+//router.post("/user", Controller.userController.findOrCreate);
 
 //Create new project*
 router.post("/projects", (req, res) => {
     console.log("Hit /projects route, user is: ",req.user);
-    projectController
-        .create(req.body)
+    Controller.projectController.create(req.body)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
 });
@@ -67,7 +78,7 @@ router.post("/projects", (req, res) => {
 //Create new sprint*
 router.post("/sprints", (req, res) => {
     console.log("Hit /sprints route, user is: ",req.user);
-    sprintController
+    Controller.sprintController
         .create(req.body)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
@@ -76,7 +87,7 @@ router.post("/sprints", (req, res) => {
 //Create new task*
 router.post("/tasks", (req, res) => {
     console.log("Hit /tasks route, user is: ",req.user);
-    taskController
+    Controller.taskController
         .create(req.body)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
@@ -87,7 +98,7 @@ router.post("/tasks", (req, res) => {
 //Edit a project*
 router.put("/projects/:projectId", (req, res) => {
     console.log("Hit /projects/:projectId route, user is: ",req.user);
-    projectController
+    Controller.projectController
         .updateOneById(req.body.params.projectId)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
@@ -96,7 +107,7 @@ router.put("/projects/:projectId", (req, res) => {
 //Edit a sprint*
 router.put("/sprints/:sprintId", (req, res) => {
     console.log("Hit /sprints/:sprintId route, user is: ",req.user);
-    sprintController
+    Controller.sprintController
         .updateOneById(req.params.sprintId)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
@@ -105,7 +116,7 @@ router.put("/sprints/:sprintId", (req, res) => {
 //Edit a task*
 router.put("/tasks/:taskId", (req, res) => {
     console.log("Hit /tasks/:taskId route, user is: ",req.user);
-    taskController
+    Controller.taskController
         .updateOneById(req.params.taskId)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
@@ -116,7 +127,7 @@ router.put("/tasks/:taskId", (req, res) => {
 //Delete a project*
 router.delete("/projects/:projectId", (req, res) => {
     console.log("Hit /projects/:projectId route, user is: ",req.user);
-    projectController
+    Controller.projectController
         .deleteOneById(req.params.projectId)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
@@ -125,7 +136,7 @@ router.delete("/projects/:projectId", (req, res) => {
 //Delete a sprint*
 router.delete("/sprints/:sprintId", (req, res) => {
     console.log("Hit /sprints/:sprintId route, user is: ",req.user);
-    sprintController
+    Controller.sprintController
         .deleteOneById(req.params.sprintId)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
@@ -135,7 +146,7 @@ router.delete("/sprints/:sprintId", (req, res) => {
 //Delete a task
 router.delete("/tasks/:taskId", (req, res) => {
     console.log("Hit /tasks/:taskId route, user is: ",req.user);
-    taskController
+    Controller.taskController
         .deleteOneById(req.params.taskId)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
