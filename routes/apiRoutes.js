@@ -35,7 +35,7 @@ router.get("/project/:projectId", (req, res) => {
     
 });
 
-//Get sprint data from db by project*
+//Get sprint data from db by project**
 router.get("/sprints/:projectId", (req, res) => {
     console.log("Hit /sprints/:projectId route, user is: ",req.user);
     Controller.sprintController
@@ -44,7 +44,7 @@ router.get("/sprints/:projectId", (req, res) => {
         .catch(err => res.json(err));
 });
 
-//Get task data from db by sprint*
+//Get task data from db by sprint**
 router.get("/tasks/sprint/:sprintId", (req, res) => {
     console.log("Hit /tasks/:sprintId route, user is: ",req.user);
     Controller.taskController
@@ -57,7 +57,7 @@ router.get("/tasks/sprint/:sprintId", (req, res) => {
 router.get("/tasks/user/:userId", (req, res) => {
     console.log("Hit /tasks/:user route, user is: ",req.user);
     Controller.taskController
-        .getAllByUser(req.params.user)
+        .getAllByUser(req.params.userId)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
 });
@@ -75,7 +75,7 @@ router.post("/projects", (req, res) => {
         .catch(err => res.json(err));
 });
 
-//Create new sprint*
+//Create new sprint**
 router.post("/sprints", (req, res) => {
     console.log("Hit /sprints route, user is: ",req.user);
     Controller.sprintController
@@ -84,7 +84,7 @@ router.post("/sprints", (req, res) => {
         .catch(err => res.json(err));
 });
 
-//Create new task*
+//Create new task**
 router.post("/tasks", (req, res) => {
     console.log("Hit /tasks route, user is: ",req.user);
     Controller.taskController
@@ -104,20 +104,20 @@ router.put("/projects/:projectId", (req, res) => {
         .catch(err => res.json(err));
 });
 
-//Edit a sprint*
+//Edit a sprint**
 router.put("/sprints/:sprintId", (req, res) => {
     console.log("Hit /sprints/:sprintId route, user is: ",req.user);
     Controller.sprintController
-        .updateOneById(req.params.sprintId)
+        .updateOneById(req.params.sprintId, req.body)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
 });
 
-//Edit a task*
+//Edit a task**
 router.put("/tasks/:taskId", (req, res) => {
     console.log("Hit /tasks/:taskId route, user is: ",req.user);
     Controller.taskController
-        .updateOneById(req.params.taskId)
+        .updateOneById(req.params.taskId, req.body)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
 });
@@ -133,7 +133,7 @@ router.delete("/projects/:projectId", (req, res) => {
         .catch(err => res.json(err));
 });
 
-//Delete a sprint*
+//Delete a sprint**
 router.delete("/sprints/:sprintId", (req, res) => {
     console.log("Hit /sprints/:sprintId route, user is: ",req.user);
     Controller.sprintController
@@ -143,7 +143,7 @@ router.delete("/sprints/:sprintId", (req, res) => {
 
 });
 
-//Delete a task
+//Delete a task **
 router.delete("/tasks/:taskId", (req, res) => {
     console.log("Hit /tasks/:taskId route, user is: ",req.user);
     Controller.taskController
