@@ -1,28 +1,39 @@
 const db = require("../models");
 
 module.exports = {
-    getAllByProject: function(req, res) { //get all sprints by req.params.projectId
-        console.log(req.params.projectId)
-        //NEEDS CODE
+
+    getAllByProject: function(projectId) { //get all sprints by projectId
+        //Function needs review
+        console.log(projectId)
+        return db.Project
+            .findById({_id: projectId}).populate('Sprint')
+            .then(results => results)
+            .catch(err => err);
     },
 
     
-    create: function(req, res){ //create a sprint using req.body
-        console.log(req.body);
-        db.Sprint
-            .create(req.body)
+    create: function(sprint){ //create a sprint
+        console.log(sprint);
+        return db.Sprint
+            .create(sprint)
             .then(results => res.json(results))
             .catch(err => res.json(err));
     },
 
-    updateOneById: function(req, res){ //update a sprint by req.params.sprintId using req.body
-        db.Sprint.findById({_id: req.params.sprintId})
-            .then() //NEEDS CODE
+    updateOneById: function(sprintId, sprint){ //update a sprint using sprintId and the updated sprint
+        return db.Sprint
+            .findByIdAndUpdate(
+                sprintId, 
+                sprint,
+                {new: true}
+            )
+            .then(results => res.json(results))
             .catch(err => res.json(err));
     },
     
-    deleteOneById: function(req, res){ //delete a sprint by req.params.sprintId
-        db.Sprint.findById({ _id: req.params.sprintId})
+    deleteOneById: function(sprintId){ //delete a sprint by sprintId
+        return db.Sprint
+            .findById({ _id: sprintId})
             .then(results => results.remove())
             .then(results => res.json(results))
             .catch(err => res.json(err));

@@ -1,32 +1,45 @@
 const db = require("../models");
 
 module.exports = {
-    getAllBySprint: function(req, res){ //get all tasks by req.params.sprintId
-        console.log(req.params.sprintId);
-        //NEEDS CODE
+    getAllBySprint: function(sprintId) { //get all tasks by sprintId
+        //Function needs review
+        console.log(sprintId);
+        return db.Sprint
+            .findById({_id: sprintId}).populate('Task')
+            .then(results => results)
+            .catch(err => err);
+
     },
     
-    getAllByUser: function(req, res){ //get all tasks by req.user
-        console.log(req.user);
+    getAllByUser: function(userId){ //get all tasks by req.user
+        console.log(userId);
         //NEEDS CODE
     },
 
-    create: function(req, res){ //create a task using req.body
-        console.log(req.body);
-        db.Task
-            .create(req.body)
+    create: function(task){ //create a task 
+        console.log(task);
+        return db.Task
+            .create(task)
             .then(results => res.json(results))
             .catch(err => res.json(err));
     },
     
-    updateOneById: function(req, res){ //update a task by req.params.taskId using req.body
-        db.Task.findById({_id: req.params.taskId})
-            .then() //NEEDS CODE
+    updateOneById: function(taskId, task){ //update a task by taskId
+        console.log(taskId);
+        return db.Task
+            .findByIdAndUpdate(
+                taskId, 
+                task,
+                {new: true}
+            )
+            .then(results => res.json(results))
             .catch(err => res.json(err));
     },
     
-    deleteOneById: function(req, res){ //delete a task by req.params.taskId
-        db.Task.findById({ _id: req.params.taskId})
+    deleteOneById: function(taskId){ //delete a task by req.params.taskId
+        console.log(taskId);
+        return db.Task
+            .findById({ _id: taskId})
             .then(results => results.remove())
             .then(results => res.json(results))
             .catch(err => res.json(err));
