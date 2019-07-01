@@ -1,6 +1,7 @@
 var router = require("express").Router();
 
 module.exports = passport => {
+
   router.get("/github", passport.authenticate("github"));
 
   router.get(
