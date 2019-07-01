@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,700,900&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+}
+
+h1 {
+  margin: 0;
+  font-weight: 300;
+}
+
+button {
+  border: none;
+  background-color: inherit;
+}
+
 .project-container {
   padding: 15px;
   display: flex;
@@ -20,8 +37,8 @@
   padding: 50px;
 }
 
-
-.tasklist-container,
+/* 
+.tasklist-container, */
 .sprintlist-container,
 .projectcard-container {
   padding: 20px;

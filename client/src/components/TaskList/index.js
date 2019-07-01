@@ -5,27 +5,39 @@ import "./styles.css"
 const tasks = [
   {
     title: 'new task',
-    assignee: 'Andrew',
+    assignees: {
+      id: 'kj23k4jksdkf',
+      name: 'Andrew',
+      avatar: 'https://avatars0.githubusercontent.com/u/46357543?v=4'
+    },
     status: 'In Progress'
   },
   {
     title: 'new task',
-    assignee: 'Andrew',
+    assignee: {},
     status: 'Open'
   },
   {
     title: 'new task',
-    assignee: 'Andrew',
+    assignee: {},
     status: 'Done'
   },
   {
     title: 'new task',
-    assignee: 'Andrew',
+    assignee: {
+      id: '4jkcb988u89',
+      name: 'Andrew',
+      avatar: 'https://avatars0.githubusercontent.com/u/46357543?v=4'
+    },
     status: 'In Progress'
   },
   {
     title: 'new task',
-    assignee: 'Andrew',
+    assignee: {
+      id: 'nnejmnehrujr84',
+      name: 'Andrew',
+      avatar: 'https://avatars0.githubusercontent.com/u/46357543?v=4'
+    },
     status: 'In Progress'
   }
 ]
@@ -59,9 +71,13 @@ const TaskList = () => {
         {/* Task List */}
         {tasks.map(task => {
           return (
-            <div className="task-container">
+            <div className="task-container" key={task.assignee.id}>
               <span>{task.title}</span>
-              <span>Assigned to: {task.assignee}</span>
+              {
+                task.assignee.id ?
+                  <span>Assigned to: <img className="sm-avatar" src={task.assignee.avatar} alt="" /></span> :
+                  <span>Unassigned</span>
+              }
               <span>{task.status}</span>
             </div>
           )

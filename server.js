@@ -32,6 +32,7 @@ passport.deserializeUser((profile, done) => {
   user = {
     name: profile.displayName,
     username: profile.login,
+    avatar: profile.avatar_url,
     id: profile.id,
     projects: ["awdhflkwnee23ro2j3jr", "awdhflkw8dh3ro2j3jr"]
   };

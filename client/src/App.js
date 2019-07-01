@@ -60,9 +60,9 @@ class App extends Component {
           />
           <PrivateRoute
             isAuthenticated={this.state.isLoggedIn}
-            id={this.state.projectId}
+            // id={this.state.projectId}
             path="/project/:id"
-            component={ProjectTest}
+            component={Project}
           />
           <Route exact path="/login" component={Auth} />
         </BrowserRouter>
