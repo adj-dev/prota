@@ -1,21 +1,44 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import ProjectList from "../../components/ProjectList";
+import ProfileCard from "../../components/ProfileCard";
+import mockAPI from "../../utils/mockAPI";
+import "./style.css";
 
 class Profile extends Component {
   state = {
-    projects: [
-      { title: "Project 1", id: 1 },
-      { title: "Project 2", id: 2 },
-      { title: "Final Project", id: 3 }
-    ]
+    user: null
+  };
+  componentDidMount = () => {
+    if (!this.state.user) {
+      mockAPI.getUser().then(user => {
+        console.log(user);
+        this.setState({ user });
+      });
+    }
   };
   render() {
     return (
-      <div>
-        {this.props.user.name}
-        <ProjectList projects={this.state.projects} />
-      </div>
+      <>
+        {this.state.user ? (
+          <div className="profile-container">
+            <div className="profile-left-container">Tasks:</div>
+            <div className="profile-right-container">
+              <ProfileCard
+                avatar_url={this.state.user.avatar_url}
+                display_name={this.state.user.display_name}
+              />
+              {this.state.user.projects ? (
+                <ProjectList projects={this.state.user.projects} />
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </>
     );
   }
 }

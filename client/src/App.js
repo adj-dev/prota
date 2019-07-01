@@ -4,40 +4,30 @@ import PrivateRoute from "./components/PrivateRoute";
 import Auth from "./components/Auth";
 import API from "./utils/API";
 import Project from './pages/Project';
+import mockAPI from "./utils/mockAPI";
 import Profile from "./pages/Profile";
 import ProjectTest from "./pages/ProjectTest";
 
 class App extends Component {
   state = {
-    isLoggedIn: true,
-    user: {},
-    projectId: ""
+    isLoggedIn: true
   };
 
-  componentWillMount() {
+  componentDidMount() {
     console.log("mounting");
     console.log("Logged In?", this.state.isLoggedIn);
-    this.fetchUser();
+    this.getLoginStatus();
   }
   componentDidUpdate() {
     console.log("Component mounted! State:");
     console.log(this.state);
   }
 
-  selectProjectHandler = id => {
-    this.setState({ projectId: id });
-  };
-
-  fetchUser = () => {
-    API.getUser()
-      .then(user => {
-        //console.log(user);
-
-        if (user.error) {
-          console.log("failed to fetch user");
-          return this.setState({ isLoggedIn: false, user: {} });
-        }
-        return this.setState({ isLoggedIn: true, user: user });
+  getLoginStatus = () => {
+    mockAPI
+      .isLoggedIn()
+      .then(status => {
+        return this.setState({ isLoggedIn: status });
       })
       .catch(err => console.log(err));
   };
@@ -50,13 +40,7 @@ class App extends Component {
             isAuthenticated={this.state.isLoggedIn}
             exact
             path="/"
-            component={() => (
-              <Profile
-                user={this.state.user}
-                selectProject={this.selectProjectHandler}
-                projectId={this.state.projectId}
-              />
-            )}
+            component={Profile}
           />
           <PrivateRoute
             isAuthenticated={this.state.isLoggedIn}

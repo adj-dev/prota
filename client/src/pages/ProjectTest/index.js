@@ -1,27 +1,35 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import API from "../../utils/API";
+import mockAPI from "../../utils/mockAPI";
+import ProjectCard from "../../components/ProjectCard";
 
 class ProjectTest extends Component {
   state = {
-    id: null,
+    _id: null,
     title: null
   };
 
   componentWillMount() {
-    API.getProject(this.props.match.params.id).then(project => {
+    mockAPI.getProject(this.props.match.params.id).then(project => {
+      console.log("project:");
+      console.log(project);
+
       if (project.unauthorized) {
         window.location = "/";
       }
 
-      let { id, title } = project;
-      this.setState({ id, title });
+      let { _id, name, status, created_by } = project;
+      this.setState({ _id, name, status, created_by });
     });
   }
   render() {
-    return this.state.id ? (
+    return this.state._id ? (
       <div>
-        {this.state.title} : {this.state.id}
+        <ProjectCard
+          name={this.state.name}
+          status={this.state.status}
+          created_by={this.state.created_by}
+        />
       </div>
     ) : null;
   }

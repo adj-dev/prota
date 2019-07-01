@@ -1,10 +1,11 @@
 var router = require("express").Router();
 
 module.exports = passport => {
-  router.get("/auth/github", passport.authenticate("github"));
+
+  router.get("/github", passport.authenticate("github"));
 
   router.get(
-    "/auth/github/callback",
+    "/github/callback",
     passport.authenticate("github"),
     (req, res) => {
       let redirectUrl;
@@ -14,5 +15,10 @@ module.exports = passport => {
       res.redirect(redirectUrl);
     }
   );
+
+  router.get("/status", (req, res) => {
+    req.user ? res.json(true) : res.json(false);
+  });
+
   return router;
 };
