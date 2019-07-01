@@ -1,0 +1,8 @@
+.project-list-item {
+  height: 75px;
+  width: 75px;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  padding: 5px;
+}

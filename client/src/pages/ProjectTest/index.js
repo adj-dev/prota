@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import mockAPI from "../../utils/mockAPI";
+import ProjectCard from "../../components/ProjectCard";
 
 class ProjectTest extends Component {
   state = {
@@ -17,14 +18,18 @@ class ProjectTest extends Component {
         window.location = "/";
       }
 
-      let { _id, name } = project;
-      this.setState({ _id, name });
+      let { _id, name, status, created_by } = project;
+      this.setState({ _id, name, status, created_by });
     });
   }
   render() {
     return this.state._id ? (
       <div>
-        {this.state.name} : {this.state._id}
+        <ProjectCard
+          name={this.state.name}
+          status={this.state.status}
+          created_by={this.state.created_by}
+        />
       </div>
     ) : null;
   }

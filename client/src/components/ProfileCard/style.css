@@ -1,0 +1,16 @@
+.profile-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  height: 400px;
+  width: 400px;
+}
+
+.avatar {
+  width: 200px;
+  border-radius: 100px;
+  margin: 20px;
+}
