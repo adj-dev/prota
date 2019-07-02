@@ -8,7 +8,7 @@ module.exports = {
       },
 
     getOne: function(userName) { //get a user object by req.user
-        return db.User.find({username: userName})
+        return db.User.find({username: userName}).populate("Project")
           .then(dbUser => dbUser)
           .catch(err => console.log(err));
     },
@@ -16,6 +16,10 @@ module.exports = {
     getFuzzy: function(userName) {
         var regex = new RegExp(userName, "i")
         return db.User.find({username: regex}).limit(5)
+    },
+
+    create: function(userBody) {
+        return db.User.create(userBody);
     },
 
     //adjust to createOrUpdate
@@ -26,16 +30,16 @@ module.exports = {
             .then(dbUser => {
                 if(dbUser.length > 0){
                     //console.log(dbUser[0].username+" exists");
-                    return (db.User.update(user)
-                        .then(result => user)
-                        .catch(err => err)
+                    return (
+                        db.User.findOneAndUpdate(
+                            {username: user.username},
+                            user,
+                            {new: true}
+                        )
                     );
                 } else {
                     //console.log("User does not exist");
-                    return (db.User.create(user)
-                        .then(result => result)
-                        .catch(err => err)
-                    );
+                    return (db.User.create(user));
                 }
             })
             .catch(err => err
