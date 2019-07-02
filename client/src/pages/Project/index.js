@@ -96,6 +96,19 @@ export default class Project extends Component {
     this.setState({ showAssigneeModal: true })
   }
 
+  // Toggles the visibility of a modal when user clicks backdrop
+  toggleModule = e => {
+    let targetElement = e.target;
+    if (targetElement.closest('.assignee-modal')) {
+      return;
+    }
+
+    console.log('Assigned a task');
+    this.setState(prevState => {
+      return { showAssigneeModal: !prevState.showAssigneeModal };
+    });
+  }
+
 
 
   // *********
@@ -129,7 +142,7 @@ export default class Project extends Component {
 
               {/* *** MODAL *** */}
               {this.state.showAssigneeModal ?
-                <AddAssigneeModal />
+                <AddAssigneeModal handleClick={e => this.toggleModule(e)} />
                 :
                 null
               }
