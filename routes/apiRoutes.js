@@ -49,6 +49,15 @@ router.get("/sprints/:projectId", (req, res) => {
         .catch(err => res.json(err));
 });
 
+//Get task data from db by project**(untested)
+router.get("/tasks/project/:projectId", (req, res) => {
+    console.log("Hit /tasks/project/:projectId route, user is: ",req.user);
+    Controller.taskController
+        .getAllbyProject(req.params.projectId)
+        .then(results =>res.json(results))
+        .catch(err => res.json(err));
+});
+
 //Get task data from db by sprint**
 router.get("/tasks/sprint/:sprintId", (req, res) => {
     console.log("Hit /tasks/:sprintId route, user is: ",req.user);
