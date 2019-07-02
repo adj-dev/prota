@@ -15,7 +15,10 @@ var SprintSchema = new Schema({
     status: {
         type: String,
         enum: ["Open", "In Progress", "Closed"],
-        required: true,
+        default: "Open",
+    },
+    project_ref: {
+        type: String
     },
     tasks: [{
         type: Schema.Types.ObjectId,

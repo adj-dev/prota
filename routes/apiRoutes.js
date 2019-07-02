@@ -44,7 +44,7 @@ router.get("/project/:projectId", (req, res) => {
 router.get("/sprints/:projectId", (req, res) => {
     console.log("Hit /sprints/:projectId route, user is: ",req.user);
     Controller.Sprint
-        .getAllbyProject(req.params.projectId)
+        .getAllByProject(req.params.projectId)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
 });
@@ -186,7 +186,6 @@ router.delete("/sprints/:sprintId", (req, res) => {
         .deleteOneById(req.params.sprintId)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
-
 });
 
 //Delete a task **
