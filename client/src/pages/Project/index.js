@@ -66,6 +66,7 @@ export default class Project extends Component {
   }
 
   // Fetches all tasks by project id
+  // This function will be used once the actual API is plugged in and functional
   fetchTasks = async () => {
     let tasks = await mockAPI.getTasks();
     this.setState({ tasks });
