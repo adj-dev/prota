@@ -14,23 +14,23 @@ const TaskListSelector = ({ tasks }) => {
     <div className="tasklist-wrapper">
       <div className="tasklist-container">
         <h1>Tasks</h1>
-
+<br></br>
         {/* Status buttons */}
         <div className="status-buttons">
           <div className="status">
-            <button id="all-tasks">All</button>
+            <button id="all-tasks">all</button>
           </div>
           <div className="status">
-            <button id="open-tasks" onClick={(e) => e.preventDefault()}>Open</button>
+            <button id="open-tasks" onClick={(e) => e.preventDefault()}>open</button>
           </div>
           <div className="status">
-            <button id="in-progress-tasks">In Progress</button>
+            <button id="in-progress-tasks">in progress</button>
           </div>
           <div className="status">
-            <button id="done-tasks">Done</button>
+            <button id="done-tasks">done</button>
           </div>
         </div>
-
+<br></br>
         <TaskList tasks={selectedTasks} />
 
       </div>
