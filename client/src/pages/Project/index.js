@@ -21,7 +21,7 @@ export default class Project extends Component {
 
   componentDidMount() {
     console.log('Project component mounted');
-    // Fetches a project by id and assigns state value for Project and Sprints and componenents
+    // Fetches a project by id and assigns state value for Project and Sprints and TaskList componenents
     mockAPI.getProject(this.props.match.params.id).then(project => {
       console.log(project.sprints);
       if (project.unauthorized) return window.location = "/";
