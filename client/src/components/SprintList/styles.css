@@ -9,6 +9,19 @@ font-family: 'Rajdhani', sans-serif;
 
 .sprintlist-wrapper {
   font-family: 'Rajdhani', sans-serif;
+  
+}
+
+.sprint-item{
+  background-color: slategray;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  color: white;
+  margin: 8px;
+  margin-left: -1px;
+  padding: 20px;
+
+
 }
 
 #open {
@@ -17,6 +30,7 @@ font-family: 'Rajdhani', sans-serif;
   font-size: 1.25rem;
   color: white;
   margin: 7px;
+  margin-left: -1px;
   border-radius: 8px;
 }
 #in-progress {

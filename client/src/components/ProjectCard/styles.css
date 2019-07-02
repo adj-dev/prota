@@ -9,6 +9,7 @@ font-family: 'Rajdhani', sans-serif;
 
 .projectcard-wrapper {
   font-family: 'Rajdhani', sans-serif;
+  line-height: 1.8rem;
 }
 
 .details-container{
@@ -16,7 +17,6 @@ font-family: 'Rajdhani', sans-serif;
   font-weight: 200;
   
 }
-
 .project-card {
   display: flex;
   flex-direction: column;

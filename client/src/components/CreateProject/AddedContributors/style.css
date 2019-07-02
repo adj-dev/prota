@@ -1,0 +1,30 @@
+.added-contributor-list-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.added-contributor-container {
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
+  padding-left: 10px;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  width: inherit;
+  cursor: default;
+  margin: 2px;
+}
+
+.remove-contributor-button {
+  margin-left: 5px;
+  padding: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: 0.5rem;
+  background-color: red;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
+}
