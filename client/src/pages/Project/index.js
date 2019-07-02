@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ProjectCard from '../../components/ProjectCard';
 import SprintList from '../../components/SprintList';
 import TaskListSelector from '../../components/TaskListSelector';
+import AddAssigneeModal from '../../components/AddAssigneeModal';
 // import API from "../../utils/API";
 import mockAPI from "../../utils/mockAPI";
 import './styles.css';
@@ -104,24 +105,29 @@ export default class Project extends Component {
       <>
         {
           this.state.isLoaded ?
-            <div className="project-container">
-              <div className="col">
-                <ProjectCard
-                  project={this.state.forProjectCard}
-                />
-                <SprintList
-                  sprints={this.state.forSprintList}
-                  selectSprint={this.selectSprint}
-                />
+            <>
+              <div className="project-container">
+                <div className="col">
+                  <ProjectCard
+                    project={this.state.forProjectCard}
+                  />
+                  <SprintList
+                    sprints={this.state.forSprintList}
+                    selectSprint={this.selectSprint}
+                  />
+                </div>
+                <div className="col">
+                  <TaskListSelector
+                    tasks={this.state.tasks}
+                    selection={this.state.selection}
+                    handleAssignTask={taskId => this.assignTask(taskId)}
+                  />
+                </div>
               </div>
-              <div className="col">
-                <TaskListSelector
-                  tasks={this.state.tasks}
-                  selection={this.state.selection}
-                  handleAssignTask={taskId => this.assignTask(taskId)}
-                />
-              </div>
-            </div>
+
+              {/* *** MODAL *** */}
+              <AddAssigneeModal />
+            </>
             :
             <div>Oops, something went wrong...</div>
         }
