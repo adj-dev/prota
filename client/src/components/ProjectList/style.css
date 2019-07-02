@@ -1,0 +1,42 @@
+.project-list-container {
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
+  border: 1px solid lightblue;
+  border-radius: 5px;
+  width: 600px;
+}
+
+.project-list {
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  justify-items: flex-start;
+  /* border: 1px solid grey; */
+  overflow: scroll;
+}
+
+.create-project-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85px;
+  width: 85px;
+  background-color: lightgreen;
+  border-radius: 5px;
+  font-size: 3em;
+  margin: 10px;
+  color: white;
+}
+
+.project-list div {
+  margin: 10px;
+  margin-left: 11px;
+  margin-right: 0px;
+}
+
+@media (max-width: 768px) {
+  .project-list-container {
+    width: 100%;
+  }
+}

@@ -1,0 +1,13 @@
+.my-tasks-container {
+  border: 1px solid lightgray;
+  min-width: 600px;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .my-tasks-container {
+    width: inherit;
+    min-width: unset;
+  }
+}

@@ -1,0 +1,27 @@
+.status-picker-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.status-picker-container div {
+  margin-right: 10px;
+}
+
+.status-button {
+  cursor: pointer;
+  background-color: lightgray;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+#OPEN {
+  background-color: rgb(84, 225, 84);
+}
+#IN_PROGRESS {
+  background-color: dodgerblue;
+}
+#DONE {
+  background-color: orange;
+}

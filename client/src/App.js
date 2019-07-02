@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Auth from "./components/Auth";
-import API from "./utils/API";
+// import API from "./utils/API";
+import Project from './pages/Project';
+import mockAPI from "./utils/mockAPI";
 import Profile from "./pages/Profile";
-import ProjectTest from "./pages/ProjectTest";
+// import ProjectTest from "./pages/ProjectTest";
 
 class App extends Component {
   state = {
@@ -12,17 +14,18 @@ class App extends Component {
   };
 
   componentDidMount() {
-    console.log("mounting");
-    console.log("Logged In?", this.state.isLoggedIn);
+    // console.log("mounting");
+    // console.log("Logged In?", this.state.isLoggedIn);
     this.getLoginStatus();
   }
   componentDidUpdate() {
-    console.log("Component mounted! State:");
-    console.log(this.state);
+    // console.log("Component mounted! State:");
+    // console.log(this.state);
   }
 
   getLoginStatus = () => {
-    API.isLoggedIn()
+    mockAPI
+      .isLoggedIn()
       .then(status => {
         return this.setState({ isLoggedIn: status });
       })
@@ -31,7 +34,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
+      <div className="app" style={{ height: 100 }}>
         <BrowserRouter>
           <PrivateRoute
             isAuthenticated={this.state.isLoggedIn}
@@ -41,9 +44,9 @@ class App extends Component {
           />
           <PrivateRoute
             isAuthenticated={this.state.isLoggedIn}
-            id={this.state.projectId}
+            // id={this.state.projectId}
             path="/project/:id"
-            component={ProjectTest}
+            component={Project}
           />
           <Route exact path="/login" component={Auth} />
         </BrowserRouter>

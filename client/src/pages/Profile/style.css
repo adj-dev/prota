@@ -1,0 +1,42 @@
+.profile-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+  font-size: 1rem;
+}
+
+.profile-right-container {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  margin: 40px;
+  /* border: 1px solid grey; */
+}
+
+.profile-left-container {
+  display: flex;
+  flex: 1.5;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 40px;
+  /* border: 1px solid grey; */
+}
+
+@media (max-width: 768px) {
+  .profile-right-container {
+    flex: 1;
+    width: inherit;
+    margin: 0px;
+    /* border: 1px solid grey; */
+  }
+
+  .profile-left-container {
+    flex: 1;
+    margin: 0px;
+    justify-content: unset;
+    /* border: 1px solid grey; */
+  }
+}
