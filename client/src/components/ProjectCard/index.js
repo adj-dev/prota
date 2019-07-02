@@ -10,12 +10,12 @@ const ProjectCard = ({ project }) => {
             <h1>{project.name}</h1>
           </div>
         </div>
-
+<br></br>
         <div className="details-container">
           <div className="detail"><span>Current Runtime: 23 days</span></div>
           <div className="detail"><span>Projected End Date: August 1st, 2019</span></div>
           <div className="detail"><span>Progress: 25%</span></div>
-          <div className="detail"><span>{project.status}</span></div>
+          <div className="detail"><span>{project.status.toUpperCase()}</span></div>
         </div>
 
         <div className="team-container">

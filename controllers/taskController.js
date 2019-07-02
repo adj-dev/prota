@@ -1,6 +1,18 @@
 const db = require("../models");
 
 module.exports = {
+    
+    getAllByProject: function(projectId) { //get all tasks by sprintId
+        //Function needs review
+        console.log(projectId);
+        return db.Project
+            .findById({_id: projectId})
+            .populate('Sprint')
+            .populate('Task')
+            .then(results => results)
+            .catch(err => err);
+    },
+    
     getAllBySprint: function(sprintId) { //get all tasks by sprintId
         //Function needs review
         console.log(sprintId);

@@ -16,22 +16,22 @@ const SprintList = ({ sprints, selectSprint }) => {
       <div className="sprintlist-container">
 
         <h1>Sprints</h1>
-
+<br></br>
         <div className="status-buttons">
           <div className="status">
-            <button id="open">Open</button>
+            <button id="open">open</button>
           </div>
           <div className="status">
-            <button id="in-progress">In Progress</button>
+            <button id="in-progress">in progress</button>
           </div>
           <div className="status">
-            <button id="Done">Done</button>
+            <button id="done">done</button>
           </div>
           <div className="status">
-            <button id="closed">Closed</button>
+            <button id="closed">closed</button>
           </div>
         </div>
-
+<br></br>
         <div className="sprintlist">
           {
             sprints.map((sprint, i) => {
