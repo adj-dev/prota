@@ -11,6 +11,7 @@ import './styles.css';
 export default class Project extends Component {
   state = {
     project: null,
+    currentUser: null,
     forProjectCard: null,
     forSprintList: null,
     forTaskList: null,
@@ -20,6 +21,7 @@ export default class Project extends Component {
 
   componentDidMount() {
     console.log('Project component mounted');
+    // Fetches a project by id and assigns state value for Project and Sprints and componenents
     mockAPI.getProject(this.props.match.params.id).then(project => {
       console.log(project.sprints);
       if (project.unauthorized) return window.location = "/";
@@ -38,9 +40,16 @@ export default class Project extends Component {
         isLoaded: true
       });
     });
+
+    // Fetch current user data
+    mockAPI.getUser()
+      .then(user => {
+        this.setState({ currentUser: user })
+      })
   }
 
   selectSprint = async id => {
+    console.log(this.state.currentUser);
     // grab tasks selecting by a Sprint's id
     let tasks = await mockAPI.getTasksBySprintId(id);
     console.log('selectSprint:')
