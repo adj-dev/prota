@@ -2,6 +2,7 @@ export default class mockData {
   constructor() {
     this.tasks = [
       {
+        _id: 'MVP_1',
         title: "Do something",
         assignee: {
           username: "testguy",
@@ -12,6 +13,7 @@ export default class mockData {
         status: "IN_PROGRESS"
       },
       {
+        _id: 'MVP_2',
         title: "Do something else",
         assignee: {},
         description: "You got this.",
@@ -25,6 +27,20 @@ export default class mockData {
         end_date: Date.now() + 10,
         status: "IN_PROGRESS",
         tasks: this.tasks
+      },
+      {
+        name: "MVP_2",
+        start_date: Date.now(),
+        end_date: Date.now() + 10,
+        status: "DONE",
+        tasks: [
+          {
+            title: "Something new here!!!!",
+            assignee: {},
+            description: "You got this.",
+            status: "OPEN"
+          }
+        ]
       }
     ];
     this.projects = [
@@ -86,4 +102,13 @@ export default class mockData {
   getTasks = () => {
     return this.tasks;
   };
+  getTasksBySprintId = id => {
+    let result = [];
+    this.tasks.forEach(task => {
+      if (task._id === id) {
+        result.push(task);
+      }
+    })
+    return result;
+  }
 }

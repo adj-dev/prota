@@ -1,9 +1,0 @@
-.project-card {
-  display: flex;
-  flex-direction: column;
-  background-color: whitesmoke;
-  border-radius: 5px;
-  width: 300px;
-  height: 100px;
-  padding: 10px;
-}

@@ -39,11 +39,11 @@ button {
 
 /* 
 .tasklist-container, */
-.sprintlist-container,
+/* .sprintlist-container,
 .projectcard-container {
-  padding: 20px;
+  padding: 20px; */
   /* border: 1px solid black; */
   /* background: #e0e0e0; */
-  border-radius: 12px;
+  /* border-radius: 12px;
   box-shadow: 0 0 10px #b1b1b1;
-}
+} */
