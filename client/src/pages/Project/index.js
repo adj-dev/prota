@@ -10,7 +10,6 @@ import './styles.css';
 
 export default class Project extends Component {
   state = {
-    project: null,
     currentUser: null,
     forProjectCard: null,
     forSprintList: null,
@@ -26,7 +25,6 @@ export default class Project extends Component {
       console.log(project.sprints);
       if (project.unauthorized) return window.location = "/";
       this.setState({
-        project: project,
         forProjectCard: {
           contributors: project.contributors,
           created_by: project.created_by,
