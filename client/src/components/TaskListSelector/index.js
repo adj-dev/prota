@@ -74,7 +74,6 @@ const TaskListSelector = ({ tasks, selection }) => {
         </div>
         <br></br>
         <TaskList tasks={selectedTasks} />
-
       </div>
     </div>
   )
