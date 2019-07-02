@@ -34,7 +34,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
+      <div className="app" style={{ height: 100 }}>
         <BrowserRouter>
           <PrivateRoute
             isAuthenticated={this.state.isLoggedIn}

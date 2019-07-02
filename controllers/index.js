@@ -1,6 +1,6 @@
 module.exports = {
-    userController: require("./userController.js"),
-    projectController: require("./projectController.js"),
-    sprintController: require("./sprintController.js"),
-    taskController: require("./taskController.js")
+    User: require("./userController.js"),
+    Project: require("./projectController.js"),
+    Sprint: require("./sprintController.js"),
+    Task: require("./taskController.js")
 };

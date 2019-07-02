@@ -25,18 +25,27 @@ export default {
       //return the result of our search
       resolve(result);
     }),
-  // getTasksBySprintId: id => {
-  //   new Promise((resolve, reject) => {
-  //     let tasks = data.getTasksBySprintId(id);
-  //     console.log(tasks);
+  getTasks: username =>
+    new Promise((resolve, reject) => {
+      let tasks = data.getTasks();
 
-  //     resolve(tasks);
-  //   })
-  // }
+      //default result to unauthorized until we find what we're looking for
+      let result = [];
+      //search db for projects
+      for (let task in tasks) {
+        //if we have a project save it in result
+        if (tasks[task].assignee.username === username) {
+          console.log("task:", task);
+
+          result.unshift(tasks[task]);
+        }
+      }
+      //return the result of our search
+      resolve(result);
+    }),
   getTasksBySprintId: id =>
     new Promise((resolve, reject) => {
       let result = data.getTasksBySprintId(id);
-
       resolve(result);
     })
 };

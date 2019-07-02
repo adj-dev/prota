@@ -1,0 +1,21 @@
+.project-picker-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.project-picker-container div {
+  margin-right: 10px;
+}
+
+.project-button {
+  cursor: pointer;
+  background-color: lightgray;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+#ALL {
+  background-color: rgb(210, 95, 210);
+}

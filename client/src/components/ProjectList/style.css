@@ -4,13 +4,15 @@
   justify-items: flex-start;
   border: 1px solid lightblue;
   border-radius: 5px;
+  width: 600px;
 }
 
 .project-list {
   display: flex;
   flex-direction: row;
-  width: 295px;
+  width: 85%;
   justify-items: flex-start;
+  /* border: 1px solid grey; */
   overflow: scroll;
 }
 
@@ -31,4 +33,10 @@
   margin: 10px;
   margin-left: 11px;
   margin-right: 0px;
+}
+
+@media (max-width: 768px) {
+  .project-list-container {
+    width: 100%;
+  }
 }
