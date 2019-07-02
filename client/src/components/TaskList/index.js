@@ -3,7 +3,6 @@ import "./styles.css"
 
 
 const TaskList = ({ tasks }) => {
-  console.log(tasks);
   return (
     <>
       {tasks.map(task => {

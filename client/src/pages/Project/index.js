@@ -19,10 +19,8 @@ export default class Project extends Component {
   }
 
   componentDidMount() {
-    console.log('Project component mounted');
     // Fetches a project by id and assigns state value for Project and Sprints and TaskList componenents
     mockAPI.getProject(this.props.match.params.id).then(project => {
-      console.log(project.sprints);
       if (project.unauthorized) return window.location = "/";
       this.setState({
         forProjectCard: {
@@ -47,11 +45,8 @@ export default class Project extends Component {
   }
 
   selectSprint = async id => {
-    console.log(this.state.currentUser);
     // grab tasks selecting by a Sprint's id
     let tasks = await mockAPI.getTasksBySprintId(id);
-    console.log('selectSprint:')
-    console.log(tasks)
     this.setState({
       forTaskList: tasks,
       selection: tasks.filter(task => task.status === 'OPEN')
