@@ -13,7 +13,7 @@ export default class mockData {
       },
       {
         title: "Do something else",
-        assignee: {},
+        assignee: { username: "testguy" },
         description: "You got this.",
         status: "OPEN"
       }
@@ -62,7 +62,7 @@ export default class mockData {
         owners: ["John", "Andrew"],
         contributors: ["Testee McTesterson", "Nhu", "Adam"],
         status: "ON_TRACK",
-        sprints: this.sprints
+        sprints: []
       }
     ];
 
