@@ -4,7 +4,7 @@ var Controller = require('../controllers');
 
 //GET ROUTES:
 
-//Get User Data*
+//Get User Data**
 router.get("/user", (req, res) => {
     //console.log("Hit /user route, user is: ",req.user);
     res.json(req.user);
@@ -67,7 +67,7 @@ router.get("/tasks/user/:userId", (req, res) => {
 //Find/Create a new user if necessary*
 //router.post("/user", Controller.userController.findOrCreate);
 
-//Create new project*
+//Create new project**
 router.post("/projects", (req, res) => {
     console.log("Hit /projects route, user is: ",req.user);
     Controller.projectController.create(req.body)
@@ -95,7 +95,7 @@ router.post("/tasks", (req, res) => {
 
 //PUT ROUTES
 
-//Edit a project*
+//Edit a project**
 router.put("/projects/:projectId", (req, res) => {
     console.log("Hit /projects/:projectId route, user is: ",req.user);
     Controller.projectController
@@ -124,7 +124,7 @@ router.put("/tasks/:taskId", (req, res) => {
 
 //DELETE ROUTES
 
-//Delete a project*
+//Delete a project**
 router.delete("/projects/:projectId", (req, res) => {
     console.log("Hit /projects/:projectId route, user is: ",req.user);
     Controller.projectController
