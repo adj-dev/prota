@@ -1,8 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
+/* 
+font-family: 'Overpass', sans-serif;
+
+font-family: 'PT Sans Narrow', sans-serif;
+
+font-family: 'Rajdhani', sans-serif;
+*/
+
+
 .sm-avatar {
   width: 30px;
   border-radius: 0.25em;
 }
 
+.tasklist-wrapper {
+  font-family: 'Rajdhani', sans-serif;
+}
 .task-container {
   /*   background-color: #84ddfd; */
     border: 1px solid #d3d3d3;
@@ -24,4 +37,37 @@
   .task-lower {
     display: flex;
     align-items: center;
+  }
+
+  #all-tasks{
+    background-color: #D593E8;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 1.25rem;
+    color: white;
+    margin: 7px;
+    border-radius: 8px;
+  }
+  #open-tasks {
+    background-color: #3EE1A7;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 1.25rem;
+    color: white;
+    margin: 7px;
+    border-radius: 8px;
+  }
+  #in-progress-tasks{
+    background-color: #46A1FD;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 1.25rem;
+    color: white;
+    margin: 7px;
+    border-radius: 8px;
+  }
+  #done-tasks {
+    background-color: #FD9E3C;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 1.25rem;
+    color: white;
+    margin: 7px;
+    border-radius: 8px;
   }

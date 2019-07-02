@@ -56,23 +56,23 @@ const TaskListSelector = ({ tasks, selection }) => {
     <div className="tasklist-wrapper">
       <div className="tasklist-container">
         <h1>Tasks</h1>
-
+        <br></br>
         {/* Status buttons */}
         <div className="status-buttons">
           <div className="status">
-            <button id="all-tasks" onClick={() => userSelectsTasks(ALL)}>All</button>
+            <button id="all-tasks" onClick={() => userSelectsTasks(ALL)}>all</button>
           </div>
           <div className="status">
-            <button id="open-tasks" onClick={() => userSelectsTasks(OPEN)}>Open</button>
+            <button id="open-tasks" onClick={() => userSelectsTasks(OPEN)}>open</button>
           </div>
           <div className="status">
-            <button id="in-progress-tasks" onClick={() => userSelectsTasks(IN_PROGRESS)}>In Progress</button>
+            <button id="in-progress-tasks" onClick={() => userSelectsTasks(IN_PROGRESS)}>in progress</button>
           </div>
           <div className="status">
-            <button id="done-tasks" onClick={() => userSelectsTasks(DONE)}>Done</button>
+            <button id="done-tasks" onClick={() => userSelectsTasks(DONE)}>done</button>
           </div>
         </div>
-
+        <br></br>
         <TaskList tasks={selectedTasks} />
 
       </div>
