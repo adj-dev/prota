@@ -1,7 +1,7 @@
 const db = require("../models");
 
 module.exports = {
-    getAll: function(req, res) { //get all users
+    getAll: function() { //get all users
         return db.User.find({})
           .then(dbUser => dbUser)
           .catch(err => res.json(err));
