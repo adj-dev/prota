@@ -34,3 +34,9 @@
   margin-left: 11px;
   margin-right: 0px;
 }
+
+@media (max-width: 768px) {
+  .project-list-container {
+    width: 100%;
+  }
+}

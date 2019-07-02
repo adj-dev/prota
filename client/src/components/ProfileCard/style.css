@@ -14,3 +14,22 @@
   border-radius: 150px;
   margin: 20px;
 }
+
+@media (max-width: 768px) {
+  .profile-card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    height: unset;
+    width: unset;
+  }
+
+  .avatar {
+    width: 100px;
+    border-radius: 150px;
+    margin: 20px;
+  }
+}
