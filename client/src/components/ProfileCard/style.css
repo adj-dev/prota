@@ -33,3 +33,14 @@
     margin: 20px;
   }
 }
+
+
+#OPEN {
+  background-color: rgb(84, 225, 84);
+}
+#IN_PROGRESS {
+  background-color: dodgerblue;
+}
+#DONE {
+  background-color: orange;
+}
