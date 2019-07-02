@@ -16,7 +16,8 @@ export default class Project extends Component {
     forSprintList: null,
     tasks: null,
     selection: null,
-    isLoaded: null
+    isLoaded: null,
+    showAssigneeModal: false
   }
 
   componentDidMount() {
@@ -91,7 +92,8 @@ export default class Project extends Component {
 
   // Fires when an assignee is added, renders the add assignee modal
   assignTask = taskId => {
-    console.log(taskId);
+    // show the assign modal
+    this.setState({ showAssigneeModal: true })
   }
 
 
@@ -126,7 +128,11 @@ export default class Project extends Component {
               </div>
 
               {/* *** MODAL *** */}
-              <AddAssigneeModal />
+              {this.state.showAssigneeModal ?
+                <AddAssigneeModal />
+                :
+                null
+              }
             </>
             :
             <div>Oops, something went wrong...</div>
