@@ -42,5 +42,10 @@ export default {
       }
       //return the result of our search
       resolve(result);
+    }),
+  getTasksBySprintId: id =>
+    new Promise((resolve, reject) => {
+      let result = data.getTasksBySprintId(id);
+      resolve(result);
     })
 };
