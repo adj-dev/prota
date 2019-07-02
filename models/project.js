@@ -7,8 +7,7 @@ var ProjectSchema = new Schema({
         required: true
     },
     created_by: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
+        type: String,
         required: true
     },
     created_on: {
@@ -16,13 +15,11 @@ var ProjectSchema = new Schema({
         default: Date.now
     },
     owners: [{
-        type: Schema.Types.ObjectId,
-        ref: "User",
+        type: String,
         required: true
     }],
     contributors: [{
-        type: Schema.Types.ObjectId,
-        ref: "User"
+        type: String
     }],
     sprints: [{
         type: Schema.Types.ObjectId,
