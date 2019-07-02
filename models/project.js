@@ -14,6 +14,11 @@ var ProjectSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    status: {
+        type: String,
+        enum: ["Open", "In Progress", "Closed"],
+        default: "Open"
+    },
     owners: [{
         type: String,
         required: true
