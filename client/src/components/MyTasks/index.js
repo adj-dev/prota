@@ -16,8 +16,8 @@ export default class MyTasks extends Component {
   };
 
   componentDidMount() {
-    //if we recieved projct and task props, set up project and task state
-    if (this.projects && this.tasks) {
+    //if we recieved projcts and task props, set up project and task state
+    if (this.projects[0] && this.tasks) {
       if (this.projects[0]._id !== "ALL") {
         //add an "all" projects button to the project selector
         this.projects.unshift({ _id: "ALL", name: "All" });

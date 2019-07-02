@@ -47,5 +47,16 @@ export default {
     new Promise((resolve, reject) => {
       let result = data.getTasksBySprintId(id);
       resolve(result);
+    }),
+  getUsersFuzzy: query =>
+    new Promise((resolve, reject) => {
+      let result = data.getUsersFuzzy(query);
+      resolve(result);
+    }),
+
+  createProject: project =>
+    new Promise((resolve, reject) => {
+      let result = data.addProject(project);
+      resolve(result);
     })
 };

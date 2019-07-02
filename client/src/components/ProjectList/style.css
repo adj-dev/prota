@@ -27,6 +27,7 @@
   font-size: 3em;
   margin: 10px;
   color: white;
+  cursor: pointer;
 }
 
 .project-list div {
