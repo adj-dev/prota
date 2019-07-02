@@ -5,12 +5,12 @@
   align-items: center;
   background-color: whitesmoke;
   border-radius: 5px;
-  height: 400px;
-  width: 400px;
+  height: 600px;
+  width: 600px;
 }
 
 .avatar {
-  width: 200px;
-  border-radius: 100px;
+  width: 300px;
+  border-radius: 150px;
   margin: 20px;
 }

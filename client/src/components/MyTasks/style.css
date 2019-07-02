@@ -1,0 +1,6 @@
+.my-tasks-container {
+  border: 1px solid lightgray;
+  min-width: 600px;
+  border-radius: 5px;
+  padding: 20px;
+}

@@ -2,12 +2,24 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  flex-wrap: wrap-reverse;
 }
 
 .profile-right-container {
   display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  margin: 40px;
+  /* border: 1px solid grey; */
+}
+
+.profile-left-container {
+  display: flex;
+  flex: 1.5;
   justify-content: space-between;
   flex-direction: column;
-  height: 600px;
   margin: 40px;
+  /* border: 1px solid grey; */
 }
