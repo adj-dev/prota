@@ -13,7 +13,8 @@ const DONE = 'DONE';
 
 
 
-const TaskListSelector = ({ tasks, selection }) => {
+const TaskListSelector = ({ tasks, selection, handleAssignTask }) => {
+  console.log(selection);
   const [allTasks, setAllTasks] = useState(tasks);
   const [selectedTasks, setSelectedTasks] = useState([]);
 
@@ -25,6 +26,12 @@ const TaskListSelector = ({ tasks, selection }) => {
   const userSelectsTasks = status => {
     let selection = allTasks.filter(task => task.status === status);
     status === ALL ? setSelectedTasks(tasks) : setSelectedTasks(selection);
+  }
+
+  // Passes up the click handler on a task up to the parent (Project) component.
+  const passAssignTask = taskId => {
+    // console.log(taskId);
+    handleAssignTask(taskId);
   }
 
   return (
@@ -48,7 +55,7 @@ const TaskListSelector = ({ tasks, selection }) => {
           </div>
         </div>
         <br></br>
-        <TaskList tasks={selectedTasks} />
+        <TaskList tasks={selectedTasks} handleClick={(taskId) => passAssignTask(taskId)} />
 
       </div>
     </div>
