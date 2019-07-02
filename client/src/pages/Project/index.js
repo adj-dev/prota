@@ -58,13 +58,6 @@ export default class Project extends Component {
     });
   }
 
-
-  // componentDidUpdate() {
-  //   console.log('Project Component updated. State is....');
-  // console.log(this.state.forTaskList);
-  // }
-
-
   render() {
     return (
       <>
