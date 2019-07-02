@@ -27,17 +27,19 @@ const DONE = 'DONE';
 // }
 
 
-const TaskListSelector = ({ tasks }) => {
+const TaskListSelector = ({ tasks, selection }) => {
+  console.log(selection);
+
   const [allTasks, setAllTasks] = useState(tasks);
-  const [selectedTasks, setSelectedTasks] = useState(allTasks);
+  const [selectedTasks, setSelectedTasks] = useState([]);
   // const [chosenTasks, dispatch] = useReducer(reducer, { tasks: tasks })
   // const [status, setStatus] = useState(OPEN);
 
 
   useEffect(() => {
     setAllTasks(tasks)
-    setSelectedTasks(tasks) // This line defaults the tasks list to show ALL tasks -- eventually want to default to OPEN
-  }, [tasks])
+    setSelectedTasks(selection) // This line defaults the tasks list to show ALL tasks -- eventually want to default to OPEN
+  }, [tasks, selection])
 
   const userSelectsTasks = status => {
     let selection = allTasks.filter(task => task.status === status);

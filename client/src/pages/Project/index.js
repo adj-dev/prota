@@ -14,12 +14,14 @@ export default class Project extends Component {
     forProjectCard: null,
     forSprintList: null,
     forTaskList: null,
+    selection: null,
     isLoaded: null
   }
 
   componentDidMount() {
     console.log('Project component mounted');
     mockAPI.getProject(this.props.match.params.id).then(project => {
+      console.log(project.sprints);
       if (project.unauthorized) return window.location = "/";
       this.setState({
         project: project,
@@ -31,8 +33,8 @@ export default class Project extends Component {
           status: project.status
         },
         forSprintList: project.sprints,
-        // forTaskList: project.sprints[0].tasks,
-        forTaskList: [],
+        forTaskList: project.sprints[0].tasks,
+        selection: project.sprints[0].tasks.filter(task => task.status === 'OPEN'),
         isLoaded: true
       });
     });
@@ -41,7 +43,12 @@ export default class Project extends Component {
   selectSprint = async id => {
     // grab tasks selecting by a Sprint's id
     let tasks = await mockAPI.getTasksBySprintId(id);
-    this.setState({ forTaskList: tasks });
+    console.log('selectSprint:')
+    console.log(tasks)
+    this.setState({
+      forTaskList: tasks,
+      selection: tasks.filter(task => task.status === 'OPEN')
+    });
   }
 
 
@@ -62,7 +69,11 @@ export default class Project extends Component {
                 <SprintList sprints={this.state.forSprintList} selectSprint={this.selectSprint} />
               </div>
               <div className="col">
-                <TaskListSelector tasks={this.state.forTaskList} />
+                {this.state.forTaskList && this.state.selection ?
+                  <TaskListSelector tasks={this.state.forTaskList} selection={this.state.selection} />
+                  :
+                  <div>Oops.</div>
+                }
               </div>
             </div>
             :
