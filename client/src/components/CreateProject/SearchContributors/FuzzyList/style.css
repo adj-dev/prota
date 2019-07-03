@@ -1,0 +1,27 @@
+.fuzzy-user {
+  cursor: pointer;
+  background-color: white;
+  padding: 5px;
+}
+
+.fuzzy-user:hover {
+  background-color: whitesmoke;
+  cursor: pointer;
+}
+
+.fuzzy-invite {
+  cursor: pointer;
+  background-color: rgb(114, 222, 114);
+  padding: 5px;
+}
+
+.fuzzy-list-container {
+  position: fixed;
+  z-index: 2000;
+  width: 21vw;
+  min-width: 200px;
+}
+
+.fuzzy-list-container :last-child {
+  border-radius: 0px 0px 5px 5px;
+}

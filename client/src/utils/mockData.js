@@ -2,7 +2,7 @@ export default class mockData {
   constructor() {
     this.tasks = [
       {
-        _id: 'MVP_1',
+        _id: "MVP_1",
         title: "Do something",
         assignee: {
           username: "testguy",
@@ -13,7 +13,7 @@ export default class mockData {
         status: "IN_PROGRESS"
       },
       {
-        _id: 'MVP_2',
+        _id: "MVP_2",
         title: "Do something else",
         assignee: { username: "testguy" },
         description: "You got this.",
@@ -88,6 +88,57 @@ export default class mockData {
       avatar_url: "https://avatars3.githubusercontent.com/u/14286088?v=4",
       projects: this.projects
     };
+
+    this.users = [
+      {
+        username: "testguy",
+        display_name: "Testee McTesterson",
+        avatar_url: "https://avatars3.githubusercontent.com/u/14286088?v=4",
+        projects: this.projects
+      },
+      {
+        username: "otherguy",
+        display_name: "Testee McTesterson",
+        avatar_url: "https://avatars3.githubusercontent.com/u/14286088?v=4",
+        projects: this.projects
+      },
+      {
+        username: "coolguy",
+        display_name: "Testee McTesterson",
+        avatar_url: "https://avatars3.githubusercontent.com/u/14286088?v=4",
+        projects: this.projects
+      },
+      {
+        username: "funguy",
+        display_name: "Testee McTesterson",
+        avatar_url: "https://avatars3.githubusercontent.com/u/14286088?v=4",
+        projects: this.projects
+      },
+      {
+        username: "acid_dad",
+        display_name: "Testee McTesterson",
+        avatar_url: "https://avatars3.githubusercontent.com/u/14286088?v=4",
+        projects: this.projects
+      },
+      {
+        username: "mushroom",
+        display_name: "Testee McTesterson",
+        avatar_url: "https://avatars3.githubusercontent.com/u/14286088?v=4",
+        projects: this.projects
+      },
+      {
+        username: "coolio",
+        display_name: "Testee McTesterson",
+        avatar_url: "https://avatars3.githubusercontent.com/u/14286088?v=4",
+        projects: this.projects
+      },
+      {
+        username: "johniblake",
+        display_name: "Testee McTesterson",
+        avatar_url: "https://avatars3.githubusercontent.com/u/14286088?v=4",
+        projects: this.projects
+      }
+    ];
   }
 
   getUser = () => {
@@ -108,7 +159,24 @@ export default class mockData {
       if (task._id === id) {
         result.push(task);
       }
-    })
+    });
     return result;
-  }
+  };
+  getUsersFuzzy = query => {
+    let results = this.users.filter(user => user.username.includes(query));
+    if (results.length > 5) {
+      results = results.slice(0, 4);
+    }
+    return results;
+  };
+
+  addProject = project => {
+    let _id = (
+      parseInt(this.projects[this.projects.length - 1]) + 1
+    ).toString();
+    let status = "ON_TRACK";
+    let sprints = [];
+    this.projects.push({ _id, status, sprints, ...project });
+    return this.projects[this.projects.length - 1];
+  };
 }

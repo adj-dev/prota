@@ -6,11 +6,13 @@ import MyTasks from "../../components/MyTasks";
 
 import mockAPI from "../../utils/mockAPI";
 import "./style.css";
+import CreateProject from "../../components/CreateProject";
 
 class Profile extends Component {
   state = {
     user: null,
-    tasks: null
+    tasks: null,
+    creatingProject: false
   };
 
   componentDidMount = async () => {
@@ -26,11 +28,30 @@ class Profile extends Component {
       this.setState({ user, tasks });
     }
   };
+
+  toggleCreateProjectDialog = e => {
+    let targetElement = e.target;
+    if (targetElement.closest(".create-project-content-container")) {
+      return;
+    }
+
+    console.log("Create a Project!");
+    this.setState(prevState => {
+      return { creatingProject: !prevState.creatingProject };
+    });
+  };
+
   render() {
     return (
       <>
         {this.state.user ? (
           <div className="profile-container">
+            {this.state.creatingProject ? (
+              <CreateProject
+                toggleCreateProjectDialog={this.toggleCreateProjectDialog}
+                username={this.state.user.username}
+              />
+            ) : null}
             <div className="profile-left-container">
               <MyTasks
                 projects={this.state.user.projects}
@@ -44,7 +65,10 @@ class Profile extends Component {
                 display_name={this.state.user.display_name}
               />
               {this.state.user.projects ? (
-                <ProjectList projects={this.state.user.projects} />
+                <ProjectList
+                  toggleCreateProjectDialog={this.toggleCreateProjectDialog}
+                  projects={this.state.user.projects}
+                />
               ) : (
                 ""
               )}
