@@ -4,7 +4,7 @@ import ProjectList from "../../components/ProjectList";
 import ProfileCard from "../../components/ProfileCard";
 import MyTasks from "../../components/MyTasks";
 
-import mockAPI from "../../utils/mockAPI";
+import API from "../../utils/API";
 import "./style.css";
 import CreateProject from "../../components/CreateProject";
 
@@ -17,11 +17,12 @@ class Profile extends Component {
 
   componentDidMount = async () => {
     if (!this.state.user) {
-      let user = await mockAPI.getUser().then(user => {
+      let user = await API.getUser().then(user => {
         console.log("User:", user);
+        console.log("Projects: ", user.projects);
         return user;
       });
-      let tasks = await mockAPI.getTasks(user.username).then(tasks => {
+      let tasks = await API.getTasksByUser(user._id).then(tasks => {
         console.log("Tasks:", tasks);
         return tasks;
       });
@@ -70,13 +71,13 @@ class Profile extends Component {
                   projects={this.state.user.projects}
                 />
               ) : (
-                  ""
-                )}
+                ""
+              )}
             </div>
           </div>
         ) : (
-            ""
-          )}
+          ""
+        )}
       </>
     );
   }
