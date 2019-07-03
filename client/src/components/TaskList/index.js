@@ -2,13 +2,29 @@ import React from 'react'
 import "./styles.css"
 
 
-const TaskList = ({ tasks }) => {
-  console.log(tasks);
+
+const TaskList = ({ tasks, handleClick }) => {
+
+  // click handler for assigning a task
+  const expandTask = task => {
+    // passes up the task ID up to the direct parent component
+    handleClick(task)
+  }
+
   return (
     <>
       {tasks.map(task => {
         return (
-          <div className="task-container" key={task.title}>
+          <div
+            className="task-container"
+            key={task.title}
+            onClick={() => expandTask({
+              title: task.title,
+              description: task.description,
+              status: task.status,
+              assignee: task.assignee ? task.assignee : undefined
+            })}
+          >
             <div className="task-upper">
               <span>{task.title}</span>
               <span>{task.status}</span>
@@ -16,10 +32,14 @@ const TaskList = ({ tasks }) => {
             <div className="task-lower">
               <p>{task.description}</p>
               {
-                task.assignee.username ?
-                  <img className="sm-avatar" src={task.assignee.avatar_url} alt="" />
+                task.assignee ?
+                  <img
+                    className="sm-avatar"
+                    src={task.assignee.avatar_url}
+                    alt=""
+                  />
                   :
-                  <span>Avatar Img</span>
+                  <span className="add-contributor">  +  </span>
               }
             </div>
 
@@ -30,6 +50,7 @@ const TaskList = ({ tasks }) => {
     </>
   )
 }
+
 
 
 export default TaskList
