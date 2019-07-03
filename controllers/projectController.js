@@ -57,14 +57,14 @@ removeUserFromProject = (params, userType) => {
 }
 
 module.exports = {
-    getAllByUser: function(userId){ //get all projects by req.user
+    getAllByUser: function(userName){ //get all projects by req.user
         return db.User
-            .findById({_id: userId}).populate('Project')
-            .then(results => results.projects)
+            .find({username: userName}).populate({path: 'projects'})
+            .then(results => results[0].projects);
     },
 
     getOneById: function(projectId){ //get project by projectId
-        return db.Project.findById({_id: projectId})
+        return db.Project.findById({_id: projectId});
     },
 
     create: function(project){ //create a project using req.body
