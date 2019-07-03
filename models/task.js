@@ -21,7 +21,8 @@ var TaskSchema = new Schema({
         default: "Open"
     },
     assignee: {
-		type: String
+        type: Schema.Types.ObjectId,
+        ref: "User"
     },
     project_ref: {
         type: String,
