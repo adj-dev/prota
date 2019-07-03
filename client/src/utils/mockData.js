@@ -4,11 +4,11 @@ export default class mockData {
       {
         _id: "MVP_1",
         title: "Do something",
-        assignee: {
-          username: "testguy",
-          display_name: "Testee Mctesterson",
-          avatar_url: "https://avatars3.githubusercontent.com/u/14286088?v=4"
-        },
+        assignee: 'testguy',
+        // username: "testguy",
+        // display_name: "Testee Mctesterson",
+        // avatar_url: "https://avatars3.githubusercontent.com/u/14286088?v=4"
+        // },
         description: "DO IT. JUST DO IT. DON'T LET YOUR DREAMS BE DREAMS",
         status: "IN_PROGRESS"
       },
