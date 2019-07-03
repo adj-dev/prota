@@ -36,6 +36,13 @@ router.get("/projects", (req, res) => {
         .catch(err => res.json(err));
 });
 
+router.get("/projects/user/:userName", (req, res) => {
+    //console.log("Hit /projects route, user is: ",req.user);
+    Controller.Project.getAllByUser(req.params.userName)
+        .then(results => res.json(results))
+        .catch(err => res.json(err));
+});
+
 //Get project data from db by project*
 router.get("/project/:projectId", (req, res) => {
     //console.log("Hit /project/:projectId route, user is: ",req.user);
