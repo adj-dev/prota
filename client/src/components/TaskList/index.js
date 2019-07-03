@@ -2,7 +2,9 @@ import React from 'react'
 import "./styles.css"
 
 
+
 const TaskList = ({ tasks, handleClick }) => {
+
   // click handler for assigning a task
   const expandTask = task => {
     // passes up the task ID up to the direct parent component
@@ -47,6 +49,7 @@ const TaskList = ({ tasks, handleClick }) => {
     </>
   )
 }
+
 
 
 export default TaskList
