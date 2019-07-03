@@ -10,30 +10,39 @@ import './style.css'
  * @param {*} contributors an array of usernames
  * @param {*} currentUser the current user object
  */
-const TaskModal = ({ handleClick, contributors, currentUser, expandedTask }) => {
+const TaskModal = ({ handleModal, contributors, currentUser, expandedTask, handleAssign }) => {
   console.log(currentUser);
 
   return (
-    <div className="task-modal-backdrop" onClick={e => handleClick(e)}>
+    <div className="task-modal-backdrop" onClick={e => handleModal(e)}>
       <div className="task-modal">
         <div className="task-form">
           <div className="task-input">
             <h3>{expandedTask.title}</h3>
             <p>{expandedTask.description}</p>
-            <label htmlFor="assign">Assign to:</label>
             {
-              contributors.map((contributor, i) => {
-                return (
-                  <div className="c-list-item" key={i}>
-                    {
-                      currentUser.display_name === contributor ?
-                        <span>Me</span>
-                        :
-                        <span>{contributor}</span>
-                    }
-                  </div>
-                )
-              })
+              !expandedTask.assignee ?
+                <>
+                  <p>Assign to:</p>
+                  {
+                    contributors.map((contributor, i) => {
+                      return (
+                        <div className="c-list-item" key={i} onClick={() => handleAssign({ contributor })}>
+                          {
+                            currentUser.display_name === contributor ?
+                              <span>Me</span>
+                              :
+                              <span>{contributor}</span>
+                          }
+                        </div>
+                      )
+                    })
+                  }
+                </>
+                :
+                <>
+                  <p>Assigned to: <span>{expandedTask.assignee}</span></p>
+                </>
             }
           </div>
         </div>

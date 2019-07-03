@@ -21,7 +21,8 @@ const TaskList = ({ tasks, handleClick }) => {
             onClick={() => expandTask({
               title: task.title,
               description: task.description,
-              status: task.status
+              status: task.status,
+              assignee: task.assignee ? task.assignee : undefined
             })}
           >
             <div className="task-upper">
@@ -31,7 +32,7 @@ const TaskList = ({ tasks, handleClick }) => {
             <div className="task-lower">
               <p>{task.description}</p>
               {
-                task.assignee.avatar_url ?
+                task.assignee ?
                   <img
                     className="sm-avatar"
                     src={task.assignee.avatar_url}

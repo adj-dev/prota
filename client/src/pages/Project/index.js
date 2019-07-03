@@ -112,6 +112,17 @@ export default class Project extends Component {
     this.setState({ expandedTask: null });
   }
 
+  // Updates a task after creation / edit / assigning
+  assignUserToTask = user => {
+    let { contributor } = user;
+    console.log(this.state.expandedTask);
+    this.setState(prevState => {
+      let newState = prevState.expandedTask;
+      newState.assignee = contributor;
+      return { expandedTask: newState }
+    })
+  }
+
 
 
   // *********
@@ -146,7 +157,8 @@ export default class Project extends Component {
               {/* *** MODAL *** */}
               {this.state.expandedTask ?
                 <TaskModal
-                  handleClick={e => this.toggleModalVisibility(e)}
+                  handleModal={e => this.toggleModalVisibility(e)}
+                  handleAssign={user => this.assignUserToTask(user)}
                   contributors={this.state.contributors}
                   currentUser={this.state.currentUser}
                   expandedTask={this.state.expandedTask}
