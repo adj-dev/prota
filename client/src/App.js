@@ -2,15 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Auth from "./components/Auth";
-<<<<<<< HEAD
-import API from "./utils/API";
-import Project from './pages/Project';
-//import mockAPI from "./utils/mockAPI";
-=======
-// import API from "./utils/API";
 import Project from "./pages/Project";
 import API from "./utils/API";
->>>>>>> a312905a263a6c4fefd767fe3a89597b871b2a65
 import Profile from "./pages/Profile";
 // import ProjectTest from "./pages/ProjectTest";
 
@@ -30,12 +23,7 @@ class App extends Component {
   }
 
   getLoginStatus = () => {
-<<<<<<< HEAD
-    API
-      .isLoggedIn()
-=======
     API.isLoggedIn()
->>>>>>> a312905a263a6c4fefd767fe3a89597b871b2a65
       .then(status => {
         return this.setState({ isLoggedIn: status });
       })
