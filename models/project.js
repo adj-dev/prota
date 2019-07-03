@@ -32,5 +32,20 @@ var ProjectSchema = new Schema({
     }]
 });
 
+// ProjectSchema.pre('remove', next => {
+//     // this.model("User").update(
+//     //     {projects: this._id},
+//     //     { $pull: {projects: this._id} },
+//     //     {multi: true}
+//     // ).exec();
+//     this.model("Sprint").remove(
+//         {project_ref: this._id}
+//     ).exec();
+//     // this.model("Task").remove(
+//     //     {project_ref: this._id}
+//     // ).exec();
+//     next();
+// })
+
 const Project = mongoose.model("Project", ProjectSchema);
 module.exports = Project;
