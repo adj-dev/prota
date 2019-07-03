@@ -10,7 +10,7 @@ export default class CreateProject extends Component {
   state = {
     name: "",
     created_by: this.props.username,
-    owner: this.props.username,
+    owners: [this.props.username],
     contributors: []
   };
 
