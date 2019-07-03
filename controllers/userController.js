@@ -9,7 +9,7 @@ module.exports = {
 
     getOne: function(userName) { //get a user object by req.user
         return db.User.find({username: userName}).populate({path: "projects"})
-          .then(dbUser => dbUser)
+          .then(dbUser => dbUser[0])
           .catch(err => err);
     },
 
@@ -37,7 +37,7 @@ module.exports = {
                             {username: user.username}, //find a user by username
                             user, //and then update with user data
                             {new: true} //return new user
-                        )
+                        ).populate({path: "projects"})
                     );
                 } else {
                     //console.log("User does not exist");
