@@ -29,7 +29,7 @@ router.get("/user/:userName/fuzzy", (req, res) => {
 //Get project data from db by user*
 router.get("/projects", (req, res) => {
     //console.log("Hit /projects route, user is: ",req.user);
-    Controller.Project.getAllByUser("zekkxx")
+    Controller.Project.getAllByUser(req.user)
         .then(results => res.json(results))
         .catch(err => res.json(err));
 });
