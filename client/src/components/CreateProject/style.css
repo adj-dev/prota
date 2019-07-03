@@ -1,0 +1,42 @@
+.create-project-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.create-project-content-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 20px;
+  top: 200px;
+  margin: auto;
+  z-index: 1000;
+  height: 30vh;
+  width: 30vw;
+  border-radius: 5px;
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
+  background-color: whitesmoke;
+}
+
+.add-project-title-input {
+  width: 97%;
+  padding: 5px;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.add-project-button {
+  display: flex;
+  float: right;
+  align-self: flex-end;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: lightgreen;
+  color: white;
+}

@@ -1,5 +1,27 @@
 const db = require("../models");
 
+assignTaskToSprint = (taskId, sprintId) => {
+    console.log("Updating Sprint: "+sprintId+" with task: "+taskId);
+    db.Sprint.find({_id: sprintId})
+        .then(result => {
+            result[0].tasks.push(taskId);
+            db.Sprint.updateOne({_id: sprintId}, result[0], {new: true})
+                .then(result => console.log(result));
+        }).catch(err => err);
+}
+
+removeTaskFromSprint = (taskId, sprintId) => {
+    console.log("Updating Sprint: "+sprintId+" with task: "+taskId);
+    db.Sprint.find({_id: sprintId})
+        .then(result => {
+            result[0].tasks = result[0].tasks.filter(
+                id => id != taskId
+            );
+            db.Sprint.updateOne({_id: sprintId}, result[0], {new: true})
+                .then(result => console.log(result));
+        }).catch(err => err);
+}
+
 module.exports = {
     
     getAllByProject: function(projectId) { //get all tasks by sprintId
@@ -32,7 +54,10 @@ module.exports = {
         console.log(task);
         return db.Task
             .create(task)
-            .then(results => res.json(results))
+            .then(results => {
+                assignTaskToSprint(results._id, task.sprint_ref);
+                return results;
+            })
             .catch(err => res.json(err));
     },
     
@@ -44,16 +69,18 @@ module.exports = {
                 task,
                 {new: true}
             )
-            .then(results => res.json(results))
-            .catch(err => res.json(err));
+            .then(results => results)
+            .catch(err => err);
     },
     
     deleteOneById: function(taskId){ //delete a task by req.params.taskId
         console.log(taskId);
         return db.Task
             .findById({ _id: taskId})
-            .then(results => results.remove())
-            .then(results => res.json(results))
-            .catch(err => res.json(err));
+            .then(results => {
+                removeTaskFromSprint(taskId, results.sprint_ref);
+                return results.remove();
+            })
+            .catch(err => err);
     }
 }
