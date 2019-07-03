@@ -44,8 +44,8 @@ passport.deserializeUser((profile, done) => {
     email: (profile.emails ? profile.emails[0].value : null)
   }
   userController.createOrUpdate(user)
-    .then(dbUser => done(null, dbUser[0]))
-    .catch(err => err);
+    .then(dbUser => done(null, dbUser))
+    .catch(err => done(err, null));
 });
 
 // Define middleware here
