@@ -8,14 +8,20 @@ import mockAPI from "../../utils/mockAPI";
 import './styles.css';
 
 
+// Define our status variable
+const OPEN = 'OPEN';
+const IN_PROGRESS = 'IN_PROGRESS';
+const CLOSED = 'CLOSED';
+const DONE = 'DONE';
+
+
 
 export default class Project extends Component {
   state = {
     currentUser: null,
-    forProjectCard: null, // eventually get rid of this one - spread it out
-    contributors: null,
-    forSprintList: null,
-    tasks: null,
+    project: null,
+    sprints: null,
+    currentSprint: null,
     selection: null,
     isLoaded: null,
     showTaskModal: false,
@@ -24,8 +30,7 @@ export default class Project extends Component {
 
   componentDidMount() {
     this.fetchUser()
-    this.fetchProject('5d1cdc7afaaa89d95b46b2b1') // FUTURE: PASS IN `this.props.match.params.id`
-    this.fetchSprints()
+    this.fetchProject(this.props.match.params.id)
     // this.fetchTasks() // this is for future use with actual APIs
   }
 
@@ -48,8 +53,7 @@ export default class Project extends Component {
   // Fetches user data
   fetchUser = async () => {
     let user = await API.getUser()
-    // this.setState({ currentUser: user })
-    console.log(user)
+    this.setState({ currentUser: user })
   }
 
   // Fetches the project and all it's sprints
@@ -57,37 +61,30 @@ export default class Project extends Component {
     let project = await API.getProject(projectId);
     // let project = await mockAPI.getProject(projectId);
     // Grab all sprints from a project
-    let { sprints } = project;
+    let sprints = project.sprints.length ? [...project.sprints] : null;
+
+    let currentSprint = sprints ? sprints.filter(sprint => sprint.status === IN_PROGRESS) : null;
+
     console.log(project)
     console.log(sprints);
+    console.log(currentSprint);
+
 
     // WILL NEED TO CHECK IF SPRINTS IS not AN EMPTY ARRAY
-    if (!sprints.length) {
-      // EVENTUALLY SET A STATE PROPERTY THAT CONDITIONALLY RENDERS THE SPRINTS COMPONENT
+    if (!sprints) {
       return;
     }
     // send user to / if unauthorized
     if (project.unauthorized) return window.location = "/"; // This will never fire unless backend adds unauthorized property to response
 
 
-    // this.setState({
-    //   forProjectCard: {
-    //     contributors: project.contributors,
-    //     created_by: project.created_by,
-    //     name: project.name,
-    //     owners: project.owners,
-    //     status: project.status
-    //   },
-    //   contributors: project.contributors,
-    //   forSprintList: project.sprints,
-    //   tasks: project.sprints[0].tasks,
-    //   selection: project.sprints[0].tasks.filter(task => task.status === 'OPEN')
-    // })
-  }
-
-  // Fetches all sprints for a project
-  fetchSprints = async sprints => {
-    console.log(sprints)
+    this.setState({
+      project: project,
+      sprints: sprints,
+      currentSprint: currentSprint,
+      selection: currentSprint ? currentSprint[0].tasks.filter(task => task.status === 'OPEN') : [],// eventually maybe migrate away from setting this here
+      isLoaded: true
+    })
   }
 
   // Fetches all tasks by project id
@@ -157,16 +154,16 @@ export default class Project extends Component {
               <div className="project-container">
                 <div className="col">
                   <ProjectCard
-                    project={this.state.forProjectCard}
+                    project={this.state.project}
                   />
                   <SprintList
-                    sprints={this.state.forSprintList}
+                    sprints={this.state.currentSprint}
                     selectSprint={this.selectSprint}
                   />
                 </div>
                 <div className="col">
                   <TaskListSelector
-                    tasks={this.state.tasks}
+                    tasks={this.state.currentSprint[0].tasks}
                     selection={this.state.selection}
                     handleClick={task => this.expandTask(task)}
                   />
@@ -178,7 +175,7 @@ export default class Project extends Component {
                 <TaskModal
                   handleModal={e => this.toggleModalVisibility(e)}
                   handleAssign={user => this.assignUserToTask(user)}
-                  contributors={this.state.contributors}
+                  contributors={this.state.project.contributors}
                   currentUser={this.state.currentUser}
                   expandedTask={this.state.expandedTask}
                 />

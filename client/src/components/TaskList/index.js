@@ -17,16 +17,16 @@ const TaskList = ({ tasks, handleClick }) => {
         return (
           <div
             className="task-container"
-            key={task.title}
+            key={task._id}
             onClick={() => expandTask({
-              title: task.title,
+              name: task.name,
               description: task.description,
               status: task.status,
               assignee: task.assignee ? task.assignee : undefined
             })}
           >
             <div className="task-upper">
-              <span>{task.title}</span>
+              <span>{task.name}</span>
               <span>{task.status}</span>
             </div>
             <div className="task-lower">
