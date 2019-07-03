@@ -26,5 +26,12 @@ var SprintSchema = new Schema({
     }]
 });
 
+// SprintSchema.pre('remove', next => {
+//     this.model("Task").remove(
+//         {project_ref: this._id}
+//     ).exec();
+//     next();
+// });
+
 const Sprint = mongoose.model("Sprint", SprintSchema);
 module.exports = Sprint;

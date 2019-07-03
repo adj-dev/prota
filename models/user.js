@@ -20,7 +20,7 @@ var UserSchema = new Schema({
     },
     projects: [{
         type: Schema.Types.ObjectId,
-        Ref: "Project"
+        ref: "Project"
     }]
 });
 

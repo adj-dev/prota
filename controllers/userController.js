@@ -8,9 +8,9 @@ module.exports = {
       },
 
     getOne: function(userName) { //get a user object by req.user
-        return db.User.find({username: userName}).populate("Project")
+        return db.User.find({username: userName}).populate("projects")
           .then(dbUser => dbUser)
-          .catch(err => console.log(err));
+          .catch(err => err);
     },
 
     getFuzzy: function(userName) {
