@@ -3,7 +3,7 @@ import ProjectCard from '../../components/ProjectCard';
 import SprintList from '../../components/SprintList';
 import TaskListSelector from '../../components/TaskListSelector';
 import TaskModal from '../../components/TaskModal';
-// import API from "../../utils/API";
+import API from "../../utils/API";
 import mockAPI from "../../utils/mockAPI";
 import './styles.css';
 
@@ -24,7 +24,8 @@ export default class Project extends Component {
 
   componentDidMount() {
     this.fetchUser()
-    this.fetchProject(this.props.match.params.id)
+    this.fetchProject('5d1cdc7afaaa89d95b46b2b1') // FUTURE: PASS IN `this.props.match.params.id`
+    this.fetchSprints()
     // this.fetchTasks() // this is for future use with actual APIs
   }
 
@@ -46,29 +47,47 @@ export default class Project extends Component {
 
   // Fetches user data
   fetchUser = async () => {
-    let user = await mockAPI.getUser()
-    this.setState({ currentUser: user })
+    let user = await API.getUser()
+    // this.setState({ currentUser: user })
+    console.log(user)
   }
 
   // Fetches the project and all it's sprints
   fetchProject = async projectId => {
-    let project = await mockAPI.getProject(projectId);
-    console.log(project);
+    let project = await API.getProject(projectId);
+    // let project = await mockAPI.getProject(projectId);
+    // Grab all sprints from a project
+    let { sprints } = project;
+    console.log(project)
+    console.log(sprints);
+
+    // WILL NEED TO CHECK IF SPRINTS IS not AN EMPTY ARRAY
+    if (!sprints.length) {
+      // EVENTUALLY SET A STATE PROPERTY THAT CONDITIONALLY RENDERS THE SPRINTS COMPONENT
+      return;
+    }
     // send user to / if unauthorized
-    if (project.unauthorized) return window.location = "/";
-    this.setState({
-      forProjectCard: {
-        contributors: project.contributors,
-        created_by: project.created_by,
-        name: project.name,
-        owners: project.owners,
-        status: project.status
-      },
-      contributors: project.contributors,
-      forSprintList: project.sprints,
-      tasks: project.sprints[0].tasks,
-      selection: project.sprints[0].tasks.filter(task => task.status === 'OPEN')
-    })
+    if (project.unauthorized) return window.location = "/"; // This will never fire unless backend adds unauthorized property to response
+
+
+    // this.setState({
+    //   forProjectCard: {
+    //     contributors: project.contributors,
+    //     created_by: project.created_by,
+    //     name: project.name,
+    //     owners: project.owners,
+    //     status: project.status
+    //   },
+    //   contributors: project.contributors,
+    //   forSprintList: project.sprints,
+    //   tasks: project.sprints[0].tasks,
+    //   selection: project.sprints[0].tasks.filter(task => task.status === 'OPEN')
+    // })
+  }
+
+  // Fetches all sprints for a project
+  fetchSprints = async sprints => {
+    console.log(sprints)
   }
 
   // Fetches all tasks by project id
