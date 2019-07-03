@@ -6,7 +6,8 @@
 
 .added-contributor-container {
   display: flex;
-  flex-direction: row;
+  justify-items: center;
+  align-content: space-between;
   padding: 2px;
   padding-left: 10px;
   background-color: white;
@@ -18,13 +19,8 @@
 }
 
 .remove-contributor-button {
-  margin-left: 5px;
-  padding: 2px;
-  padding-left: 8px;
-  padding-right: 8px;
-  font-size: 0.5rem;
-  background-color: red;
-  color: white;
-  border-radius: 50px;
+  padding: 5px;
+  width: 15px;
+  height: 15px;
   cursor: pointer;
 }

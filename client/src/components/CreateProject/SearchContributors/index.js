@@ -11,6 +11,9 @@ export default class SearchContributors extends Component {
 
   handleSelectContributor = contributor => {
     this.props.handleAddContributor(contributor);
+    if (!this.props.contributors.includes(contributor)) {
+      this.setState({ users: [], contributorQuery: "" });
+    }
     //this.setState({ contributorQuery: "" });
   };
 
@@ -30,6 +33,7 @@ export default class SearchContributors extends Component {
         <input
           className="search-contributors-input"
           placeholder="Search for users"
+          value={this.state.contributorQuery}
           onChange={this.handleInput("contributorQuery")}
         />
         <FuzzyList

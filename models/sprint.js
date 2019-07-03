@@ -15,13 +15,23 @@ var SprintSchema = new Schema({
     status: {
         type: String,
         enum: ["Open", "In Progress", "Closed"],
-        required: true,
+        default: "Open",
+    },
+    project_ref: {
+        type: String
     },
     tasks: [{
         type: Schema.Types.ObjectId,
         ref: "Task"
     }]
 });
+
+// SprintSchema.pre('remove', next => {
+//     this.model("Task").remove(
+//         {project_ref: this._id}
+//     ).exec();
+//     next();
+// });
 
 const Sprint = mongoose.model("Sprint", SprintSchema);
 module.exports = Sprint;

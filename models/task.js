@@ -18,11 +18,18 @@ var TaskSchema = new Schema({
     status: {
         type: String,
         enum: ["Open", "In Progress", "Done", "Closed"],
-        required: true
+        default: "Open"
     },
     assignee: {
-		type: Schema.Types.ObjectId,
-		ref: "User"
+		type: String
+    },
+    project_ref: {
+        type: String,
+        required: true
+    },
+    sprint_ref: {
+        type: String,
+        required: true
     },
     comment: String
 });

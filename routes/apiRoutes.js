@@ -7,7 +7,9 @@ var Controller = require('../controllers');
 //Get User Data**
 router.get("/user", (req, res) => {
     //console.log("Hit /user route, user is: ",req.user);
-    res.json(req.user);
+    Controller.User.getOne(req.user)
+        .then(result => res.json(result))
+        .catch(err => res.json(err));
 });
 
 router.get("/user/:userName", (req, res) => {
@@ -44,7 +46,7 @@ router.get("/project/:projectId", (req, res) => {
 router.get("/sprints/:projectId", (req, res) => {
     console.log("Hit /sprints/:projectId route, user is: ",req.user);
     Controller.Sprint
-        .getAllbyProject(req.params.projectId)
+        .getAllByProject(req.params.projectId)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
 });
@@ -186,7 +188,6 @@ router.delete("/sprints/:sprintId", (req, res) => {
         .deleteOneById(req.params.sprintId)
         .then(results =>res.json(results))
         .catch(err => res.json(err));
-
 });
 
 //Delete a task **
@@ -197,8 +198,5 @@ router.delete("/tasks/:taskId", (req, res) => {
         .then(results =>res.json(results))
         .catch(err => res.json(err));
 });
-
-
-
 
 module.exports = router;

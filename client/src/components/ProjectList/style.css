@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap");
 /* 
 font-family: 'Overpass', sans-serif;
 
@@ -7,25 +7,24 @@ font-family: 'PT Sans Narrow', sans-serif;
 font-family: 'Rajdhani', sans-serif;
 */
 
-
 .project-list-container {
   display: flex;
   flex-direction: row;
-  justify-items: flex-start;
-  border: 1px solid lightblue;
+  justify-items: space-between;
+  border: 1px solid #c7c7c7;
   border-radius: 5px;
-  width: 600px;
+  width: 70vh;
+  box-shadow: 0 0 3px #c7c7c7;
 }
 
 .project-list {
-  font-family: 'Overpass', sans-serif;
+  font-family: "Overpass", sans-serif;
   display: flex;
   flex-direction: row;
-  width: 85%;
+  width: 80%;
   justify-items: flex-start;
   /* border: 1px solid grey; */
   overflow: scroll;
-  
 }
 
 .create-project-button {

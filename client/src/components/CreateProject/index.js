@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./style.css";
 import AddedContributors from "./AddedContributors";
 import SearchContributors from "./SearchContributors";
-// import API from "../../utils/API";
+import API from "../../utils/API";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import mockAPI from "../../utils/mockAPI";
 
 export default class CreateProject extends Component {
@@ -46,31 +47,43 @@ export default class CreateProject extends Component {
 
   render() {
     return (
-      <div
-        className="create-project-container"
-        onClick={this.props.toggleCreateProjectDialog}
-      >
-        <div className="create-project-content-container">
-          <div className="creator">Creator: {this.props.username}</div>
-          <input
-            className="add-project-title-input"
-            placeholder="Project Title"
-            onChange={this.handleInput("name")}
-          />
-          <AddedContributors
-            handleRemoveContributor={this.handleRemoveContributor}
-            contributors={this.state.contributors}
-          />
-          <SearchContributors
-            handleAddContributor={this.handleAddContributor}
-          />
+      <div>
+        <ReactCSSTransitionGroup
+          transitionName="modal"
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+        >
           <div
-            className="add-project-button"
-            onClick={this.handleCreateProject}
+            key="1"
+            className="create-project-container"
+            onClick={this.props.toggleCreateProjectDialog}
           >
-            Create Project
+            <div className="create-project-content-container">
+              <div className="title">Create a new project</div>
+              <input
+                className="add-project-title-input"
+                placeholder="Project Title"
+                onChange={this.handleInput("name")}
+              />
+              <AddedContributors
+                handleRemoveContributor={this.handleRemoveContributor}
+                contributors={this.state.contributors}
+              />
+              <SearchContributors
+                contributors={this.state.contributors}
+                handleAddContributor={this.handleAddContributor}
+              />
+              <div
+                className="add-project-button"
+                onClick={this.handleCreateProject}
+              >
+                Create Project
+              </div>
+            </div>
           </div>
-        </div>
+        </ReactCSSTransitionGroup>
       </div>
     );
   }

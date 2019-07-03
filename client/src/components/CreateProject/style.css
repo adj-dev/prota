@@ -16,8 +16,8 @@
   top: 200px;
   margin: auto;
   z-index: 1000;
-  height: 30vh;
   width: 30vw;
+  min-width: 320px;
   border-radius: 5px;
   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
   background-color: #f5f5f5;
@@ -34,9 +34,44 @@
   display: flex;
   float: right;
   align-self: flex-end;
+  margin-top: 20px;
   padding: 5px;
+  padding-right: 8px;
+  padding-left: 8px;
   border-radius: 5px;
   cursor: pointer;
-  background-color: lightgreen;
+  background-color: rgb(114, 222, 114);
   color: white;
+}
+
+.title {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.modal-enter {
+  opacity: 0.01;
+}
+
+.modal-enter.modal-enter-active {
+  opacity: 1;
+  transition: opacity 100ms ease-in;
+}
+
+.modal-leave {
+  opacity: 1;
+}
+
+.modal-leave.modal-leave-active {
+  opacity: 0.01;
+  transition: opacity 100ms ease-in;
+}
+
+.modal-appear {
+  opacity: 0.01;
+}
+
+.modal-appear.modal-appear-active {
+  opacity: 1;
+  transition: opacity 0.2s ease-in;
 }
