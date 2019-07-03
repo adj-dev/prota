@@ -101,7 +101,7 @@ module.exports = {
             .then(results => {
                 results.owners.map(owner => removeProjectFromUser(owner, projectId)); //removing the project from owners
                 results.contributors.map(contributor => removeProjectFromUser(contributor, projectId)); //removing the project from contributors
-                return results.remove(); //removing the project (and cascade?)
+                return results.remove(); //removing the project (and cascade)
             })
             .catch(err => err);
     },
