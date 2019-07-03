@@ -40,7 +40,7 @@ export default class CreateProject extends Component {
   };
 
   handleCreateProject = () => {
-    mockAPI.createProject({ ...this.state }).then(project => {
+    API.createProject({ ...this.state }).then(project => {
       window.location = `/project/${project._id}`;
     });
   };

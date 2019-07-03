@@ -8,7 +8,7 @@ export default function MyTaskList({ tasks }) {
         ? tasks.map((task, i) => {
             return (
               <div className={"my-task-list-item"} key={i}>
-                {task.title}
+                {task.name}
               </div>
             );
           })
