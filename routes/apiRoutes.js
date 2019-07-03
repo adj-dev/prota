@@ -82,11 +82,8 @@ router.get("/tasks/user/:userId", (req, res) => {
 
 //POST ROUTES:
 
-//Find/Create a new user if necessary*
-//router.post("/user", Controller.userController.findOrCreate);
-
 //Create new user
-router.post("/user/:userName", (req, res) => {
+router.post("/users/:userName", (req, res) => {
     //console.log("Hit /user route, user is: ",req.user);
     Controller.User.create({"username": req.params.userName})
         .then(results => res.json(results))
@@ -130,25 +127,25 @@ router.put("/projects/:projectId", (req, res) => {
         .catch(err => res.json(err));
 });
 
-router.put("/project/:projectId/addContributor/:userName", (req, res) => {
+router.put("/projects/:projectId/addContributor/:userName", (req, res) => {
     //console.log("Hit /projects/add route, user is: ",req.user);
     Controller.Project.addUser(req.params, "contributor");
     res.json("Route Reached");
 });
 
-router.put("/project/:projectId/addOwner/:userName", (req, res) => {
+router.put("/projects/:projectId/addOwner/:userName", (req, res) => {
     //console.log("Hit /projects/add route, user is: ",req.user);
     Controller.Project.addUser(req.params, "owner");
     res.json("Route Reached");
 });
 
-router.put("/project/:projectId/removeContributor/:userName", (req, res) => {
+router.put("/projects/:projectId/removeContributor/:userName", (req, res) => {
     //console.log("Hit /projects/remove route, user is: ",req.user);
     Controller.Project.removeUser(req.params, "contributor");
     res.json("Route Reached");
 });
 
-router.put("/project/:projectId/removeOwner/:userName", (req, res) => {
+router.put("/projects/:projectId/removeOwner/:userName", (req, res) => {
     //console.log("Hit /projects/remove route, user is: ",req.user);
     Controller.Project.removeUser(req.params, "owner");
     res.json("Route Reached");
