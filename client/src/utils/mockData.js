@@ -15,7 +15,6 @@ export default class mockData {
       {
         _id: "MVP_2",
         title: "Do something else",
-        assignee: { username: "testguy" },
         description: "You got this.",
         status: "OPEN"
       }

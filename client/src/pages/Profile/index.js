@@ -70,13 +70,13 @@ class Profile extends Component {
                   projects={this.state.user.projects}
                 />
               ) : (
-                ""
-              )}
+                  ""
+                )}
             </div>
           </div>
         ) : (
-          ""
-        )}
+            ""
+          )}
       </>
     );
   }

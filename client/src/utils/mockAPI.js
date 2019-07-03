@@ -34,7 +34,7 @@ export default {
       //search db for projects
       for (let task in tasks) {
         //if we have a project save it in result
-        if (tasks[task].assignee.username === username) {
+        if (tasks[task].assignee && tasks[task].assignee.username === username) { // John - I added the first condition so that our mockData wouldn't throw an error
           console.log("task:", task);
 
           result.unshift(tasks[task]);
