@@ -5,13 +5,14 @@
   align-items: center;
   background-color: whitesmoke;
   border-radius: 5px;
-  height: 600px;
-  width: 600px;
+  height: 60vh;
+  width: 60vh;
+  box-shadow: 0 0 3px #c7c7c7;
 }
 
 .avatar {
-  width: 300px;
-  border-radius: 150px;
+  width: 40vh;
+  border-radius: 40vh;
   margin: 20px;
 }
 
@@ -33,7 +34,6 @@
     margin: 20px;
   }
 }
-
 
 #OPEN {
   background-color: rgb(84, 225, 84);
