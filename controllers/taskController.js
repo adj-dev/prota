@@ -56,7 +56,7 @@ module.exports = {
                 assignTaskToSprint(results._id, task.sprint_ref); //assign task to sprint
                 return results; //returns the task created
             })
-            .catch(err => res.json(err));
+            .catch(err => err);
     },
     
     updateOneById: function(taskId, task){ //update a task by taskId

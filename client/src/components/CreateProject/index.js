@@ -10,7 +10,7 @@ export default class CreateProject extends Component {
   state = {
     name: "",
     created_by: this.props.username,
-    owner: this.props.username,
+    owners: [this.props.username],
     contributors: []
   };
 
@@ -40,7 +40,7 @@ export default class CreateProject extends Component {
   };
 
   handleCreateProject = () => {
-    mockAPI.createProject({ ...this.state }).then(project => {
+    API.createProject({ ...this.state }).then(project => {
       window.location = `/project/${project._id}`;
     });
   };

@@ -9,7 +9,7 @@ module.exports = {
 
     getOne: function(userName) { //get a user object by req.user
         return db.User.find({username: userName}).populate({path: "projects"})
-          .then(dbUser => dbUser)
+          .then(dbUser => dbUser[0])
           .catch(err => err);
     },
 
@@ -26,22 +26,24 @@ module.exports = {
             .catch(err => err);
     },
 
+    update: function(userBody) { //update a user
+        return db.User.findOneAndUpdate(
+            {username: userBody.username}, //find a user by username
+            userBody, //and then update with user data
+            {new: true} //return new user
+        ).populate({path: "projects"})
+    },
+
     createOrUpdate: function(user) { //adjust to createOrUpdate
         return db.User
             .find({username: user.username})
             .then(dbUser => {
                 if(dbUser.length > 0){
                     //console.log(dbUser[0].username+" exists");
-                    return (
-                        db.User.findOneAndUpdate(
-                            {username: user.username}, //find a user by username
-                            user, //and then update with user data
-                            {new: true} //return new user
-                        )
-                    );
+                    return this.update(user);
                 } else {
                     //console.log("User does not exist");
-                    return db.User.create(user);
+                    return this.create(user);
                 }
             }).catch(err => err);
         //Catch is end of return db.User section

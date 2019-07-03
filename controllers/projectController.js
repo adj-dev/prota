@@ -97,11 +97,11 @@ module.exports = {
     
     deleteOneById: function(projectId){ //delete a project by req.params.projectId
         return db.Project
-            .findById({ _id: projectId}).populate({path: "sprints"}) //populates all the sprint data in Project's sprints
+            .findById({ _id: projectId})//.populate({path: "sprints", populate: {path: "tasks"}}) //populates all the sprint data in Project's sprints
             .then(results => {
                 results.owners.map(owner => removeProjectFromUser(owner, projectId)); //removing the project from owners
                 results.contributors.map(contributor => removeProjectFromUser(contributor, projectId)); //removing the project from contributors
-                return results.remove(); //removing the project (and cascade?)
+                return results.remove(); //removing the project (and cascade)
             })
             .catch(err => err);
     },
