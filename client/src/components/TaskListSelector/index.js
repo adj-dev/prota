@@ -5,7 +5,7 @@ import "./style.css"
 
 
 // Declare our selector values here as variables, this way we get a helpful error if we mispell a variable vs. 
-// getting no error thrown if we mispell the string.
+// getting no error thrown if we mispell a string.
 const ALL = 'ALL';
 const OPEN = 'OPEN';
 const IN_PROGRESS = 'IN_PROGRESS';
@@ -13,7 +13,7 @@ const DONE = 'DONE';
 
 
 
-const TaskListSelector = ({ tasks, selection, handleAssignTask }) => {
+const TaskListSelector = ({ tasks, selection, handleClick }) => {
   console.log(selection);
   const [allTasks, setAllTasks] = useState(tasks);
   const [selectedTasks, setSelectedTasks] = useState([]);
@@ -29,9 +29,9 @@ const TaskListSelector = ({ tasks, selection, handleAssignTask }) => {
   }
 
   // Passes up the click handler on a task up to the parent (Project) component.
-  const passAssignTask = taskId => {
+  const passAssignTask = task => {
     // console.log(taskId);
-    handleAssignTask(taskId);
+    handleClick(task);
   }
 
   return (
@@ -55,7 +55,7 @@ const TaskListSelector = ({ tasks, selection, handleAssignTask }) => {
           </div>
         </div>
         <br></br>
-        <TaskList tasks={selectedTasks} handleClick={(taskId) => passAssignTask(taskId)} />
+        <TaskList tasks={selectedTasks} handleClick={task => passAssignTask(task)} />
 
       </div>
     </div>

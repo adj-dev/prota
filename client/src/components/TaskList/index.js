@@ -4,9 +4,9 @@ import "./styles.css"
 
 const TaskList = ({ tasks, handleClick }) => {
   // click handler for assigning a task
-  const assignTask = taskId => {
+  const expandTask = task => {
     // passes up the task ID up to the direct parent component
-    handleClick(taskId)
+    handleClick(task)
   }
 
   return (
@@ -22,9 +22,22 @@ const TaskList = ({ tasks, handleClick }) => {
               <p>{task.description}</p>
               {
                 task.assignee.avatar_url ?
-                  <img className="sm-avatar" src={task.assignee.avatar_url} alt="" />
+                  <img
+                    className="sm-avatar"
+                    src={task.assignee.avatar_url}
+                    alt=""
+                  />
                   :
-                  <span className="add-contributor" onClick={() => assignTask(task.title)}>+</span>
+                  <span
+                    className="add-contributor"
+                    onClick={() => expandTask({
+                      title: task.title,
+                      description: task.description,
+                      status: task.status
+                    })}
+                  >
+                    +
+                  </span>
               }
             </div>
 

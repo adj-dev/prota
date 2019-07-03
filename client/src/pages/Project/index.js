@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ProjectCard from '../../components/ProjectCard';
 import SprintList from '../../components/SprintList';
 import TaskListSelector from '../../components/TaskListSelector';
-import AddAssigneeModal from '../../components/AddAssigneeModal';
+import TaskModal from '../../components/TaskModal';
 // import API from "../../utils/API";
 import mockAPI from "../../utils/mockAPI";
 import './styles.css';
@@ -12,12 +12,14 @@ import './styles.css';
 export default class Project extends Component {
   state = {
     currentUser: null,
-    forProjectCard: null,
+    forProjectCard: null, // eventually get rid of this one - spread it out
+    contributors: null,
     forSprintList: null,
     tasks: null,
     selection: null,
     isLoaded: null,
-    showAssigneeModal: false
+    showTaskModal: false,
+    expandedTask: null
   }
 
   componentDidMount() {
@@ -51,6 +53,7 @@ export default class Project extends Component {
   // Fetches the project and all it's sprints
   fetchProject = async projectId => {
     let project = await mockAPI.getProject(projectId);
+    console.log(project);
     // send user to / if unauthorized
     if (project.unauthorized) return window.location = "/";
     this.setState({
@@ -61,6 +64,7 @@ export default class Project extends Component {
         owners: project.owners,
         status: project.status
       },
+      contributors: project.contributors,
       forSprintList: project.sprints,
       tasks: project.sprints[0].tasks,
       selection: project.sprints[0].tasks.filter(task => task.status === 'OPEN')
@@ -90,23 +94,22 @@ export default class Project extends Component {
     });
   }
 
-  // Fires when an assignee is added, renders the add assignee modal
-  assignTask = taskId => {
-    // show the assign modal
-    this.setState({ showAssigneeModal: true })
+  // Fires when a user clicks on a task in the TaskList component
+  // renders the add task modal
+  expandTask = task => {
+    // show the task modal
+    this.setState({ expandedTask: task })
   }
 
   // Toggles the visibility of a modal when user clicks backdrop
   toggleModalVisibility = e => {
     let targetElement = e.target;
-    if (targetElement.closest('.assignee-modal')) {
+    if (targetElement.closest('.task-modal')) {
       return;
     }
 
     console.log('Assigned a task');
-    this.setState(prevState => {
-      return { showAssigneeModal: !prevState.showAssigneeModal };
-    });
+    this.setState({ expandedTask: null });
   }
 
 
@@ -135,14 +138,19 @@ export default class Project extends Component {
                   <TaskListSelector
                     tasks={this.state.tasks}
                     selection={this.state.selection}
-                    handleAssignTask={taskId => this.assignTask(taskId)}
+                    handleClick={task => this.expandTask(task)}
                   />
                 </div>
               </div>
 
               {/* *** MODAL *** */}
-              {this.state.showAssigneeModal ?
-                <AddAssigneeModal handleClick={e => this.toggleModalVisibility(e)} />
+              {this.state.expandedTask ?
+                <TaskModal
+                  handleClick={e => this.toggleModalVisibility(e)}
+                  contributors={this.state.contributors}
+                  currentUser={this.state.currentUser}
+                  expandedTask={this.state.expandedTask}
+                />
                 :
                 null
               }

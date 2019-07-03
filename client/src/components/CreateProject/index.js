@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./style.css";
 import AddedContributors from "./AddedContributors";
 import SearchContributors from "./SearchContributors";
-import API from "../../utils/API";
+// import API from "../../utils/API";
 import mockAPI from "../../utils/mockAPI";
 
 export default class CreateProject extends Component {
