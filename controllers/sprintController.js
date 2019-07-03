@@ -59,7 +59,7 @@ module.exports = {
             .findById({ _id: sprintId}).populate({path: "tasks"}) //populates all the task data in Sprint's tasks
             .then(results => {
                 removeSprintFromProject(sprintId, results.project_ref) //removes the sprint from parent project
-                return results.remove() //removing the project (and cascade?)
+                return results.remove() //removing the project (and cascade)
             })
             .catch(err => err);
     }
