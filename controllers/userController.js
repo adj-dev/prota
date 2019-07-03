@@ -37,7 +37,7 @@ module.exports = {
                             {username: user.username}, //find a user by username
                             user, //and then update with user data
                             {new: true} //return new user
-                        )
+                        ).populate({path: "projects"})
                     );
                 } else {
                     //console.log("User does not exist");

@@ -7,7 +7,7 @@ var Controller = require('../controllers');
 //Get all User Data for logged in user**
 router.get("/user", (req, res) => {
     //console.log("Hit /user route, user is: ",req.user);
-    Controller.User.getOne(req.user)
+    Controller.User.getOne(req.user.username)
         .then(result => res.json(result))
         .catch(err => res.json(err));
 });
@@ -31,7 +31,7 @@ router.get("/user/:userName/fuzzy", (req, res) => {
 //Get project data from db by user*
 router.get("/projects", (req, res) => {
     //console.log("Hit /projects route, user is: ",req.user);
-    Controller.Project.getAllByUser(req.user)
+    Controller.Project.getAllByUser(req.user.username)
         .then(results => res.json(results))
         .catch(err => res.json(err));
 });
