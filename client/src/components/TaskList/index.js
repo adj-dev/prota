@@ -13,7 +13,15 @@ const TaskList = ({ tasks, handleClick }) => {
     <>
       {tasks.map(task => {
         return (
-          <div className="task-container" key={task.title}>
+          <div
+            className="task-container"
+            key={task.title}
+            onClick={() => expandTask({
+              title: task.title,
+              description: task.description,
+              status: task.status
+            })}
+          >
             <div className="task-upper">
               <span>{task.title}</span>
               <span>{task.status}</span>
@@ -28,16 +36,7 @@ const TaskList = ({ tasks, handleClick }) => {
                     alt=""
                   />
                   :
-                  <span
-                    className="add-contributor"
-                    onClick={() => expandTask({
-                      title: task.title,
-                      description: task.description,
-                      status: task.status
-                    })}
-                  >
-                    +
-                  </span>
+                  <span className="add-contributor">  +  </span>
               }
             </div>
 
