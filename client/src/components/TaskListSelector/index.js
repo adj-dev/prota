@@ -14,9 +14,10 @@ const DONE = 'DONE';
 
 
 const TaskListSelector = ({ tasks, selection, handleClick }) => {
-  console.log(selection);
   const [allTasks, setAllTasks] = useState(tasks);
   const [selectedTasks, setSelectedTasks] = useState([]);
+
+  console.log('from TaskListSelector', tasks, selection)
 
   useEffect(() => {
     setAllTasks(tasks)

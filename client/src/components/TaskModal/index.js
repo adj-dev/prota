@@ -11,14 +11,14 @@ import './style.css'
  * @param {*} currentUser the current user object
  */
 const TaskModal = ({ handleModal, contributors, currentUser, expandedTask, handleAssign }) => {
-  console.log(currentUser);
+  console.log('From the TaskModal', expandedTask);
 
   return (
     <div className="task-modal-backdrop" onClick={e => handleModal(e)}>
       <div className="task-modal">
         <div className="task-form">
           <div className="task-input">
-            <h3>{expandedTask.title}</h3>
+            <h3>{expandedTask.name}</h3>
             <p>{expandedTask.description}</p>
             {
               !expandedTask.assignee ?
