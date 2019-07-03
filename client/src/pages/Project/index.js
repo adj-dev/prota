@@ -39,7 +39,7 @@ export default class Project extends Component {
   // isLoaded is set to `true`
   componentDidUpdate() {
     if (this.state.tasks && this.state.selection && !this.state.isLoaded) {
-      console.log(this.state.selection);
+      console.log('component updated');
       this.setState({ isLoaded: true })
     }
   }
@@ -71,9 +71,9 @@ export default class Project extends Component {
 
 
     // WILL NEED TO CHECK IF SPRINTS IS not AN EMPTY ARRAY
-    if (!sprints) {
-      return;
-    }
+    // if (!sprints) {
+    //   return;
+    // }
     // send user to / if unauthorized
     if (project.unauthorized) return window.location = "/"; // This will never fire unless backend adds unauthorized property to response
 
@@ -156,17 +156,27 @@ export default class Project extends Component {
                   <ProjectCard
                     project={this.state.project}
                   />
-                  <SprintList
-                    sprints={this.state.currentSprint}
-                    selectSprint={this.selectSprint}
-                  />
+                  {
+                    this.state.currentSprint ?
+                      <SprintList
+                        sprints={this.state.currentSprint}
+                        selectSprint={this.selectSprint}
+                      />
+                      :
+                      <div>There are no sprints for this project</div>
+                  }
                 </div>
                 <div className="col">
-                  <TaskListSelector
-                    tasks={this.state.currentSprint[0].tasks}
-                    selection={this.state.selection}
-                    handleClick={task => this.expandTask(task)}
-                  />
+                  {
+                    this.state.currentSprint ?
+                      <TaskListSelector
+                        tasks={this.state.currentSprint[0].tasks}
+                        selection={this.state.selection}
+                        handleClick={task => this.expandTask(task)}
+                      />
+                      :
+                      <div>There currently aren't any tasks for this sprint</div>
+                  }
                 </div>
               </div>
 
