@@ -35,16 +35,6 @@ export default class Project extends Component {
     // this.fetchTasks() // this is for future use with actual APIs
   }
 
-  // Component only renders when tasks and selection (state properties) are both not null. 
-  // This works because in the render() method, the Children components only render when
-  // isLoaded is set to `true`
-  componentDidUpdate() {
-    if (this.state.tasks && this.state.selection && !this.state.isLoaded) {
-      console.log('component updated');
-      this.setState({ isLoaded: true })
-    }
-  }
-
 
 
   // *****************************************
@@ -60,7 +50,6 @@ export default class Project extends Component {
   // Fetches the project and all it's sprints
   fetchProject = async projectId => {
     let project = await API.getProject(projectId);
-    // let project = await mockAPI.getProject(projectId);
     // Grab all sprints from a project
     let sprints = project.sprints.length ? [...project.sprints] : null;
 
@@ -80,7 +69,7 @@ export default class Project extends Component {
       project: project,
       sprints: sprints,
       currentSprint: currentSprint,
-      selection: currentSprint ? currentSprint[0].tasks.filter(task => task.status === 'OPEN') : [],// eventually maybe migrate away from setting this here
+      selection: currentSprint ? currentSprint[0].tasks.filter(task => task.status === 'OPEN') : [], // eventually maybe migrate away from setting this here
       team: team,
       isLoaded: true
     })
@@ -128,14 +117,16 @@ export default class Project extends Component {
   }
 
   // Updates a task after creation / edit / assigning
-  assignUserToTask = user => {
-    let { member } = user;
-    // console.log(this.state.expandedTask);
-    this.setState(prevState => {
-      let newState = prevState.expandedTask;
-      newState.assignee = member;
-      return { expandedTask: newState }
-    })
+  assignUserToTask = async username => {
+    let { _id: userId } = await API.getUserByUsername(username);
+
+    let response = await API.updateTask(this.state.expandedTask._id, userId)
+    console.log('From assignUserToTask: ', response);
+    // this.setState(prevState => {
+    //   let newState = prevState.expandedTask;
+    //   newState.assignee = member;
+    //   return { expandedTask: newState }
+    // })
   }
 
 
@@ -183,7 +174,7 @@ export default class Project extends Component {
               {this.state.expandedTask ?
                 <TaskModal
                   handleModal={e => this.toggleModalVisibility(e)}
-                  handleAssign={user => this.assignUserToTask(user)}
+                  handleAssign={username => this.assignUserToTask(username)}
                   team={this.state.team}
                   currentUser={this.state.currentUser}
                   expandedTask={this.state.expandedTask}

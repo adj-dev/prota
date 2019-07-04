@@ -17,8 +17,6 @@ const TaskListSelector = ({ tasks, selection, handleClick }) => {
   const [allTasks, setAllTasks] = useState(tasks);
   const [selectedTasks, setSelectedTasks] = useState([]);
 
-  console.log('from TaskListSelector', tasks, selection)
-
   useEffect(() => {
     setAllTasks(tasks)
     setSelectedTasks(selection) // This line defaults the tasks list to show ALL tasks -- eventually want to default to OPEN
