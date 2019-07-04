@@ -25,7 +25,8 @@ export default class Project extends Component {
     selection: null,
     isLoaded: null,
     showTaskModal: false,
-    expandedTask: null
+    expandedTask: null,
+    team: null
   }
 
   componentDidMount() {
@@ -65,15 +66,12 @@ export default class Project extends Component {
 
     let currentSprint = sprints ? sprints.filter(sprint => sprint.status === IN_PROGRESS) : null;
 
+    let team = project.contributors.concat(project.owners)
+
     console.log(project)
     console.log(sprints);
     console.log(currentSprint);
 
-
-    // WILL NEED TO CHECK IF SPRINTS IS not AN EMPTY ARRAY
-    // if (!sprints) {
-    //   return;
-    // }
     // send user to / if unauthorized
     if (project.unauthorized) return window.location = "/"; // This will never fire unless backend adds unauthorized property to response
 
@@ -83,6 +81,7 @@ export default class Project extends Component {
       sprints: sprints,
       currentSprint: currentSprint,
       selection: currentSprint ? currentSprint[0].tasks.filter(task => task.status === 'OPEN') : [],// eventually maybe migrate away from setting this here
+      team: team,
       isLoaded: true
     })
   }
@@ -130,11 +129,11 @@ export default class Project extends Component {
 
   // Updates a task after creation / edit / assigning
   assignUserToTask = user => {
-    let { contributor } = user;
-    console.log(this.state.expandedTask);
+    let { member } = user;
+    // console.log(this.state.expandedTask);
     this.setState(prevState => {
       let newState = prevState.expandedTask;
-      newState.assignee = contributor;
+      newState.assignee = member;
       return { expandedTask: newState }
     })
   }
@@ -185,7 +184,7 @@ export default class Project extends Component {
                 <TaskModal
                   handleModal={e => this.toggleModalVisibility(e)}
                   handleAssign={user => this.assignUserToTask(user)}
-                  contributors={this.state.project.contributors}
+                  team={this.state.team}
                   currentUser={this.state.currentUser}
                   expandedTask={this.state.expandedTask}
                 />

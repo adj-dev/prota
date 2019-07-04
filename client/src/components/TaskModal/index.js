@@ -10,8 +10,8 @@ import './style.css'
  * @param {*} contributors an array of usernames
  * @param {*} currentUser the current user object
  */
-const TaskModal = ({ handleModal, contributors, currentUser, expandedTask, handleAssign }) => {
-  console.log('From the TaskModal', expandedTask);
+const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleAssign }) => {
+  console.log('From the TaskModal', currentUser);
 
   return (
     <div className="task-modal-backdrop" onClick={e => handleModal(e)}>
@@ -25,14 +25,14 @@ const TaskModal = ({ handleModal, contributors, currentUser, expandedTask, handl
                 <>
                   <p>Assign to:</p>
                   {
-                    contributors.map((contributor, i) => {
+                    team.map((member, i) => {
                       return (
-                        <div className="c-list-item" key={i} onClick={() => handleAssign({ contributor })}>
+                        <div className="c-list-item" key={i} onClick={() => handleAssign({ member })}>
                           {
-                            currentUser.display_name === contributor ?
-                              <span>Me</span>
+                            currentUser.username === member ?
+                              <span>Me ({member})</span>
                               :
-                              <span>{contributor}</span>
+                              <span>{member}</span>
                           }
                         </div>
                       )
