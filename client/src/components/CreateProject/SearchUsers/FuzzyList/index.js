@@ -1,9 +1,15 @@
 import React from "react";
 import "./style.css";
 
-export default function FuzzyList({ users, handleSelectContributor, newUser }) {
+export default function FuzzyList({
+  users,
+  handleSelectUser,
+  handleInviteUser,
+  newUser
+}) {
   //results.push("Add ", query);
 
+  //if the selected user matches a user in the added list return true
   let inputMatchesListItem = () => {
     for (let user in users) {
       if (newUser === users[user].username) {
@@ -21,7 +27,7 @@ export default function FuzzyList({ users, handleSelectContributor, newUser }) {
             className="fuzzy-user"
             key={i}
             onClick={() => {
-              handleSelectContributor(user.username);
+              handleSelectUser(user);
             }}
           >
             {user.username}
@@ -32,7 +38,7 @@ export default function FuzzyList({ users, handleSelectContributor, newUser }) {
         <div
           className="fuzzy-invite"
           onClick={() => {
-            handleSelectContributor(newUser);
+            handleInviteUser(newUser);
           }}
         >
           Invite: {newUser}
