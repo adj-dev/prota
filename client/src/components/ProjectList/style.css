@@ -25,6 +25,15 @@ font-family: 'Rajdhani', sans-serif;
   justify-items: flex-start;
   /* border: 1px solid grey; */
   overflow: scroll;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.project-list::-webkit-scrollbar {
+  /* WebKit */
+  width: 0px;
+  height: 0px;
 }
 
 .create-project-button {
@@ -43,6 +52,8 @@ font-family: 'Rajdhani', sans-serif;
 
 .project-list div {
   margin: 10px;
+  word-wrap: break-word;
+  hyphens: auto;
   margin-left: 11px;
   margin-right: 0px;
 }
