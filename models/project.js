@@ -20,11 +20,13 @@ var ProjectSchema = new Schema({
         default: "OPEN"
     },
     owners: [{
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: "User",
         required: true
     }],
     contributors: [{
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }],
     sprints: [{
         type: Schema.Types.ObjectId,

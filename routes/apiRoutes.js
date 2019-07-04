@@ -7,15 +7,15 @@ var Controller = require('../controllers');
 //Get all User Data for logged in user**
 router.get("/user", (req, res) => {
     //console.log("Hit /user route, user is: ",req.user);
-    Controller.User.getOne(req.user.username)
+    Controller.User.getOne(req.user._id)
         .then(result => res.json(result))
         .catch(err => res.json(err));
 });
 
 //Get all User Data for given user [Util route, remove upon deploy]
-router.get("/user/:userName", (req, res) => {
+router.get("/user/:userId", (req, res) => {
     //console.log("Hit /user/:userName route, user is: ",req.user);
-    Controller.User.getOne(req.params.userName)
+    Controller.User.getOne(req.params.userId)
         .then(result => res.json(result))
         .catch(err => res.json(err));
 });
@@ -31,14 +31,14 @@ router.get("/user/:userName/fuzzy", (req, res) => {
 //Get project data from db by user*
 router.get("/projects", (req, res) => {
     //console.log("Hit /projects route, user is: ",req.user);
-    Controller.Project.getAllByUser(req.user.username)
+    Controller.Project.getAllByUser(req.user._id)
         .then(results => res.json(results))
         .catch(err => res.json(err));
 });
 
-router.get("/projects/user/:userName", (req, res) => {
+router.get("/projects/user/:userId", (req, res) => {
     //console.log("Hit /projects route, user is: ",req.user);
-    Controller.Project.getAllByUser(req.params.userName)
+    Controller.Project.getAllByUser(req.params.userId)
         .then(results => res.json(results))
         .catch(err => res.json(err));
 });
@@ -134,28 +134,28 @@ router.put("/projects/:projectId", (req, res) => {
         .catch(err => res.json(err));
 });
 
-router.put("/projects/:projectId/addContributor/:userName", (req, res) => {
+router.put("/projects/:projectId/addContributor/:userId", (req, res) => {
     //console.log("Hit /projects/add route, user is: ",req.user);
-    Controller.Project.addUser(req.params, "contributor");
-    res.json("Route Reached");
+    Controller.Project.addUser(req.params, "contributor")
+        .then(result => res.send(result));
 });
 
-router.put("/projects/:projectId/addOwner/:userName", (req, res) => {
+router.put("/projects/:projectId/addOwner/:userId", (req, res) => {
     //console.log("Hit /projects/add route, user is: ",req.user);
-    Controller.Project.addUser(req.params, "owner");
-    res.json("Route Reached");
+    Controller.Project.addUser(req.params, "owner")
+        .then(result => res.send(result));
 });
 
-router.put("/projects/:projectId/removeContributor/:userName", (req, res) => {
+router.put("/projects/:projectId/removeContributor/:userId", (req, res) => {
     //console.log("Hit /projects/remove route, user is: ",req.user);
-    Controller.Project.removeUser(req.params, "contributor");
-    res.json("Route Reached");
+    Controller.Project.removeUser(req.params, "contributor")
+        .then(result => res.send(result));
 });
 
-router.put("/projects/:projectId/removeOwner/:userName", (req, res) => {
+router.put("/projects/:projectId/removeOwner/:userId", (req, res) => {
     //console.log("Hit /projects/remove route, user is: ",req.user);
-    Controller.Project.removeUser(req.params, "owner");
-    res.json("Route Reached");
+    Controller.Project.removeUser(req.params, "owner")
+        .then(result => res.send(result));
 });
 
 //Edit a sprint**

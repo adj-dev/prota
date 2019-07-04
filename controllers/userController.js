@@ -7,8 +7,8 @@ module.exports = {
           .catch(err => res.json(err));
       },
 
-    getOne: function(userName) { //get a user object by req.user
-        return db.User.find({username: userName}).populate({path: "projects"})
+    getOne: function(userId) { //get a user object by req.user
+        return db.User.find({_id: userId}).populate({path: "projects"})
           .then(dbUser => dbUser[0])
           .catch(err => err);
     },
@@ -28,7 +28,7 @@ module.exports = {
 
     update: function(userBody) { //update a user
         return db.User.findOneAndUpdate(
-            {username: userBody.username}, //find a user by username
+            {_id: userBody._id}, //find a user by username
             userBody, //and then update with user data
             {new: true} //return new user
         ).populate({path: "projects"})
