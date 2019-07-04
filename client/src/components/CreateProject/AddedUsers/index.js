@@ -9,7 +9,7 @@ export default function AddedUsers({ users, handleRemoveUser, currentUser }) {
             return (
               <div className="added-contributor-container" key={i}>
                 <span>{user.username}</span>
-                {currentUser !== user ? (
+                {currentUser !== user.username ? (
                   <img
                     className="remove-contributor-button"
                     alt="remove"
