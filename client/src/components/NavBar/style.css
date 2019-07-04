@@ -1,0 +1,14 @@
+.nav-bar {
+  padding: 2vh;
+  padding-left: 2vw;
+  padding-right: 4vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: whitesmoke;
+}
+
+.nav-item {
+  cursor: pointer;
+}

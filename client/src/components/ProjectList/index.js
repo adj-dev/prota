@@ -7,7 +7,12 @@ export default function ProjectList({ projects, toggleCreateProjectDialog }) {
     <div className="project-list-container">
       <div className="project-list">
         {projects.map((project, key) => (
-          <ProjectListItem key={key} id={project._id} title={project.name} />
+          <ProjectListItem
+            lang="en"
+            key={key}
+            id={project._id}
+            title={project.name}
+          />
         ))}
       </div>
       <div
