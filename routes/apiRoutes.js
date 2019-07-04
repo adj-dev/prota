@@ -136,26 +136,26 @@ router.put("/projects/:projectId", (req, res) => {
 
 router.put("/projects/:projectId/addContributor/:userName", (req, res) => {
     //console.log("Hit /projects/add route, user is: ",req.user);
-    Controller.Project.addUser(req.params, "contributor");
-    res.json("Route Reached");
+    Controller.Project.addUser(req.params, "contributor")
+        .then(result => res.send(result));
 });
 
 router.put("/projects/:projectId/addOwner/:userName", (req, res) => {
     //console.log("Hit /projects/add route, user is: ",req.user);
-    Controller.Project.addUser(req.params, "owner");
-    res.json("Route Reached");
+    Controller.Project.addUser(req.params, "owner")
+        .then(result => res.send(result));
 });
 
 router.put("/projects/:projectId/removeContributor/:userName", (req, res) => {
     //console.log("Hit /projects/remove route, user is: ",req.user);
-    Controller.Project.removeUser(req.params, "contributor");
-    res.json("Route Reached");
+    Controller.Project.removeUser(req.params, "contributor")
+        .then(result => res.send(result));
 });
 
 router.put("/projects/:projectId/removeOwner/:userName", (req, res) => {
     //console.log("Hit /projects/remove route, user is: ",req.user);
-    Controller.Project.removeUser(req.params, "owner");
-    res.json("Route Reached");
+    Controller.Project.removeUser(req.params, "owner")
+        .then(result => res.send(result));
 });
 
 //Edit a sprint**
