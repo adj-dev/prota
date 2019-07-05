@@ -9,10 +9,10 @@ import './styles.css';
 
 
 // Define our status variable
-// const OPEN = 'OPEN';
+const OPEN = 'OPEN';
 const IN_PROGRESS = 'IN_PROGRESS';
-// const CLOSED = 'CLOSED';
-// const DONE = 'DONE';
+const CLOSED = 'CLOSED';
+const DONE = 'DONE';
 
 
 
