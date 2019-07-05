@@ -92,7 +92,7 @@ router.get("/tasks/user/:userId", (req, res) => {
 //Create new user
 router.post("/users/:userName", (req, res) => {
     //console.log("Hit /user route, user is: ",req.user);
-    Controller.User.create({ "username": req.params.userName })
+    Controller.User.invite({ "username": req.params.userName })
         .then(results => res.json(results))
         .catch(err => res.json(err));
 });

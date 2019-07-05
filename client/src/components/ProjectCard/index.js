@@ -1,16 +1,17 @@
 import React from 'react'
 import './styles.css'
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, team }) => {
+  console.log('rendering ProjectCard')
   return (
     <div className="projectcard-wrapper">
       <div className="projectcard-container">
         <div className="projectcard-title">
           <div>
-            <h1>{project.name}</h1>
+            <h1>{project.name.toUpperCase()}</h1>
           </div>
         </div>
-<br></br>
+        <br></br>
         <div className="details-container">
           <div className="detail"><span>Current Runtime: 23 days</span></div>
           <div className="detail"><span>Projected End Date: August 1st, 2019</span></div>
@@ -20,8 +21,8 @@ const ProjectCard = ({ project }) => {
 
         <div className="team-container">
           {
-            project.contributors.map((contributor, i) => {
-              return <span key={i}>{contributor}</span>
+            team.map((member, i) => {
+              return <span key={i}>{member.display_name}</span>
             })
           }
         </div>

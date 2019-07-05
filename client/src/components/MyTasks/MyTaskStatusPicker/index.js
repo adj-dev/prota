@@ -3,9 +3,9 @@ import "./style.css";
 
 export default function MyTaskStatusPicker({ handleSelectStatus }) {
   const STATUSES = [
-    { status: "OPEN", displayName: "Open" },
-    { status: "IN_PROGRESS", displayName: "In Progress" },
-    { status: "DONE", displayName: "Done" }
+    { status: "OPEN", displayName: "open" },
+    { status: "IN_PROGRESS", displayName: "in progress" },
+    { status: "DONE", displayName: "done" }
   ];
   return (
     <div className="status-picker-container">

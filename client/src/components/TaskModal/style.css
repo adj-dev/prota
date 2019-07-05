@@ -1,12 +1,12 @@
-.task-modal-backdrop {
-  position: fixed;
-  background-color: rgba(255, 255, 255, 0.5);
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left:0;
-  z-index: 10;
-}
+@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
+/* 
+font-family: 'Overpass', sans-serif;
+
+font-family: 'PT Sans Narrow', sans-serif;
+
+font-family: 'Rajdhani', sans-serif;
+*/
+
 
 .task-modal {
   width: 600px;

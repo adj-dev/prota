@@ -14,7 +14,7 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleAssign 
   console.log('From the TaskModal', expandedTask);
 
   return (
-    <div className="task-modal-backdrop" onClick={e => handleModal(e)}>
+    <div className="modal-backdrop" onClick={e => handleModal(e)}>
       <div className="task-modal">
         <div className="task-form">
           <div className="task-input">
@@ -23,7 +23,7 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleAssign 
             {
               !expandedTask.assignee ?
                 <>
-                  <p>Assign to:</p>
+                  <p>ASSIGN TO:</p>
                   {
                     team.map((member, i) => {
                       return (
@@ -47,7 +47,7 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleAssign 
                 </>
                 :
                 <>
-                  <p>Assigned to: <span>{expandedTask.assignee}</span></p>
+                  <p>ASSIGNED TO: <span>{expandedTask.assignee.toUpperCase()}</span></p>
                 </>
             }
           </div>

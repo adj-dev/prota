@@ -14,6 +14,8 @@ export default {
     axios.get(`/api/project/${id}`).then(response => response.data),
   createProject: project =>
     axios.post("/api/projects", project).then(response => response.data),
+  addSprint: sprint =>
+    axios.post("/api/sprints", sprint).then(response => response.data),
   getTasksByUser: id =>
     axios.get(`/api/tasks/user/${id}`).then(response => response.data),
   updateTask: (taskId, userId) =>

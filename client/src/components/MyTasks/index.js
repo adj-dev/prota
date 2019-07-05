@@ -20,7 +20,7 @@ export default class MyTasks extends Component {
     if (this.projects[0] && this.tasks) {
       if (this.projects[0]._id !== "ALL") {
         //add an "all" projects button to the project selector
-        this.projects.unshift({ _id: "ALL", name: "All" });
+        this.projects.unshift({ _id: "ALL", name: "all" });
       }
       //if we have a selected status, get selected tasks
       if (this.state.selectedStatus) {

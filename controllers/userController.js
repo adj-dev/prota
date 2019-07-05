@@ -25,35 +25,47 @@ module.exports = {
       .catch(er => err);
   },
 
-  create: function(userBody) {
-    //create a new user
-    return db.User.create(userBody)
-      .then(result => result)
-      .catch(err => err);
-  },
+    invite: function(userName) { //Create a new user if does not exist
+        return db.User
+            .find({username: userName})
+            .then(dbUser => { //returns an array of user objects
+                if(dbUser.length > 0){
+                    //console.log(dbUser[0].username+" exists");
+                    return "User Exists";
+                } else {
+                    //console.log("User does not exist");
+                    return this.create({username: userName});
+                }
+            }).catch(err => err);
+        //Catch is end of return db.User section
+    },
 
-  update: function(userBody) {
-    //update a user
-    return db.User.findOneAndUpdate(
-      { username: userBody.username }, //find a user by username
-      userBody, //and then update with user data
-      { new: true } //return new user
-    ).populate({ path: "projects" });
-  },
+    create: function(userBody) { //create a new user
+        return db.User.create(userBody)
+            .then(result => result)
+            .catch(err => err);
+    },
 
-  createOrUpdate: function(user) {
-    //adjust to createOrUpdate
-    return db.User.find({ username: user.username })
-      .then(dbUser => {
-        if (dbUser.length > 0) {
-          //console.log(dbUser[0].username+" exists");
-          return this.update(user);
-        } else {
-          //console.log("User does not exist");
-          return this.create(user);
-        }
-      })
-      .catch(err => err);
-    //Catch is end of return db.User section
-  }
-};
+    update: function(userBody) { //update a user
+        return db.User.findOneAndUpdate(
+            {username: userBody.username}, //find a user by userId
+            userBody, //and then update with user data
+            {new: true, useFindAndModify: false} //return new user
+        ).populate({path: "projects"})
+    },
+
+    createOrUpdate: function(user) { //If new user, create, else update user
+        return db.User
+            .find({username: user.username})
+            .then(dbUser => { //returns an array of user objects
+                if(dbUser.length > 0){
+                    //console.log(dbUser[0].username+" exists");
+                    return this.update(user);
+                } else {
+                    //console.log("User does not exist");
+                    return this.create(user);
+                }
+            }).catch(err => err);
+        //Catch is end of return db.User section
+    }
+}
