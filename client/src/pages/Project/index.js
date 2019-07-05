@@ -25,7 +25,8 @@ export default class Project extends Component {
     selection: null,
     isLoaded: null,
     showTaskModal: false,
-    expandedTask: null
+    expandedTask: null,
+    team: null
   }
 
   componentDidMount() {
@@ -34,46 +35,30 @@ export default class Project extends Component {
     // this.fetchTasks() // this is for future use with actual APIs
   }
 
-  // Component only renders when tasks and selection (state properties) are both not null. 
-  // This works because in the render() method, the Children components only render when
-  // isLoaded is set to `true`
-  componentDidUpdate() {
-    if (this.state.tasks && this.state.selection && !this.state.isLoaded) {
-      console.log('component updated');
-      this.setState({ isLoaded: true })
-    }
-  }
 
 
-
-  // *****************************************
-  // Methods for fetching data > setting state
-  // *****************************************
+  // *******************************************
+  // Methods for fetching data and setting state
+  // *******************************************
 
   // Fetches user data
   fetchUser = async () => {
     let user = await API.getUser()
+    console.log('currentUser:', user)
     this.setState({ currentUser: user })
   }
 
   // Fetches the project and all it's sprints
   fetchProject = async projectId => {
     let project = await API.getProject(projectId);
-    // let project = await mockAPI.getProject(projectId);
-    // Grab all sprints from a project
     let sprints = project.sprints.length ? [...project.sprints] : null;
-
     let currentSprint = sprints ? sprints.filter(sprint => sprint.status === IN_PROGRESS) : null;
+    let team = project.contributors.concat(project.owners)
 
-    console.log(project)
-    console.log(sprints);
-    console.log(currentSprint);
+    console.log('Project:', project)
+    console.log('Sprints', sprints);
+    console.log('currentSprint', currentSprint);
 
-
-    // WILL NEED TO CHECK IF SPRINTS IS not AN EMPTY ARRAY
-    // if (!sprints) {
-    //   return;
-    // }
     // send user to / if unauthorized
     if (project.unauthorized) return window.location = "/"; // This will never fire unless backend adds unauthorized property to response
 
@@ -82,7 +67,8 @@ export default class Project extends Component {
       project: project,
       sprints: sprints,
       currentSprint: currentSprint,
-      selection: currentSprint ? currentSprint[0].tasks.filter(task => task.status === 'OPEN') : [],// eventually maybe migrate away from setting this here
+      selection: currentSprint ? currentSprint[0].tasks.filter(task => task.status === 'OPEN') : [], // eventually maybe migrate away from setting this here
+      team: team,
       isLoaded: true
     })
   }
@@ -124,19 +110,20 @@ export default class Project extends Component {
       return;
     }
 
-    console.log('Assigned a task');
     this.setState({ expandedTask: null });
   }
 
   // Updates a task after creation / edit / assigning
-  assignUserToTask = user => {
-    let { contributor } = user;
-    console.log(this.state.expandedTask);
-    this.setState(prevState => {
-      let newState = prevState.expandedTask;
-      newState.assignee = contributor;
-      return { expandedTask: newState }
-    })
+  assignUserToTask = async username => {
+    let { _id: userId } = await API.getUserByUsername(username);
+
+    let response = await API.updateTask(this.state.expandedTask._id, userId)
+    console.log('From assignUserToTask: ', response);
+    // this.setState(prevState => {
+    //   let newState = prevState.expandedTask;
+    //   newState.assignee = member;
+    //   return { expandedTask: newState }
+    // })
   }
 
 
@@ -163,7 +150,10 @@ export default class Project extends Component {
                         selectSprint={this.selectSprint}
                       />
                       :
-                      <div>There are no sprints for this project</div>
+                      <div>
+                        There are no sprints for this project. Not only that, but you aren't able to add a sprint either.
+                        hahaha. I'll get on that.
+                      </div>
                   }
                 </div>
                 <div className="col">
@@ -175,7 +165,7 @@ export default class Project extends Component {
                         handleClick={task => this.expandTask(task)}
                       />
                       :
-                      <div>There currently aren't any tasks for this sprint</div>
+                      <div></div>
                   }
                 </div>
               </div>
@@ -184,8 +174,8 @@ export default class Project extends Component {
               {this.state.expandedTask ?
                 <TaskModal
                   handleModal={e => this.toggleModalVisibility(e)}
-                  handleAssign={user => this.assignUserToTask(user)}
-                  contributors={this.state.project.contributors}
+                  handleAssign={username => this.assignUserToTask(username)}
+                  team={this.state.team}
                   currentUser={this.state.currentUser}
                   expandedTask={this.state.expandedTask}
                 />

@@ -22,6 +22,6 @@
   flex-direction: column;
 }
 
-.c-list-item:hover {
+.team-member-item:hover {
   color: blue;
 }
