@@ -54,7 +54,7 @@ module.exports = {
         ).populate({path: "projects"})
     },
 
-    createOrUpdate: function(user) { //adjust to createOrUpdate
+    createOrUpdate: function(user) { //If new user, create, else update user
         return db.User
             .find({username: user.username})
             .then(dbUser => { //returns an array of user objects
