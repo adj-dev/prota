@@ -1,18 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
+
+/* 
+colours for styling buttons:
+all:
+`background-color: #D593E8;`
+open:
+`background-color: #3EE1A7;`
+inprog:
+`background-color: #46A1FD;`
+done:
+`background-color: #FD9E3C;`
+closed:
+`background-color: #FF5F58;` 
+*/
+
 .profile-card-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: whitesmoke;
+  background-color:lightgrey;
   border-radius: 5px;
-  height: 60vh;
-  width: 60vh;
-  box-shadow: 0 0 3px #c7c7c7;
+  padding: 20px;
+  box-shadow: lightblue;
+  padding-bottom: 20px;
 }
 
 .avatar {
   width: 40vh;
-  border-radius: 40vh;
+  border-radius: 38vh;
   margin: 20px;
 }
 
@@ -22,7 +38,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: whitesmoke;
     border-radius: 5px;
     height: unset;
     width: unset;
@@ -36,11 +51,23 @@
 }
 
 #OPEN {
-  background-color: rgb(84, 225, 84);
+  background-color: #3EE1A7;
+  font-family: 'PT Sans Narrow', sans-serif;
+  color: white;
+  margin: 7px;
+  border-radius: 8px;
 }
 #IN_PROGRESS {
-  background-color: dodgerblue;
+  background-color: #46A1FD;
+  font-family: 'PT Sans Narrow', sans-serif;
+  color: white;
+  margin: 7px;
+  border-radius: 8px;
 }
 #DONE {
-  background-color: orange;
+  background-color: #FD9E3C;
+  font-family: 'PT Sans Narrow', sans-serif;
+  color: white;
+  margin: 7px;
+  border-radius: 8px;
 }

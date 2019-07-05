@@ -7,7 +7,7 @@ const ProjectCard = ({ project }) => {
       <div className="projectcard-container">
         <div className="projectcard-title">
           <div>
-            <h1>{project.name}</h1>
+            <h1>{project.name.toUpperCase()}</h1>
           </div>
         </div>
 <br></br>

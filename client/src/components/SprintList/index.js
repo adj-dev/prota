@@ -15,7 +15,7 @@ const SprintList = ({ sprints, selectSprint }) => {
     <div className="sprintlist-wrapper">
       <div className="sprintlist-container">
 
-        <h1>Sprints</h1>
+        <h1>SPRINTS</h1>
 <br></br>
         <div className="status-buttons">
           <div className="status">
@@ -41,6 +41,7 @@ const SprintList = ({ sprints, selectSprint }) => {
                   <span>{sprint.start_date}</span>
                   <span>{sprint.status}</span>
                 </div>
+        
               )
             })
           }

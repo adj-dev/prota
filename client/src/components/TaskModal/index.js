@@ -23,7 +23,7 @@ const TaskModal = ({ handleModal, contributors, currentUser, expandedTask, handl
             {
               !expandedTask.assignee ?
                 <>
-                  <p>Assign to:</p>
+                  <p>ASSIGN TO:</p>
                   {
                     contributors.map((contributor, i) => {
                       return (
@@ -32,7 +32,7 @@ const TaskModal = ({ handleModal, contributors, currentUser, expandedTask, handl
                             currentUser.display_name === contributor ?
                               <span>Me</span>
                               :
-                              <span>{contributor}</span>
+                              <span>{contributor.toUpperCase()}</span>
                           }
                         </div>
                       )
@@ -41,7 +41,7 @@ const TaskModal = ({ handleModal, contributors, currentUser, expandedTask, handl
                 </>
                 :
                 <>
-                  <p>Assigned to: <span>{expandedTask.assignee}</span></p>
+                  <p>ASSIGNED TO: <span>{expandedTask.assignee.toUpperCase()}</span></p>
                 </>
             }
           </div>

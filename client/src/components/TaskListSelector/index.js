@@ -37,7 +37,7 @@ const TaskListSelector = ({ tasks, selection, handleClick }) => {
   return (
     <div className="tasklist-wrapper">
       <div className="tasklist-container">
-        <h1>Tasks</h1>
+        <h1>TASKS</h1>
         <br></br>
         {/* Status buttons */}
         <div className="status-buttons">
