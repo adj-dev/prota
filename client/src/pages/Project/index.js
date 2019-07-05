@@ -37,29 +37,27 @@ export default class Project extends Component {
 
 
 
-  // *****************************************
-  // Methods for fetching data > setting state
-  // *****************************************
+  // *******************************************
+  // Methods for fetching data and setting state
+  // *******************************************
 
   // Fetches user data
   fetchUser = async () => {
     let user = await API.getUser()
+    console.log('currentUser:', user)
     this.setState({ currentUser: user })
   }
 
   // Fetches the project and all it's sprints
   fetchProject = async projectId => {
     let project = await API.getProject(projectId);
-    // Grab all sprints from a project
     let sprints = project.sprints.length ? [...project.sprints] : null;
-
     let currentSprint = sprints ? sprints.filter(sprint => sprint.status === IN_PROGRESS) : null;
-
     let team = project.contributors.concat(project.owners)
 
-    console.log(project)
-    console.log(sprints);
-    console.log(currentSprint);
+    console.log('Project:', project)
+    console.log('Sprints', sprints);
+    console.log('currentSprint', currentSprint);
 
     // send user to / if unauthorized
     if (project.unauthorized) return window.location = "/"; // This will never fire unless backend adds unauthorized property to response
@@ -112,7 +110,6 @@ export default class Project extends Component {
       return;
     }
 
-    console.log('Assigned a task');
     this.setState({ expandedTask: null });
   }
 
@@ -153,7 +150,10 @@ export default class Project extends Component {
                         selectSprint={this.selectSprint}
                       />
                       :
-                      <div>There are no sprints for this project</div>
+                      <div>
+                        There are no sprints for this project. Not only that, but you aren't able to add a sprint either.
+                        hahaha. I'll get on that.
+                      </div>
                   }
                 </div>
                 <div className="col">
@@ -165,7 +165,7 @@ export default class Project extends Component {
                         handleClick={task => this.expandTask(task)}
                       />
                       :
-                      <div>There currently aren't any tasks for this sprint</div>
+                      <div></div>
                   }
                 </div>
               </div>

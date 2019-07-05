@@ -27,12 +27,18 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleAssign 
                   {
                     team.map((member, i) => {
                       return (
-                        <div className="c-list-item" key={i} onClick={() => handleAssign(member)}>
+                        <div className="team-member-item" key={i} onClick={() => handleAssign(member)}>
                           {
-                            currentUser.username === member ?
-                              <span>Me ({member})</span>
+                            currentUser.username === member.username ?
+                              <>
+                                <img src={member.avatar_url} alt="" />
+                                <span>Me ({member.display_name})</span>
+                              </>
                               :
-                              <span>{member}</span>
+                              <>
+                                <img src={member.avatar_url} alt="" />
+                                <span>{member.display_name}</span>
+                              </>
                           }
                         </div>
                       )
