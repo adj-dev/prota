@@ -1,25 +1,28 @@
 const db = require("../models");
 
 module.exports = {
-  getAll: function() { //get all users
+  getAll: function() {
+    //get all users
     return db.User.find({})
-      .then(dbUsers => {return {success: true, value: dbUsers}})
-      .catch(err => err);
+      .then(dbUsers => dbUsers)
+      .catch(err => res.json(err));
   },
 
-  getOne: function(userId) { //get a user object by req.user
+  getOne: function(userId) {
+    //get a user object by req.user
     return db.User.find({ _id: userId })
       .populate({ path: "projects" })
-      .then(dbUsers => {return {success: true, value: dbUsers[0]}})
+      .then(dbUser => dbUser[0])
       .catch(err => err);
   },
 
-  getFuzzy: function(userName) { //get a fuzzy selection of users by req.params
+  getFuzzy: function(userName) {
+    //get a fuzzy selection of users by req.params
     var regex = new RegExp(userName, "i"); //creates regex equivalent to /username/i where username is a variable
     return db.User.find({ username: regex })
       .limit(5)
-      .then(result => {return {success: true, value: result}})
-      .catch(err => err);
+      .then(result => result)
+      .catch(er => err);
   },
 
     invite: function(userName) { //Create a new user if does not exist
@@ -28,7 +31,7 @@ module.exports = {
             .then(dbUser => { //returns an array of user objects
                 if(dbUser.length > 0){
                     //console.log(dbUser[0].username+" exists");
-                    return {success: false, value: "User Exists"};
+                    return "User Exists";
                 } else {
                     //console.log("User does not exist");
                     return this.create({username: userName});
@@ -39,7 +42,7 @@ module.exports = {
 
     create: function(userBody) { //create a new user
         return db.User.create(userBody)
-            .then(result => {return {success: true, value: result}})
+            .then(result => result)
             .catch(err => err);
     },
 
@@ -49,7 +52,6 @@ module.exports = {
             userBody, //and then update with user data
             {new: true, useFindAndModify: false} //return new user
         ).populate({path: "projects"})
-        .then(result => {return{success: true, value: result}});
     },
 
     createOrUpdate: function(user) { //If new user, create, else update user

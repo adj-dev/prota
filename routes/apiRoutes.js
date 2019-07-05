@@ -137,25 +137,25 @@ router.put("/projects/:projectId", (req, res) => {
 router.put("/projects/:projectId/addContributor/:userId", (req, res) => {
     //console.log("Hit /projects/add route, user is: ",req.user);
     Controller.Project.addUser(req.params, "contributor")
-        .then(result => res.json(result));
+        .then(result => res.send(result));
 });
 
 router.put("/projects/:projectId/addOwner/:userId", (req, res) => {
     //console.log("Hit /projects/add route, user is: ",req.user);
     Controller.Project.addUser(req.params, "owner")
-        .then(result => res.json(result));
+        .then(result => res.send(result));
 });
 
 router.put("/projects/:projectId/removeContributor/:userId", (req, res) => {
     //console.log("Hit /projects/remove route, user is: ",req.user);
     Controller.Project.removeUser(req.params, "contributor")
-        .then(result => res.json(result));
+        .then(result => res.send(result));
 });
 
 router.put("/projects/:projectId/removeOwner/:userId", (req, res) => {
     //console.log("Hit /projects/remove route, user is: ",req.user);
     Controller.Project.removeUser(req.params, "owner")
-        .then(result => res.json(result));
+        .then(result => res.send(result));
 });
 
 //Edit a sprint**
