@@ -45,7 +45,7 @@ export default class mockData {
     this.projects = [
       {
         _id: "1",
-        name: "First Project",
+        name: "first project",
         created_by: "Andrew Johnson",
         owners: ["John", "Andrew"],
         contributors: ["Testee McTesterson", "Nhu", "Adam"],
@@ -54,7 +54,7 @@ export default class mockData {
       },
       {
         _id: "2",
-        name: "Second Project",
+        name: "second project",
         created_by: "Richie Nhu",
         owners: ["John", "Andrew"],
         contributors: ["Testee McTesterson", "Kieran", "Nhu", "Adam"],
@@ -63,7 +63,7 @@ export default class mockData {
       },
       {
         _id: "3",
-        name: "Third Project",
+        name: "third project",
         created_by: "Andrew John",
         owners: ["John", "Andrew"],
         contributors: ["Testee McTesterson", "Nhu", "Adam"],
@@ -72,7 +72,7 @@ export default class mockData {
       },
       {
         _id: "4",
-        name: "Fourth Project",
+        name: "fourth project",
         created_by: "Andrew John",
         owners: ["John", "Andrew"],
         contributors: ["Testee McTesterson", "Nhu", "Adam"],
