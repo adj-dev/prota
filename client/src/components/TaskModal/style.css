@@ -32,6 +32,6 @@ font-family: 'Rajdhani', sans-serif;
   flex-direction: column;
 }
 
-.c-list-item:hover {
-  color:#FF5F58;
+.team-member-item:hover {
+  color: blue;
 }

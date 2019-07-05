@@ -3,23 +3,30 @@ import ProjectCard from '../../components/ProjectCard';
 import SprintList from '../../components/SprintList';
 import TaskListSelector from '../../components/TaskListSelector';
 import TaskModal from '../../components/TaskModal';
-// import API from "../../utils/API";
+import API from "../../utils/API";
 import mockAPI from "../../utils/mockAPI";
 import './styles.css';
+
+
+// Define our status variable
+const OPEN = 'OPEN';
+const IN_PROGRESS = 'IN_PROGRESS';
+const CLOSED = 'CLOSED';
+const DONE = 'DONE';
 
 
 
 export default class Project extends Component {
   state = {
     currentUser: null,
-    forProjectCard: null, // eventually get rid of this one - spread it out
-    contributors: null,
-    forSprintList: null,
-    tasks: null,
+    project: null,
+    sprints: null,
+    currentSprint: null,
     selection: null,
     isLoaded: null,
     showTaskModal: false,
-    expandedTask: null
+    expandedTask: null,
+    team: null
   }
 
   componentDidMount() {
@@ -28,46 +35,41 @@ export default class Project extends Component {
     // this.fetchTasks() // this is for future use with actual APIs
   }
 
-  // Component only renders when tasks and selection (state properties) are both not null. 
-  // This works because in the render() method, the Children components only render when
-  // isLoaded is set to `true`
-  componentDidUpdate() {
-    if (this.state.tasks && this.state.selection && !this.state.isLoaded) {
-      console.log(this.state.selection);
-      this.setState({ isLoaded: true })
-    }
-  }
 
 
-
-  // *****************************************
-  // Methods for fetching data > setting state
-  // *****************************************
+  // *******************************************
+  // Methods for fetching data and setting state
+  // *******************************************
 
   // Fetches user data
   fetchUser = async () => {
-    let user = await mockAPI.getUser()
+    let user = await API.getUser()
+    console.log('currentUser:', user)
     this.setState({ currentUser: user })
   }
 
   // Fetches the project and all it's sprints
   fetchProject = async projectId => {
-    let project = await mockAPI.getProject(projectId);
-    console.log(project);
+    let project = await API.getProject(projectId);
+    let sprints = project.sprints.length ? [...project.sprints] : null;
+    let currentSprint = sprints ? sprints.filter(sprint => sprint.status === IN_PROGRESS) : null;
+    let team = project.contributors.concat(project.owners)
+
+    console.log('Project:', project)
+    console.log('Sprints', sprints);
+    console.log('currentSprint', currentSprint);
+
     // send user to / if unauthorized
-    if (project.unauthorized) return window.location = "/";
+    if (project.unauthorized) return window.location = "/"; // This will never fire unless backend adds unauthorized property to response
+
+
     this.setState({
-      forProjectCard: {
-        contributors: project.contributors,
-        created_by: project.created_by,
-        name: project.name,
-        owners: project.owners,
-        status: project.status
-      },
-      contributors: project.contributors,
-      forSprintList: project.sprints,
-      tasks: project.sprints[0].tasks,
-      selection: project.sprints[0].tasks.filter(task => task.status === 'OPEN')
+      project: project,
+      sprints: sprints,
+      currentSprint: currentSprint,
+      selection: currentSprint ? currentSprint[0].tasks.filter(task => task.status === 'OPEN') : [], // eventually maybe migrate away from setting this here
+      team: team,
+      isLoaded: true
     })
   }
 
@@ -108,19 +110,20 @@ export default class Project extends Component {
       return;
     }
 
-    console.log('Assigned a task');
     this.setState({ expandedTask: null });
   }
 
   // Updates a task after creation / edit / assigning
-  assignUserToTask = user => {
-    let { contributor } = user;
-    console.log(this.state.expandedTask);
-    this.setState(prevState => {
-      let newState = prevState.expandedTask;
-      newState.assignee = contributor;
-      return { expandedTask: newState }
-    })
+  assignUserToTask = async username => {
+    let { _id: userId } = await API.getUserByUsername(username);
+
+    let response = await API.updateTask(this.state.expandedTask._id, userId)
+    console.log('From assignUserToTask: ', response);
+    // this.setState(prevState => {
+    //   let newState = prevState.expandedTask;
+    //   newState.assignee = member;
+    //   return { expandedTask: newState }
+    // })
   }
 
 
@@ -138,19 +141,33 @@ export default class Project extends Component {
               <div className="project-container">
                 <div className="col">
                   <ProjectCard
-                    project={this.state.forProjectCard}
+                    project={this.state.project}
+                    team={this.state.team}
                   />
-                  <SprintList
-                    sprints={this.state.forSprintList}
-                    selectSprint={this.selectSprint}
-                  />
+                  {
+                    this.state.currentSprint ?
+                      <SprintList
+                        sprints={this.state.currentSprint}
+                        selectSprint={this.selectSprint}
+                      />
+                      :
+                      <div>
+                        There are no sprints for this project. Not only that, but you aren't able to add a sprint either.
+                        hahaha. I'll get on that.
+                      </div>
+                  }
                 </div>
                 <div className="col">
-                  <TaskListSelector
-                    tasks={this.state.tasks}
-                    selection={this.state.selection}
-                    handleClick={task => this.expandTask(task)}
-                  />
+                  {
+                    this.state.currentSprint ?
+                      <TaskListSelector
+                        tasks={this.state.currentSprint[0].tasks}
+                        selection={this.state.selection}
+                        handleClick={task => this.expandTask(task)}
+                      />
+                      :
+                      <div></div>
+                  }
                 </div>
               </div>
 
@@ -158,8 +175,8 @@ export default class Project extends Component {
               {this.state.expandedTask ?
                 <TaskModal
                   handleModal={e => this.toggleModalVisibility(e)}
-                  handleAssign={user => this.assignUserToTask(user)}
-                  contributors={this.state.contributors}
+                  handleAssign={username => this.assignUserToTask(username)}
+                  team={this.state.team}
                   currentUser={this.state.currentUser}
                   expandedTask={this.state.expandedTask}
                 />

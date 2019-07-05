@@ -22,9 +22,9 @@ const GitHubStrategy = require("passport-github2").Strategy;
 
 let strategy = new GitHubStrategy(
   {
-    clientID: process.env.GITHUB_CLIENT_ID,
-    clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: "/auth/github/callback"
+    clientID: process.env.NODE_ENV === "production" ? process.env.GITHUB_CLIENT_ID_PRODUCTION : process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.NODE_ENV === "production" ? process.env.GITHUB_CLIENT_SECRET_PRODUCTION : process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: process.env.NODE_ENV === "production" ? null : "/auth/github/callback"
   },
   (accessToken, refreshToken, profile, done) => done(null, profile)
 );
@@ -44,8 +44,8 @@ passport.deserializeUser((profile, done) => {
     email: (profile.emails ? profile.emails[0].value : null)
   }
   userController.createOrUpdate(user)
-    .then(dbUser => console.log(dbUser)/*done(null, dbUser[0])*/);
-  done(null, user);
+    .then(dbUser => done(null, dbUser))
+    .catch(err => done(err, null));
 });
 
 // Define middleware here

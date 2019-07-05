@@ -10,29 +10,35 @@ import './style.css'
  * @param {*} contributors an array of usernames
  * @param {*} currentUser the current user object
  */
-const TaskModal = ({ handleModal, contributors, currentUser, expandedTask, handleAssign }) => {
-  console.log(currentUser);
+const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleAssign }) => {
+  console.log('From the TaskModal', expandedTask);
 
   return (
     <div className="task-modal-backdrop" onClick={e => handleModal(e)}>
       <div className="task-modal">
         <div className="task-form">
           <div className="task-input">
-            <h3>{expandedTask.title}</h3>
+            <h3>{expandedTask.name}</h3>
             <p>{expandedTask.description}</p>
             {
               !expandedTask.assignee ?
                 <>
                   <p>ASSIGN TO:</p>
                   {
-                    contributors.map((contributor, i) => {
+                    team.map((member, i) => {
                       return (
-                        <div className="c-list-item" key={i} onClick={() => handleAssign({ contributor })}>
+                        <div className="team-member-item" key={i} onClick={() => handleAssign(member)}>
                           {
-                            currentUser.display_name === contributor ?
-                              <span>Me</span>
+                            currentUser.username === member.username ?
+                              <>
+                                <img src={member.avatar_url} alt="" />
+                                <span>Me ({member.display_name})</span>
+                              </>
                               :
-                              <span>{contributor.toUpperCase()}</span>
+                              <>
+                                <img src={member.avatar_url} alt="" />
+                                <span>{member.display_name}</span>
+                              </>
                           }
                         </div>
                       )

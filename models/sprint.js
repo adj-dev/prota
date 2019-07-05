@@ -14,8 +14,8 @@ var SprintSchema = new Schema({
     closed_date: Date,
     status: {
         type: String,
-        enum: ["Open", "In Progress", "Closed"],
-        default: "Open",
+        enum: ["OPEN", "IN_PROGRESS", "CLOSED"],
+        default: "OPEN",
     },
     project_ref: {
         type: String
@@ -26,12 +26,12 @@ var SprintSchema = new Schema({
     }]
 });
 
-// SprintSchema.pre('remove', next => {
-//     this.model("Task").remove(
-//         {project_ref: this._id}
-//     ).exec();
-//     next();
-// });
+var Task = require('./task');
+SprintSchema.post('remove', document => {
+    Task.find({sprint_ref: document._id}).then(tasks => {
+        tasks.map(task => task.remove());
+    }).catch(err => err);
+});
 
 const Sprint = mongoose.model("Sprint", SprintSchema);
 module.exports = Sprint;

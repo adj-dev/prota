@@ -62,20 +62,10 @@ export default class MyTasks extends Component {
         return false;
       });
     } else {
-      let projectTasks = [];
-      let project = this.projects.filter(
-        project => project._id === projectId
-      )[0];
+      let projectTasks = this.tasks.filter(
+        task => task.project_ref === projectId
+      );
 
-      project.sprints.forEach(sprint => {
-        let sprintTasks = sprint.tasks;
-
-        for (let i in sprintTasks) {
-          if (sprintTasks[i].assignee.username === this.props.username) {
-            projectTasks.unshift(sprintTasks[i]);
-          }
-        }
-      });
       selectedTasks = projectTasks.filter(task => {
         if (task.status === status) {
           return true;

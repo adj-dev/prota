@@ -17,11 +17,12 @@ var TaskSchema = new Schema({
 	closed_at: Date,
     status: {
         type: String,
-        enum: ["Open", "In Progress", "Done", "Closed"],
-        default: "Open"
+        enum: ["OPEN", "IN_PROGRESS", "DONE", "CLOSED"],
+        default: "OPEN"
     },
     assignee: {
-		type: String
+        type: Schema.Types.ObjectId,
+        ref: "User"
     },
     project_ref: {
         type: String,
@@ -33,6 +34,10 @@ var TaskSchema = new Schema({
     },
     comment: String
 });
+
+// TaskSchema.post('remove', document => {
+//     console.log(document);
+// });
 
 const Task = mongoose.model("Task", TaskSchema);
 module.exports = Task;

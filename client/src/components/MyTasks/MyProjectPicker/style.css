@@ -11,10 +11,11 @@ font-family: 'Rajdhani', sans-serif;
 .project-picker-container {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
+  flex-wrap: wrap;
 }
 
 .project-picker-container div {
+  margin-top: 10px;
   margin-right: 10px;
 }
 
