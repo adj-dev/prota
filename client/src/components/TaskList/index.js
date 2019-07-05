@@ -19,6 +19,7 @@ const TaskList = ({ tasks, handleClick }) => {
             className="task-container"
             key={task._id}
             onClick={() => expandTask({
+              _id: task._id,
               name: task.name,
               description: task.description,
               status: task.status,

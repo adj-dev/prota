@@ -1,24 +1,29 @@
 const db = require("../models");
 
 module.exports = {
-    getAll: function() { //get all users
-        return db.User.find({})
-          .then(dbUsers => dbUsers)
-          .catch(err => res.json(err));
-      },
+  getAll: function() {
+    //get all users
+    return db.User.find({})
+      .then(dbUsers => dbUsers)
+      .catch(err => res.json(err));
+  },
 
-    getOne: function(userId) { //get a user object by req.user
-        return db.User.find({_id: userId}).populate({path: "projects"})
-          .then(dbUser => dbUser[0])
-          .catch(err => err);
-    },
+  getOne: function(userId) {
+    //get a user object by req.user
+    return db.User.find({ _id: userId })
+      .populate({ path: "projects" })
+      .then(dbUser => dbUser[0])
+      .catch(err => err);
+  },
 
-    getFuzzy: function(userName) { //get a fuzzy selection of users by req.params
-        var regex = new RegExp(userName, "i") //creates regex equivalent to /username/i where username is a variable
-        return db.User.find({username: regex}).limit(5)
-            .then(result => result)
-            .catch(er => err);
-    },
+  getFuzzy: function(userName) {
+    //get a fuzzy selection of users by req.params
+    var regex = new RegExp(userName, "i"); //creates regex equivalent to /username/i where username is a variable
+    return db.User.find({ username: regex })
+      .limit(5)
+      .then(result => result)
+      .catch(er => err);
+  },
 
     invite: function(userName) { //Create a new user if does not exist
         return db.User

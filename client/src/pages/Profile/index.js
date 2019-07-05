@@ -50,7 +50,7 @@ class Profile extends Component {
             {this.state.creatingProject ? (
               <CreateProject
                 toggleCreateProjectDialog={this.toggleCreateProjectDialog}
-                username={this.state.user.username}
+                user={this.state.user}
               />
             ) : null}
             <div className="profile-left-container">
@@ -83,4 +83,4 @@ class Profile extends Component {
   }
 }
 
-export default withRouter(Profile);
+export default Profile;

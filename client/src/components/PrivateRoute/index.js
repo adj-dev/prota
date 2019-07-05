@@ -1,7 +1,12 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-function PrivateRoute({ component: Component, isAuthenticated, ...rest }) {
+function PrivateRoute({
+  component: Component,
+  isAuthenticated,
+  isLoading,
+  ...rest
+}) {
   return (
     <Route
       {...rest}
