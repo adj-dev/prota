@@ -5,7 +5,8 @@ export default class Auth extends Component {
   render() {
     return (
       <div className="auth-container">
-        {/* This href will change to /auth/github in production*/}
+        {/* DEVELOPMENT: http://localhost:3001/auth/github */}
+        {/* PRODUCTION: /auth/github */}
         <a href="/auth/github">
           <div className="github-button">Sign in with Github</div>
         </a>
