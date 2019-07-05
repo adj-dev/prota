@@ -23,8 +23,8 @@ const GitHubStrategy = require("passport-github2").Strategy;
 let strategy = new GitHubStrategy(
   {
     clientID: process.env.NODE_ENV === "production" ? process.env.GITHUB_CLIENT_ID_PRODUCTION : process.env.GITHUB_CLIENT_ID,
-    clientSecret: process.env.NODE_ENV === "production" ? process.env.GITHUB_CLIENT_SECRET_PRODUCTION : process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: "/auth/github/callback"
+    clientSecret: process.env.NODE_ENV === "production" ? process.env.GITHUB_CLIENT_SECRET_PRODUCTION : process.env.GITHUB_CLIENT_SECRET
+    // callbackURL: "/auth/github/callback"
   },
   (accessToken, refreshToken, profile, done) => done(null, profile)
 );
