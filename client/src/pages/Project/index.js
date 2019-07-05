@@ -11,10 +11,10 @@ import './styles.css';
 
 
 // Define our status variable
-const OPEN = 'OPEN';
+// const OPEN = 'OPEN';
 const IN_PROGRESS = 'IN_PROGRESS';
-const CLOSED = 'CLOSED';
-const DONE = 'DONE';
+// const CLOSED = 'CLOSED';
+// const DONE = 'DONE';
 
 
 
@@ -38,18 +38,6 @@ export default class Project extends Component {
     // this.fetchTasks() // this is for future use with actual APIs
   }
 
-  // async componentWillUpdate() {
-  //   console.log(this.state.project);
-
-  //   console.log('component did update')
-  //   if (!this.state.isLoaded && this.state.project) {
-  //     console.log('isLoaded should be false right now', this.state.isLoaded)
-  //     await this.setState({ isLoaded: true });
-  //     console.log('isLoaded should be true right now', this.state.isLoaded)
-  //   }
-  // }
-
-
 
   // *******************************************
   // Methods for fetching data and setting state
@@ -65,8 +53,8 @@ export default class Project extends Component {
   // Fetches the project and all it's sprints
   fetchProject = async projectId => {
     let project = await API.getProject(projectId);
-    let sprints = project.sprints.length ? [...project.sprints] : null;
-    let currentSprint = sprints ? sprints.filter(sprint => sprint.status === IN_PROGRESS) : null;
+    let sprints = project.sprints.length ? [...project.sprints] : [];
+    let currentSprint = sprints ? sprints.filter(sprint => sprint.status === IN_PROGRESS) : [];
     let team = project.contributors.concat(project.owners)
 
     console.log('Project:', project);
@@ -101,20 +89,25 @@ export default class Project extends Component {
   // **************
 
   // Runs when a sprint is selected in SprintList component
-  selectSprint = async id => {
-    // grab tasks selecting by a Sprint's id
-    let tasks = await mockAPI.getTasksBySprintId(id);
-    this.setState({
-      forTaskList: tasks,
-      selection: tasks.filter(task => task.status === 'OPEN')
-    });
+  selectSprint = async sprintId => {
+    // console.log('sprint id', sprintId)
+    this.setState(prevState => {
+      let currentSprint = prevState.sprints.filter(sprint => sprint._id === sprintId)
+      return { currentSprint }
+    })
+
+    // this.setState({
+    //   forTaskList: tasks,
+    //   selection: tasks.filter(task => task.status === 'OPEN')
+    // });
   }
 
   // Fires when a user clicks on a task in the TaskList component
   // renders the add task modal
-  expandTask = task => {
+  openTaskModal = task => {
     // show the task modal
-    this.setState({ expandedTask: task })
+    console.log(task);
+    // this.setState({ expandedTask: task })
   }
 
   // Toggles the visibility of a modal when user clicks backdrop
@@ -198,7 +191,7 @@ export default class Project extends Component {
                   this.state.sprints.length ?
                     <SprintList
                       sprints={this.state.sprints}
-                      selectSprint={this.selectSprint}
+                      selectSprint={sprintId => this.selectSprint(sprintId)}
                       openAddSprintModal={() => this.openAddSprintModal()}
                     />
                     :
@@ -211,7 +204,7 @@ export default class Project extends Component {
                     <TaskListSelector
                       tasks={this.state.currentSprint[0].tasks}
                       selection={this.state.selection}
-                      handleClick={task => this.expandTask(task)}
+                      handleClick={task => this.openTaskModal(task)}
                     />
                     :
                     <div></div>
@@ -219,7 +212,7 @@ export default class Project extends Component {
               </div>
             </div>
             :
-            <div></div> //empty div when loading (instead of loading gif, loading is quick)
+            null // return null when loading (instead of loading gif, loading is quick)
         }
 
         {/* *** MODALS *** */}
