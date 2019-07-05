@@ -50,7 +50,7 @@ module.exports = {
         return db.User.findOneAndUpdate(
             {username: userBody.username}, //find a user by userId
             userBody, //and then update with user data
-            {new: true} //return new user
+            {new: true, useFindAndModify: false} //return new user
         ).populate({path: "projects"})
     },
 
