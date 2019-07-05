@@ -5,6 +5,7 @@ import TaskListSelector from "../../components/TaskListSelector";
 import TaskModal from "../../components/TaskModal";
 import SprintListEmpty from "../../components/SprintListEmpty";
 import AddSprintModal from "../../components/AddSprintModal";
+import NavBar from "../../components/NavBar";
 import API from "../../utils/API";
 import mockAPI from "../../utils/mockAPI";
 import "./styles.css";
@@ -19,7 +20,7 @@ const IN_PROGRESS = 'IN_PROGRESS';
 
 export default class Project extends Component {
   state = {
-    currentUser: null,
+    user: null,
     project: null,
     sprints: null,
     currentSprint: null,
@@ -45,8 +46,8 @@ export default class Project extends Component {
   // Fetches user data
   fetchUser = async () => {
     let user = await API.getUser();
-    console.log("currentUser:", user);
-    this.setState({ currentUser: user });
+    console.log("user:", user);
+    this.setState({ user: user });
   };
 
   // Fetches the project and all it's sprints
@@ -176,37 +177,43 @@ export default class Project extends Component {
   render() {
     return (
       <>
-        {this.state.isLoaded ?
+        {this.state.isLoaded && this.state.user ?
           (
-            <div className="project-container">
-              <div className="col">
-                <ProjectCard
-                  project={this.state.project}
-                  team={this.state.team}
-                />
-                {this.state.sprints.length ?
-                  <SprintList
-                    sprints={this.state.sprints}
-                    selectSprint={sprintId => this.selectSprint(sprintId)}
-                    openAddSprintModal={() => this.openAddSprintModal()}
+            <>
+              <NavBar
+                avatarUrl={this.state.user.avatar_url}
+                displayName={this.state.user.display_name}
+              />
+              <div className="project-container">
+                <div className="col">
+                  <ProjectCard
+                    project={this.state.project}
+                    team={this.state.team}
                   />
-                  :
-                  <SprintListEmpty openAddSprintModal={() => this.openAddSprintModal()} />
-                }
-              </div>
-              <div className="col">
-                {
-                  this.state.currentSprint.length ?
-                    <TaskListSelector
-                      tasks={this.state.currentSprint[0].tasks}
-                      selection={this.state.selection}
-                      handleClick={task => this.openTaskModal(task)}
+                  {this.state.sprints.length ?
+                    <SprintList
+                      sprints={this.state.sprints}
+                      selectSprint={sprintId => this.selectSprint(sprintId)}
+                      openAddSprintModal={() => this.openAddSprintModal()}
                     />
                     :
-                    <div></div>
-                }
+                    <SprintListEmpty openAddSprintModal={() => this.openAddSprintModal()} />
+                  }
+                </div>
+                <div className="col">
+                  {
+                    this.state.currentSprint.length ?
+                      <TaskListSelector
+                        tasks={this.state.currentSprint[0].tasks}
+                        selection={this.state.selection}
+                        handleClick={task => this.openTaskModal(task)}
+                      />
+                      :
+                      <div></div>
+                  }
+                </div>
               </div>
-            </div>
+            </>
           )
           :
           null // return null when loading (instead of loading gif, loading is quick)
@@ -226,7 +233,7 @@ export default class Project extends Component {
             handleModal={e => this.toggleModalVisibility(e)}
             handleAssign={username => this.assignUserToTask(username)}
             team={this.state.team}
-            currentUser={this.state.currentUser}
+            currentUser={this.state.user}
             expandedTask={this.state.expandedTask}
           />
         ) : null}
