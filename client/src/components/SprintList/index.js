@@ -1,14 +1,15 @@
 import React from 'react'
+import AddSprintButton from '../AddSprintButton'
 import "./styles.css"
 
 
 
-const SprintList = ({ sprints, selectSprint }) => {
+const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
   // console.log(sprints)
 
   // click handler for when a user selects a sprint
-  const handleClick = id => {
-    selectSprint(id);
+  const handleClick = sprintId => {
+    selectSprint(sprintId);
   }
 
   return (
@@ -16,7 +17,7 @@ const SprintList = ({ sprints, selectSprint }) => {
       <div className="sprintlist-container">
 
         <h1>SPRINTS</h1>
-<br></br>
+        <br></br>
         <div className="status-buttons">
           <div className="status">
             <button id="open">open</button>
@@ -31,21 +32,23 @@ const SprintList = ({ sprints, selectSprint }) => {
             <button id="closed">closed</button>
           </div>
         </div>
-<br></br>
+        <br></br>
         <div className="sprintlist">
           {
             sprints.map((sprint, i) => {
               return (
-                <div className="sprint-item" key={i} onClick={() => handleClick(sprint.name)}>
+                <div className="sprint-item" key={i} onClick={() => handleClick(sprint._id)}>
                   <span>{sprint.name}</span>
                   <span>{sprint.start_date}</span>
                   <span>{sprint.status}</span>
                 </div>
-        
+
               )
             })
           }
         </div>
+
+        <AddSprintButton openAddSprintModal={() => openAddSprintModal()} />
 
       </div>
     </div>
