@@ -15,7 +15,7 @@ module.exports = passport => {
       let redirectUrl;
       process.env.NODE_ENV === "production"
         ? (redirectUrl = "/")
-        : (redirectUrl = "https://majestic-mesa-verde-10359.herokuapp.com/");
+        : (redirectUrl = "http://localhost:3000/");
       res.redirect(redirectUrl);
     }
   );
