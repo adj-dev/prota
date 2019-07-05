@@ -185,7 +185,7 @@ export default class Project extends Component {
               }
             </>
             :
-            <div>Oops, something went wrong...</div>
+            <div></div> //empty div when loading (instead of loading gif, loading is quick)
         }
       </>
     )
