@@ -1,14 +1,22 @@
 .nav-bar {
-  padding: 2vh;
+  padding-top: 20px;
   padding-left: 2vw;
-  padding-right: 4vw;
+  padding-right: 2vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: whitesmoke;
 }
 
 .nav-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.nav-item :first-child {
+  margin-right: 8px;
 }
