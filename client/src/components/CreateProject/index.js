@@ -10,7 +10,8 @@ export default class CreateProject extends Component {
     name: "",
     created_by: this.props.user.username,
     owners: [this.props.user],
-    contributors: []
+    contributors: [],
+    errorMessage: null
   };
 
   handleInput = field => event => {
@@ -107,6 +108,15 @@ export default class CreateProject extends Component {
     let contributors = this.state.contributors.map(
       contributor => contributor._id
     );
+
+    if (this.state.name === "") {
+      this.setState({ errorMessage: "Please enter a project name." });
+      setTimeout(() => {
+        this.setState({ errorMessage: null });
+      }, 3000);
+      return;
+    }
+
     let newProject = {
       name: this.state.name,
       created_by: this.state.created_by,
@@ -145,6 +155,7 @@ export default class CreateProject extends Component {
                   placeholder="Project Title"
                   onChange={this.handleInput("name")}
                 />
+                <div className="error-message">{this.state.errorMessage}</div>
               </div>
               <div className="project-input-container">
                 <div className="input-title"> Project Owners</div>

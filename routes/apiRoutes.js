@@ -169,7 +169,8 @@ router.put("/sprints/:sprintId", (req, res) => {
 
 //Edit a task**
 router.put("/tasks/:taskId", (req, res) => {
-    //console.log("Hit /tasks/:taskId route, user is: ",req.user);
+    console.log(req);
+    console.log("Hit /tasks/:taskId route, user is: ", req.user);
     Controller.Task
         .updateOneById(req.params.taskId, req.body)
         .then(results => res.json(results))
