@@ -58,6 +58,10 @@
   margin-bottom: 0px;
 }
 
+.error-message {
+  color: red;
+}
+
 .modal-enter {
   opacity: 0.01;
 }
