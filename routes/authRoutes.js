@@ -3,7 +3,7 @@ var router = require("express").Router();
 module.exports = passport => {
   router.get("/github", passport.authenticate("github"));
 
-  router.get("/logout", function(req, res) {
+  router.get("/logout", function (req, res) {
     req.logout();
     res.json({ success: true });
   });
@@ -14,7 +14,7 @@ module.exports = passport => {
     (req, res) => {
       let redirectUrl;
       process.env.NODE_ENV === "production"
-        ? (redirectUrl = "/")
+        ? (redirectUrl = "https://majestic-mesa-verde-10359.herokuapp.com/")
         : (redirectUrl = "http://localhost:3000/");
       res.redirect(redirectUrl);
     }
