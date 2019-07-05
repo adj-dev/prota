@@ -26,7 +26,7 @@ closed:
   position: absolute;
   padding-top: 30px;
   top: 60px;
-  right: 2.5vw;
+  right: 2vw;
   z-index: 10000;
 }
 
@@ -54,7 +54,6 @@ closed:
 .avatar {
   width: 60px;
   border-radius: 5vh;
-  margin-right: 10px;
 }
 
 @media (max-width: 768px) {
