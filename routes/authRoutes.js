@@ -3,7 +3,7 @@ var router = require("express").Router();
 module.exports = passport => {
   router.get("/github", passport.authenticate("github"));
 
-  router.get("/logout", function(req, res) {
+  router.get("/logout", function (req, res) {
     req.logout();
     res.json({ success: true });
   });
