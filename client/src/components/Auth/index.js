@@ -7,7 +7,7 @@ export default class Auth extends Component {
       <div className="auth-container">
         {/* DEVELOPMENT: http://localhost:3001/auth/github */}
         {/* PRODUCTION: /auth/github */}
-        <a href="/auth/github">
+        <a href="http://localhost:3001/auth/github">
           <div className="github-button">Sign in with Github</div>
         </a>
         {/* <a href="/api/auth/github">Sign in with Github</a> */}

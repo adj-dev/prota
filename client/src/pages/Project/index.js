@@ -142,6 +142,7 @@ export default class Project extends Component {
                 <div className="col">
                   <ProjectCard
                     project={this.state.project}
+                    team={this.state.team}
                   />
                   {
                     this.state.currentSprint ?
