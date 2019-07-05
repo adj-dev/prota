@@ -3,6 +3,8 @@ import ProjectCard from '../../components/ProjectCard';
 import SprintList from '../../components/SprintList';
 import TaskListSelector from '../../components/TaskListSelector';
 import TaskModal from '../../components/TaskModal';
+import SprintListEmpty from '../../components/SprintListEmpty';
+import AddSprintModal from '../../components/AddSprintModal'
 import API from "../../utils/API";
 import mockAPI from "../../utils/mockAPI";
 import './styles.css';
@@ -26,7 +28,8 @@ export default class Project extends Component {
     isLoaded: null,
     showTaskModal: false,
     expandedTask: null,
-    team: null
+    team: null,
+    addingSprint: false
   }
 
   componentDidMount() {
@@ -34,6 +37,17 @@ export default class Project extends Component {
     this.fetchProject(this.props.match.params.id)
     // this.fetchTasks() // this is for future use with actual APIs
   }
+
+  // async componentWillUpdate() {
+  //   console.log(this.state.project);
+
+  //   console.log('component did update')
+  //   if (!this.state.isLoaded && this.state.project) {
+  //     console.log('isLoaded should be false right now', this.state.isLoaded)
+  //     await this.setState({ isLoaded: true });
+  //     console.log('isLoaded should be true right now', this.state.isLoaded)
+  //   }
+  // }
 
 
 
@@ -55,7 +69,7 @@ export default class Project extends Component {
     let currentSprint = sprints ? sprints.filter(sprint => sprint.status === IN_PROGRESS) : null;
     let team = project.contributors.concat(project.owners)
 
-    console.log('Project:', project)
+    console.log('Project:', project);
     console.log('Sprints', sprints);
     console.log('currentSprint', currentSprint);
 
@@ -67,7 +81,7 @@ export default class Project extends Component {
       project: project,
       sprints: sprints,
       currentSprint: currentSprint,
-      selection: currentSprint ? currentSprint[0].tasks.filter(task => task.status === 'OPEN') : [], // eventually maybe migrate away from setting this here
+      selection: currentSprint.length ? currentSprint[0].tasks.filter(task => task.status === 'OPEN') : [], // eventually maybe migrate away from setting this here
       team: team,
       isLoaded: true
     })
@@ -106,11 +120,11 @@ export default class Project extends Component {
   // Toggles the visibility of a modal when user clicks backdrop
   toggleModalVisibility = e => {
     let targetElement = e.target;
-    if (targetElement.closest('.task-modal')) {
+    if (targetElement.closest('.task-modal') || targetElement.closest('.addsprint-modal')) {
       return;
     }
 
-    this.setState({ expandedTask: null });
+    this.setState({ expandedTask: null, addingSprint: false });
   }
 
   // Updates a task after creation / edit / assigning
@@ -127,6 +141,43 @@ export default class Project extends Component {
   }
 
 
+  openAddSprintModal = () => {
+    this.setState({ addingSprint: true })
+  }
+
+
+  handleAddSprint = async sprintName => {
+    let data = {
+      name: sprintName,
+      project_ref: this.state.project._id
+    }
+
+    let newSprint = await API.addSprint(data)
+
+    // await this.setState(prevState => {
+    //   console.log('setting isLoaded to null')
+    //   return { isLoaded: null }
+    // })
+
+    console.log('should come before "updating state ..."')
+
+    this.setState(prevState => {
+      console.log('updating state...')
+      let updatedProject = { ...prevState.project }
+      updatedProject.sprints.push(newSprint)
+      let updatedSprints = [...prevState.sprints]
+      updatedSprints.push(newSprint)
+      console.log('updated project: ', updatedProject)
+      console.log('updated sprints: ', updatedSprints)
+      return {
+        project: updatedProject,
+        sprints: updatedSprints,
+        addingSprint: false
+      }
+    })
+  }
+
+
 
   // *********
   // Rendering
@@ -137,55 +188,61 @@ export default class Project extends Component {
       <>
         {
           this.state.isLoaded ?
-            <>
-              <div className="project-container">
-                <div className="col">
-                  <ProjectCard
-                    project={this.state.project}
-                    team={this.state.team}
-                  />
-                  {
-                    this.state.currentSprint ?
-                      <SprintList
-                        sprints={this.state.currentSprint}
-                        selectSprint={this.selectSprint}
-                      />
-                      :
-                      <div>
-                        There are no sprints for this project. Not only that, but you aren't able to add a sprint either.
-                        hahaha. I'll get on that.
-                      </div>
-                  }
-                </div>
-                <div className="col">
-                  {
-                    this.state.currentSprint ?
-                      <TaskListSelector
-                        tasks={this.state.currentSprint[0].tasks}
-                        selection={this.state.selection}
-                        handleClick={task => this.expandTask(task)}
-                      />
-                      :
-                      <div></div>
-                  }
-                </div>
-              </div>
-
-              {/* *** MODAL *** */}
-              {this.state.expandedTask ?
-                <TaskModal
-                  handleModal={e => this.toggleModalVisibility(e)}
-                  handleAssign={username => this.assignUserToTask(username)}
+            <div className="project-container">
+              <div className="col">
+                <ProjectCard
+                  project={this.state.project}
                   team={this.state.team}
-                  currentUser={this.state.currentUser}
-                  expandedTask={this.state.expandedTask}
                 />
-                :
-                null
-              }
-            </>
+                {
+                  this.state.sprints.length ?
+                    <SprintList
+                      sprints={this.state.sprints}
+                      selectSprint={this.selectSprint}
+                      openAddSprintModal={() => this.openAddSprintModal()}
+                    />
+                    :
+                    <SprintListEmpty openAddSprintModal={() => this.openAddSprintModal()} />
+                }
+              </div>
+              <div className="col">
+                {
+                  this.state.currentSprint.length ?
+                    <TaskListSelector
+                      tasks={this.state.currentSprint[0].tasks}
+                      selection={this.state.selection}
+                      handleClick={task => this.expandTask(task)}
+                    />
+                    :
+                    <div></div>
+                }
+              </div>
+            </div>
             :
             <div></div> //empty div when loading (instead of loading gif, loading is quick)
+        }
+
+        {/* *** MODALS *** */}
+
+        {this.state.addingSprint ?
+          <AddSprintModal
+            handleModal={e => this.toggleModalVisibility(e)}
+            handleAddSprint={sprintName => this.handleAddSprint(sprintName)}
+          />
+          :
+          null
+        }
+
+        {this.state.expandedTask ?
+          <TaskModal
+            handleModal={e => this.toggleModalVisibility(e)}
+            handleAssign={username => this.assignUserToTask(username)}
+            team={this.state.team}
+            currentUser={this.state.currentUser}
+            expandedTask={this.state.expandedTask}
+          />
+          :
+          null
         }
       </>
     )

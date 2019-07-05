@@ -14,7 +14,7 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleAssign 
   console.log('From the TaskModal', expandedTask);
 
   return (
-    <div className="task-modal-backdrop" onClick={e => handleModal(e)}>
+    <div className="modal-backdrop" onClick={e => handleModal(e)}>
       <div className="task-modal">
         <div className="task-form">
           <div className="task-input">

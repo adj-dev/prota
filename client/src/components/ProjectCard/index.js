@@ -2,7 +2,7 @@ import React from 'react'
 import './styles.css'
 
 const ProjectCard = ({ project, team }) => {
-
+  console.log('rendering ProjectCard')
   return (
     <div className="projectcard-wrapper">
       <div className="projectcard-container">
