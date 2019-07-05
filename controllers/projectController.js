@@ -49,7 +49,7 @@ removeUserFromProject = (params, userType) => { //removes a user from a project'
     return db.Project.find({_id: params.projectId})
         .then(results => { //result is an array of projects, we just want the first one
             if(userType === "owner" && results[0].owners.length == 1){ //if the user being removed is an owner, AND there is more than one owner
-                return {success: false, value: "Removing this owner would create an ownerless project. Prota does not allow for ownerless projects."};
+                return {success: false, value: "Prota does not allow for ownerless projects."};
             } else if(userType === "owner"){
                 results[0].owners = results[0].owners.filter( //returns a filtered array where
                     id => id !== params.userId //the username of the User is not the User being removed
