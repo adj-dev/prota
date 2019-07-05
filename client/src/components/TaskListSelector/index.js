@@ -28,7 +28,7 @@ const TaskListSelector = ({ tasks, selection, handleClick }) => {
   }
 
   // Passes up the click handler on a task up to the parent (Project) component.
-  const passAssignTask = task => {
+  const handleTaskModal = task => {
     // console.log(taskId);
     handleClick(task);
   }
@@ -53,8 +53,8 @@ const TaskListSelector = ({ tasks, selection, handleClick }) => {
             <button id="done-tasks" onClick={() => userSelectsTasks(DONE)}>done</button>
           </div>
         </div>
-        <br></br>
-        <TaskList tasks={selectedTasks} handleClick={task => passAssignTask(task)} />
+
+        <TaskList tasks={selectedTasks} handleTaskModal={task => handleTaskModal(task)} />
 
       </div>
     </div>
