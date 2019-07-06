@@ -5,7 +5,7 @@ import ProjectCard from "../../components/ProjectCard";
 import SprintList from "../../components/SprintList";
 import TaskListSelector from "../../components/TaskListSelector";
 import TaskModal from "../../components/TaskModal";
-import SprintListEmpty from "../../components/SprintListEmpty";
+import SprintListEmpty from "../../components/SprintList/SprintListEmpty";
 import AddSprintModal from "../../components/AddSprintModal";
 import NavBar from "../../components/NavBar";
 
@@ -201,15 +201,12 @@ export default class Project extends Component {
                     project={this.state.project}
                     team={this.state.team}
                   />
-                  {this.state.sprints.length ?
-                    <SprintList
-                      sprints={this.state.sprints}
-                      selectSprint={sprintId => this.selectSprint(sprintId)}
-                      openAddSprintModal={() => this.openAddSprintModal()}
-                    />
-                    :
-                    <SprintListEmpty openAddSprintModal={() => this.openAddSprintModal()} />
-                  }
+
+                  <SprintList
+                    sprints={this.state.sprints}
+                    selectSprint={sprintId => this.selectSprint(sprintId)}
+                    openAddSprintModal={() => this.openAddSprintModal()}
+                  />
                 </div>
                 <div className="col">
                   {
