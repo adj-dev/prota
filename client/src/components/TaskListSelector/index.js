@@ -13,48 +13,63 @@ const DONE = 'DONE';
 
 
 
-const TaskListSelector = ({ tasks, selection, handleClick }) => {
+const TaskListSelector = ({ tasks, selectedTasks, trackStatus, handleClick, }) => {
   const [allTasks, setAllTasks] = useState(tasks);
-  const [selectedTasks, setSelectedTasks] = useState([]);
+  const [selectTasks, setSelectTasks] = useState([]);
+  const [status, setStatus] = useState(OPEN);
 
   useEffect(() => {
     setAllTasks(tasks)
-    setSelectedTasks(selection) // This line defaults the tasks list to show ALL tasks -- eventually want to default to OPEN
-  }, [tasks, selection])
+    setSelectTasks(selectedTasks) // This line defaults the tasks list to show ALL tasks -- eventually want to default to OPEN
+  }, [tasks, selectedTasks])
 
   const userSelectsTasks = status => {
     let selection = allTasks.filter(task => task.status === status);
-    status === ALL ? setSelectedTasks(tasks) : setSelectedTasks(selection);
+    status === ALL ? setSelectTasks(tasks) : setSelectTasks(selection);
+    setStatus(status)
+    trackStatus(status)
   }
 
   // Passes up the click handler on a task up to the parent (Project) component.
   const handleTaskModal = task => {
-    // console.log(taskId);
     handleClick(task);
   }
 
   return (
     <div className="tasklist-wrapper">
       <div className="tasklist-container">
-        <h1>TASKS</h1>
-        <br></br>
-        {/* Status buttons */}
-        <div className="status-buttons">
-          <div className="status">
-            <button id="all-tasks" onClick={() => userSelectsTasks(ALL)}>all</button>
-          </div>
-          <div className="status">
-            <button id="open-tasks" onClick={() => userSelectsTasks(OPEN)}>open</button>
-          </div>
-          <div className="status">
-            <button id="in-progress-tasks" onClick={() => userSelectsTasks(IN_PROGRESS)}>in progress</button>
-          </div>
-          <div className="status">
-            <button id="done-tasks" onClick={() => userSelectsTasks(DONE)}>done</button>
+        <div className="tasklist-header">
+          <h1>TASKS</h1>
+          <div id="add-task" onClick={() => handleTaskModal()}>
+            +
           </div>
         </div>
 
-        <TaskList tasks={selectedTasks} handleTaskModal={task => handleTaskModal(task)} />
+        {/* Status buttons */}
+        <div className="status-buttons">
+          <div className="status">
+            <div className={`button-bg ${status === ALL ? 'active' : ''}`} id="all-tasks">
+              <button onClick={() => userSelectsTasks(ALL)}>all</button>
+            </div>
+          </div>
+          <div className="status">
+            <div className={`button-bg ${status === OPEN ? 'active' : ''}`} id="open-tasks">
+              <button onClick={() => userSelectsTasks(OPEN)}>open</button>
+            </div>
+          </div>
+          <div className="status">
+            <div className={`button-bg ${status === IN_PROGRESS ? 'active' : ''}`} id="in-progress-tasks">
+              <button onClick={() => userSelectsTasks(IN_PROGRESS)}>in progress</button>
+            </div>
+          </div>
+          <div className="status">
+            <div className={`button-bg ${status === DONE ? 'active' : ''}`} id="done-tasks">
+              <button onClick={() => userSelectsTasks(DONE)}>done</button>
+            </div>
+          </div>
+        </div>
+
+        <TaskList tasks={selectTasks} handleTaskModal={task => handleTaskModal(task)} status={status} />
 
       </div>
     </div>

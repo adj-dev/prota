@@ -1,50 +1,61 @@
 @import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
 
-/* 
-font-family: 'Overpass', sans-serif;
-
-font-family: 'PT Sans Narrow', sans-serif;
-
-font-family: 'Rajdhani', sans-serif;
-*/
-
 .tasklist-wrapper {
   font-family: 'Rajdhani', sans-serif;
 }
 
-#all-tasks{
+.tasklist-header {
+  display: flex;
+  align-items: center
+}
+
+/*
+Button for creating/adding a task
+*/
+
+#add-task {
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  background: #3EE1A7;
+  color: white;
+  border-radius: 100%;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+/*
+Buttons for selecting the status of tasks to show
+*/
+
+button {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 1.25rem;
+  background: none;
+}
+
+.button-bg {
+  background: none;
+  margin: 7px;
+  border-radius: 8px;
+}
+
+.button-bg.active > button{
+  color: #f5f5f5;
+}
+
+.active#all-tasks{
   background-color: #D593E8;
-  font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 1.25rem;
-  color: white;
-  margin: 7px;
-  margin-left: -1px;
-  border-radius: 8px;
 }
 
-#open-tasks {
+.active#open-tasks {
   background-color: #3EE1A7;
-  font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 1.25rem;
-  color: white;
-  margin: 7px;
-  border-radius: 8px;
 }
 
-#in-progress-tasks{
+.active#in-progress-tasks{
   background-color: #46A1FD;
-  font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 1.25rem;
-  color: white;
-  margin: 7px;
-  border-radius: 8px;
 }
 
-#done-tasks {
+.active#done-tasks {
   background-color: #FD9E3C;
-  font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 1.25rem;
-  color: white;
-  margin: 7px;
-  border-radius: 8px;
 }
