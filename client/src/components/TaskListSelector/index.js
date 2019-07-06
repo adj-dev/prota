@@ -1,23 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import TaskList from '../TaskList';
+import * as STATUS from '../../helpers';
 import "./style.css"
 
 
 
-// Declare our selector values here as variables, this way we get a helpful error if we mispell a variable vs. 
-// getting no error thrown if we mispell a string.
-const ALL = 'ALL';
-const OPEN = 'OPEN';
-const IN_PROGRESS = 'IN_PROGRESS';
-const DONE = 'DONE';
-
-
-
 const TaskListSelector = ({ tasks, selectedTasks, trackStatus, handleClick, }) => {
-  console.log('tasks:', tasks);
   const [allTasks, setAllTasks] = useState(tasks);
   const [selectTasks, setSelectTasks] = useState([]);
-  const [status, setStatus] = useState(OPEN);
+  const [status, setStatus] = useState(STATUS.OPEN);
 
   useEffect(() => {
     setAllTasks(tasks)
@@ -26,7 +17,7 @@ const TaskListSelector = ({ tasks, selectedTasks, trackStatus, handleClick, }) =
 
   const userSelectsTasks = status => {
     let selection = allTasks.filter(task => task.status === status);
-    status === ALL ? setSelectTasks(tasks) : setSelectTasks(selection);
+    status === STATUS.ALL ? setSelectTasks(tasks) : setSelectTasks(selection);
     setStatus(status)
     trackStatus(status)
   }
@@ -49,23 +40,23 @@ const TaskListSelector = ({ tasks, selectedTasks, trackStatus, handleClick, }) =
         {/* Status buttons */}
         <div className="status-buttons">
           <div className="status">
-            <div className={`button-bg ${status === ALL ? 'active' : ''}`} id="all-tasks">
-              <button onClick={() => userSelectsTasks(ALL)}>all</button>
+            <div className={`button-bg ${status === STATUS.ALL ? 'active' : ''}`} id="all-tasks">
+              <button onClick={() => userSelectsTasks(STATUS.ALL)}>all</button>
             </div>
           </div>
           <div className="status">
-            <div className={`button-bg ${status === OPEN ? 'active' : ''}`} id="open-tasks">
-              <button onClick={() => userSelectsTasks(OPEN)}>open</button>
+            <div className={`button-bg ${status === STATUS.OPEN ? 'active' : ''}`} id="open-tasks">
+              <button onClick={() => userSelectsTasks(STATUS.OPEN)}>open</button>
             </div>
           </div>
           <div className="status">
-            <div className={`button-bg ${status === IN_PROGRESS ? 'active' : ''}`} id="in-progress-tasks">
-              <button onClick={() => userSelectsTasks(IN_PROGRESS)}>in progress</button>
+            <div className={`button-bg ${status === STATUS.IN_PROGRESS ? 'active' : ''}`} id="in-progress-tasks">
+              <button onClick={() => userSelectsTasks(STATUS.IN_PROGRESS)}>in progress</button>
             </div>
           </div>
           <div className="status">
-            <div className={`button-bg ${status === DONE ? 'active' : ''}`} id="done-tasks">
-              <button onClick={() => userSelectsTasks(DONE)}>done</button>
+            <div className={`button-bg ${status === STATUS.DONE ? 'active' : ''}`} id="done-tasks">
+              <button onClick={() => userSelectsTasks(STATUS.DONE)}>done</button>
             </div>
           </div>
         </div>

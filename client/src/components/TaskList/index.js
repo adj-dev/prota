@@ -1,20 +1,10 @@
 import React from 'react'
+import { ALL, OPEN, IN_PROGRESS } from '../../helpers';
 import "./styles.css"
-import { STATES } from 'mongoose';
-
-
-
-// Declare our selector values here as variables, this way we get a helpful error if we mispell a variable vs. 
-// getting no error thrown if we mispell a string.
-const ALL = 'ALL';
-const OPEN = 'OPEN';
-const IN_PROGRESS = 'IN_PROGRESS';
-const DONE = 'DONE';
 
 
 
 const TaskList = ({ tasks, handleTaskModal, status }) => {
-  console.log(tasks)
 
   // click handler for assigning a task
   const openTaskModal = task => {
