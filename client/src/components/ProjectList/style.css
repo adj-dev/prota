@@ -9,25 +9,32 @@ font-family: 'Rajdhani', sans-serif;
 
 .project-list-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-items: space-between;
-  border: 1px solid #c7c7c7;
   border-radius: 5px;
-  width: 70vh;
-  box-shadow: 0 0 3px #c7c7c7;
+  width: 100%;
+  min-width: 500px;
+}
+
+.project-list-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .project-list {
   font-family: "Overpass", sans-serif;
   display: flex;
-  flex-direction: row;
-  width: 80%;
+  flex-direction: column;
   justify-items: flex-start;
   /* border: 1px solid grey; */
   overflow: scroll;
   overflow-y: scroll;
   -ms-overflow-style: none; /* IE 10+ */
   scrollbar-width: none; /* Firefox */
+  padding: 0 5px;
+  max-height: 80vh;
 }
 
 .project-list::-webkit-scrollbar {
@@ -40,22 +47,21 @@ font-family: 'Rajdhani', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 85px;
-  width: 85px;
+  height: 20px;
+  width: 20px;
   background-color: lightgreen;
   border-radius: 5px;
-  font-size: 3em;
+  font-size: 1em;
   margin: 10px;
   color: white;
   cursor: pointer;
 }
 
 .project-list div {
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   word-wrap: break-word;
   hyphens: auto;
-  margin-left: 11px;
-  margin-right: 0px;
 }
 
 @media (max-width: 768px) {
