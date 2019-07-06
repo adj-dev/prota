@@ -115,7 +115,7 @@ export default class Project extends Component {
 
     this.setState(prevState => {
       let newCurrentSprint = [...prevState.currentSprint];
-      newCurrentSprint[0].tasks.push(newTask);
+
 
       console.log('newCurrentSprint:', newCurrentSprint);
 
