@@ -4,23 +4,26 @@ import MyProjectPicker from "./MyProjectPicker";
 import MyTaskList from "./MyTasksList";
 import "./style.css";
 
+const ALL = "ALL";
+const OPEN = "OPEN";
+
 export default class MyTasks extends Component {
   projects = [...this.props.projects];
   tasks = this.props.tasks;
   username = this.props.username;
 
   state = {
-    selectedProject: "ALL",
-    selectedStatus: "OPEN",
+    selectedProject: ALL,
+    selectedStatus: OPEN,
     selectedTasks: []
   };
 
   componentDidMount() {
     //if we recieved projcts and task props, set up project and task state
     if (this.projects[0] && this.tasks) {
-      if (this.projects[0]._id !== "ALL") {
+      if (this.projects[0]._id !== ALL) {
         //add an "all" projects button to the project selector
-        this.projects.unshift({ _id: "ALL", name: "all" });
+        this.projects.unshift({ _id: ALL, name: "all" });
       }
       //if we have a selected status, get selected tasks
       if (this.state.selectedStatus) {
@@ -54,7 +57,7 @@ export default class MyTasks extends Component {
 
   getSelectedTasks = (status, projectId) => {
     let selectedTasks = [];
-    if (projectId === "ALL") {
+    if (projectId === ALL) {
       selectedTasks = this.tasks.filter(task => {
         if (task.status === status) {
           return true;
@@ -85,7 +88,10 @@ export default class MyTasks extends Component {
           projects={this.projects}
         />
         <MyTaskStatusPicker handleSelectStatus={this.selectStatus} />
-        <MyTaskList tasks={this.state.selectedTasks} />
+        <MyTaskList
+          tasks={this.state.selectedTasks}
+          status={this.state.selectedStatus}
+        />
       </div>
     );
   }

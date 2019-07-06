@@ -19,6 +19,7 @@ class Profile extends Component {
       let user = await API.getUser().then(user => {
         console.log("User:", user);
         console.log("Projects: ", user.projects);
+        user.projects = user.projects.reverse();
         return user;
       });
       let tasks = await API.getTasksByUser(user._id).then(tasks => {
@@ -57,14 +58,8 @@ class Profile extends Component {
                   user={this.state.user}
                 />
               ) : null}
+
               <div className="profile-left-container">
-                <MyTasks
-                  projects={this.state.user.projects}
-                  tasks={this.state.tasks}
-                  username={this.state.user.username}
-                />
-              </div>
-              <div className="profile-right-container">
                 {this.state.user.projects ? (
                   <ProjectList
                     toggleCreateProjectDialog={this.toggleCreateProjectDialog}
@@ -73,6 +68,13 @@ class Profile extends Component {
                 ) : (
                   ""
                 )}
+              </div>
+              <div className="profile-right-container">
+                <MyTasks
+                  projects={this.state.user.projects}
+                  tasks={this.state.tasks}
+                  username={this.state.user.username}
+                />
               </div>
             </div>
           </>
