@@ -1,8 +1,11 @@
 .project-list-item {
-  height: 75px;
-  width: 75px;
+  display: flex;
+  flex-direction: row;
   background-color: whitesmoke;
   border-radius: 5px;
   font-size: 0.8rem;
   padding: 5px;
+  box-shadow: 0 0 3px #c7c7c7;
+  align-items: center;
+  justify-content: space-between;
 }
