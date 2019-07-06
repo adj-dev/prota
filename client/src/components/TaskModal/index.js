@@ -6,7 +6,10 @@ import './style.css'
 const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask }) => {
   const [taskName, setTaskName] = useState(expandedTask ? expandedTask.name : '')
   const [taskDescription, setTaskDescription] = useState(expandedTask ? expandedTask.description : '')
+  const [assignee, setAssignee] = useState(expandedTask ? expandedTask.assignee ? expandedTask.assignee : '' : '')
+  console.log('task modals expandedTask:', expandedTask);
 
+  console.log(assignee);
   const changeTaskName = e => {
     setTaskName(e.target.value)
   }
