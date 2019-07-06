@@ -5,7 +5,6 @@ import ProjectCard from "../../components/ProjectCard";
 import SprintList from "../../components/SprintList";
 import TaskListSelector from "../../components/TaskListSelector";
 import TaskModal from "../../components/TaskModal";
-import SprintListEmpty from "../../components/SprintList/SprintListEmpty";
 import AddSprintModal from "../../components/AddSprintModal";
 import NavBar from "../../components/NavBar";
 
