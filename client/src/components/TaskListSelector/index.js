@@ -14,6 +14,7 @@ const DONE = 'DONE';
 
 
 const TaskListSelector = ({ tasks, selectedTasks, trackStatus, handleClick, }) => {
+  console.log('tasks:', tasks);
   const [allTasks, setAllTasks] = useState(tasks);
   const [selectTasks, setSelectTasks] = useState([]);
   const [status, setStatus] = useState(OPEN);

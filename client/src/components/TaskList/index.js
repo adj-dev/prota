@@ -63,7 +63,7 @@ const TaskList = ({ tasks, handleTaskModal, status }) => {
                   :
                   status === IN_PROGRESS ? <p>No tasks in progress</p>
                     :
-                    <p>No completed tasks</p>
+                    <p>No closed tasks</p>
             }
           </div>
       }

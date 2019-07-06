@@ -57,7 +57,10 @@ export default class Project extends Component {
     let project = await API.getProject(projectId);
     let sprints = project.sprints.length ? [...project.sprints] : [];
     let currentSprint = sprints ? sprints.filter(sprint => sprint.status === IN_PROGRESS) : [];
+    let selectedTasks = currentSprint.length ? currentSprint[0].tasks.filter(task => task.status === this.state.trackedStatus) : []
     let team = project.contributors.concat(project.owners)
+
+    console.log(currentSprint)
 
     // send user to / if unauthorized
     if (project.unauthorized) return (window.location = "/"); // This will never fire unless backend adds unauthorized property to response
@@ -66,7 +69,7 @@ export default class Project extends Component {
       project: project,
       sprints: sprints,
       currentSprint: currentSprint,
-      selection: currentSprint.length ? currentSprint[0].tasks.filter(task => task.status === "OPEN") : [],
+      selectedTasks: selectedTasks,
       team: team,
       isLoaded: true
     });
@@ -89,14 +92,8 @@ export default class Project extends Component {
     this.setState(prevState => {
       let currentSprint = prevState.sprints.filter(sprint => sprint._id === sprintId)
       let selectedTasks = currentSprint[0].tasks.filter(task => task.status === this.state.trackedStatus)
-      console.log('currentSprint:', currentSprint)
       return { currentSprint, selectedTasks }
     })
-
-    // this.setState({
-    //   forTaskList: tasks,
-    //   selection: tasks.filter(task => task.status === 'OPEN')
-    // });
   }
 
 
@@ -104,13 +101,11 @@ export default class Project extends Component {
   toggleModalVisibility = e => {
     let targetElement = e.target;
     if (targetElement.closest(".task-modal") || targetElement.closest(".addsprint-modal")) return;
-
     this.setState({ viewingTask: false, addingSprint: false });
   };
 
   // Updates a task after creation / edit / assigning
   modifyTask = async task => {
-    // let { _id: userId } = await API.getUserByUsername(username);
     let newTask = await API.createTask({
       name: task.name,
       description: task.description,
@@ -122,18 +117,20 @@ export default class Project extends Component {
       let newCurrentSprint = [...prevState.currentSprint];
       newCurrentSprint[0].tasks.push(newTask);
 
-      let newSprints = prevState.sprints.map(sprint => {
-        if (sprint._id === this.state.currentSprint[0]._id) {
-          return sprint.tasks.push(newTask)
-        }
+      console.log('newCurrentSprint:', newCurrentSprint);
 
-        return sprint
-      })
+      let newSprints = prevState.sprints.map(sprint =>
+        sprint._id === this.state.currentSprint[0]._id ?
+          sprint.tasks.push(newTask) : sprint
+      )
+
+      let newSelectedTasks = newCurrentSprint[0].tasks.filter(task => task.status === this.state.trackedStatus);
+      console.log(newSelectedTasks);
 
       return {
         currentSprint: newCurrentSprint,
         sprints: newSprints,
-        selectedTasks: newCurrentSprint[0].tasks.filter(task => task.status === this.state.trackedStatus),
+        selectedTasks: newSelectedTasks,
         viewingTask: false
       }
     })
