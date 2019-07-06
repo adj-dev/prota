@@ -88,8 +88,8 @@ export default class Project extends Component {
     // Set the state of currentSprint and selectedTasks 
     this.setState(prevState => {
       let currentSprint = prevState.sprints.filter(sprint => sprint._id === sprintId)
-      let selectedTasks = currentSprint[0].tasks.filter(task => task.status === OPEN)
-      console.log(selectedTasks)
+      let selectedTasks = currentSprint[0].tasks.filter(task => task.status === this.state.trackedStatus)
+      console.log('currentSprint:', currentSprint)
       return { currentSprint, selectedTasks }
     })
 
@@ -115,7 +115,7 @@ export default class Project extends Component {
       name: task.name,
       description: task.description,
       project_ref: this.state.project._id,
-      sprint_ref: this.state.currentSprint[0]
+      sprint_ref: this.state.currentSprint[0]._id
     });
 
     this.setState(prevState => {
@@ -123,7 +123,7 @@ export default class Project extends Component {
       newCurrentSprint[0].tasks.push(newTask);
 
       let newSprints = prevState.sprints.map(sprint => {
-        if (sprint._id === this.state.currentSprint._id) {
+        if (sprint._id === this.state.currentSprint[0]._id) {
           return sprint.tasks.push(newTask)
         }
 
