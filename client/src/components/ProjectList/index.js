@@ -6,7 +6,7 @@ export default function ProjectList({ projects, toggleCreateProjectDialog }) {
   return (
     <div className="project-list-container">
       <div className="project-list-header">
-        Projects
+        <h1>Projects</h1>
         <div
           className="create-project-button"
           onClick={toggleCreateProjectDialog}

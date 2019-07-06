@@ -11,8 +11,14 @@ export default function MyTaskList({ tasks, status }) {
       {tasks.length ? (
         tasks.map((task, i) => {
           return (
-            <div className={"my-task-list-item"} key={i}>
-              {task.name}
+            <div className="task-container" key={task._id}>
+              <div className="task-upper">
+                <span>{task.name}</span>
+                <span>{task.status}</span>
+              </div>
+              <div className="task-lower">
+                <p>{task.description}</p>
+              </div>
             </div>
           );
         })

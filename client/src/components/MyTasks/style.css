@@ -1,3 +1,8 @@
+h1 {
+  margin: 0;
+  font-weight: 300;
+}
+
 .my-tasks-container {
   display: flex;
   flex-direction: column;

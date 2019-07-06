@@ -57,6 +57,9 @@ export default class MyTasks extends Component {
     let selectedTasks = [];
     if (projectId === ALL) {
       selectedTasks = this.tasks.filter(task => {
+        if (status === ALL) {
+          return true;
+        }
         if (task.status === status) {
           return true;
         }
@@ -68,6 +71,9 @@ export default class MyTasks extends Component {
       );
 
       selectedTasks = projectTasks.filter(task => {
+        if (status === ALL) {
+          return true;
+        }
         if (task.status === status) {
           return true;
         }
@@ -80,7 +86,7 @@ export default class MyTasks extends Component {
   render() {
     return (
       <div className="my-tasks-container">
-        <div>My Tasks</div>
+        <h1>My Tasks</h1>
         <MyProjectPicker
           handleSelectProject={this.selectProject}
           projects={this.projects}
