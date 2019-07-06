@@ -22,7 +22,7 @@ module.exports = {
     return db.User.find({ username: regex })
       .limit(5)
       .then(result => result)
-      .catch(er => err);
+      .catch(err => err);
   },
 
     invite: function(userName) { //Create a new user if does not exist
