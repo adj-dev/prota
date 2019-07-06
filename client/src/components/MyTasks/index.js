@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import MyTaskStatusPicker from "./MyTaskStatusPicker";
 import MyProjectPicker from "./MyProjectPicker";
 import MyTaskList from "./MyTasksList";
+import { ALL, OPEN } from "../../helpers";
 import "./style.css";
-
-const ALL = "ALL";
-const OPEN = "OPEN";
 
 export default class MyTasks extends Component {
   projects = [...this.props.projects];

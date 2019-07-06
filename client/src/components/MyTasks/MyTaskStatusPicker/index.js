@@ -1,17 +1,8 @@
 import React, { useState } from "react";
 import "./style.css";
-
-const ALL = "ALL";
-const OPEN = "OPEN";
-const IN_PROGRESS = "IN_PROGRESS";
-const DONE = "DONE";
+import { ALL, OPEN, IN_PROGRESS, DONE } from "../../../helpers";
 
 export default function MyTaskStatusPicker({ handleSelectStatus }) {
-  const STATUSES = [
-    { status: OPEN, displayName: "open" },
-    { status: IN_PROGRESS, displayName: "in progress" },
-    { status: DONE, displayName: "done" }
-  ];
   const [status, setStatus] = useState(OPEN);
 
   const selectStatus = status => {
