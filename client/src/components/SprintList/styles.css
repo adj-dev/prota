@@ -9,7 +9,11 @@ font-family: 'Rajdhani', sans-serif;
 
 .sprintlist-wrapper {
   font-family: 'Rajdhani', sans-serif;
-  
+}
+
+.sprintlist-header {
+  display: flex;
+  align-items: center
 }
 
 .sprint-item{

@@ -21,7 +21,5 @@ export default {
   updateTask: (taskId, userId) =>
     axios.put(`/api/tasks/${taskId}`, { assignee: userId }).then(response => response.data),
   createTask: task =>
-    axios.post('/api/tasks', task).then(response => response.data),
-  getUserByUsername: username =>
-    axios.get(`/api/user/${username}`).then(response => response.data)
+    axios.post('/api/tasks', task).then(response => response.data)
 };
