@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap");
 
 /* 
 font-family: 'Overpass', sans-serif;
@@ -20,19 +20,19 @@ font-family: 'Rajdhani', sans-serif;
 }
 
 .project-button {
-  cursor: pointer;
-  background-color:slategrey;
-  font-family: 'PT Sans Narrow', sans-serif;
-  color: white;
+  background: none;
   margin: 7px;
   border-radius: 8px;
-  padding: 8px;
 }
 
-#ALL {
-  background-color: #D593E8;
-  font-family: 'PT Sans Narrow', sans-serif;
-  color: white;
-  margin: 7px;
-  border-radius: 8px;
+.project-button.active > button {
+  color: #f5f5f5;
+}
+
+.active#ALL {
+  background-color: #d593e8;
+}
+
+.active {
+  background-color: #46a1fd;
 }

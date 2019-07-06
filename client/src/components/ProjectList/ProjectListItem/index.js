@@ -8,14 +8,14 @@ export default function MyProjectsCard({ project }) {
       <div className="project-list-item">
         <div>
           <div>{project.name}</div>
-          <div>Created by: {project.created_by}</div>
-          <div>
+          <div className="created-by">Created by: {project.created_by}</div>
+          {/* <div>
             {new Date(project.created_on)
               .toDateString()
               .split(" ")
               .slice(1, 4)
               .join(" ")}
-          </div>
+          </div> */}
         </div>
         <div>
           <div>{project.status}</div>

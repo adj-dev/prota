@@ -1,11 +1,19 @@
 .project-list-item {
   display: flex;
   flex-direction: row;
-  background-color: whitesmoke;
-  border-radius: 5px;
-  font-size: 0.8rem;
+  background-color: slategray;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  margin-left: -1px;
+  margin: 8px;
   padding: 5px;
+  color: white;
+  padding: 20px;
   box-shadow: 0 0 3px #c7c7c7;
   align-items: center;
   justify-content: space-between;
+}
+
+.created-by {
+  font-size: 0.8rem;
 }
