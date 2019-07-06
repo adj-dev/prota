@@ -11,7 +11,7 @@ import mockAPI from "../../utils/mockAPI";
 import "./styles.css";
 
 // Define our status variable
-// const OPEN = 'OPEN';
+const OPEN = 'OPEN';
 const IN_PROGRESS = 'IN_PROGRESS';
 // const CLOSED = 'CLOSED';
 // const DONE = 'DONE';
@@ -24,12 +24,14 @@ export default class Project extends Component {
     project: null,
     sprints: null,
     currentSprint: null,
-    selection: null,
+    selectedTasks: null,
     isLoaded: null,
     showTaskModal: false,
     expandedTask: null,
     team: null,
-    addingSprint: false
+    addingSprint: false,
+    viewingTask: false,
+    trackedStatus: OPEN
   };
 
   componentDidMount() {
@@ -57,10 +59,6 @@ export default class Project extends Component {
     let currentSprint = sprints ? sprints.filter(sprint => sprint.status === IN_PROGRESS) : [];
     let team = project.contributors.concat(project.owners)
 
-    console.log("Project:", project);
-    console.log("Sprints", sprints);
-    console.log("currentSprint", currentSprint);
-
     // send user to / if unauthorized
     if (project.unauthorized) return (window.location = "/"); // This will never fire unless backend adds unauthorized property to response
 
@@ -68,9 +66,7 @@ export default class Project extends Component {
       project: project,
       sprints: sprints,
       currentSprint: currentSprint,
-      selection: currentSprint.length
-        ? currentSprint[0].tasks.filter(task => task.status === "OPEN")
-        : [], // eventually maybe migrate away from setting this here
+      selection: currentSprint.length ? currentSprint[0].tasks.filter(task => task.status === "OPEN") : [],
       team: team,
       isLoaded: true
     });
@@ -89,10 +85,12 @@ export default class Project extends Component {
 
   // Runs when a sprint is selected in SprintList component
   selectSprint = async sprintId => {
-    // console.log('sprint id', sprintId)
+    // Set the state of currentSprint and selectedTasks 
     this.setState(prevState => {
       let currentSprint = prevState.sprints.filter(sprint => sprint._id === sprintId)
-      return { currentSprint }
+      let selectedTasks = currentSprint[0].tasks.filter(task => task.status === OPEN)
+      console.log(selectedTasks)
+      return { currentSprint, selectedTasks }
     })
 
     // this.setState({
@@ -101,43 +99,61 @@ export default class Project extends Component {
     // });
   }
 
-  // Fires when a user clicks on a task in the TaskList component
-  // renders the add task modal
-  openTaskModal = task => {
-    // show the task modal
-    console.log(task);
-    // this.setState({ expandedTask: task })
-  }
 
   // Toggles the visibility of a modal when user clicks backdrop
   toggleModalVisibility = e => {
     let targetElement = e.target;
-    if (
-      targetElement.closest(".task-modal") ||
-      targetElement.closest(".addsprint-modal")
-    ) {
-      return;
-    }
+    if (targetElement.closest(".task-modal") || targetElement.closest(".addsprint-modal")) return;
 
-    this.setState({ expandedTask: null, addingSprint: false });
+    this.setState({ viewingTask: false, addingSprint: false });
   };
 
   // Updates a task after creation / edit / assigning
-  assignUserToTask = async username => {
-    let { _id: userId } = await API.getUserByUsername(username);
+  modifyTask = async task => {
+    // let { _id: userId } = await API.getUserByUsername(username);
+    let newTask = await API.createTask({
+      name: task.name,
+      description: task.description,
+      project_ref: this.state.project._id,
+      sprint_ref: this.state.currentSprint[0]
+    });
 
-    let response = await API.updateTask(this.state.expandedTask._id, userId);
-    console.log("From assignUserToTask: ", response);
-    // this.setState(prevState => {
-    //   let newState = prevState.expandedTask;
-    //   newState.assignee = member;
-    //   return { expandedTask: newState }
-    // })
+    this.setState(prevState => {
+      let newCurrentSprint = [...prevState.currentSprint];
+      newCurrentSprint[0].tasks.push(newTask);
+
+      let newSprints = prevState.sprints.map(sprint => {
+        if (sprint._id === this.state.currentSprint._id) {
+          return sprint.tasks.push(newTask)
+        }
+
+        return sprint
+      })
+
+      return {
+        currentSprint: newCurrentSprint,
+        sprints: newSprints,
+        selectedTasks: newCurrentSprint[0].tasks.filter(task => task.status === this.state.trackedStatus),
+        viewingTask: false
+      }
+    })
   };
+
+  // Allows state to keep track of status, which allows for this component to send
+  // tasks filtered by status to the child component upon creation of a new task
+  trackStatus = status => {
+    this.setState({ trackedStatus: status })
+  }
 
   openAddSprintModal = () => {
     this.setState({ addingSprint: true });
   };
+
+  // Fires when a user clicks on a task in the TaskList component
+  // renders the add task modal
+  openTaskModal = task => {
+    this.setState({ expandedTask: task, viewingTask: true })
+  }
 
   handleAddSprint = async sprintName => {
     let data = {
@@ -147,21 +163,13 @@ export default class Project extends Component {
 
     let newSprint = await API.addSprint(data);
 
-    // await this.setState(prevState => {
-    //   console.log('setting isLoaded to null')
-    //   return { isLoaded: null }
-    // })
-
-    console.log('should come before "updating state ..."');
-
     this.setState(prevState => {
-      console.log("updating state...");
       let updatedProject = { ...prevState.project };
       updatedProject.sprints.push(newSprint);
+
       let updatedSprints = [...prevState.sprints];
       updatedSprints.push(newSprint);
-      console.log("updated project: ", updatedProject);
-      console.log("updated sprints: ", updatedSprints);
+
       return {
         project: updatedProject,
         sprints: updatedSprints,
@@ -205,7 +213,8 @@ export default class Project extends Component {
                     this.state.currentSprint.length ?
                       <TaskListSelector
                         tasks={this.state.currentSprint[0].tasks}
-                        selection={this.state.selection}
+                        selectedTasks={this.state.selectedTasks}
+                        trackStatus={status => this.trackStatus(status)}
                         handleClick={task => this.openTaskModal(task)}
                       />
                       :
@@ -228,10 +237,10 @@ export default class Project extends Component {
           />
         ) : null}
 
-        {this.state.expandedTask ? (
+        {this.state.viewingTask ? (
           <TaskModal
             handleModal={e => this.toggleModalVisibility(e)}
-            handleAssign={username => this.assignUserToTask(username)}
+            handleTask={task => this.modifyTask(task)}
             team={this.state.team}
             currentUser={this.state.user}
             expandedTask={this.state.expandedTask}
