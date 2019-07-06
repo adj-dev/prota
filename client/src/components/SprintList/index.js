@@ -1,6 +1,7 @@
 import React from 'react'
-import AddSprintButton from '../AddSprintButton'
+import AddSprintButton from './AddSprintButton'
 import "./styles.css"
+import SprintListEmpty from './SprintListEmpty';
 
 
 
@@ -15,9 +16,10 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
   return (
     <div className="sprintlist-wrapper">
       <div className="sprintlist-container">
-
-        <h1>SPRINTS</h1>
-        <br></br>
+        <div className="sprintlist-header">
+          <h1>SPRINTS</h1>
+          <AddSprintButton openAddSprintModal={() => openAddSprintModal()} />
+        </div>
         <div className="status-buttons">
           <div className="status">
             <button id="open">open</button>
@@ -35,21 +37,20 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
         <br></br>
         <div className="sprintlist">
           {
-            sprints.map((sprint, i) => {
-              return (
-                <div className="sprint-item" key={i} onClick={() => handleClick(sprint._id)}>
-                  <span>{sprint.name}</span>
-                  <span>{sprint.start_date}</span>
-                  <span>{sprint.status}</span>
-                </div>
-
-              )
-            })
+            sprints.length ?
+              sprints.map((sprint, i) => {
+                return (
+                  <div className="sprint-item" key={i} onClick={() => handleClick(sprint._id)}>
+                    <span>{sprint.name}</span>
+                    <span>{sprint.start_date}</span>
+                    <span>{sprint.status}</span>
+                  </div>
+                )
+              })
+              :
+              <SprintListEmpty />
           }
         </div>
-
-        <AddSprintButton openAddSprintModal={() => openAddSprintModal()} />
-
       </div>
     </div>
   )

@@ -1,0 +1,10 @@
+#add-sprint {
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  background: #3EE1A7;
+  color: white;
+  border-radius: 100%;
+  cursor: pointer;
+  margin-left: 15px;
+}
