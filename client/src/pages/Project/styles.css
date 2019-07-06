@@ -11,8 +11,13 @@ h1 {
 }
 
 button {
+  font-family: 'PT Sans Narrow', sans-serif;
   border: none;
-  background-color: inherit;
+  background-color: none;
+}
+
+button:focus {
+  outline: none;
 }
 
 .project-container {

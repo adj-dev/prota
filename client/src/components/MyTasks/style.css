@@ -1,9 +1,9 @@
 .my-tasks-container {
-  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
   min-width: 600px;
   border-radius: 5px;
-  padding: 20px;
-  box-shadow: 0 0 3px #c7c7c7;
+  height: 100%;
 }
 
 @media (max-width: 768px) {

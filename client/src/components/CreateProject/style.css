@@ -5,7 +5,7 @@
   width: 100%;
   height: 100%;
   z-index: 999;
-  background-color:slategrey;
+  background-color: rgb(255, 255, 255, 0);
 }
 
 .create-project-content-container {
@@ -13,7 +13,7 @@
   flex-direction: column;
   position: relative;
   padding: 20px;
-  top: 200px;
+  top: 100px;
   margin: auto;
   z-index: 1000;
   width: 30vw;
