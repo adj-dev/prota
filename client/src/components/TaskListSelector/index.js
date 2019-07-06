@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import TaskList from '../TaskList';
+import TaskList from './TaskList';
 import * as STATUS from '../../helpers';
 import "./style.css"
 
