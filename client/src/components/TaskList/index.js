@@ -1,9 +1,20 @@
 import React from 'react'
 import "./styles.css"
+import { STATES } from 'mongoose';
 
 
 
-const TaskList = ({ tasks, handleTaskModal }) => {
+// Declare our selector values here as variables, this way we get a helpful error if we mispell a variable vs. 
+// getting no error thrown if we mispell a string.
+const ALL = 'ALL';
+const OPEN = 'OPEN';
+const IN_PROGRESS = 'IN_PROGRESS';
+const DONE = 'DONE';
+
+
+
+const TaskList = ({ tasks, handleTaskModal, status }) => {
+  console.log(tasks)
 
   // click handler for assigning a task
   const openTaskModal = task => {
@@ -44,7 +55,17 @@ const TaskList = ({ tasks, handleTaskModal }) => {
             )
           })
           :
-          <div>There are currently no tasks in this sprint</div>
+          <div className="empty-task-list">
+            {
+              status === ALL ? <p>No tasks are currently assigned to this sprint</p>
+                :
+                status === OPEN ? <p>No open tasks</p>
+                  :
+                  status === IN_PROGRESS ? <p>No tasks in progress</p>
+                    :
+                    <p>No completed tasks</p>
+            }
+          </div>
       }
     </>
   )

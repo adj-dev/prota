@@ -25,3 +25,20 @@ font-family: 'Rajdhani', sans-serif;
 .team-member-item:hover {
   color: blue;
 }
+
+.task-button-container {
+  padding: 10px 0;
+}
+
+button.task-button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 8px;
+}
+
+button.task-button:hover {
+  background: #3EE1A7;
+  color: #f5f5f5;
+}
+
