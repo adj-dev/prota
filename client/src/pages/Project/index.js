@@ -201,7 +201,6 @@ export default class Project extends Component {
                     project={this.state.project}
                     team={this.state.team}
                   />
-
                   <SprintList
                     sprints={this.state.sprints}
                     selectSprint={sprintId => this.selectSprint(sprintId)}
