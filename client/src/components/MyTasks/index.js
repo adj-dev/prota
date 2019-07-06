@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import MyTaskStatusPicker from "./MyTaskStatusPicker";
 import MyProjectPicker from "./MyProjectPicker";
 import MyTaskList from "./MyTasksList";
+import { ALL, OPEN } from "../../helpers";
 import "./style.css";
-
-const ALL = "ALL";
-const OPEN = "OPEN";
 
 export default class MyTasks extends Component {
   projects = [...this.props.projects];
@@ -59,6 +57,9 @@ export default class MyTasks extends Component {
     let selectedTasks = [];
     if (projectId === ALL) {
       selectedTasks = this.tasks.filter(task => {
+        if (status === ALL) {
+          return true;
+        }
         if (task.status === status) {
           return true;
         }
@@ -70,6 +71,9 @@ export default class MyTasks extends Component {
       );
 
       selectedTasks = projectTasks.filter(task => {
+        if (status === ALL) {
+          return true;
+        }
         if (task.status === status) {
           return true;
         }
@@ -82,7 +86,7 @@ export default class MyTasks extends Component {
   render() {
     return (
       <div className="my-tasks-container">
-        <div>My Tasks</div>
+        <h1>My Tasks</h1>
         <MyProjectPicker
           handleSelectProject={this.selectProject}
           projects={this.projects}

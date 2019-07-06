@@ -17,6 +17,12 @@ export default class SearchUsers extends Component {
     //this.setState({ contributorQuery: "" });
   };
 
+  inviteUser = username => {
+    this.props.handleInviteUser(username);
+    this.setState({ users: [], userQuery: "" });
+    //this.setState({ contributorQuery: "" });
+  };
+
   handleInput = field => event => {
     const { value } = event.target;
 
@@ -40,7 +46,7 @@ export default class SearchUsers extends Component {
         <FuzzyList
           newUser={this.state.userQuery}
           users={this.state.users}
-          handleInviteUser={this.props.handleInviteUser}
+          handleInviteUser={this.inviteUser}
           handleSelectUser={this.handleSelectUser}
         />
       </div>
