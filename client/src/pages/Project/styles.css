@@ -16,6 +16,10 @@ button {
   background-color: none;
 }
 
+button:focus {
+  outline: none;
+}
+
 .project-container {
   padding: 15px;
   display: flex;
