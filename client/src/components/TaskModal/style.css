@@ -22,12 +22,40 @@ font-family: 'Rajdhani', sans-serif;
   flex-direction: column;
 }
 
-.team-member-item:hover {
-  color: blue;
+.team-member-item {
+  display: flex;
+  align-items: center;
+  padding: 3px 0;
+  border-radius: 8px;
+  width: min-content;
+}
+
+.assignee-header {
+  display: flex;
+  align-items: center;
 }
 
 .task-button-container {
   padding: 10px 0;
+}
+
+.team-member-name {
+  padding: 0 8px;
+}
+
+.avatar-sm,
+.assignee-avatar {
+  width: 40px;
+  border-radius: 100%;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.assignee-avatar {
+  padding: 0 20px;
+}
+
+.avatar-sm:hover {
+  border: 1px solid #3EE1A7;
 }
 
 button.task-button {
@@ -40,5 +68,10 @@ button.task-button {
 button.task-button:hover {
   background: #3EE1A7;
   color: #f5f5f5;
+}
+
+.assignee-container {
+  display: flex;
+  flex-direction: column;
 }
 

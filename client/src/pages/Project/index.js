@@ -35,7 +35,8 @@ export default class Project extends Component {
     team: null,
     addingSprint: false,
     viewingTask: false,
-    trackedStatus: OPEN
+    trackedStatus: OPEN,
+    context: null
   };
 
   // Fetches the user object and project object when component first renders
@@ -118,8 +119,9 @@ export default class Project extends Component {
   };
 
   // Fires when a user clicks on a task in the TaskList component
+  // Dynamically sets the context to 'edit' or 'create' depending where the event came from
   openTaskModal = task => {
-    this.setState({ expandedTask: task, viewingTask: true })
+    this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create' })
   }
 
   // Adds a new sprint to the database and updates state
@@ -146,11 +148,23 @@ export default class Project extends Component {
     });
   };
 
-  // Updates a task after creation / edit / assigning
-  modifyTask = async task => {
+  // Decides between creating or editing a task
+  handleTask = (task) => {
+    if (this.state.context === 'create') {
+      this.createTask(task)
+    }
+    if (this.state.context === 'edit') {
+      this.editTask(task)
+    }
+  };
+
+
+  // Creates a new task in the database and sets state accordingly
+  createTask = async task => {
     let newTask = await API.createTask({
       name: task.name,
       description: task.description,
+      assignee: task.assignee,
       project_ref: this.state.project._id,
       sprint_ref: this.state.currentSprint[0]._id
     });
@@ -178,7 +192,50 @@ export default class Project extends Component {
         viewingTask: false
       }
     })
-  };
+  }
+
+  // Sends an updated task object to the database and updates state accordingly
+  editTask = async task => {
+    console.log('edit task:', task)
+    let updatedTask = await API.updateTask(task.id, {
+      name: task.name,
+      description: task.description,
+      assignee: task.assignee
+    })
+
+    console.log(updatedTask);
+
+
+
+    this.setState(prevState => {
+      let newCurrentSprint = [...this.state.currentSprint];
+      newCurrentSprint[0].tasks.forEach(task => {
+        if (task._id === updatedTask._id) {
+          task.name = updatedTask.name
+          task.description = updatedTask.description // eventually add the assignee property here
+        }
+      });
+
+      let newSprints = prevState.sprints.map(sprint =>
+        sprint._id === newCurrentSprint[0]._id ?
+          newCurrentSprint[0] :
+          sprint
+      );
+
+      let newSelectedTasks = newCurrentSprint[0].tasks.filter(task =>
+        this.state.trackedStatus === ALL ?
+          task :
+          task.status === this.state.trackedStatus
+      );
+
+      return {
+        currentSprint: newCurrentSprint,
+        sprints: newSprints,
+        selectedTasks: newSelectedTasks,
+        viewingTask: false
+      }
+    })
+  }
 
   // -------------------------------------------
   //                 Rendering
@@ -213,7 +270,7 @@ export default class Project extends Component {
                         tasks={this.state.currentSprint[0].tasks}
                         selectedTasks={this.state.selectedTasks}
                         trackStatus={status => this.trackStatus(status)}
-                        handleClick={task => this.openTaskModal(task)}
+                        handleClick={(task) => this.openTaskModal(task)}
                       />
                       :
                       <div></div>
@@ -238,10 +295,11 @@ export default class Project extends Component {
         {this.state.viewingTask ? (
           <TaskModal
             handleModal={e => this.toggleModalVisibility(e)}
-            handleTask={task => this.modifyTask(task)}
+            handleTask={task => this.handleTask(task)}
             team={this.state.team}
             currentUser={this.state.user}
             expandedTask={this.state.expandedTask}
+            context={this.state.context}
           />
         ) : null}
       </>

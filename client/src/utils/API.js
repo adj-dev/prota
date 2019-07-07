@@ -18,8 +18,8 @@ export default {
     axios.post("/api/sprints", sprint).then(response => response.data),
   getTasksByUser: id =>
     axios.get(`/api/tasks/user/${id}`).then(response => response.data),
-  updateTask: (taskId, userId) =>
-    axios.put(`/api/tasks/${taskId}`, { assignee: userId }).then(response => response.data),
+  updateTask: (taskId, task) =>
+    axios.put(`/api/tasks/${taskId}`, task).then(response => response.data),
   createTask: task =>
     axios.post('/api/tasks', task).then(response => response.data)
 };
