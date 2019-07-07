@@ -31,7 +31,7 @@ const TaskListSelector = ({ tasks, selectedTasks, trackStatus, handleClick, }) =
     <div className="tasklist-wrapper">
       <div className="tasklist-container">
         <div className="tasklist-header">
-          <h1>TASKS</h1>
+          <h1>Tasks</h1>
           <div id="add-task" onClick={() => handleTaskModal()}>
             +
           </div>

@@ -24,11 +24,11 @@ const TaskList = ({ tasks, handleTaskModal, status }) => {
                 onClick={() => openTaskModal(task)}
               >
                 <div className="task-upper">
-                  <span>{task.name}</span>
-                  <span>{task.status}</span>
+                  <span className="task-name">{task.name}</span>
+                  <span className="task-status">{task.status}</span>
                 </div>
                 <div className="task-lower">
-                  <p>{task.description}</p>
+                  <p className="task-description">{task.description}</p>
                   {
                     task.assignee ?
                       <img
@@ -37,7 +37,7 @@ const TaskList = ({ tasks, handleTaskModal, status }) => {
                         alt=""
                       />
                       :
-                      <span className="add-contributor">  +  </span>
+                      <img className="unassigned-avatar" src={require('../../../assets/img/unassigned-avatar.png')} alt=""></img>
                   }
                 </div>
 

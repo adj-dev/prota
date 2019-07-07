@@ -6,7 +6,6 @@ import SprintListEmpty from './SprintListEmpty';
 
 
 const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
-  // console.log(sprints)
 
   // click handler for when a user selects a sprint
   const handleClick = sprintId => {
@@ -17,7 +16,7 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
     <div className="sprintlist-wrapper">
       <div className="sprintlist-container">
         <div className="sprintlist-header">
-          <h1>SPRINTS</h1>
+          <h1>Sprints</h1>
           <AddSprintButton openAddSprintModal={() => openAddSprintModal()} />
         </div>
         <div className="status-buttons">

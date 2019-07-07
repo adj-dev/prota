@@ -3,6 +3,7 @@
 body {
   margin: 0;
   font-family: 'Nunito', sans-serif;
+  background: #f7f7f7;
 }
 
 h1 {
@@ -23,7 +24,6 @@ button:focus {
 .project-container {
   padding: 15px;
   display: flex;
-  height: 100vh;
 }
 
 .col {
