@@ -8,7 +8,7 @@ export default function NavBar({ displayName, avatarUrl }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const handleLogout = () => {
     API.logout().then(() => {
-      window.location = "/login";
+      window.location = "/welcome";
     });
   };
 

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
-
-const ALL = "ALL";
+import { ALL } from "../../../helpers";
 
 export default function MyProjectPicker({ projects, handleSelectProject }) {
   const [selectedProject, setSelectedProject] = useState(ALL);
