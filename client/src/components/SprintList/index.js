@@ -1,8 +1,10 @@
 import React from 'react'
+import moment from 'moment';
+
 import AddSprintButton from './AddSprintButton'
-import "./styles.css"
 import SprintListEmpty from './SprintListEmpty';
 
+import "./style.css"
 
 
 const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
@@ -19,7 +21,10 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
           <h1>Sprints</h1>
           <AddSprintButton openAddSprintModal={() => openAddSprintModal()} />
         </div>
-        <div className="status-buttons">
+
+        {/* As of now, no longer need to show status buttons on sprint list */}
+
+        {/* <div className="status-buttons">
           <div className="status">
             <button id="open">open</button>
           </div>
@@ -32,17 +37,21 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
           <div className="status">
             <button id="closed">closed</button>
           </div>
-        </div>
-        <br></br>
+        </div> */}
+
         <div className="sprintlist">
           {
             sprints.length ?
               sprints.map((sprint, i) => {
                 return (
                   <div className="sprint-item" key={i} onClick={() => handleClick(sprint._id)}>
-                    <span>{sprint.name}</span>
-                    <span>{sprint.start_date}</span>
-                    <span>{sprint.status}</span>
+                    <div className="sprint-header">
+                      <span className="sprint-name">{sprint.name}</span>
+                      <span className="sprint-status">{sprint.status}</span>
+                    </div>
+                    <div className="sprint-body">
+                      <span className="sprint-date">start date: {moment(sprint.start_date).format('MMM D, YYYY')}</span>
+                    </div>
                   </div>
                 )
               })
