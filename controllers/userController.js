@@ -31,7 +31,7 @@ module.exports = {
             .then(dbUser => { //returns an array of user objects
                 if(dbUser.length > 0){
                     //console.log(dbUser[0].username+" exists");
-                    return "User Exists";
+                    throw "User Exists";
                 } else {
                     //console.log("User does not exist");
                     return this.create({username: userName});

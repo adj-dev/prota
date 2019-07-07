@@ -75,7 +75,7 @@ module.exports = {
 
     getOneById: function(projectId){ //get project by projectId
         return db.Project.findById({_id: projectId})
-            .populate([{path: "sprints", populate: {path: "tasks"}}, {path: "owners"}, {path: "contributors"}])
+            .populate([{path: "sprints", populate: {path: "tasks", populate: {path: "assignee"}}}, {path: "owners"}, {path: "contributors"}])
             .then(result => result)
             .catch(err => err);
     },
