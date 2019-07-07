@@ -36,11 +36,19 @@ font-family: 'Rajdhani', sans-serif;
 }
 
 .task-button-container {
-  padding: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.team-member-list {
+  display: flex;
+  overflow: scroll;
+  padding: 5px 0;
 }
 
 .team-member-name {
   padding: 0 8px;
+  cursor: default;
 }
 
 .avatar-sm,
@@ -56,9 +64,11 @@ font-family: 'Rajdhani', sans-serif;
 
 .avatar-sm:hover {
   border: 1px solid #3EE1A7;
+  cursor: pointer;
 }
 
-button.task-button {
+button.task-button,
+button.task-btn-dlt {
   cursor: pointer;
   background: none;
   border: none;
@@ -68,6 +78,13 @@ button.task-button {
 button.task-button:hover {
   background: #3EE1A7;
   color: #f5f5f5;
+  cursor:pointer;
+}
+
+button.task-btn-dlt:hover {
+  background: #d84733;
+  color: #f5f5f5;
+  cursor: pointer;
 }
 
 .assignee-container {

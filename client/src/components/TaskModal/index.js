@@ -3,7 +3,7 @@ import './style.css'
 
 
 
-const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, context }) => {
+const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, context, handleDeleteTask }) => {
   const [taskName, setTaskName] = useState(expandedTask ? expandedTask.name : '')
   const [taskDescription, setTaskDescription] = useState(expandedTask ? expandedTask.description : '')
   const [assignee, setAssignee] = useState(expandedTask ? expandedTask.assignee ? expandedTask.assignee : null : null)
@@ -58,26 +58,28 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, c
               <h3>ASSIGNED TO: </h3>
               <img className="assignee-avatar" src={assignee ? avatar : require('../../assets/img/unassigned-avatar.png')} alt="" />
             </div>
-            {
-              team.map((member, i) => {
-                return (
-                  <div className="team-member-item" key={i} onClick={() => handleAssignee(member)}>
-                    {
-                      currentUser.username === member.username ?
-                        <>
-                          <img className="avatar-sm" src={member.avatar_url} alt="" />
-                          <span className="team-member-name">Myself</span>
-                        </>
-                        :
-                        <>
-                          <img className="avatar-sm" src={member.avatar_url} alt="" />
-                          <span className="team-member-name">{member.display_name}</span>
-                        </>
-                    }
-                  </div>
-                )
-              })
-            }
+            <div className="team-member-list">
+              {
+                team.map((member, i) => {
+                  return (
+                    <div className="team-member-item" key={i} onClick={() => handleAssignee(member)}>
+                      {
+                        currentUser.username === member.username ?
+                          <>
+                            <img className="avatar-sm" src={member.avatar_url} alt="" />
+                            <span className="team-member-name">Myself</span>
+                          </>
+                          :
+                          <>
+                            <img className="avatar-sm" src={member.avatar_url} alt="" />
+                            <span className="team-member-name">{member.display_name}</span>
+                          </>
+                      }
+                    </div>
+                  )
+                })
+              }
+            </div>
           </div>
           <div className="task-button-container">
             <button
@@ -86,6 +88,20 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, c
             >
               {context === 'create' ? 'Add Task' : 'Save'}
             </button>
+            {
+              context === 'edit' ?
+                <button
+                  className="task-btn-dlt"
+                  onClick={e => {
+                    e.preventDefault();
+                    handleDeleteTask(expandedTask._id);
+                  }}
+                >
+                  Delete
+                </button>
+                :
+                null
+            }
           </div>
         </form>
       </div>

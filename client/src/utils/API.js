@@ -21,5 +21,7 @@ export default {
   updateTask: (taskId, task) =>
     axios.put(`/api/tasks/${taskId}`, task).then(response => response.data),
   createTask: task =>
-    axios.post('/api/tasks', task).then(response => response.data)
+    axios.post('/api/tasks', task).then(response => response.data),
+  deleteTask: taskId =>
+    axios.delete(`/api/tasks/${taskId}`).then(response => response.data)
 };

@@ -208,7 +208,7 @@ export default class Project extends Component {
 
 
     this.setState(prevState => {
-      let newCurrentSprint = [...this.state.currentSprint];
+      let newCurrentSprint = [...prevState.currentSprint];
       newCurrentSprint[0].tasks.forEach(task => {
         if (task._id === updatedTask._id) {
           task.name = updatedTask.name
@@ -216,6 +216,36 @@ export default class Project extends Component {
           task.assignee = updatedTask.assignee
         }
       });
+
+      let newSprints = prevState.sprints.map(sprint =>
+        sprint._id === newCurrentSprint[0]._id ?
+          newCurrentSprint[0] :
+          sprint
+      );
+
+      let newSelectedTasks = newCurrentSprint[0].tasks.filter(task =>
+        this.state.trackedStatus === ALL ?
+          task :
+          task.status === this.state.trackedStatus
+      );
+
+      return {
+        currentSprint: newCurrentSprint,
+        sprints: newSprints,
+        selectedTasks: newSelectedTasks,
+        viewingTask: false
+      }
+    })
+  }
+
+  // Deletes a task by id
+  deleteTask = async taskId => {
+    let deletedTask = await API.deleteTask(taskId);
+
+    this.setState(prevState => {
+      let newCurrentSprint = [...prevState.currentSprint];
+      let newTasks = newCurrentSprint[0].tasks.filter(task => task._id !== deletedTask._id);
+      newCurrentSprint[0].tasks = newTasks;
 
       let newSprints = prevState.sprints.map(sprint =>
         sprint._id === newCurrentSprint[0]._id ?
@@ -297,6 +327,7 @@ export default class Project extends Component {
           <TaskModal
             handleModal={e => this.toggleModalVisibility(e)}
             handleTask={task => this.handleTask(task)}
+            handleDeleteTask={taskId => this.deleteTask(taskId)}
             team={this.state.team}
             currentUser={this.state.user}
             expandedTask={this.state.expandedTask}
