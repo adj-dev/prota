@@ -72,11 +72,7 @@ export default class Project extends Component {
       project: project,
       sprints: sprints,
       currentSprint: currentSprint,
-<<<<<<< HEAD
-      selection: currentSprint.length ? currentSprint[0].tasks.filter(task => task.status === OPEN) : [], // eventually maybe migrate away from setting this here
-=======
       selectedTasks: selectedTasks,
->>>>>>> 18f0bda1df99c0c6afeb5eafae0688a91a8a032e
       team: team,
       isLoaded: true
     });
@@ -90,15 +86,6 @@ export default class Project extends Component {
 
 
   // Runs when a sprint is selected in SprintList component
-<<<<<<< HEAD
-  selectSprint = async id => {
-    // grab tasks selecting by a Sprint's id
-    let tasks = await mockAPI.getTasksBySprintId(id);
-    this.setState({
-      forTaskList: tasks,
-      selection: tasks.filter(task => task.status === OPEN)
-    });
-=======
   selectSprint = async sprintId => {
     this.setState(prevState => {
       let currentSprint = prevState.sprints.filter(sprint => sprint._id === sprintId)
@@ -110,7 +97,6 @@ export default class Project extends Component {
 
       return { currentSprint, selectedTasks }
     })
->>>>>>> 18f0bda1df99c0c6afeb5eafae0688a91a8a032e
   }
 
 
@@ -148,19 +134,11 @@ export default class Project extends Component {
     let newSprint = await API.addSprint(data);
 
     this.setState(prevState => {
-<<<<<<< HEAD
-      let updatedProject = { ...prevState.project }
-      updatedProject.sprints.push(newSprint)
-
-      let updatedSprints = [...prevState.sprints]
-      updatedSprints.push(newSprint)
-=======
       let updatedProject = { ...prevState.project };
       updatedProject.sprints.push(newSprint);
 
       let updatedSprints = [...prevState.sprints];
       updatedSprints.push(newSprint);
->>>>>>> 18f0bda1df99c0c6afeb5eafae0688a91a8a032e
 
       return {
         project: updatedProject,
@@ -336,16 +314,10 @@ export default class Project extends Component {
                   </div>
                 </div>
               </div>
-<<<<<<< HEAD
-            </div>
-            :
-            <div>Oops, something went wrong...</div>
-=======
             </>
           )
           :
           null // return null when loading (instead of loading gif, loading is quick)
->>>>>>> 18f0bda1df99c0c6afeb5eafae0688a91a8a032e
         }
 
         {/* *** MODALS *** */}

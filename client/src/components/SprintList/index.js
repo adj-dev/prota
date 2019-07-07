@@ -46,11 +46,6 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
               sprints.map((sprint, i) => {
                 return (
                   <div className="sprint-item" key={i} onClick={() => handleClick(sprint._id)}>
-<<<<<<< HEAD
-                    <span>{sprint.name}</span> 
-                    <span>{sprint.start_date}</span> 
-                    <span>{sprint.status}</span>
-=======
                     <div className="sprint-header">
                       <span className="sprint-name">{sprint.name}</span>
                       <span className="sprint-status">{sprint.status}</span>
@@ -58,7 +53,6 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
                     <div className="sprint-body">
                       <span className="sprint-date">start date: {moment(sprint.start_date).format('MMM D, YYYY')}</span>
                     </div>
->>>>>>> 15b57ae78da60f51e2f11a6ecf43f749e274ee04
                   </div>
                 )
               })
