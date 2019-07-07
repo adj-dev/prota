@@ -2,6 +2,7 @@ import React from 'react'
 import AddSprintButton from './AddSprintButton'
 import "./styles.css"
 import SprintListEmpty from './SprintListEmpty';
+// import moment from 'moment'
 
 
 
@@ -41,8 +42,8 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
               sprints.map((sprint, i) => {
                 return (
                   <div className="sprint-item" key={i} onClick={() => handleClick(sprint._id)}>
-                    <span>{sprint.name}</span>
-                    <span>{sprint.start_date}</span>
+                    <span>{sprint.name}</span> 
+                    <span>{sprint.start_date}</span> 
                     <span>{sprint.status}</span>
                   </div>
                 )
