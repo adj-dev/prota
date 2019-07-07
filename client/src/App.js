@@ -5,6 +5,7 @@ import Auth from "./components/Auth";
 import Project from "./pages/Project";
 import API from "./utils/API";
 import Profile from "./pages/Profile";
+import Landing from "./pages/Landing";
 // import ProjectTest from "./pages/ProjectTest";
 
 class App extends Component {
@@ -48,7 +49,7 @@ class App extends Component {
                 path="/project/:id"
                 component={Project}
               />
-              <Route exact path="/login" component={Auth} />
+              <Route exact path="/welcome" component={Landing} />
             </BrowserRouter>
           </div>
         ) : null}
