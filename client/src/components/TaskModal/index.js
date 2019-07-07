@@ -1,57 +1,109 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './style.css'
 
-/**
- * Takes three arguments: `handleClick`, `contributors`, and `currentUser`.
- * Maps through contributors and returns a list of all team members.
- * For the contributor that has same name as `currentUser`, it will read
- * "me" instead of `currentUser.display_name`.
- * @param {*} handleClick a reference to an event handler from a parent component
- * @param {*} contributors an array of usernames
- * @param {*} currentUser the current user object
- */
-const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleAssign }) => {
-  console.log('From the TaskModal', expandedTask);
+
+
+const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, context, handleDeleteTask }) => {
+  const [taskName, setTaskName] = useState(expandedTask ? expandedTask.name : '')
+  const [taskDescription, setTaskDescription] = useState(expandedTask ? expandedTask.description : '')
+  const [assignee, setAssignee] = useState(expandedTask ? expandedTask.assignee ? expandedTask.assignee : null : null)
+  const [avatar, setAvatar] = useState(expandedTask ? expandedTask.assignee ? expandedTask.assignee.avatar_url : null : null)
+
+  console.log('task modals expandedTask:', expandedTask);
+  console.log('context:', context)
+  console.log('assignee:', assignee);
+
+  const changeTaskName = e => {
+    setTaskName(e.target.value)
+  }
+
+  const changeTaskDescription = e => {
+    setTaskDescription(e.target.value)
+  }
+
+  const handleAssignee = member => {
+    if (assignee === member._id) {
+      setAssignee(null)
+      setAvatar(null)
+      return
+    }
+
+    setAssignee(member._id)
+    setAvatar(member.avatar_url)
+  }
 
   return (
-    <div className="task-modal-backdrop" onClick={e => handleModal(e)}>
+    <div className="modal-backdrop" onClick={e => handleModal(e)}>
       <div className="task-modal">
-        <div className="task-form">
+        <form onSubmit={e => {
+          e.preventDefault()
+
+          handleTask({
+            id: expandedTask ? expandedTask._id : null,
+            name: taskName,
+            description: taskDescription,
+            assignee: assignee
+          })
+        }}>
           <div className="task-input">
-            <h3>{expandedTask.name}</h3>
-            <p>{expandedTask.description}</p>
+            <label htmlFor="taskName">Name:</label>
+            <input type="text" name="taskName" value={taskName} onChange={e => changeTaskName(e)} />
+          </div>
+          <div className="task-input">
+            <label htmlFor="taskDescription">Description:</label>
+            <input type="text" name="taskDescription" value={taskDescription} onChange={e => changeTaskDescription(e)} />
+          </div>
+          <div className="assignee-container">
+            <div className="assignee-header">
+              <h3>ASSIGNED TO: </h3>
+              <img className="assignee-avatar" src={assignee ? avatar : require('../../assets/img/unassigned-avatar.png')} alt="" />
+            </div>
+            <div className="team-member-list">
+              {
+                team.map((member, i) => {
+                  return (
+                    <div className="team-member-item" key={i} onClick={() => handleAssignee(member)}>
+                      {
+                        currentUser.username === member.username ?
+                          <>
+                            <img className="avatar-sm" src={member.avatar_url} alt="" />
+                            <span className="team-member-name">Myself</span>
+                          </>
+                          :
+                          <>
+                            <img className="avatar-sm" src={member.avatar_url} alt="" />
+                            <span className="team-member-name">{member.display_name}</span>
+                          </>
+                      }
+                    </div>
+                  )
+                })
+              }
+            </div>
+          </div>
+          <div className="task-button-container">
+            <button
+              className="task-button"
+              type="submit"
+            >
+              {context === 'create' ? 'Add Task' : 'Save'}
+            </button>
             {
-              !expandedTask.assignee ?
-                <>
-                  <p>ASSIGN TO:</p>
-                  {
-                    team.map((member, i) => {
-                      return (
-                        <div className="team-member-item" key={i} onClick={() => handleAssign(member)}>
-                          {
-                            currentUser.username === member.username ?
-                              <>
-                                <img src={member.avatar_url} alt="" />
-                                <span>Me ({member.display_name})</span>
-                              </>
-                              :
-                              <>
-                                <img src={member.avatar_url} alt="" />
-                                <span>{member.display_name}</span>
-                              </>
-                          }
-                        </div>
-                      )
-                    })
-                  }
-                </>
+              context === 'edit' ?
+                <button
+                  className="task-btn-dlt"
+                  onClick={e => {
+                    e.preventDefault();
+                    handleDeleteTask(expandedTask._id);
+                  }}
+                >
+                  Delete
+                </button>
                 :
-                <>
-                  <p>ASSIGNED TO: <span>{expandedTask.assignee.toUpperCase()}</span></p>
-                </>
+                null
             }
           </div>
-        </div>
+        </form>
       </div>
     </div>
   )

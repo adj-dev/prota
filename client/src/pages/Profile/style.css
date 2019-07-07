@@ -2,26 +2,29 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   font-size: 1rem;
+  margin-top: 20px;
 }
 
 .profile-right-container {
   display: flex;
-  flex: 1;
+  flex: 1.2;
   justify-content: space-between;
-  align-items: center;
   flex-direction: column;
-  margin: 40px;
+  margin-left: 1vw;
+  margin-right: 2vw;
   /* border: 1px solid grey; */
 }
 
 .profile-left-container {
   display: flex;
-  flex: 1.5;
+  flex: 1;
   justify-content: space-between;
   flex-direction: column;
-  margin: 40px;
+  align-items: center;
+  margin-left: 2vw;
+  margin-right: 1vw;
   /* border: 1px solid grey; */
 }
 

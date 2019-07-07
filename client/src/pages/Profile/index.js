@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import ProjectList from "../../components/ProjectList";
-import ProfileCard from "../../components/ProfileCard";
 import MyTasks from "../../components/MyTasks";
 
 import API from "../../utils/API";
 import "./style.css";
 import CreateProject from "../../components/CreateProject";
+import NavBar from "../../components/NavBar";
 
 class Profile extends Component {
   state = {
@@ -20,6 +19,7 @@ class Profile extends Component {
       let user = await API.getUser().then(user => {
         console.log("User:", user);
         console.log("Projects: ", user.projects);
+        user.projects = user.projects.reverse();
         return user;
       });
       let tasks = await API.getTasksByUser(user._id).then(tasks => {
@@ -46,35 +46,38 @@ class Profile extends Component {
     return (
       <>
         {this.state.user ? (
-          <div className="profile-container">
-            {this.state.creatingProject ? (
-              <CreateProject
-                toggleCreateProjectDialog={this.toggleCreateProjectDialog}
-                user={this.state.user}
-              />
-            ) : null}
-            <div className="profile-left-container">
-              <MyTasks
-                projects={this.state.user.projects}
-                tasks={this.state.tasks}
-                username={this.state.user.username}
-              />
-            </div>
-            <div className="profile-right-container">
-              <ProfileCard
-                avatar_url={this.state.user.avatar_url}
-                display_name={this.state.user.display_name}
-              />
-              {this.state.user.projects ? (
-                <ProjectList
+          <>
+            <NavBar
+              avatarUrl={this.state.user.avatar_url}
+              displayName={this.state.user.display_name}
+            />
+            <div className="profile-container">
+              {this.state.creatingProject ? (
+                <CreateProject
                   toggleCreateProjectDialog={this.toggleCreateProjectDialog}
-                  projects={this.state.user.projects}
+                  user={this.state.user}
                 />
-              ) : (
-                ""
-              )}
+              ) : null}
+
+              <div className="profile-left-container">
+                {this.state.user.projects ? (
+                  <ProjectList
+                    toggleCreateProjectDialog={this.toggleCreateProjectDialog}
+                    projects={this.state.user.projects}
+                  />
+                ) : (
+                  ""
+                )}
+              </div>
+              <div className="profile-right-container">
+                <MyTasks
+                  projects={this.state.user.projects}
+                  tasks={this.state.tasks}
+                  username={this.state.user.username}
+                />
+              </div>
             </div>
-          </div>
+          </>
         ) : (
           ""
         )}

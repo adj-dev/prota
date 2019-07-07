@@ -14,10 +14,14 @@ export default {
     axios.get(`/api/project/${id}`).then(response => response.data),
   createProject: project =>
     axios.post("/api/projects", project).then(response => response.data),
+  addSprint: sprint =>
+    axios.post("/api/sprints", sprint).then(response => response.data),
   getTasksByUser: id =>
     axios.get(`/api/tasks/user/${id}`).then(response => response.data),
-  updateTask: (taskId, userId) =>
-    axios.put(`/api/tasks/${taskId}`, { assignee: userId }).then(response => response.data),
-  getUserByUsername: username =>
-    axios.get(`/api/user/${username}`).then(response => response.data)
+  updateTask: (taskId, task) =>
+    axios.put(`/api/tasks/${taskId}`, task).then(response => response.data),
+  createTask: task =>
+    axios.post('/api/tasks', task).then(response => response.data),
+  deleteTask: taskId =>
+    axios.delete(`/api/tasks/${taskId}`).then(response => response.data)
 };
