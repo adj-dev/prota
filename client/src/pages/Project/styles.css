@@ -23,7 +23,6 @@ button:focus {
 .project-container {
   padding: 15px;
   display: flex;
-  height: 100vh;
 }
 
 .col {
