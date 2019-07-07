@@ -212,7 +212,8 @@ export default class Project extends Component {
       newCurrentSprint[0].tasks.forEach(task => {
         if (task._id === updatedTask._id) {
           task.name = updatedTask.name
-          task.description = updatedTask.description // eventually add the assignee property here
+          task.description = updatedTask.description
+          task.assignee = updatedTask.assignee
         }
       });
 
