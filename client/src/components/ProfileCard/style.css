@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap");
 
 /* 
 colours for styling buttons:
@@ -19,17 +19,41 @@ closed:
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color:lightgrey;
+}
+
+.dropdown-container {
+  display: flex;
+  position: absolute;
+  padding-top: 30px;
+  top: 60px;
+  right: 2vw;
+  z-index: 10000;
+}
+
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
   border-radius: 5px;
-  padding: 20px;
-  box-shadow: lightblue;
-  padding-bottom: 20px;
+  padding: 10px;
+}
+
+.dropdown-item {
+  margin: 5px;
+}
+
+.username {
+  color: grey;
+  cursor: default;
+}
+
+.logout-button {
+  cursor: pointer;
 }
 
 .avatar {
-  width: 40vh;
-  border-radius: 38vh;
-  margin: 20px;
+  width: 60px;
+  border-radius: 5vh;
 }
 
 @media (max-width: 768px) {
@@ -51,22 +75,22 @@ closed:
 }
 
 #OPEN {
-  background-color: #3EE1A7;
-  font-family: 'PT Sans Narrow', sans-serif;
+  background-color: #3ee1a7;
+  font-family: "PT Sans Narrow", sans-serif;
   color: white;
   margin: 7px;
   border-radius: 8px;
 }
 #IN_PROGRESS {
-  background-color: #46A1FD;
-  font-family: 'PT Sans Narrow', sans-serif;
+  background-color: #46a1fd;
+  font-family: "PT Sans Narrow", sans-serif;
   color: white;
   margin: 7px;
   border-radius: 8px;
 }
 #DONE {
-  background-color: #FD9E3C;
-  font-family: 'PT Sans Narrow', sans-serif;
+  background-color: #fd9e3c;
+  font-family: "PT Sans Narrow", sans-serif;
   color: white;
   margin: 7px;
   border-radius: 8px;

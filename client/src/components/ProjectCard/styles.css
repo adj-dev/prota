@@ -1,22 +1,30 @@
 @import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
-/* 
-font-family: 'Overpass', sans-serif;
 
-font-family: 'PT Sans Narrow', sans-serif;
-
-font-family: 'Rajdhani', sans-serif;
-*/
 
 .projectcard-wrapper {
   font-family: 'Rajdhani', sans-serif;
   line-height: 1.8rem;
 }
 
-.details-container{
-  /* font-family: 'PT Sans Narrow', sans-serif; */
-  font-weight: 200;
-  
+.projectcard-container {
+  padding: 20px 0;
+  border-bottom: 1px solid #d3d3d3;
 }
+
+.details-container{
+  font-weight: 200;
+}
+
+#project-title {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+#project-title > h1 {
+  font-size: 4em;
+}
+
 .project-card {
   display: flex;
   flex-direction: column;

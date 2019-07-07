@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap");
 
 /* 
 font-family: 'Overpass', sans-serif;
@@ -8,7 +8,6 @@ font-family: 'PT Sans Narrow', sans-serif;
 font-family: 'Rajdhani', sans-serif;
 */
 
-
 .auth-container {
   display: flex;
   flex-direction: column;
@@ -17,20 +16,22 @@ font-family: 'Rajdhani', sans-serif;
 }
 
 .github-button {
-  background-color:slategrey;
+  background-color: slategrey;
   color: white;
   border-radius: 5px;
-  padding: 20px;
-  margin: 60px;
-  opacity: 0.6;
+  padding: 10px 20px;
+  margin: 20px;
+  opacity: 0.9;
   transition: 0.3s;
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
-  font-family: 'Rajdhani', sans-serif;
+  /* font-family: "Rajdhani", sans-serif; */
+  font-weight: bold;
 }
- .github-button:hover {opacity: .75}
- 
+.github-button:hover {
+  opacity: 1;
+}
 
 a {
   text-decoration-line: none;

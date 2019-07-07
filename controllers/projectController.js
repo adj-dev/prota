@@ -9,7 +9,7 @@ assignProjectToUser = (userId, projectId) => { //puts a project into a user's pr
                 return db.User.updateOne({_id: userId}, result[0], {new: true}) //update returns the new user with new: true
                     .then(result => /*return*/ "Success");
             } else {
-                return "User already has this project.";
+                throw "User already has this project.";
             }
         }).catch(err => err);
 }
@@ -31,7 +31,7 @@ assignUserToProject = (params, userType) => { //puts a user into a project's own
     return db.Project.find({_id: params.projectId})
         .then(result => { //result is an array of projects, we just want the first one
             if(result[0].owners.indexOf(params.userId) != -1 || result[0].contributors.indexOf(params.userId) != -1){
-                return "User is already a part of the project."
+                throw "User is already a part of the project."
             }
             if(userType === "owner"){ //if user is being added as owner
                 result[0].owners.push(params.userId); //push to owners
@@ -49,7 +49,7 @@ removeUserFromProject = (params, userType) => { //removes a user from a project'
     return db.Project.find({_id: params.projectId})
         .then(result => { //result is an array of projects, we just want the first one
             if(userType === "owner" && result[0].owners.length == 1){ //if the user being removed is an owner, AND there is more than one owner
-                return "Removing this owner would create an ownerless project. Prota does not allow for ownerless projects.";
+                throw "Prota does not allow for ownerless projects.";
             } else if(userType === "owner"){
                 result[0].owners = result[0].owners.filter( //returns a filtered array where
                     id => id !== params.userId //the username of the User is not the User being removed
@@ -75,7 +75,7 @@ module.exports = {
 
     getOneById: function(projectId){ //get project by projectId
         return db.Project.findById({_id: projectId})
-            .populate([{path: "sprints", populate: {path: "tasks"}}, {path: "owners"}, {path: "contributors"}])
+            .populate([{path: "sprints", populate: {path: "tasks", populate: {path: "assignee"}}}, {path: "owners"}, {path: "contributors"}])
             .then(result => result)
             .catch(err => err);
     },
@@ -120,13 +120,7 @@ module.exports = {
         .then(result1 => {
             if(result1 == "Success") {
                 return assignProjectToUser(parameters.userId, parameters.projectId)
-                .then(result2 => {
-                    if(result1 == "Success"){
-                        return result2;
-                    } else {
-                        return result1;
-                    }
-                });        
+                .then(result2 => result2);        
             } else {
                 return result1;
             }
@@ -139,13 +133,7 @@ module.exports = {
         .then(result1 => {
             if(result1 == "Success") {
                 return removeProjectFromUser(parameters.userId, parameters.projectId)
-                .then(result2 => {
-                    if(result1 == "Success"){
-                        return result2;
-                    } else {
-                        return result1;
-                    }
-            });
+                .then(result2 => result2);
             } else {
                 return result1;
             }

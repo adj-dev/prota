@@ -9,10 +9,16 @@ font-family: 'Rajdhani', sans-serif;
 
 .sprintlist-wrapper {
   font-family: 'Rajdhani', sans-serif;
-  
+}
+
+.sprintlist-header {
+  display: flex;
+  align-items: center
 }
 
 .sprint-item{
+  display: flex;
+  flex-direction: column;
   background-color: slategray;
   border-radius: 8px;
   font-size: 1.2rem;
@@ -20,8 +26,19 @@ font-family: 'Rajdhani', sans-serif;
   margin: 8px;
   margin-left: -1px;
   padding: 20px;
+}
 
+.sprint-header {
+  display: flex;
+  justify-content: space-between;
+}
 
+.sprint-name {
+  font-weight: bolder;
+}
+
+.sprint-date {
+  font-style: italic
 }
 
 #open {

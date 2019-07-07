@@ -22,7 +22,7 @@ module.exports = {
     return db.User.find({ username: regex })
       .limit(5)
       .then(result => result)
-      .catch(er => err);
+      .catch(err => err);
   },
 
     invite: function(userName) { //Create a new user if does not exist
@@ -31,7 +31,7 @@ module.exports = {
             .then(dbUser => { //returns an array of user objects
                 if(dbUser.length > 0){
                     //console.log(dbUser[0].username+" exists");
-                    return "User Exists";
+                    throw "User Exists";
                 } else {
                     //console.log("User does not exist");
                     return this.create({username: userName});

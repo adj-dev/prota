@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MyTaskStatusPicker from "./MyTaskStatusPicker";
 import MyProjectPicker from "./MyProjectPicker";
 import MyTaskList from "./MyTasksList";
+import { ALL, OPEN } from "../../helpers";
 import "./style.css";
 
 export default class MyTasks extends Component {
@@ -10,17 +11,17 @@ export default class MyTasks extends Component {
   username = this.props.username;
 
   state = {
-    selectedProject: "ALL",
-    selectedStatus: "OPEN",
+    selectedProject: ALL,
+    selectedStatus: OPEN,
     selectedTasks: []
   };
 
   componentDidMount() {
     //if we recieved projcts and task props, set up project and task state
     if (this.projects[0] && this.tasks) {
-      if (this.projects[0]._id !== "ALL") {
+      if (this.projects[0]._id !== ALL) {
         //add an "all" projects button to the project selector
-        this.projects.unshift({ _id: "ALL", name: "all" });
+        this.projects.unshift({ _id: ALL, name: "all" });
       }
       //if we have a selected status, get selected tasks
       if (this.state.selectedStatus) {
@@ -54,8 +55,11 @@ export default class MyTasks extends Component {
 
   getSelectedTasks = (status, projectId) => {
     let selectedTasks = [];
-    if (projectId === "ALL") {
+    if (projectId === ALL) {
       selectedTasks = this.tasks.filter(task => {
+        if (status === ALL) {
+          return true;
+        }
         if (task.status === status) {
           return true;
         }
@@ -67,6 +71,9 @@ export default class MyTasks extends Component {
       );
 
       selectedTasks = projectTasks.filter(task => {
+        if (status === ALL) {
+          return true;
+        }
         if (task.status === status) {
           return true;
         }
@@ -79,13 +86,16 @@ export default class MyTasks extends Component {
   render() {
     return (
       <div className="my-tasks-container">
-        <div>My Tasks</div>
+        <h1>My Tasks</h1>
         <MyProjectPicker
           handleSelectProject={this.selectProject}
           projects={this.projects}
         />
         <MyTaskStatusPicker handleSelectStatus={this.selectStatus} />
-        <MyTaskList tasks={this.state.selectedTasks} />
+        <MyTaskList
+          tasks={this.state.selectedTasks}
+          status={this.state.selectedStatus}
+        />
       </div>
     );
   }

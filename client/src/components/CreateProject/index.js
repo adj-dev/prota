@@ -117,6 +117,16 @@ export default class CreateProject extends Component {
       return;
     }
 
+    if (this.state.name.length > 40) {
+      this.setState({
+        errorMessage: "Project names must be under 40 characters."
+      });
+      setTimeout(() => {
+        this.setState({ errorMessage: null });
+      }, 3000);
+      return;
+    }
+
     let newProject = {
       name: this.state.name,
       created_by: this.state.created_by,
