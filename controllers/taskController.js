@@ -55,7 +55,7 @@ module.exports = {
             .then(results => { //after creating a task
                 assignTaskToSprint(results._id, task.sprint_ref); //assign task to sprint
                 return results; //returns the task created
-            })
+            }).populate({path: "assignee"})
             .catch(err => err);
     },
     
@@ -66,7 +66,7 @@ module.exports = {
                 taskId, 
                 task,
                 {new: true}
-            )
+            ).populate({path: "assignee"})
             .then(results => results)
             .catch(err => err);
     },
