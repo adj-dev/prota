@@ -15,7 +15,7 @@ import API from "../../utils/API";
 import { OPEN, IN_PROGRESS, ALL } from "../../helpers";
 
 // CSS
-import "./styles.css";
+import "./style.css";
 
 
 // -------------------------------------------
@@ -283,29 +283,35 @@ export default class Project extends Component {
                 displayName={this.state.user.display_name}
               />
               <div className="project-container">
-                <div className="col">
-                  <ProjectCard
-                    project={this.state.project}
-                    team={this.state.team}
-                  />
-                  <SprintList
-                    sprints={this.state.sprints}
-                    selectSprint={sprintId => this.selectSprint(sprintId)}
-                    openAddSprintModal={() => this.openAddSprintModal()}
-                  />
+                <div className="row">
+                  <div className="col-100">
+                    <ProjectCard
+                      project={this.state.project}
+                      team={this.state.team}
+                    />
+                  </div>
                 </div>
-                <div className="col">
-                  {
-                    this.state.currentSprint.length ?
-                      <TaskListSelector
-                        tasks={this.state.currentSprint[0].tasks}
-                        selectedTasks={this.state.selectedTasks}
-                        trackStatus={status => this.trackStatus(status)}
-                        handleClick={(task) => this.openTaskModal(task)}
-                      />
-                      :
-                      <div></div>
-                  }
+                <div className="row">
+                  <div className="col-50">
+                    <SprintList
+                      sprints={this.state.sprints}
+                      selectSprint={sprintId => this.selectSprint(sprintId)}
+                      openAddSprintModal={() => this.openAddSprintModal()}
+                    />
+                  </div>
+                  <div className="col-50">
+                    {
+                      this.state.currentSprint.length ?
+                        <TaskListSelector
+                          tasks={this.state.currentSprint[0].tasks}
+                          selectedTasks={this.state.selectedTasks}
+                          trackStatus={status => this.trackStatus(status)}
+                          handleClick={(task) => this.openTaskModal(task)}
+                        />
+                        :
+                        null
+                    }
+                  </div>
                 </div>
               </div>
             </>
