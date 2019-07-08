@@ -9,6 +9,9 @@ font-family: 'Rajdhani', sans-serif;
 
 .sprintlist-wrapper {
   font-family: 'Rajdhani', sans-serif;
+  max-height: 600px;
+  overflow: scroll;
+  scrollbar-width: none;
 }
 
 .sprintlist-header {
@@ -87,6 +90,7 @@ img.options {
   margin-left: -1px;
   border-radius: 8px;
 }
+
 #in-progress {
   background-color: #46A1FD;
   font-family: 'PT Sans Narrow', sans-serif;
