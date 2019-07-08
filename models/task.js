@@ -8,7 +8,7 @@ var TaskSchema = new Schema({
     },
 	description: {
         type: String,
-        required: true
+        default: null
     },
 	created_at: {
         type: Date,

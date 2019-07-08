@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router';
 import { BrowserRouter, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
-import Auth from "./components/Auth";
 import Project from "./pages/Project";
 import API from "./utils/API";
 import Profile from "./pages/Profile";
@@ -50,6 +50,7 @@ class App extends Component {
                 component={Project}
               />
               <Route exact path="/welcome" component={Landing} />
+              {/* <Redirect to="/" /> */}
             </BrowserRouter>
           </div>
         ) : null}
