@@ -51,9 +51,9 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal
                     onClick={() => handleClick(sprint._id)}
                   >
                     <div className="expand-btn">
-                      <div className="options-wrapper">
+                      <div className="options-wrapper-og">
                         <img
-                          className="options"
+                          className="options-icon"
                           src={require('../../assets/img/options.png')}
                           alt=""
                           onClick={() => openSprintModal(sprint)}

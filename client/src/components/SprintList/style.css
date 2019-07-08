@@ -52,15 +52,11 @@ font-family: 'Rajdhani', sans-serif;
   flex: 1;
 }
 
-/* .options-wrapper {
-  padding: 10px 5px;
-} */
-
 .expand-btn {
   position: relative;
 }
 
-img.options {
+img.options-icon {
   visibility: hidden;
   position: absolute;
   top: -10px;
@@ -70,7 +66,7 @@ img.options {
   padding: 8px 2px;
 }
 
-.sprint-item:hover img.options {
+.sprint-item:hover img.options-icon {
   visibility: visible;
 }
 
