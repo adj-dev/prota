@@ -51,19 +51,22 @@ export default function Landing() {
       </section>
       <section className="splash-section" id="about">
         <div className="about-content-container">
-          <div className="splash-title">What is Prota?</div>
+          <div className="splash-title">
+            <h1>What is Prota?</h1>
+            </div>
+        
           <div className="about-info-container">
-            Prota is a tool for independent development teams to track progress
+          Prota is a tool for independent development teams to track progress
             and productivity.
-            <br />
-            <br />
             Designed for simplicity, Prota helps developers stay in sync, hit
-            deadlines, and reach goals with minimal overhead. Work smarter, not harder!
+            deadlines, and reach goals with minimal overhead. 
+            <div>Work smarter, not harder!</div>
+            
           </div>
         </div>
 
         <div className="team-container">
-          <div className="team-title">Made with ❤️ by</div>
+          <div className="team-title">Made with ❤️ by the Prota Team</div>
           <div className="team-cards-container">
             <TeamCard
               name="Andrew Johnson"

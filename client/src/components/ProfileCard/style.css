@@ -5,7 +5,7 @@ colours for styling buttons:
 all:
 `background-color: #D593E8;`
 open:
-`background-color: #3EE1A7;`
+`background-color: #36C8A3;`
 inprog:
 `background-color: #46A1FD;`
 done:
@@ -75,21 +75,21 @@ closed:
 }
 
 #OPEN {
-  background-color: #3ee1a7;
+  background-color: #36C8A3;
   font-family: "PT Sans Narrow", sans-serif;
   color: white;
   margin: 7px;
   border-radius: 8px;
 }
 #IN_PROGRESS {
-  background-color: #46a1fd;
+  background-color: #46A1FD;
   font-family: "PT Sans Narrow", sans-serif;
   color: white;
   margin: 7px;
   border-radius: 8px;
 }
 #DONE {
-  background-color: #fd9e3c;
+  background-color: #FD9E3C;
   font-family: "PT Sans Narrow", sans-serif;
   color: white;
   margin: 7px;
