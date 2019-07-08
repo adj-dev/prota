@@ -1,6 +1,6 @@
 .sm-avatar {
   width: 30px;
-  border-radius: 0.25em;
+  border-radius: 100%;
 }
 
 .task-container {
