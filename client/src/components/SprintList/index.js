@@ -45,9 +45,6 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal
             sprints.length ?
               sprints.map((sprint, i) => {
                 return (
-<<<<<<< HEAD
-                  <div className="sprint-item" key={i} onClick={() => handleClick(sprint._id)}>
-=======
                   <div className={`sprint-item ${currentSprintId === sprint._id ? 'active' : ''}`}
                     key={i}
                     onClick={() => handleClick(sprint._id)}
@@ -60,7 +57,6 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal
                         onClick={() => openSprintModal(sprint)}
                       />
                     </div>
->>>>>>> 27bf5b9250b5ddba3d177a4190b2941ed0467706
                     <div className="sprint-header">
                       <span className="sprint-name">{sprint.name}</span>
                       <span className="sprint-status">{sprint.status}</span>
