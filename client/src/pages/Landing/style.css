@@ -26,6 +26,38 @@ font-family: 'Rajdhani', sans-serif;
   font-family: 'Rajdhani', sans-serif;
 }
 
+.welcome-button-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 2;
+  width: 200px;
+  left: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.welcome-button-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: right;
+  position: absolute;
+  z-index: 2;
+  right: 5.5vw;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.text-black{
+  color: black;
+}
+
 .about-button {
   display: flex;
   flex-direction: column;
@@ -105,7 +137,6 @@ font-family: 'Rajdhani', sans-serif;
 }
 
 .about-info-container > div {
-  padding-top: 60px;
   font-size: 2.1rem;
 }
 
@@ -115,8 +146,6 @@ font-family: 'Rajdhani', sans-serif;
   justify-content: center;
   align-items: center;
   font-family: 'Rajdhani', sans-serif;
-  
-
 }
 
 .splash-title {
@@ -127,7 +156,7 @@ font-family: 'Rajdhani', sans-serif;
   font-size: 3rem;
   height: 150px;
   font-size: 4em;
-  padding-top: 40px;
+  padding: 40px auto;
 }
 
 .team-container {
@@ -141,7 +170,7 @@ font-family: 'Rajdhani', sans-serif;
 
 .team-cards-container {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: center;
   margin: 20px 0;
@@ -149,14 +178,22 @@ font-family: 'Rajdhani', sans-serif;
 }
 
 .faq-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
   height: max-content;
-  padding: 80px 30px;
+  padding: 80px 30px 0px 30px;
   background: white;
 }
+
 .faq-continer{
   display: flex;
   flex-direction: column;
-  
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .faq-info {
@@ -186,7 +223,6 @@ font-family: 'Rajdhani', sans-serif;
   font-size: 1.5em;
   color: #708090;
 }
-
 
 .faq-image {
   width: 40%;
