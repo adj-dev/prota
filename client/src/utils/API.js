@@ -16,6 +16,10 @@ export default {
     axios.post("/api/projects", project).then(response => response.data),
   addSprint: sprint =>
     axios.post("/api/sprints", sprint).then(response => response.data),
+  updateSprint: (sprintId, sprint) =>
+    axios.put(`/api/sprints/${sprintId}`, sprint).then(response => response.data),
+  deleteSprint: sprintId =>
+    axios.delete(`/api/sprints/${sprintId}`).then(response => response.data),
   getTasksByUser: id =>
     axios.get(`/api/tasks/user/${id}`).then(response => response.data),
   updateTask: (taskId, task) =>

@@ -14,13 +14,7 @@ class App extends Component {
   };
 
   componentWillMount() {
-    // console.log("mounting");
-    // console.log("Logged In?", this.state.isLoggedIn);
     this.getLoginStatus();
-  }
-  componentDidUpdate() {
-    // console.log("Component mounted! State:");
-    // console.log(this.state);
   }
 
   getLoginStatus = async () => {
