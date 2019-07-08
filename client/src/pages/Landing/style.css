@@ -1,8 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
+/* 
+font-family: 'Overpass', sans-serif;
+
+font-family: 'PT Sans Narrow', sans-serif;
+
+font-family: 'Rajdhani', sans-serif;
+*/
+
 .landing-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .welcome-message {
@@ -13,6 +23,7 @@
   flex-wrap: wrap;
   font-size: 5.5rem;
   position: relative;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .about-button {
@@ -96,6 +107,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'PT Sans Narrow', sans-serif;
 }
 
 .splash-title {
@@ -112,6 +124,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .team-cards-container {
@@ -120,4 +133,51 @@
   align-items: center;
   justify-content: center;
   margin: 20px 0;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.faq-section {
+  height: 100vh;
+}
+.faq-continer{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.faq-info {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  justify-content: space-around;
+  margin: 30px;
+  padding: 20px;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.faq-info-r {
+  display: flex;
+  flex-flow: row wrap-reverse;
+  justify-content: space-between;
+  justify-content: space-around;
+  margin: 30px;
+  padding: 20px;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.faq-text {
+  word-wrap: normal;
+  width: 56%;
+  padding: 2%;
+  font-size: 1.5em;
+}
+
+
+.faq-image {
+  width: 40%;
+}
+
+.faq-image img {
+  width: 100%;
+  border: 1px solid black;
 }

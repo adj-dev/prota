@@ -12,7 +12,7 @@ Repository: https://github.com/adj-dev/final-project
 ## Project Team:
 * Front End Development Team:
     * [Andrew Johnson](https://github.com/adj-dev) - Lead React Developer
-    * [John Blake](https://github.com/johniblake) - Lead Engineer Developer
+    * [John Blake](https://github.com/johniblake) - Lead Engineer
     * [Nhu Richie](https://github.com/nhurichie) - Project Manger/Styles Designer
 * Back End Development Team:
     * [Adam Schubert](https://github.com/leavinit) - Route/Security Developer
