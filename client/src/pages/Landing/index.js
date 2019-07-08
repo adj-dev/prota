@@ -61,64 +61,28 @@ export default function Landing() {
           transitionEnter={false}
           transitionLeave={false}
         >
-          <div key={1} className="about-button-left" onClick={scrollToAbout}>
+          <div key={1} className="about-button" onClick={scrollToAbout}>
             More Info
-            <FontAwesomeIcon icon={faArrowDown} />
-          </div>
-          <div key={2} className="faq-button-right" onClick={scrollToFAQ}>
-            FAQ
             <FontAwesomeIcon icon={faArrowDown} />
           </div>
         </ReactCSSTransitionGroup>
       </section>
       <section className="splash-section" id="about">
-        <div className="welcome-button-center" onClick={scrollToTop}>
-          Back to Top
-          <FontAwesomeIcon icon={faArrowUp} />
-        </div>
         <div className="about-content-container">
-          <div className="splash-title">What is Prota?</div>
+          <div className="splash-title">
+            <h1>What is Prota?</h1>
+          </div>
           <div className="about-info-container">
-            <div>
-              Prota is a tool for independent development teams to track progress
-              and productivity.
-            </div>
-            <div>
-              Designed for simplicity, Prota helps developers stay in sync, hit
-              deadlines, and reach goals with minimal overhead. Work smarter, not harder!
-            </div>
+            Prota is a tool for independent development teams to track progress
+            and productivity.
+            Designed for simplicity, Prota helps developers stay in sync, hit
+            deadlines, and reach goals with minimal overhead.
+            <div>Work smarter, not harder!</div>
           </div>
         </div>
-
-        <div className="team-container">
-          <div className="team-title">Made with <span role="img" aria-label="love">❤️</span> by</div>
-          <div className="team-cards-container">
-            <TeamCard
-              name="Andrew Johnson"
-              imageUrl="https://avatars0.githubusercontent.com/u/46357543"
-              githubUrl="https://github.com/adj-dev"
-            />
-            <TeamCard
-              name="Nhu Richie"
-              imageUrl="https://avatars0.githubusercontent.com/u/49073152"
-              githubUrl="https://github.com/nhurichie"
-            />
-            <TeamCard
-              name="John Blake"
-              imageUrl="https://avatars0.githubusercontent.com/u/14286088"
-              githubUrl="https://github.com/johniblake"
-            />
-            <TeamCard
-              name="Adam Schubert"
-              imageUrl="https://avatars3.githubusercontent.com/u/149580"
-              githubUrl="https://github.com/leavinit"
-            />
-            <TeamCard
-              name="Kieran Anthony"
-              imageUrl="https://avatars0.githubusercontent.com/u/12010449"
-              githubUrl="https://github.com/zekkxx"
-            />
-          </div>
+        <div className="welcome-button-center" onClick={scrollToFAQ}>
+            FAQ
+            <FontAwesomeIcon icon={faArrowDown} />
         </div>
       </section>
 
@@ -159,10 +123,40 @@ export default function Landing() {
               </div>
             </div>
           </div>
-          <div className="welcome-button-center text-black" onClick={scrollToTop}>
-            Back to Top
-            <FontAwesomeIcon icon={faArrowUp} />
+          <div className="team-container">
+          <div className="team-title">Made with <span role="img" aria-label="love">❤️</span> by the Prota Team</div>
+          <div className="team-cards-container">
+            <TeamCard
+              name="Andrew Johnson"
+              imageUrl="https://avatars0.githubusercontent.com/u/46357543"
+              githubUrl="https://github.com/adj-dev"
+            />
+            <TeamCard
+              name="Nhu Richie"
+              imageUrl="https://avatars0.githubusercontent.com/u/49073152"
+              githubUrl="https://github.com/nhurichie"
+            />
+            <TeamCard
+              name="John Blake"
+              imageUrl="https://avatars0.githubusercontent.com/u/14286088"
+              githubUrl="https://github.com/johniblake"
+            />
+            <TeamCard
+              name="Adam Schubert"
+              imageUrl="https://avatars3.githubusercontent.com/u/149580"
+              githubUrl="https://github.com/leavinit"
+            />
+            <TeamCard
+              name="Kieran Anthony"
+              imageUrl="https://avatars0.githubusercontent.com/u/12010449"
+              githubUrl="https://github.com/zekkxx"
+            />
+            <div className="welcome-button-right text-black" onClick={scrollToTop}>
+              Back to Top &nbsp;
+              <FontAwesomeIcon icon={faArrowUp} />
+            </div>
           </div>
+        </div>
         </section>
     </div>
   );

@@ -32,9 +32,22 @@ font-family: 'Rajdhani', sans-serif;
   justify-content: space-around;
   align-items: center;
   z-index: 2;
-  bottom: 20px;
   width: 200px;
   left: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.welcome-button-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: right;
+  position: absolute;
+  z-index: 2;
+  right: 5.5vw;
   padding-top: 10px;
   padding-bottom: 10px;
   font-size: 1.5rem;
@@ -45,7 +58,7 @@ font-family: 'Rajdhani', sans-serif;
   color: black;
 }
 
-.about-button-left {
+.about-button {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -55,23 +68,7 @@ font-family: 'Rajdhani', sans-serif;
   bottom: 20px;
   width: 200px;
   left: 50%;
-  margin-left: -200px;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.faq-button-right {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  position: absolute;
-  z-index: 2;
-  bottom: 20px;
-  width: 200px;
-  left: 50%;
-  margin-left: 0;
+  margin-left: -100px;
   color: white;
   font-size: 1.5rem;
   cursor: pointer;
@@ -102,7 +99,7 @@ font-family: 'Rajdhani', sans-serif;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(63, 74, 85);
+  background-color: #708090;
   color: white;
   height: 100vh;
 }
@@ -129,12 +126,18 @@ font-family: 'Rajdhani', sans-serif;
 .about-info-container {
   display: flex;
   width: inherit;
-  padding: 0 20vw;
-  font-size: 1.5rem;
+  padding: 0 30vw;
+  font-size: 1.7rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 100px 20vw;
+  line-height: 1.6em;
+}
+
+.about-info-container > div {
+  font-size: 2.1rem;
 }
 
 .about-content-container {
@@ -142,7 +145,7 @@ font-family: 'Rajdhani', sans-serif;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'PT Sans Narrow', sans-serif;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .splash-title {
@@ -152,6 +155,8 @@ font-family: 'Rajdhani', sans-serif;
   align-items: center;
   font-size: 3rem;
   height: 150px;
+  font-size: 4em;
+  padding: 40px auto;
 }
 
 .team-container {
@@ -160,11 +165,12 @@ font-family: 'Rajdhani', sans-serif;
   align-items: center;
   justify-content: center;
   font-family: 'Rajdhani', sans-serif;
+  padding: 30px;
 }
 
 .team-cards-container {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: center;
   margin: 20px 0;
@@ -172,13 +178,16 @@ font-family: 'Rajdhani', sans-serif;
 }
 
 .faq-section {
-  height: 175vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  height: max-content;
+  padding: 80px 30px 0px 30px;
+  background: white;
 }
+
 .faq-continer{
   display: flex;
   flex-direction: column;
@@ -192,8 +201,8 @@ font-family: 'Rajdhani', sans-serif;
   flex-flow: row wrap;
   justify-content: space-between;
   justify-content: space-around;
-  margin: 30px;
-  padding: 20px;
+  /* margin: 20px; */
+  padding: 100px 20px;
   font-family: 'Rajdhani', sans-serif;
 }
 
@@ -202,8 +211,8 @@ font-family: 'Rajdhani', sans-serif;
   flex-flow: row wrap-reverse;
   justify-content: space-between;
   justify-content: space-around;
-  margin: 30px;
-  padding: 20px;
+  /* margin: 20px; */
+  padding: 100px 20px;
   font-family: 'Rajdhani', sans-serif;
 }
 
@@ -212,6 +221,7 @@ font-family: 'Rajdhani', sans-serif;
   width: 56%;
   padding: 2%;
   font-size: 1.5em;
+  color: #708090;
 }
 
 .faq-image {
@@ -220,5 +230,5 @@ font-family: 'Rajdhani', sans-serif;
 
 .faq-image img {
   width: 100%;
-  border: 1px solid black;
+  /* border: 2px solid #708090; */
 }
