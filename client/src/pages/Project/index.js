@@ -7,6 +7,7 @@ import TaskListSelector from "../../components/TaskListSelector";
 import TaskModal from "../../components/TaskModal";
 import AddSprintModal from "../../components/AddSprintModal";
 import NavBar from "../../components/NavBar";
+import SprintModal from "../../components/SprintModal";
 
 // API
 import API from "../../utils/API";
@@ -16,7 +17,6 @@ import { OPEN, ALL } from "../../helpers";
 
 // CSS
 import "./style.css";
-import SprintModal from "../../components/SprintModal";
 
 
 // -------------------------------------------
@@ -151,9 +151,20 @@ export default class Project extends Component {
       let updatedSprints = [...prevState.sprints];
       updatedSprints.push(newSprint);
 
+      // Update currentSprint for auto-selection feature
+      let currentSprint = updatedSprints.filter(sprint => sprint._id === newSprint._id);
+
+      let selectedTasks = currentSprint[0].tasks.filter(task =>
+        this.state.trackedStatus === ALL ?
+          task :
+          task.status === this.state.trackedStatus
+      );
+
       return {
         project: updatedProject,
         sprints: updatedSprints,
+        currentSprint: currentSprint,
+        selectedTasks: selectedTasks,
         addingSprint: false
       };
     });

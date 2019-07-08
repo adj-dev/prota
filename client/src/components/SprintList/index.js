@@ -3,6 +3,7 @@ import moment from 'moment';
 
 import AddSprintButton from './AddSprintButton'
 import SprintListEmpty from './SprintListEmpty';
+import * as STATUS from '../../helpers';
 // import moment from 'moment'
 
 import "./style.css"
@@ -50,19 +51,35 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal
                     onClick={() => handleClick(sprint._id)}
                   >
                     <div className="expand-btn">
-                      <img
-                        className="options"
-                        src={require('../../assets/img/options.png')}
-                        alt=""
-                        onClick={() => openSprintModal(sprint)}
-                      />
+                      <div className="options-wrapper">
+                        <img
+                          className="options"
+                          src={require('../../assets/img/options.png')}
+                          alt=""
+                          onClick={() => openSprintModal(sprint)}
+                        />
+                      </div>
+
                     </div>
                     <div className="sprint-header">
                       <span className="sprint-name">{sprint.name}</span>
-                      <span className="sprint-status">{sprint.status}</span>
                     </div>
                     <div className="sprint-body">
                       <span className="sprint-date">start date: {moment(sprint.start_date).format('MMM D, YYYY')}</span>
+                      <span className="sprint-status">
+                        {
+                          sprint.status === STATUS.OPEN ?
+                            'open'
+                            :
+                            sprint.status === STATUS.IN_PROGRESS ?
+                              'in progress'
+                              :
+                              sprint.status === STATUS.DONE ?
+                                'done'
+                                :
+                                null
+                        }
+                      </span>
                     </div>
                   </div>
                 )
