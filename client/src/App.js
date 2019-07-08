@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router';
 import { BrowserRouter, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Project from "./pages/Project";
 import API from "./utils/API";
 import Profile from "./pages/Profile";
 import Landing from "./pages/Landing";
-// import ProjectTest from "./pages/ProjectTest";
 
 class App extends Component {
   state = {
@@ -14,13 +12,7 @@ class App extends Component {
   };
 
   componentWillMount() {
-    // console.log("mounting");
-    // console.log("Logged In?", this.state.isLoggedIn);
     this.getLoginStatus();
-  }
-  componentDidUpdate() {
-    // console.log("Component mounted! State:");
-    // console.log(this.state);
   }
 
   getLoginStatus = async () => {
@@ -50,7 +42,6 @@ class App extends Component {
                 component={Project}
               />
               <Route exact path="/welcome" component={Landing} />
-              {/* <Redirect to="/" /> */}
             </BrowserRouter>
           </div>
         ) : null}

@@ -17,7 +17,7 @@ Button for creating/adding a task
   text-align: center;
   width: 20px;
   height: 20px;
-  background: #3EE1A7;
+  background: #36C8A3;
   color: white;
   border-radius: 100%;
   cursor: pointer;
@@ -49,7 +49,7 @@ button {
 }
 
 .active#open-tasks {
-  /* background-color: #3EE1A7; */
+  /* background-color: #36C8A3; */
   background-color: #36c8a3;
 }
 

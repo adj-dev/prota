@@ -19,13 +19,18 @@ font-family: 'Rajdhani', sans-serif;
 .sprint-item{
   display: flex;
   flex-direction: column;
-  background-color: slategray;
+  background-color: #c5ced8;
   border-radius: 8px;
   font-size: 1.2rem;
-  color: white;
   margin: 8px;
   margin-left: -1px;
   padding: 20px;
+}
+
+.sprint-item.active {
+  background-color: #708090;
+  color: white;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
 }
 
 .sprint-header {
@@ -35,14 +40,46 @@ font-family: 'Rajdhani', sans-serif;
 
 .sprint-name {
   font-weight: bolder;
+  max-width: 80%;
+  overflow-wrap: break-word;
 }
 
 .sprint-date {
-  font-style: italic
+  font-style: italic;
+  flex: 1;
 }
 
+/* .options-wrapper {
+  padding: 10px 5px;
+} */
+
+.expand-btn {
+  position: relative;
+}
+
+img.options {
+  visibility: hidden;
+  position: absolute;
+  top: -10px;
+  right: 0;
+  width: 20px;
+  cursor: pointer;
+  padding: 8px 2px;
+}
+
+.sprint-item:hover img.options {
+  visibility: visible;
+}
+
+.sprint-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
 #open {
-  background-color: #3EE1A7;
+  background-color: #36C8A3;
   font-family: 'PT Sans Narrow', sans-serif;
   font-size: 1.25rem;
   color: white;
