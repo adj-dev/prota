@@ -106,6 +106,7 @@ export default class Project extends Component {
   // Toggles the visibility of a modal when user clicks backdrop
   toggleModalVisibility = e => {
     let targetElement = e.target;
+    console.log(targetElement);
     if (targetElement.closest(".task-modal") || targetElement.closest(".addsprint-modal") || targetElement.closest(".sprint-modal")) return;
     this.setState({ viewingTask: false, addingSprint: false, viewingSprint: false }); // eventually merge addingSprint with viewingSprint (similar functionality to TaskModal)
   };
@@ -131,8 +132,11 @@ export default class Project extends Component {
 
   // Fires when a user clicks on a task in the TaskList component
   // Dynamically sets the context to 'edit' or 'create' depending where the event came from
-  openTaskModal = task => {
-    this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create' })
+  openTaskModal = (e, task) => {
+    // Won't open the modal if user is selecting a status
+    if (!e.target.closest('.selected-status')) {
+      this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create' })
+    }
   }
 
   // Adds a new sprint to the database and updates state 
@@ -301,6 +305,42 @@ export default class Project extends Component {
     })
   }
 
+  handleChangeStatus = async (taskId, status) => {
+    // console.log(taskId, status)
+    let updatedTask = await API.updateTask(taskId, { status: status })
+
+    this.setState(prevState => {
+      let newCurrentSprint = [...prevState.currentSprint];
+      newCurrentSprint[0].tasks.forEach(task => {
+        if (task._id === updatedTask._id) {
+          task.name = updatedTask.name
+          task.description = updatedTask.description
+          task.assignee = updatedTask.assignee
+          task.status = updatedTask.status
+        }
+      });
+
+      let newSprints = prevState.sprints.map(sprint =>
+        sprint._id === newCurrentSprint[0]._id ?
+          newCurrentSprint[0] :
+          sprint
+      );
+
+      let newSelectedTasks = newCurrentSprint[0].tasks.filter(task =>
+        this.state.trackedStatus === ALL ?
+          task :
+          task.status === this.state.trackedStatus
+      );
+
+      return {
+        currentSprint: newCurrentSprint,
+        sprints: newSprints,
+        selectedTasks: newSelectedTasks,
+        viewingTask: false
+      }
+    })
+  }
+
   // Deletes a task by id
   deleteTask = async taskId => {
     let deletedTask = await API.deleteTask(taskId);
@@ -330,6 +370,10 @@ export default class Project extends Component {
       }
     })
   }
+
+  // handleChangeStatus = (taskId, status) => {
+  //   let updatedTask = 
+  // }
 
   // -------------------------------------------
   //                 Rendering
@@ -371,7 +415,8 @@ export default class Project extends Component {
                           tasks={this.state.currentSprint[0].tasks}
                           selectedTasks={this.state.selectedTasks}
                           trackStatus={status => this.trackStatus(status)}
-                          handleClick={(task) => this.openTaskModal(task)}
+                          handleTaskModal={this.openTaskModal}
+                          handleChangeStatus={this.handleChangeStatus}
                         />
                         :
                         null
