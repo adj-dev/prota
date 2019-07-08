@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import moment from 'moment';
 
 import AddSprintButton from './AddSprintButton'
@@ -8,7 +8,7 @@ import SprintListEmpty from './SprintListEmpty';
 import "./style.css"
 
 
-const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
+const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal, currentSprintId }) => {
 
   // click handler for when a user selects a sprint
   const handleClick = sprintId => {
@@ -45,7 +45,22 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
             sprints.length ?
               sprints.map((sprint, i) => {
                 return (
+<<<<<<< HEAD
                   <div className="sprint-item" key={i} onClick={() => handleClick(sprint._id)}>
+=======
+                  <div className={`sprint-item ${currentSprintId === sprint._id ? 'active' : ''}`}
+                    key={i}
+                    onClick={() => handleClick(sprint._id)}
+                  >
+                    <div className="expand-btn">
+                      <img
+                        className="options"
+                        src={require('../../assets/img/options.png')}
+                        alt=""
+                        onClick={() => openSprintModal(sprint)}
+                      />
+                    </div>
+>>>>>>> 27bf5b9250b5ddba3d177a4190b2941ed0467706
                     <div className="sprint-header">
                       <span className="sprint-name">{sprint.name}</span>
                       <span className="sprint-status">{sprint.status}</span>

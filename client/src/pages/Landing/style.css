@@ -10,6 +10,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   font-size: 5.5rem;
   position: relative;
 }
@@ -17,14 +18,26 @@
 .about-button {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   position: absolute;
   z-index: 2;
   bottom: 20px;
-  margin: auto;
+  width: 200px;
+  left: 50%;
+  margin-left: -100px;
   color: white;
   font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.about-button-animation-appear {
+  height: 15vh;
+}
+
+.about-button-animation-appear.about-button-animation-appear-active {
+  height: 10vh;
+  transition: height 500ms ease-in;
 }
 
 .splash-welcome {
@@ -34,22 +47,77 @@
   align-items: center;
   height: 100vh;
   color: white;
-  background-image: url("https://get.pxhere.com/photo/laptop-desk-table-coffee-light-wood-technology-white-floor-cup-black-mug-wooden-table-indoors-glasses-shape-flooring-eye-glasses-pot-plant-912411.jpg");
+  background-image: url("../../assets/img/splash-background.jpg");
   background-size: cover;
 }
 
 .splash-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  background-color: rgb(63, 74, 85);
+  color: white;
   height: 100vh;
 }
 
 .welcome-message > span {
+  margin: 0 10px;
+}
+
+.brand-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-name > span {
   margin: 0 5px;
 }
 
 .splash-logo {
   width: 70px;
+}
+
+.about-info-container {
+  display: flex;
+  width: inherit;
+  padding: 0 20vw;
+  font-size: 1.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.about-content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  height: 150px;
+}
+
+.team-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-cards-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
 }

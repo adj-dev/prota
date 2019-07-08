@@ -9,10 +9,6 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, c
   const [assignee, setAssignee] = useState(expandedTask ? expandedTask.assignee ? expandedTask.assignee : null : null)
   const [avatar, setAvatar] = useState(expandedTask ? expandedTask.assignee ? expandedTask.assignee.avatar_url : null : null)
 
-  console.log('task modals expandedTask:', expandedTask);
-  console.log('context:', context)
-  console.log('assignee:', assignee);
-
   const changeTaskName = e => {
     setTaskName(e.target.value)
   }
@@ -32,13 +28,19 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, c
     setAvatar(member.avatar_url)
   }
 
+  const validate = task => {
+    if (task.name.length) {
+      handleTask(task)
+    }
+  }
+
   return (
     <div className="modal-backdrop" onClick={e => handleModal(e)}>
       <div className="task-modal">
         <form onSubmit={e => {
           e.preventDefault()
 
-          handleTask({
+          validate({
             id: expandedTask ? expandedTask._id : null,
             name: taskName,
             description: taskDescription,
