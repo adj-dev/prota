@@ -14,7 +14,6 @@ var checkLogin = function(req, res, next){
 
 //Get all User Data for logged in user**
 router.get("/user", (req, res) => {
-    //console.log("Hit /user route, user is: ",req.user);
     Controller.User.getOne(req.user._id)
         .then(result => res.json(result))
         .catch(err => res.json(
@@ -26,7 +25,6 @@ router.get("/user", (req, res) => {
 
 //Get all User Data for given user [Util route, remove upon deploy]
 router.get("/user/:userId", checkLogin, (req, res) => {
-    //console.log("Hit /user/:userName route, user is: ",req.user);
     Controller.User.getOne(req.params.userId)
         .then(result => res.json(result))
         .catch(err => res.json(
@@ -38,7 +36,6 @@ router.get("/user/:userId", checkLogin, (req, res) => {
 
 //Get 5 usernames like given username
 router.get("/user/:userName/fuzzy", checkLogin, (req, res) => {
-    //console.log("Get Fuzzy");
     Controller.User.getFuzzy(req.params.userName)
         .then(result => res.json(result))
         .catch(err => res.json(
@@ -50,7 +47,6 @@ router.get("/user/:userName/fuzzy", checkLogin, (req, res) => {
 
 //Get project data from db by user*
 router.get("/projects", checkLogin, (req, res) => {
-    //console.log("Hit /projects route, user is: ",req.user);
     Controller.Project.getAllByUser(req.user._id)
         .then(results => res.json(results))
         .catch(err => res.json(
@@ -61,7 +57,6 @@ router.get("/projects", checkLogin, (req, res) => {
 });
 
 router.get("/projects/user/:userId", checkLogin, (req, res) => {
-    //console.log("Hit /projects route, user is: ",req.user);
     Controller.Project.getAllByUser(req.params.userId)
         .then(results => res.json(results))
         .catch(err => res.json(
@@ -73,7 +68,6 @@ router.get("/projects/user/:userId", checkLogin, (req, res) => {
 
 //Get project data from db by project*
 router.get("/project/:projectId", checkLogin, (req, res) => {
-    //console.log("Hit /project/:projectId route, user is: ",req.user);
     Controller.Project.getOneById(req.params.projectId)
         .then(result => { res.json(result) })
         .catch(err => res.json(
@@ -85,7 +79,6 @@ router.get("/project/:projectId", checkLogin, (req, res) => {
 
 //Get sprint data from db by project**
 router.get("/sprints/:projectId", checkLogin, (req, res) => {
-    // console.log("Hit /sprints/:projectId route, user is: ",req.user);
     Controller.Sprint
         .getAllByProject(req.params.projectId)
         .then(results => res.json(results))
@@ -98,7 +91,6 @@ router.get("/sprints/:projectId", checkLogin, (req, res) => {
 
 //Get task data from db by project**(untested)
 router.get("/tasks/project/:projectId", checkLogin, (req, res) => {
-    //console.log("Hit /tasks/project/:projectId route, user is: ",req.user);
     Controller.Task
         .getAllByProject(req.params.projectId)
         .then(results => res.json(results))
@@ -111,7 +103,6 @@ router.get("/tasks/project/:projectId", checkLogin, (req, res) => {
 
 //Get task data from db by sprint**
 router.get("/tasks/sprint/:sprintId", checkLogin, (req, res) => {
-    //console.log("Hit /tasks/:sprintId route, user is: ",req.user);
     Controller.Task
         .getAllBySprint(req.params.sprintId)
         .then(results => res.json(results))
@@ -124,7 +115,6 @@ router.get("/tasks/sprint/:sprintId", checkLogin, (req, res) => {
 
 //Get task data from db by user *
 router.get("/tasks/user/:userId", checkLogin, (req, res) => {
-    //console.log("Hit /tasks/:user route, user is: ",req.user);
     Controller.Task
         .getAllByUser(req.params.userId)
         .then(results => res.json(results))
@@ -139,7 +129,6 @@ router.get("/tasks/user/:userId", checkLogin, (req, res) => {
 
 //Create new user
 router.post("/users/:userName", checkLogin, (req, res) => {
-    //console.log("Hit /user route, user is: ",req.user);
     Controller.User.invite(req.params.userName)
         .then(results => res.json(results))
         .catch(err => res.json(
@@ -151,7 +140,6 @@ router.post("/users/:userName", checkLogin, (req, res) => {
 
 //Create new project**
 router.post("/projects", checkLogin, (req, res) => {
-    //console.log("Hit /projects route, user is: ",req.user);
     Controller.Project.create(req.body)
         .then(results => res.json(results))
         .catch(err => res.json(
@@ -163,7 +151,6 @@ router.post("/projects", checkLogin, (req, res) => {
 
 //Create new sprint**
 router.post("/sprints", checkLogin, (req, res) => {
-    //console.log("Hit /sprints route, user is: ",req.user);
     Controller.Sprint
         .create(req.body)
         .then(results => res.json(results))
@@ -176,7 +163,6 @@ router.post("/sprints", checkLogin, (req, res) => {
 
 //Create new task**
 router.post("/tasks", checkLogin, (req, res) => {
-    //console.log("Hit /tasks route, user is: ",req.user);
     Controller.Task
         .create(req.body)
         .then(results => res.json(results))
@@ -191,7 +177,6 @@ router.post("/tasks", checkLogin, (req, res) => {
 
 //Edit a project**
 router.put("/projects/:projectId", checkLogin, (req, res) => {
-    //console.log("Hit /projects/:projectId route, user is: ",req.user);
     Controller.Project
         .updateOneById(req.params.projectId, req.body)
         .then(results => res.json(results))
@@ -203,7 +188,6 @@ router.put("/projects/:projectId", checkLogin, (req, res) => {
 });
 
 router.put("/projects/:projectId/addContributor/:userId", checkLogin, (req, res) => {
-    //console.log("Hit /projects/add route, user is: ",req.user);
     Controller.Project.addUser(req.params, "contributor")
         .then(result => res.send(result))
         .catch(err => res.json(
@@ -214,7 +198,6 @@ router.put("/projects/:projectId/addContributor/:userId", checkLogin, (req, res)
 });
 
 router.put("/projects/:projectId/addOwner/:userId", checkLogin, (req, res) => {
-    //console.log("Hit /projects/add route, user is: ",req.user);
     Controller.Project.addUser(req.params, "owner")
         .then(result => res.send(result))
         .catch(err => res.json(
@@ -225,7 +208,6 @@ router.put("/projects/:projectId/addOwner/:userId", checkLogin, (req, res) => {
 });
 
 router.put("/projects/:projectId/removeContributor/:userId", checkLogin, (req, res) => {
-    //console.log("Hit /projects/remove route, user is: ",req.user);
     Controller.Project.removeUser(req.params, "contributor")
         .then(result => res.send(result))
         .catch(err => res.json(
@@ -236,7 +218,6 @@ router.put("/projects/:projectId/removeContributor/:userId", checkLogin, (req, r
 });
 
 router.put("/projects/:projectId/removeOwner/:userId", checkLogin, (req, res) => {
-    //console.log("Hit /projects/remove route, user is: ",req.user);
     Controller.Project.removeUser(req.params, "owner")
         .then(result => res.send(result))
         .catch(err => res.json(
@@ -248,7 +229,6 @@ router.put("/projects/:projectId/removeOwner/:userId", checkLogin, (req, res) =>
 
 //Edit a sprint**
 router.put("/sprints/:sprintId", checkLogin, (req, res) => {
-    //console.log("Hit /sprints/:sprintId route, user is: ",req.user);
     Controller.Sprint
         .updateOneById(req.params.sprintId, req.body)
         .then(results => res.json(results))
@@ -261,8 +241,6 @@ router.put("/sprints/:sprintId", checkLogin, (req, res) => {
 
 //Edit a task**
 router.put("/tasks/:taskId", checkLogin, (req, res) => {
-    console.log(req);
-    console.log("Hit /tasks/:taskId route, user is: ", req.user);
     Controller.Task
         .updateOneById(req.params.taskId, req.body)
         .then(results => res.json(results))
@@ -277,7 +255,6 @@ router.put("/tasks/:taskId", checkLogin, (req, res) => {
 
 //Delete a project**
 router.delete("/projects/:projectId", checkLogin, (req, res) => {
-    //console.log("Hit /projects/:projectId route, user is: ",req.user);
     Controller.Project
         .deleteOneById(req.params.projectId)
         .then(results => res.json(results))
@@ -290,7 +267,6 @@ router.delete("/projects/:projectId", checkLogin, (req, res) => {
 
 //Delete a sprint**
 router.delete("/sprints/:sprintId", checkLogin, (req, res) => {
-    //console.log("Hit /sprints/:sprintId route, user is: ",req.user);
     Controller.Sprint
         .deleteOneById(req.params.sprintId)
         .then(results => res.json(results))
@@ -303,7 +279,6 @@ router.delete("/sprints/:sprintId", checkLogin, (req, res) => {
 
 //Delete a task **
 router.delete("/tasks/:taskId", checkLogin, (req, res) => {
-    //console.log("Hit /tasks/:taskId route, user is: ",req.user);
     Controller.Task
         .deleteOneById(req.params.taskId)
         .then(results => res.json(results))

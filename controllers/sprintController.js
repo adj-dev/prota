@@ -42,7 +42,6 @@ module.exports = {
     },
 
     updateOneById: function(sprintId, sprint){ //update a sprint using sprintId and the updated sprint
-        // console.log(sprintId + " "+ sprint);
         return db.Sprint
             .findByIdAndUpdate(
                 sprintId, 
@@ -54,7 +53,6 @@ module.exports = {
     },
     
     deleteOneById: function(sprintId){ //delete a sprint by sprintId
-        // console.log(sprintId);
         return db.Sprint
             .findById({ _id: sprintId}).populate({path: "tasks"}) //populates all the task data in Sprint's tasks
             .then(results => {
