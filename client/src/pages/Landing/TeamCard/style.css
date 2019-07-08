@@ -1,0 +1,13 @@
+.team-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  margin: 0 10px;
+}
+
+.profile-image {
+  width: 50px;
+  border-radius: 100px;
+}
