@@ -94,13 +94,13 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, c
               <h3>STATUS:</h3>
               <div id="current-status">
                 {
-                  expandedTask.status === STATUS.OPEN ?
+                  expandedTask && expandedTask.status === STATUS.OPEN ?
                     'open'
                     :
-                    expandedTask.status === STATUS.IN_PROGRESS ?
+                    expandedTask && expandedTask.status === STATUS.IN_PROGRESS ?
                       'in progress'
                       :
-                      expandedTask.status === STATUS.DONE ?
+                      expandedTask && expandedTask.status === STATUS.DONE ?
                         'done'
                         :
                         null
