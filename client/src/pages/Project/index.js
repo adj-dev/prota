@@ -16,6 +16,7 @@ import { OPEN, IN_PROGRESS, ALL } from "../../helpers";
 
 // CSS
 import "./style.css";
+import SprintModal from "../../components/SprintModal";
 
 
 // -------------------------------------------
@@ -25,18 +26,20 @@ import "./style.css";
 export default class Project extends Component {
   state = {
     user: null,
+    team: null,
     project: null,
     sprints: null,
     currentSprint: null,
-    selectedTasks: null,
-    isLoaded: false,
-    showTaskModal: false,
-    expandedTask: null,
-    team: null,
+    viewedSprint: null,
+    viewingSprint: false,
     addingSprint: false,
+    selectedTasks: null,
+    expandedTask: null,
     viewingTask: false,
-    trackedStatus: OPEN,
-    context: null
+    showTaskModal: false,
+    isLoaded: false,
+    context: null,
+    trackedStatus: OPEN
   };
 
   // Fetches the user object and project object when component first renders
@@ -103,8 +106,8 @@ export default class Project extends Component {
   // Toggles the visibility of a modal when user clicks backdrop
   toggleModalVisibility = e => {
     let targetElement = e.target;
-    if (targetElement.closest(".task-modal") || targetElement.closest(".addsprint-modal")) return;
-    this.setState({ viewingTask: false, addingSprint: false });
+    if (targetElement.closest(".task-modal") || targetElement.closest(".addsprint-modal") || targetElement.closest(".sprint-modal")) return;
+    this.setState({ viewingTask: false, addingSprint: false, viewingSprint: false }); // eventually merge addingSprint with viewingSprint (similar functionality to TaskModal)
   };
 
   // Allows state to keep track of status, which allows for this component to send 
@@ -118,13 +121,21 @@ export default class Project extends Component {
     this.setState({ addingSprint: true });
   };
 
+  openSprintModal = sprint => {
+    this.setState({
+      viewedSprint: sprint ? sprint : null,
+      viewingSprint: true,
+      context: sprint ? 'edit' : 'create'
+    })
+  }
+
   // Fires when a user clicks on a task in the TaskList component
   // Dynamically sets the context to 'edit' or 'create' depending where the event came from
   openTaskModal = task => {
     this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create' })
   }
 
-  // Adds a new sprint to the database and updates state
+  // Adds a new sprint to the database and updates state 
   handleAddSprint = async sprintName => {
     let data = {
       name: sprintName,
@@ -149,7 +160,7 @@ export default class Project extends Component {
   };
 
   // Decides between creating or editing a task
-  handleTask = (task) => {
+  handleTask = task => {
     if (this.state.context === 'create') {
       this.createTask(task)
     }
@@ -157,6 +168,37 @@ export default class Project extends Component {
       this.editTask(task)
     }
   };
+
+
+  handleSprint = sprint => {
+    if (this.state.context === 'create') {
+      this.handleAddSprint(sprint) // change name of function to `createSprint`
+    }
+    if (this.state.context === 'edit') {
+      this.editSprint(sprint)
+    }
+  }
+
+
+  editSprint = async sprint => {
+    console.log(sprint);
+    let updatedSprint = await API.updateSprint(sprint.id, { name: sprint.name });
+
+    console.log(updatedSprint);
+    this.setState(prevState => {
+      let newSprints = [...prevState.sprints];
+      newSprints.forEach(sprint => {
+        if (sprint._id === updatedSprint._id) {
+          sprint.name = updatedSprint.name
+        }
+      })
+
+      return {
+        sprints: newSprints,
+        viewingSprint: false
+      }
+    })
+  }
 
 
   // Creates a new task in the database and sets state accordingly
@@ -308,6 +350,7 @@ export default class Project extends Component {
                       sprints={this.state.sprints}
                       selectSprint={sprintId => this.selectSprint(sprintId)}
                       openAddSprintModal={() => this.openAddSprintModal()}
+                      openSprintModal={sprint => this.openSprintModal(sprint)}
                     />
                   </div>
                   <div className="col-50">
@@ -349,6 +392,14 @@ export default class Project extends Component {
             currentUser={this.state.user}
             expandedTask={this.state.expandedTask}
             context={this.state.context}
+          />
+        ) : null}
+
+        {this.state.viewingSprint ? (
+          <SprintModal
+            sprint={this.state.viewedSprint}
+            handleSprint={sprint => this.handleSprint(sprint)}
+            handleModal={e => this.toggleModalVisibility(e)}
           />
         ) : null}
       </>

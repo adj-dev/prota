@@ -41,6 +41,19 @@ font-family: 'Rajdhani', sans-serif;
   font-style: italic
 }
 
+.expand-btn {
+  position: relative;
+}
+
+img.options {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  width: 20px;
+  cursor: pointer;
+}
+
+
 #open {
   background-color: #3EE1A7;
   font-family: 'PT Sans Narrow', sans-serif;

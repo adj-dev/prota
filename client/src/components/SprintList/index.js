@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import moment from 'moment';
 
 import AddSprintButton from './AddSprintButton'
@@ -8,11 +8,17 @@ import SprintListEmpty from './SprintListEmpty';
 import "./style.css"
 
 
-const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
+const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal }) => {
+  const [showExpandButton, setShowExpandButton] = useState(false)
 
   // click handler for when a user selects a sprint
   const handleClick = sprintId => {
     selectSprint(sprintId);
+  }
+
+  // Toggles the visibility of the "expand button" on hover
+  const toggleExpandButton = () => {
+    setShowExpandButton(!showExpandButton)
   }
 
   return (
@@ -45,7 +51,23 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal }) => {
             sprints.length ?
               sprints.map((sprint, i) => {
                 return (
-                  <div className="sprint-item" key={i} onClick={() => handleClick(sprint._id)}>
+                  <div className="sprint-item"
+                    key={i}
+                    onClick={() => handleClick(sprint._id)}
+                    onMouseEnter={() => toggleExpandButton()}
+                    onMouseLeave={() => toggleExpandButton()}
+                  >
+                    <div className="expand-btn">
+                      {showExpandButton ?
+                        <img
+                          className="options"
+                          src={require('../../assets/img/options.png')}
+                          alt=""
+                          onClick={() => openSprintModal(sprint)} />
+                        :
+                        null
+                      }
+                    </div>
                     <div className="sprint-header">
                       <span className="sprint-name">{sprint.name}</span>
                       <span className="sprint-status">{sprint.status}</span>
