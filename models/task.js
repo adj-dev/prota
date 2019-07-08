@@ -8,7 +8,7 @@ var TaskSchema = new Schema({
     },
 	description: {
         type: String,
-        required: true
+        default: null
     },
 	created_at: {
         type: Date,
@@ -22,7 +22,8 @@ var TaskSchema = new Schema({
     },
     assignee: {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        default: null
     },
     project_ref: {
         type: String,

@@ -23,7 +23,8 @@
 }
 
 .active#open-tasks {
-  background-color: #3ee1a7;
+  /* background-color: #3ee1a7; */
+  background-color: #36c8a3;
 }
 
 .active#in-progress-tasks {

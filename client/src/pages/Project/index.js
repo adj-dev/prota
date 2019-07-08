@@ -161,6 +161,7 @@ export default class Project extends Component {
 
   // Creates a new task in the database and sets state accordingly
   createTask = async task => {
+    console.log(task)
     let newTask = await API.createTask({
       name: task.name,
       description: task.description,
@@ -169,9 +170,13 @@ export default class Project extends Component {
       sprint_ref: this.state.currentSprint[0]._id
     });
 
+    console.log('newTask:', newTask);
+
     this.setState(prevState => {
       let newCurrentSprint = [...prevState.currentSprint];
       newCurrentSprint[0].tasks.push(newTask);
+      console.log('newCurrentSprint:', newCurrentSprint);
+
 
       let newSprints = prevState.sprints.map(sprint =>
         sprint._id === newCurrentSprint[0]._id ?
@@ -179,11 +184,17 @@ export default class Project extends Component {
           sprint
       );
 
+      console.log('newSprints:', newSprints);
+
+
       let newSelectedTasks = newCurrentSprint[0].tasks.filter(task =>
         this.state.trackedStatus === ALL ?
           task :
           task.status === this.state.trackedStatus
       );
+
+      console.log('newSelectedTasks:', newSelectedTasks);
+
 
       return {
         currentSprint: newCurrentSprint,
