@@ -63,7 +63,7 @@ font-family: 'Rajdhani', sans-serif;
 }
 
 .avatar-sm:hover {
-  border: 1px solid #3EE1A7;
+  border: 1px solid #36C8A3;
   cursor: pointer;
 }
 
@@ -76,7 +76,7 @@ button.task-btn-dlt {
 }
 
 button.task-button:hover {
-  background: #3EE1A7;
+  background: #36C8A3;
   color: #f5f5f5;
   cursor:pointer;
 }
