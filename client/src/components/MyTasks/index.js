@@ -1,62 +1,34 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import MyTaskStatusPicker from "./MyTaskStatusPicker";
 import MyProjectPicker from "./MyProjectPicker";
 import MyTaskList from "./MyTasksList";
 import { ALL, OPEN } from "../../helpers";
 import "./style.css";
 
-export default class MyTasks extends Component {
-  projects = [...this.props.projects];
-  tasks = this.props.tasks;
-  username = this.props.username;
+const MyTasks = ({ projects, username, handleChangeStatus, tasks }) => {
+  const [selectedProject, setSelectedProject] = useState(ALL);
+  const [selectedStatus, setSelectedStatus] = useState(OPEN);
+  const [selectedTasks, setSelectedTasks] = useState([]);
 
-  state = {
-    selectedProject: ALL,
-    selectedStatus: OPEN,
-    selectedTasks: []
-  };
-
-  componentDidMount() {
-    //if we recieved projcts and task props, set up project and task state
-    if (this.projects[0] && this.tasks) {
-      if (this.projects[0]._id !== ALL) {
-        //add an "all" projects button to the project selector
-        this.projects.unshift({ _id: ALL, name: "all" });
-      }
-      //if we have a selected status, get selected tasks
-      if (this.state.selectedStatus) {
-        let selectedTasks = this.getSelectedTasks(
-          this.state.selectedStatus,
-          this.state.selectedProject
-        );
-
-        this.setState({ selectedTasks });
-      }
-    }
-  }
-
-  selectProject = projectId => {
+  const selectProject = projectId => {
     console.log("selected: ", projectId);
-    let selectedTasks = this.getSelectedTasks(
-      this.state.selectedStatus,
-      projectId
-    );
-    this.setState({ selectedTasks, selectedProject: projectId });
+    let selectedTasks = getSelectedTasks(selectedStatus, projectId);
+
+    setSelectedTasks(selectedTasks);
+    setSelectedProject(projectId);
   };
 
-  selectStatus = status => {
+  const selectStatus = status => {
     console.log("selected: ", status);
-    let selectedTasks = this.getSelectedTasks(
-      status,
-      this.state.selectedProject
-    );
-    this.setState({ selectedTasks, selectedStatus: status });
+    let selectedTasks = getSelectedTasks(status, selectedProject);
+    setSelectedTasks(selectedTasks);
+    setSelectedStatus(status);
   };
 
-  getSelectedTasks = (status, projectId) => {
+  const getSelectedTasks = (status, projectId) => {
     let selectedTasks = [];
     if (projectId === ALL) {
-      selectedTasks = this.tasks.filter(task => {
+      selectedTasks = tasks.filter(task => {
         if (status === ALL) {
           return true;
         }
@@ -66,9 +38,7 @@ export default class MyTasks extends Component {
         return false;
       });
     } else {
-      let projectTasks = this.tasks.filter(
-        task => task.project_ref === projectId
-      );
+      let projectTasks = tasks.filter(task => task.project_ref === projectId);
 
       selectedTasks = projectTasks.filter(task => {
         if (status === ALL) {
@@ -83,20 +53,38 @@ export default class MyTasks extends Component {
     return selectedTasks;
   };
 
-  render() {
-    return (
-      <div className="my-tasks-container">
-        <h1>My Tasks</h1>
-        <MyProjectPicker
-          handleSelectProject={this.selectProject}
-          projects={this.projects}
-        />
-        <MyTaskStatusPicker handleSelectStatus={this.selectStatus} />
-        <MyTaskList
-          tasks={this.state.selectedTasks}
-          status={this.state.selectedStatus}
-        />
-      </div>
-    );
-  }
-}
+  useEffect(() => {
+    console.log("My Tasks mounting with selected tasks:");
+    console.table(selectedTasks);
+    //if we recieved projcts and task props, set up project and task state
+    if (projects[0] && tasks) {
+      if (projects[0]._id !== ALL) {
+        //add an "all" projects button to the project selector
+        projects.unshift({ _id: ALL, name: "all" });
+      }
+      //if we have a selected status, get selected tasks
+      if (selectedStatus) {
+        let selectedTasks = getSelectedTasks(selectedStatus, selectedProject);
+        setSelectedTasks(selectedTasks);
+      }
+    }
+  }, [tasks]);
+
+  return (
+    <div className="my-tasks-container">
+      <h1>My Tasks</h1>
+      <MyProjectPicker
+        handleSelectProject={selectProject}
+        projects={projects}
+      />
+      <MyTaskStatusPicker handleSelectStatus={selectStatus} />
+      <MyTaskList
+        handleChangeStatus={handleChangeStatus}
+        tasks={selectedTasks}
+        status={selectedStatus}
+      />
+    </div>
+  );
+};
+
+export default MyTasks;

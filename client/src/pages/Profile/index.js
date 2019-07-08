@@ -30,6 +30,24 @@ class Profile extends Component {
     }
   };
 
+  handleChangeStatus = (taskId, status) => {
+    API.updateTask(taskId, { status }).then(newTask => {
+      newTask.assignee = newTask.assignee._id;
+      let newTasks = this.state.tasks.map(task => {
+        if (task._id === taskId) {
+          return newTask;
+        } else {
+          return { ...task };
+        }
+      });
+      console.log("Previous Tasks:");
+      console.table(this.state.tasks);
+      console.log("New Tasks:");
+      console.table(newTasks);
+      this.setState({ tasks: newTasks });
+    });
+  };
+
   toggleCreateProjectDialog = e => {
     let targetElement = e.target;
     if (targetElement.closest(".create-project-content-container")) {
@@ -71,6 +89,7 @@ class Profile extends Component {
               </div>
               <div className="profile-right-container">
                 <MyTasks
+                  handleChangeStatus={this.handleChangeStatus}
                   projects={this.state.user.projects}
                   tasks={this.state.tasks}
                   username={this.state.user.username}
