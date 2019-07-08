@@ -12,7 +12,7 @@ const TaskListSelector = ({ tasks, selectedTasks, trackStatus, handleClick, }) =
 
   useEffect(() => {
     setAllTasks(tasks)
-    setSelectTasks(selectedTasks) // This line defaults the tasks list to show ALL tasks -- eventually want to default to OPEN
+    setSelectTasks(selectedTasks)
   }, [tasks, selectedTasks])
 
   const userSelectsTasks = status => {

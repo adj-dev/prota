@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
+
+import * as STATUS from '../../helpers';
+
 import './style.css'
 
+
+// const status = [STATUS.OPEN, STATUS.IN_PROGRESS, STATUS.CLOSED]
 
 
 const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, context, handleDeleteTask }) => {
@@ -81,6 +86,26 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, c
                   )
                 })
               }
+            </div>
+          </div>
+
+          <div className="status-container">
+            <div className="status-header">
+              <h3>STATUS:</h3>
+              <div id="current-status">
+                {
+                  expandedTask.status === STATUS.OPEN ?
+                    'open'
+                    :
+                    expandedTask.status === STATUS.IN_PROGRESS ?
+                      'in progress'
+                      :
+                      expandedTask.status === STATUS.DONE ?
+                        'done'
+                        :
+                        null
+                }
+              </div>
             </div>
           </div>
           <div className="task-button-container">

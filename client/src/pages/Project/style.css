@@ -63,3 +63,14 @@ button:focus {
   z-index: 10;
   font-family: 'Rajdhani', sans-serif;
 }
+
+@media screen and (max-width: 1000px) {
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .col-50 {
+    width: 600px;
+  }
+} 
