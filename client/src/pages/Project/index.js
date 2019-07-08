@@ -64,7 +64,7 @@ export default class Project extends Component {
   fetchProject = async projectId => {
     let project = await API.getProject(projectId);
     let sprints = project.sprints.length ? [...project.sprints] : [];
-    let currentSprint = sprints ? [sprints[0]] : []; // sprints.filter(sprint => sprint.status === IN_PROGRESS)
+    let currentSprint = sprints.length ? [sprints[0]] : []; // sprints.filter(sprint => sprint.status === IN_PROGRESS)
     let selectedTasks = currentSprint.length ? currentSprint[0].tasks.filter(task => task.status === this.state.trackedStatus) : []
     let team = project.contributors.concat(project.owners)
 
@@ -370,7 +370,7 @@ export default class Project extends Component {
                       selectSprint={sprintId => this.selectSprint(sprintId)}
                       openAddSprintModal={() => this.openAddSprintModal()}
                       openSprintModal={sprint => this.openSprintModal(sprint)}
-                      currentSprintId={this.state.currentSprint[0]._id}
+                      currentSprintId={this.state.currentSprint.length ? this.state.currentSprint[0]._id : null}
                     />
                   </div>
                   <div className="col-50">
