@@ -2,19 +2,19 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var TaskSchema = new Schema({
-	name: {
+    name: {
         type: String,
         required: true
     },
-	description: {
+    description: {
         type: String,
         default: null
     },
-	created_at: {
+    created_at: {
         type: Date,
         default: Date.now
     },
-	closed_at: Date,
+    closed_at: Date,
     status: {
         type: String,
         enum: ["OPEN", "IN_PROGRESS", "DONE", "CLOSED"],
@@ -36,9 +36,6 @@ var TaskSchema = new Schema({
     comment: String
 });
 
-// TaskSchema.post('remove', document => {
-//     console.log(document);
-// });
 
 const Task = mongoose.model("Task", TaskSchema);
 module.exports = Task;

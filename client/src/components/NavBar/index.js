@@ -13,8 +13,6 @@ export default function NavBar({ displayName, avatarUrl }) {
   };
 
   const handleMouseHover = () => {
-    console.log("toggle show dropdown");
-
     setShowDropdown(!showDropdown);
   };
 

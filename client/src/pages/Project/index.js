@@ -12,7 +12,7 @@ import NavBar from "../../components/NavBar";
 import API from "../../utils/API";
 
 // HELPERS
-import { OPEN, IN_PROGRESS, ALL } from "../../helpers";
+import { OPEN, ALL } from "../../helpers";
 
 // CSS
 import "./style.css";
@@ -67,8 +67,6 @@ export default class Project extends Component {
     let currentSprint = sprints.length ? [sprints[0]] : []; // sprints.filter(sprint => sprint.status === IN_PROGRESS)
     let selectedTasks = currentSprint.length ? currentSprint[0].tasks.filter(task => task.status === this.state.trackedStatus) : []
     let team = project.contributors.concat(project.owners)
-
-    console.log('sprints:', sprints[0])
 
     // send user to / if unauthorized
     if (project.unauthorized) return (window.location = "/"); // This will never fire unless backend adds unauthorized property to response
@@ -183,10 +181,8 @@ export default class Project extends Component {
 
 
   editSprint = async sprint => {
-    console.log(sprint);
     let updatedSprint = await API.updateSprint(sprint.id, { name: sprint.name });
 
-    console.log(updatedSprint);
     this.setState(prevState => {
       let newSprints = [...prevState.sprints];
       newSprints.forEach(sprint => {
@@ -222,7 +218,6 @@ export default class Project extends Component {
 
   // Creates a new task in the database and sets state accordingly
   createTask = async task => {
-    console.log(task)
     let newTask = await API.createTask({
       name: task.name,
       description: task.description,
@@ -231,13 +226,9 @@ export default class Project extends Component {
       sprint_ref: this.state.currentSprint[0]._id
     });
 
-    console.log('newTask:', newTask);
-
     this.setState(prevState => {
       let newCurrentSprint = [...prevState.currentSprint];
       newCurrentSprint[0].tasks.push(newTask);
-      console.log('newCurrentSprint:', newCurrentSprint);
-
 
       let newSprints = prevState.sprints.map(sprint =>
         sprint._id === newCurrentSprint[0]._id ?
@@ -245,17 +236,11 @@ export default class Project extends Component {
           sprint
       );
 
-      console.log('newSprints:', newSprints);
-
-
       let newSelectedTasks = newCurrentSprint[0].tasks.filter(task =>
         this.state.trackedStatus === ALL ?
           task :
           task.status === this.state.trackedStatus
       );
-
-      console.log('newSelectedTasks:', newSelectedTasks);
-
 
       return {
         currentSprint: newCurrentSprint,
@@ -268,16 +253,11 @@ export default class Project extends Component {
 
   // Sends an updated task object to the database and updates state accordingly
   editTask = async task => {
-    console.log('edit task:', task)
     let updatedTask = await API.updateTask(task.id, {
       name: task.name,
       description: task.description,
       assignee: task.assignee
     })
-
-    console.log(updatedTask);
-
-
 
     this.setState(prevState => {
       let newCurrentSprint = [...prevState.currentSprint];
