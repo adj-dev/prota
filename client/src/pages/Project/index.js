@@ -209,7 +209,9 @@ export default class Project extends Component {
       let newSprints = [...prevState.sprints];
 
       return {
+        currentSprint: [],
         sprints: newSprints.filter(sprint => sprint._id !== deletedSprint._id),
+        selectedTasks: null,
         viewingSprint: false
       }
     })

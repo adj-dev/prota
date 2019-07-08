@@ -9,16 +9,10 @@ import "./style.css"
 
 
 const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal }) => {
-  const [showExpandButton, setShowExpandButton] = useState(false)
 
   // click handler for when a user selects a sprint
   const handleClick = sprintId => {
     selectSprint(sprintId);
-  }
-
-  // Toggles the visibility of the "expand button" on hover
-  const toggleExpandButton = () => {
-    setShowExpandButton(!showExpandButton)
   }
 
   return (
@@ -54,19 +48,14 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal
                   <div className="sprint-item"
                     key={i}
                     onClick={() => handleClick(sprint._id)}
-                    onMouseEnter={() => toggleExpandButton()}
-                    onMouseLeave={() => toggleExpandButton()}
                   >
                     <div className="expand-btn">
-                      {showExpandButton ?
-                        <img
-                          className="options"
-                          src={require('../../assets/img/options.png')}
-                          alt=""
-                          onClick={() => openSprintModal(sprint)} />
-                        :
-                        null
-                      }
+                      <img
+                        className="options"
+                        src={require('../../assets/img/options.png')}
+                        alt=""
+                        onClick={() => openSprintModal(sprint)}
+                      />
                     </div>
                     <div className="sprint-header">
                       <span className="sprint-name">{sprint.name}</span>
