@@ -19,18 +19,18 @@
 }
 
 .active#all-tasks {
-  background-color: #d593e8;
+  background-color: #D593E8;
 }
 
 .active#open-tasks {
-  /* background-color: #3ee1a7; */
+  /* background-color: #36C8A3; */
   background-color: #36c8a3;
 }
 
 .active#in-progress-tasks {
-  background-color: #46a1fd;
+  background-color: #46A1FD;
 }
 
 .active#done-tasks {
-  background-color: #fd9e3c;
+  background-color: #FD9E3C;
 }
