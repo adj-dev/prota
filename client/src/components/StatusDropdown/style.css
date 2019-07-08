@@ -1,0 +1,47 @@
+.selected-status {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 5px;
+  position: relative;
+}
+
+.selected-status:hover .options-wrapper {
+  visibility: visible;
+}
+
+.selected-status:hover {
+  background-color: slategray;
+  color: white;
+}
+
+.status:hover {
+  font-style: italic;
+}
+
+.options-wrapper {
+  word-wrap: normal;
+  visibility: hidden;
+  position: absolute;
+  z-index: 1000;
+  top: 30px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 8px 2px;
+  border-radius: 5px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 105px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: slategray;
+  color: white;
+}
