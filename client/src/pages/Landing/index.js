@@ -4,6 +4,9 @@ import Auth from "../../components/Auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import CreateNewProject from "../../assets/img/create-newproject.png";
+import ProjectTasks from "../../assets/img/projects-tasks.png";
+import SprintsTasks from "../../assets/img/sprints-tasks.png";
 
 import "./style.css";
 import TeamCard from "./TeamCard";
@@ -55,14 +58,12 @@ export default function Landing() {
             <br />
             <br />
             Designed for simplicity, Prota helps developers stay in sync, hit
-            deadlines, and reach goals with minimal overhead.
-            <br />
-            <br />
-            Work smarter, not harder!
+            deadlines, and reach goals with minimal overhead. Work smarter, not harder!
           </div>
         </div>
+
         <div className="team-container">
-          <div className="team-title">Made with ❤️by</div>
+          <div className="team-title">Made with ❤️ by</div>
           <div className="team-cards-container">
             <TeamCard
               name="Andrew Johnson"
@@ -92,6 +93,47 @@ export default function Landing() {
           </div>
         </div>
       </section>
+
+      <section className="faq-section">
+          <div className="faq-container">
+
+            <div className="faq-info">
+              <div className="faq-image">
+                <img src={CreateNewProject} width="35%" />
+              </div>
+              <div className="faq-text">
+               <h1>Get Organized</h1> 
+                <hr />
+                Plan and structure work in a way that’s best for you. Create projects, assign owners, and contributors.
+              </div>  
+            </div>
+
+            <div className="faq-info-r">
+              <div className="faq-text">
+                <h1>Stay on Track</h1>
+                <hr />
+                Follow projects and tasks through every stage. You know where work stands and can keep everyone aligned on goals. Share details and assign tasks. All in one place.
+               </div>
+               <div className="faq-image">
+                <img src={ProjectTasks} width="35%" />
+              </div>
+            </div>
+
+            <div className="faq-info">
+              <div className="faq-image">
+              <img src={SprintsTasks} />
+              </div>
+              <div className="faq-text">
+              <h1>Hit Deadlines</h1>
+              <hr />
+                Create visual project plans to see your every step. Stay on track, whilst eliminating any roadblocks along the way. See how your team can structure work to turn all your goals into workable plans.
+                
+              </div>
+            </div>
+
+
+          </div>
+        </section>
     </div>
   );
 }
