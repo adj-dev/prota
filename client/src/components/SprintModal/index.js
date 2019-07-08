@@ -2,11 +2,17 @@ import React, { useState } from 'react'
 import './style.css'
 
 const SprintModal = ({ sprint, handleModal, handleSprint, handleDeleteSprint }) => {
-  console.log('sprint modal:', sprint)
+
   const [sprintName, setSprintName] = useState(sprint ? sprint.name : '');
 
   const changeSprintName = e => {
     setSprintName(e.target.value);
+  }
+
+  const validate = sprint => {
+    if (sprint.name.length) {
+      handleSprint(sprint)
+    }
   }
 
   return (
@@ -14,7 +20,7 @@ const SprintModal = ({ sprint, handleModal, handleSprint, handleDeleteSprint }) 
       <div className="sprint-modal">
         <form onSubmit={e => {
           e.preventDefault()
-          handleSprint({
+          validate({
             id: sprint._id,
             name: sprintName
           })
