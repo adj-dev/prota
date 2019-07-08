@@ -1,11 +1,12 @@
 import React from "react";
 import "./style.css";
+import StatusDropdown from "../../StatusDropdown";
 
 const ALL = "ALL";
 const OPEN = "OPEN";
 const IN_PROGRESS = "IN_PROGRESS";
 
-export default function MyTaskList({ tasks, status }) {
+export default function MyTaskList({ tasks, status, handleChangeStatus }) {
   return (
     <div className="my-task-list-container">
       {tasks.length ? (
@@ -14,7 +15,13 @@ export default function MyTaskList({ tasks, status }) {
             <div className="task-container" key={task._id}>
               <div className="task-upper">
                 <span>{task.name}</span>
-                <span>{task.status}</span>
+                <span>
+                  <StatusDropdown
+                    selectedStatus={task.status}
+                    taskId={task._id}
+                    handleChangeStatus={handleChangeStatus}
+                  />
+                </span>
               </div>
               <div className="task-lower">
                 <p>{task.description}</p>
