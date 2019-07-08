@@ -92,3 +92,12 @@ button.task-btn-dlt:hover {
   flex-direction: column;
 }
 
+.status-header {
+  display: flex;
+  align-items: center;
+}
+
+#current-status {
+  padding: 0 20px;
+}
+
