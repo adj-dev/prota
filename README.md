@@ -19,8 +19,17 @@ Repository: https://github.com/adj-dev/final-project
     * [Kieran Anthony](https://github.com/zekkxx) - Database Architect
 
 ## Project Stack:
-This project utilizes __MERN__. (__M__ ongo, __E__ xpress, __R__ eact, __N__ ode.js)  
+
+This project utilizes a __MERN__ stack. 
+
+__M__ ongo : MongoDB , a non-relational database to store our User, Project, Sprint, and Task data. 
+__E__ xpress : Express.js, a server framework to manage the flow between our front and back end systems.
+__R__ eact : React.js, A UI development framework to handle how our app is displayed
+__N__ ode :  Node.js, A Javascript runtime environment that allows for server-side scripting in Javascript
+
+
 Dependencies in the project include:
+
 __mongoose, express, axios, and passport__.  
 For a full list of dependencies reference the _package.json_ file included in the project.
 
