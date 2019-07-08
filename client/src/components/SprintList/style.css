@@ -19,13 +19,19 @@ font-family: 'Rajdhani', sans-serif;
 .sprint-item{
   display: flex;
   flex-direction: column;
-  background-color: slategray;
+  background-color: #c5ced8;
   border-radius: 8px;
   font-size: 1.2rem;
-  color: white;
+  /* color: white; */
   margin: 8px;
   margin-left: -1px;
   padding: 20px;
+}
+
+.sprint-item.active {
+  background-color: #708090;
+  color: white;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
 }
 
 .sprint-header {

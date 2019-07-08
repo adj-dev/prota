@@ -8,7 +8,7 @@ import SprintListEmpty from './SprintListEmpty';
 import "./style.css"
 
 
-const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal }) => {
+const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal, currentSprintId }) => {
 
   // click handler for when a user selects a sprint
   const handleClick = sprintId => {
@@ -45,7 +45,7 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal
             sprints.length ?
               sprints.map((sprint, i) => {
                 return (
-                  <div className="sprint-item"
+                  <div className={`sprint-item ${currentSprintId === sprint._id ? 'active' : ''}`}
                     key={i}
                     onClick={() => handleClick(sprint._id)}
                   >
