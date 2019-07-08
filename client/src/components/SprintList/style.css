@@ -22,7 +22,6 @@ font-family: 'Rajdhani', sans-serif;
   background-color: #c5ced8;
   border-radius: 8px;
   font-size: 1.2rem;
-  /* color: white; */
   margin: 8px;
   margin-left: -1px;
   padding: 20px;
@@ -41,11 +40,18 @@ font-family: 'Rajdhani', sans-serif;
 
 .sprint-name {
   font-weight: bolder;
+  max-width: 80%;
+  overflow-wrap: break-word;
 }
 
 .sprint-date {
-  font-style: italic
+  font-style: italic;
+  flex: 1;
 }
+
+/* .options-wrapper {
+  padding: 10px 5px;
+} */
 
 .expand-btn {
   position: relative;
@@ -58,11 +64,18 @@ img.options {
   right: 0;
   width: 20px;
   cursor: pointer;
+  padding: 8px 2px;
 }
 
 .sprint-item:hover img.options {
   visibility: visible;
 }
+
+.sprint-body {
+  display: flex;
+  justify-content: space-between;
+}
+
 
 
 #open {
