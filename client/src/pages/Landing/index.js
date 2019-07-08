@@ -6,6 +6,7 @@ import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import "./style.css";
+import TeamCard from "./TeamCard";
 
 export default function Landing() {
   function scrollToAbout() {
@@ -46,7 +47,50 @@ export default function Landing() {
         </ReactCSSTransitionGroup>
       </section>
       <section className="splash-section" id="about">
-        <div>About</div>
+        <div className="about-content-container">
+          <div className="splash-title">What is Prota?</div>
+          <div className="about-info-container">
+            Prota is a tool for independent development teams to track progress
+            and productivity.
+            <br />
+            <br />
+            Designed for simplicity, Prota helps developers stay in sync, hit
+            deadlines, and reach goals with minimal overhead.
+            <br />
+            <br />
+            Work smarter, not harder!
+          </div>
+        </div>
+        <div className="team-container">
+          <div className="team-title">Made with ❤️by</div>
+          <div className="team-cards-container">
+            <TeamCard
+              name="Andrew Johnson"
+              imageUrl="https://avatars0.githubusercontent.com/u/46357543"
+              githubUrl="https://github.com/adj-dev"
+            />
+            <TeamCard
+              name="Nhu Richie"
+              imageUrl="https://avatars0.githubusercontent.com/u/49073152"
+              githubUrl="https://github.com/nhurichie"
+            />
+            <TeamCard
+              name="John Blake"
+              imageUrl="https://avatars0.githubusercontent.com/u/14286088"
+              githubUrl="https://github.com/johniblake"
+            />
+            <TeamCard
+              name="Adam Schubert"
+              imageUrl="https://avatars3.githubusercontent.com/u/149580"
+              githubUrl="https://github.com/leavinit"
+            />
+            <TeamCard
+              name="Kieran Anthony"
+              imageUrl="https://avatars0.githubusercontent.com/u/12010449"
+              githubUrl="https://github.com/zekkxx"
+            />
+          </div>
+        </div>
       </section>
     </div>
   );
