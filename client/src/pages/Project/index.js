@@ -201,6 +201,21 @@ export default class Project extends Component {
   }
 
 
+  // Delete a sprint
+  deleteSprint = async sprintId => {
+    let deletedSprint = await API.deleteSprint(sprintId);
+
+    this.setState(prevState => {
+      let newSprints = [...prevState.sprints];
+
+      return {
+        sprints: newSprints.filter(sprint => sprint._id !== deletedSprint._id),
+        viewingSprint: false
+      }
+    })
+  }
+
+
   // Creates a new task in the database and sets state accordingly
   createTask = async task => {
     console.log(task)
@@ -400,6 +415,7 @@ export default class Project extends Component {
             sprint={this.state.viewedSprint}
             handleSprint={sprint => this.handleSprint(sprint)}
             handleModal={e => this.toggleModalVisibility(e)}
+            handleDeleteSprint={sprintId => this.deleteSprint(sprintId)}
           />
         ) : null}
       </>

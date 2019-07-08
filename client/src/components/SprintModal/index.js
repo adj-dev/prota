@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './style.css'
 
-const SprintModal = ({ sprint, handleModal, handleSprint }) => {
+const SprintModal = ({ sprint, handleModal, handleSprint, handleDeleteSprint }) => {
   console.log('sprint modal:', sprint)
   const [sprintName, setSprintName] = useState(sprint ? sprint.name : '');
 
@@ -24,6 +24,20 @@ const SprintModal = ({ sprint, handleModal, handleSprint }) => {
             <input type="text" name="sprintName" value={sprintName} onChange={e => changeSprintName(e)} />
           </div>
           <button id="addsprint" type="submit">{sprint ? 'Save' : 'Add'}</button>
+          {
+            sprint ?
+              <button
+                className="task-btn-dlt"
+                onClick={e => {
+                  e.preventDefault();
+                  handleDeleteSprint(sprint._id)
+                }}
+              >
+                Delete
+              </button>
+              :
+              null
+          }
         </form>
       </div>
     </div>
