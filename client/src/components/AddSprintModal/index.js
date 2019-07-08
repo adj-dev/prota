@@ -8,12 +8,18 @@ const AddSprintModal = ({ handleModal, handleAddSprint }) => {
     setSprintName(e.target.value);
   }
 
+  const validate = sprintName => {
+    if (sprintName.length) {
+      handleAddSprint(sprintName)
+    }
+  }
+
   return (
     <div className="modal-backdrop" onClick={e => handleModal(e)}>
       <div className="addsprint-modal">
         <form onSubmit={e => {
           e.preventDefault()
-          handleAddSprint(sprintName)
+          validate(sprintName)
         }}>
           <div className="addsprint-input">
             <label htmlFor="sprintName">Enter a name for the sprint:</label>
