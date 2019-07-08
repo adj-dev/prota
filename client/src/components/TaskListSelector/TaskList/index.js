@@ -1,6 +1,6 @@
 import React from 'react'
 import { ALL, OPEN, IN_PROGRESS } from '../../../helpers';
-import "./styles.css"
+import "./style.css"
 
 
 
