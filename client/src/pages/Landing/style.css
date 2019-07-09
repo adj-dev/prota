@@ -45,7 +45,6 @@ font-family: 'Rajdhani', sans-serif;
   flex-direction: row;
   justify-content: space-between;
   align-items: right;
-  position: absolute;
   z-index: 2;
   right: 5.5vw;
   padding-top: 10px;
