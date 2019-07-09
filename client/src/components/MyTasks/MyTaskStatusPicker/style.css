@@ -1,7 +1,6 @@
 .status-picker-container {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
 }
 
 .status-picker-container div {
@@ -19,7 +18,7 @@
 }
 
 .active#all-tasks {
-  background-color: #D593E8;
+  background-color: #d593e8;
 }
 
 .active#open-tasks {
@@ -28,9 +27,9 @@
 }
 
 .active#in-progress-tasks {
-  background-color: #46A1FD;
+  background-color: #46a1fd;
 }
 
 .active#done-tasks {
-  background-color: #FD9E3C;
+  background-color: #fd9e3c;
 }

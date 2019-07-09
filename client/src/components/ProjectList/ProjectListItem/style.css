@@ -1,17 +1,25 @@
 .project-list-item {
   display: flex;
   flex-direction: row;
-  background-color: slategray;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+  hyphens: auto;
+  background-color: #c5ced8;
   border-radius: 8px;
   font-size: 1.2rem;
   margin: 8px;
   margin-left: -1px;
-  padding: 5px;
+  color: black;
+  padding: 20px;
+}
+
+.project-list-item:hover {
+  background-color: #708090;
   color: white;
-  padding: 0 20px;
-  box-shadow: 0 0 3px #c7c7c7;
-  align-items: center;
-  justify-content: space-between;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
 }
 
 .created-by {

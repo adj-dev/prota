@@ -6,6 +6,7 @@ import API from "../../utils/API";
 import "./style.css";
 import CreateProject from "../../components/CreateProject";
 import NavBar from "../../components/NavBar";
+import ProjectCard from "../../components/ProjectCard";
 
 class Profile extends Component {
   state = {
@@ -77,23 +78,36 @@ class Profile extends Component {
                 />
               ) : null}
 
-              <div className="profile-left-container">
-                {this.state.user.projects ? (
-                  <ProjectList
-                    toggleCreateProjectDialog={this.toggleCreateProjectDialog}
-                    projects={[...this.state.user.projects]}
+              <div className="row">
+                <div className="col-100">
+                  <ProjectCard
+                    project={{ name: this.state.user.display_name }}
+                    team={[]}
                   />
-                ) : (
-                  ""
-                )}
+                </div>
               </div>
-              <div className="profile-right-container">
-                <MyTasks
-                  handleChangeStatus={this.handleChangeStatus}
-                  projects={this.state.user.projects}
-                  tasks={this.state.tasks}
-                  username={this.state.user.username}
-                />
+
+              <div className="row">
+                <div className="col-50">
+                  {this.state.user.projects ? (
+                    <ProjectList
+                      className="projectlist-wrapper"
+                      toggleCreateProjectDialog={this.toggleCreateProjectDialog}
+                      projects={[...this.state.user.projects]}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <div className="col-50">
+                  <MyTasks
+                    className="mytasks-wrapper"
+                    handleChangeStatus={this.handleChangeStatus}
+                    projects={this.state.user.projects}
+                    tasks={this.state.tasks}
+                    username={this.state.user.username}
+                  />
+                </div>
               </div>
             </div>
           </>
