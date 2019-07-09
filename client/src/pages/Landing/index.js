@@ -80,8 +80,38 @@ export default function Landing() {
             <div>Work smarter, not harder!</div>
           </div>
         </div>
+        <div className="team-container">
+          <div className="team-title">Made with <span role="img" aria-label="love">❤️</span> by the Prota Team</div>
+          <div className="team-cards-container">
+            <TeamCard
+              name="Andrew Johnson"
+              imageUrl="https://avatars0.githubusercontent.com/u/46357543"
+              githubUrl="https://github.com/adj-dev"
+            />
+            <TeamCard
+              name="Nhu Richie"
+              imageUrl="https://avatars0.githubusercontent.com/u/49073152"
+              githubUrl="https://github.com/nhurichie"
+            />
+            <TeamCard
+              name="John Blake"
+              imageUrl="https://avatars0.githubusercontent.com/u/14286088"
+              githubUrl="https://github.com/johniblake"
+            />
+            <TeamCard
+              name="Adam Schubert"
+              imageUrl="https://avatars3.githubusercontent.com/u/149580"
+              githubUrl="https://github.com/leavinit"
+            />
+            <TeamCard
+              name="Kieran Anthony"
+              imageUrl="https://avatars0.githubusercontent.com/u/12010449"
+              githubUrl="https://github.com/zekkxx"
+            />
+          </div>
+        </div>
         <div className="welcome-button-center" onClick={scrollToFAQ}>
-            FAQ
+            Features
             <FontAwesomeIcon icon={faArrowDown} />
         </div>
       </section>
@@ -119,44 +149,13 @@ export default function Landing() {
               <h1>Hit Deadlines</h1>
               <hr />
                 Create visual project plans to see your every step. Stay on track, whilst eliminating any roadblocks along the way. See how your team can structure work to turn all your goals into workable plans.
-                
               </div>
             </div>
           </div>
-          <div className="team-container">
-          <div className="team-title">Made with <span role="img" aria-label="love">❤️</span> by the Prota Team</div>
-          <div className="team-cards-container">
-            <TeamCard
-              name="Andrew Johnson"
-              imageUrl="https://avatars0.githubusercontent.com/u/46357543"
-              githubUrl="https://github.com/adj-dev"
-            />
-            <TeamCard
-              name="Nhu Richie"
-              imageUrl="https://avatars0.githubusercontent.com/u/49073152"
-              githubUrl="https://github.com/nhurichie"
-            />
-            <TeamCard
-              name="John Blake"
-              imageUrl="https://avatars0.githubusercontent.com/u/14286088"
-              githubUrl="https://github.com/johniblake"
-            />
-            <TeamCard
-              name="Adam Schubert"
-              imageUrl="https://avatars3.githubusercontent.com/u/149580"
-              githubUrl="https://github.com/leavinit"
-            />
-            <TeamCard
-              name="Kieran Anthony"
-              imageUrl="https://avatars0.githubusercontent.com/u/12010449"
-              githubUrl="https://github.com/zekkxx"
-            />
-            <div className="welcome-button-right text-black" onClick={scrollToTop}>
-              Back to Top &nbsp;
-              <FontAwesomeIcon icon={faArrowUp} />
-            </div>
+          <div className="welcome-button-right text-black" onClick={scrollToTop}>
+            Back to Top &nbsp;
+            <FontAwesomeIcon icon={faArrowUp} />
           </div>
-        </div>
         </section>
     </div>
   );
