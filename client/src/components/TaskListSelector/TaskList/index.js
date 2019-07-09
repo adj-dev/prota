@@ -1,16 +1,18 @@
 import React from 'react'
+import StatusDropdown from '../../StatusDropdown'
+
 import { ALL, OPEN, IN_PROGRESS } from '../../../helpers';
 import "./style.css"
 
 
 
-const TaskList = ({ tasks, handleTaskModal, status }) => {
+const TaskList = ({ tasks, handleTaskModal, status, handleChangeStatus }) => {
 
-  // click handler for assigning a task
-  const openTaskModal = task => {
-    // passes up the task ID up to the direct parent component
-    handleTaskModal(task)
-  }
+  // // click handler for assigning a task
+  // const openTaskModal = (e, task) => {
+  //   // passes up the task ID up to the direct parent component
+  //   handleTaskModal(e, task)
+  // }
 
   return (
     <>
@@ -21,11 +23,16 @@ const TaskList = ({ tasks, handleTaskModal, status }) => {
               <div
                 className="task-container"
                 key={task._id}
-                onClick={() => openTaskModal(task)}
+                onClick={e => handleTaskModal(e, task)}
               >
                 <div className="task-upper">
                   <span className="task-name">{task.name}</span>
-                  <span className="task-status">{task.status}</span>
+                  {/* <span className="task-status">{task.status}</span> */}
+                  <StatusDropdown
+                    selectedStatus={task.status}
+                    taskId={task._id}
+                    handleChangeStatus={handleChangeStatus}
+                  />
                 </div>
                 <div className="task-lower">
                   <p className="task-description">{task.description}</p>

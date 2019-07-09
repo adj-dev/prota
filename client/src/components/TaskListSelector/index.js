@@ -5,14 +5,14 @@ import "./style.css"
 
 
 
-const TaskListSelector = ({ tasks, selectedTasks, trackStatus, handleClick, }) => {
+const TaskListSelector = ({ tasks, selectedTasks, trackStatus, handleTaskModal, handleChangeStatus }) => {
   const [allTasks, setAllTasks] = useState(tasks);
   const [selectTasks, setSelectTasks] = useState([]);
   const [status, setStatus] = useState(STATUS.OPEN);
 
   useEffect(() => {
     setAllTasks(tasks)
-    setSelectTasks(selectedTasks) // This line defaults the tasks list to show ALL tasks -- eventually want to default to OPEN
+    setSelectTasks(selectedTasks)
   }, [tasks, selectedTasks])
 
   const userSelectsTasks = status => {
@@ -23,9 +23,9 @@ const TaskListSelector = ({ tasks, selectedTasks, trackStatus, handleClick, }) =
   }
 
   // Passes up the click handler on a task up to the parent (Project) component.
-  const handleTaskModal = task => {
-    handleClick(task);
-  }
+  // const handleTaskModal = task => {
+  //   handleClick(task);
+  // }
 
   return (
     <div className="tasklist-wrapper">
@@ -61,7 +61,12 @@ const TaskListSelector = ({ tasks, selectedTasks, trackStatus, handleClick, }) =
           </div>
         </div>
 
-        <TaskList tasks={selectTasks} handleTaskModal={task => handleTaskModal(task)} status={status} />
+        <TaskList
+          tasks={selectTasks}
+          handleTaskModal={handleTaskModal}
+          status={status}
+          handleChangeStatus={handleChangeStatus}
+        />
 
       </div>
     </div>

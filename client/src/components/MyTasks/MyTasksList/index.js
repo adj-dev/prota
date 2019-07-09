@@ -2,9 +2,8 @@ import React from "react";
 import "./style.css";
 import StatusDropdown from "../../StatusDropdown";
 
-const ALL = "ALL";
-const OPEN = "OPEN";
-const IN_PROGRESS = "IN_PROGRESS";
+import { ALL, OPEN, IN_PROGRESS } from '../../../helpers';
+
 
 export default function MyTaskList({ tasks, status, handleChangeStatus }) {
   return (
@@ -30,18 +29,18 @@ export default function MyTaskList({ tasks, status, handleChangeStatus }) {
           );
         })
       ) : (
-        <div className="empty-task-list">
-          {status === ALL ? (
-            <p>You have no assigned tasks</p>
-          ) : status === OPEN ? (
-            <p>No open tasks</p>
-          ) : status === IN_PROGRESS ? (
-            <p>No tasks in progress</p>
-          ) : (
-            <p>No completed tasks</p>
-          )}
-        </div>
-      )}
+          <div className="empty-task-list">
+            {status === ALL ? (
+              <p>You have no assigned tasks</p>
+            ) : status === OPEN ? (
+              <p>No open tasks</p>
+            ) : status === IN_PROGRESS ? (
+              <p>No tasks in progress</p>
+            ) : (
+                    <p>No completed tasks</p>
+                  )}
+          </div>
+        )}
     </div>
   );
 }

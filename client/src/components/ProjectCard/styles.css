@@ -22,7 +22,8 @@
 }
 
 #project-title > h1 {
-  font-size: 4em;
+  /* font-size: 80px; */
+  font-size: calc(40px + (80 - 40) * ((100vw - 300px) / (1600 - 300)));
 }
 
 .project-card {
