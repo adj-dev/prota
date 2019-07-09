@@ -1,45 +1,45 @@
 .profile-container {
+  padding: 0 8%;
+  padding-bottom: 0px;
   display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  flex-wrap: wrap;
-  font-size: 1rem;
-  margin-top: 20px;
-}
-
-.profile-right-container {
-  display: flex;
-  flex: 1.2;
-  justify-content: space-between;
   flex-direction: column;
-  margin-left: 1vw;
-  margin-right: 2vw;
-  /* border: 1px solid grey; */
+  font-family: "Rajdhani", sans-serif;
 }
 
-.profile-left-container {
+.row {
   display: flex;
-  flex: 1;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 2vw;
-  margin-right: 1vw;
-  /* border: 1px solid grey; */
 }
 
-@media (max-width: 768px) {
-  .profile-right-container {
-    flex: 1;
-    width: inherit;
-    margin: 0px;
-    /* border: 1px solid grey; */
+.col-50 {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.col-100 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mytasks-wrapper,
+.projectlist-wrapper,
+.projectcard-wrapper {
+  font-family: "Rajdhani", sans-serif;
+  padding: 20px 50px;
+}
+
+.projectlist-wrapper {
+  padding-bottom: 40px;
+}
+
+@media screen and (max-width: 1000px) {
+  .row {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .profile-left-container {
-    flex: 1;
-    margin: 0px;
-    justify-content: unset;
-    /* border: 1px solid grey; */
+  .col-50 {
+    width: 600px;
   }
 }
