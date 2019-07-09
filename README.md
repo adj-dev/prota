@@ -61,5 +61,5 @@ npm run start
 
  **Tasks/Sprints**: Here you will see all your tasks and sprints assigned to these tasks.
 
- <img src='https://github.com/adj-dev/final-project/blob/master/client/pubilc/assets/img/sprints-tasks.png?raw=true' width=400 />
+ <img src='https://github.com/adj-dev/final-project/blob/master/client/public/assets/img/sprints-tasks.png?raw=true' width=400 />
 
