@@ -341,6 +341,26 @@ export default class Project extends Component {
     })
   }
 
+  handleChangeStatusSprint = async (sprintId, status) => {
+    console.log('hello', sprintId, status)
+    let updatedSprint = await API.updateSprint(sprintId, { status: status })
+    console.log(updatedSprint);
+
+    this.setState(prevState => {
+      let newSprints = [...prevState.sprints];
+      newSprints.forEach(sprint => {
+        if (sprint._id === updatedSprint._id) {
+          sprint.status = updatedSprint.status
+        }
+      })
+
+      return {
+        sprints: newSprints,
+        viewingSprint: false
+      }
+    })
+  }
+
   // Deletes a task by id
   deleteTask = async taskId => {
     let deletedTask = await API.deleteTask(taskId);
@@ -371,9 +391,7 @@ export default class Project extends Component {
     })
   }
 
-  // handleChangeStatus = (taskId, status) => {
-  //   let updatedTask = 
-  // }
+
 
   // -------------------------------------------
   //                 Rendering
@@ -406,6 +424,7 @@ export default class Project extends Component {
                       openAddSprintModal={() => this.openAddSprintModal()}
                       openSprintModal={sprint => this.openSprintModal(sprint)}
                       currentSprintId={this.state.currentSprint.length ? this.state.currentSprint[0]._id : null}
+                      handleChangeStatus={this.handleChangeStatusSprint}
                     />
                   </div>
                   <div className="col-50">
