@@ -106,7 +106,6 @@ export default class Project extends Component {
   // Toggles the visibility of a modal when user clicks backdrop
   toggleModalVisibility = e => {
     let targetElement = e.target;
-    console.log(targetElement);
     if (targetElement.closest(".task-modal") || targetElement.closest(".addsprint-modal") || targetElement.closest(".sprint-modal")) return;
     this.setState({ viewingTask: false, addingSprint: false, viewingSprint: false }); // eventually merge addingSprint with viewingSprint (similar functionality to TaskModal)
   };
@@ -133,8 +132,15 @@ export default class Project extends Component {
   // Fires when a user clicks on a task in the TaskList component
   // Dynamically sets the context to 'edit' or 'create' depending where the event came from
   openTaskModal = (e, task) => {
-    // Won't open the modal if user is selecting a status
-    if (!e.target.closest('.selected-status')) {
+    if (e) {
+      // Won't open the modal if user is selecting a status
+      if (!e.target.closest('.selected-status')) {
+        this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create' })
+      }
+    }
+
+    // if the user tries to create a task, e won't exist -- could handle this in the event it came from but, meh
+    if (!e) {
       this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create' })
     }
   }
