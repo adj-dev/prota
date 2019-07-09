@@ -7,16 +7,16 @@ import TaskListSelector from "../../components/TaskListSelector";
 import TaskModal from "../../components/TaskModal";
 import AddSprintModal from "../../components/AddSprintModal";
 import NavBar from "../../components/NavBar";
+import SprintModal from "../../components/SprintModal";
 
 // API
 import API from "../../utils/API";
 
 // HELPERS
-import { OPEN, IN_PROGRESS, ALL } from "../../helpers";
+import { OPEN, ALL } from "../../helpers";
 
 // CSS
 import "./style.css";
-import SprintModal from "../../components/SprintModal";
 
 
 // -------------------------------------------
@@ -67,8 +67,6 @@ export default class Project extends Component {
     let currentSprint = sprints.length ? [sprints[0]] : []; // sprints.filter(sprint => sprint.status === IN_PROGRESS)
     let selectedTasks = currentSprint.length ? currentSprint[0].tasks.filter(task => task.status === this.state.trackedStatus) : []
     let team = project.contributors.concat(project.owners)
-
-    console.log('sprints:', sprints[0])
 
     // send user to / if unauthorized
     if (project.unauthorized) return (window.location = "/"); // This will never fire unless backend adds unauthorized property to response
@@ -133,8 +131,18 @@ export default class Project extends Component {
 
   // Fires when a user clicks on a task in the TaskList component
   // Dynamically sets the context to 'edit' or 'create' depending where the event came from
-  openTaskModal = task => {
-    this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create' })
+  openTaskModal = (e, task) => {
+    if (e) {
+      // Won't open the modal if user is selecting a status
+      if (!e.target.closest('.selected-status')) {
+        this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create' })
+      }
+    }
+
+    // if the user tries to create a task, e won't exist -- could handle this in the event it came from but, meh
+    if (!e) {
+      this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create' })
+    }
   }
 
   // Adds a new sprint to the database and updates state 
@@ -153,9 +161,20 @@ export default class Project extends Component {
       let updatedSprints = [...prevState.sprints];
       updatedSprints.push(newSprint);
 
+      // Update currentSprint for auto-selection feature
+      let currentSprint = updatedSprints.filter(sprint => sprint._id === newSprint._id);
+
+      let selectedTasks = currentSprint[0].tasks.filter(task =>
+        this.state.trackedStatus === ALL ?
+          task :
+          task.status === this.state.trackedStatus
+      );
+
       return {
         project: updatedProject,
         sprints: updatedSprints,
+        currentSprint: currentSprint,
+        selectedTasks: selectedTasks,
         addingSprint: false
       };
     });
@@ -183,10 +202,8 @@ export default class Project extends Component {
 
 
   editSprint = async sprint => {
-    console.log(sprint);
     let updatedSprint = await API.updateSprint(sprint.id, { name: sprint.name });
 
-    console.log(updatedSprint);
     this.setState(prevState => {
       let newSprints = [...prevState.sprints];
       newSprints.forEach(sprint => {
@@ -222,7 +239,6 @@ export default class Project extends Component {
 
   // Creates a new task in the database and sets state accordingly
   createTask = async task => {
-    console.log(task)
     let newTask = await API.createTask({
       name: task.name,
       description: task.description,
@@ -231,13 +247,9 @@ export default class Project extends Component {
       sprint_ref: this.state.currentSprint[0]._id
     });
 
-    console.log('newTask:', newTask);
-
     this.setState(prevState => {
       let newCurrentSprint = [...prevState.currentSprint];
       newCurrentSprint[0].tasks.push(newTask);
-      console.log('newCurrentSprint:', newCurrentSprint);
-
 
       let newSprints = prevState.sprints.map(sprint =>
         sprint._id === newCurrentSprint[0]._id ?
@@ -245,17 +257,11 @@ export default class Project extends Component {
           sprint
       );
 
-      console.log('newSprints:', newSprints);
-
-
       let newSelectedTasks = newCurrentSprint[0].tasks.filter(task =>
         this.state.trackedStatus === ALL ?
           task :
           task.status === this.state.trackedStatus
       );
-
-      console.log('newSelectedTasks:', newSelectedTasks);
-
 
       return {
         currentSprint: newCurrentSprint,
@@ -268,16 +274,11 @@ export default class Project extends Component {
 
   // Sends an updated task object to the database and updates state accordingly
   editTask = async task => {
-    console.log('edit task:', task)
     let updatedTask = await API.updateTask(task.id, {
       name: task.name,
       description: task.description,
       assignee: task.assignee
     })
-
-    console.log(updatedTask);
-
-
 
     this.setState(prevState => {
       let newCurrentSprint = [...prevState.currentSprint];
@@ -306,6 +307,62 @@ export default class Project extends Component {
         sprints: newSprints,
         selectedTasks: newSelectedTasks,
         viewingTask: false
+      }
+    })
+  }
+
+  handleChangeStatus = async (taskId, status) => {
+    // console.log(taskId, status)
+    let updatedTask = await API.updateTask(taskId, { status: status })
+
+    this.setState(prevState => {
+      let newCurrentSprint = [...prevState.currentSprint];
+      newCurrentSprint[0].tasks.forEach(task => {
+        if (task._id === updatedTask._id) {
+          task.name = updatedTask.name
+          task.description = updatedTask.description
+          task.assignee = updatedTask.assignee
+          task.status = updatedTask.status
+        }
+      });
+
+      let newSprints = prevState.sprints.map(sprint =>
+        sprint._id === newCurrentSprint[0]._id ?
+          newCurrentSprint[0] :
+          sprint
+      );
+
+      let newSelectedTasks = newCurrentSprint[0].tasks.filter(task =>
+        this.state.trackedStatus === ALL ?
+          task :
+          task.status === this.state.trackedStatus
+      );
+
+      return {
+        currentSprint: newCurrentSprint,
+        sprints: newSprints,
+        selectedTasks: newSelectedTasks,
+        viewingTask: false
+      }
+    })
+  }
+
+  handleChangeStatusSprint = async (sprintId, status) => {
+    console.log('hello', sprintId, status)
+    let updatedSprint = await API.updateSprint(sprintId, { status: status })
+    console.log(updatedSprint);
+
+    this.setState(prevState => {
+      let newSprints = [...prevState.sprints];
+      newSprints.forEach(sprint => {
+        if (sprint._id === updatedSprint._id) {
+          sprint.status = updatedSprint.status
+        }
+      })
+
+      return {
+        sprints: newSprints,
+        viewingSprint: false
       }
     })
   }
@@ -340,6 +397,8 @@ export default class Project extends Component {
     })
   }
 
+
+
   // -------------------------------------------
   //                 Rendering
   // -------------------------------------------
@@ -371,6 +430,7 @@ export default class Project extends Component {
                       openAddSprintModal={() => this.openAddSprintModal()}
                       openSprintModal={sprint => this.openSprintModal(sprint)}
                       currentSprintId={this.state.currentSprint.length ? this.state.currentSprint[0]._id : null}
+                      handleChangeStatus={this.handleChangeStatusSprint}
                     />
                   </div>
                   <div className="col-50">
@@ -380,7 +440,8 @@ export default class Project extends Component {
                           tasks={this.state.currentSprint[0].tasks}
                           selectedTasks={this.state.selectedTasks}
                           trackStatus={status => this.trackStatus(status)}
-                          handleClick={(task) => this.openTaskModal(task)}
+                          handleTaskModal={this.openTaskModal}
+                          handleChangeStatus={this.handleChangeStatus}
                         />
                         :
                         null

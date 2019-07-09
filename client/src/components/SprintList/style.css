@@ -9,6 +9,15 @@ font-family: 'Rajdhani', sans-serif;
 
 .sprintlist-wrapper {
   font-family: 'Rajdhani', sans-serif;
+  max-height: 600px;
+  overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sprintlist-wrapper::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
 }
 
 .sprintlist-header {
@@ -22,7 +31,6 @@ font-family: 'Rajdhani', sans-serif;
   background-color: #c5ced8;
   border-radius: 8px;
   font-size: 1.2rem;
-  /* color: white; */
   margin: 8px;
   margin-left: -1px;
   padding: 20px;
@@ -41,32 +49,42 @@ font-family: 'Rajdhani', sans-serif;
 
 .sprint-name {
   font-weight: bolder;
+  max-width: 80%;
+  overflow-wrap: break-word;
 }
 
 .sprint-date {
-  font-style: italic
+  font-style: italic;
+  flex: 1;
 }
 
 .expand-btn {
   position: relative;
 }
 
-img.options {
+img.options-icon {
   visibility: hidden;
   position: absolute;
   top: -10px;
   right: 0;
   width: 20px;
   cursor: pointer;
+  padding: 8px 2px;
 }
 
-.sprint-item:hover img.options {
+.sprint-item:hover img.options-icon {
   visibility: visible;
 }
 
+.sprint-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+
 
 #open {
-  background-color: #3EE1A7;
+  background-color: #36C8A3;
   font-family: 'PT Sans Narrow', sans-serif;
   font-size: 1.25rem;
   color: white;
@@ -74,6 +92,7 @@ img.options {
   margin-left: -1px;
   border-radius: 8px;
 }
+
 #in-progress {
   background-color: #46A1FD;
   font-family: 'PT Sans Narrow', sans-serif;
