@@ -17,15 +17,20 @@ const AddSprintModal = ({ handleModal, handleAddSprint }) => {
   return (
     <div className="modal-backdrop" onClick={e => handleModal(e)}>
       <div className="addsprint-modal">
+        <div className="modal-header">
+          Add a Sprint
+        </div>
         <form onSubmit={e => {
           e.preventDefault()
           validate(sprintName)
         }}>
           <div className="addsprint-input">
-            <label htmlFor="sprintName">Enter a name for the sprint:</label>
+            <label htmlFor="sprintName">Name:</label>
             <input type="text" name="sprintName" value={sprintName} onChange={e => changeSprintName(e)} />
           </div>
-          <button id="addsprint" type="submit">Add</button>
+          <div className="task-button-container">
+            <button className="task-button" id="addsprint" type="submit">Add</button>
+          </div>
         </form>
       </div>
     </div>
