@@ -15,13 +15,12 @@ font-family: 'Rajdhani', sans-serif;
 }
 
 .project-picker-container div {
-  margin-top: 10px;
   margin-right: 10px;
 }
 
 .project-button {
   background: none;
-  margin: 7px;
+  margin: 2px 7px;
   border-radius: 8px;
 }
 
@@ -30,9 +29,9 @@ font-family: 'Rajdhani', sans-serif;
 }
 
 .active#ALL {
-  background-color: #D593E8;
+  background-color: #d593e8;
 }
 
 .active {
-  background-color: #46A1FD;
+  background-color: #46a1fd;
 }
