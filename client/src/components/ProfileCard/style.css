@@ -33,7 +33,7 @@ closed:
 .dropdown-content {
   display: flex;
   flex-direction: column;
-  background-color: whitesmoke;
+  background-color: #c5ced8;
   border-radius: 5px;
   padding: 10px;
 }
@@ -43,12 +43,16 @@ closed:
 }
 
 .username {
-  color: grey;
+  color: #4d4d4d;
   cursor: default;
 }
 
 .logout-button {
   cursor: pointer;
+}
+
+.logout-button:hover {
+  font-weight: bolder;
 }
 
 .avatar {
