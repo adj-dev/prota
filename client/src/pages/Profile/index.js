@@ -81,7 +81,7 @@ class Profile extends Component {
                 {this.state.user.projects ? (
                   <ProjectList
                     toggleCreateProjectDialog={this.toggleCreateProjectDialog}
-                    projects={this.state.user.projects}
+                    projects={[...this.state.user.projects]}
                   />
                 ) : (
                   ""
