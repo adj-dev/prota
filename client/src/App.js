@@ -15,8 +15,8 @@ class App extends Component {
     this.getLoginStatus();
   }
 
-  getLoginStatus = async () => {
-    await API.isLoggedIn()
+  getLoginStatus = () => {
+    API.isLoggedIn()
       .then(status => {
         return this.setState({ isLoggedIn: status });
       })
@@ -27,7 +27,7 @@ class App extends Component {
     return (
       <>
         {this.state.isLoggedIn !== "" ? (
-          <div className="app" style={{ height: 100 }}>
+          <div className="app">
             <BrowserRouter>
               <PrivateRoute
                 isAuthenticated={this.state.isLoggedIn}
@@ -37,7 +37,6 @@ class App extends Component {
               />
               <PrivateRoute
                 isAuthenticated={this.state.isLoggedIn}
-                // id={this.state.projectId}
                 path="/project/:id"
                 component={Project}
               />

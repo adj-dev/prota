@@ -32,6 +32,8 @@ export default function StatusDropdown({
                   {displayValues[status]}
                 </div>
               );
+            } else {
+              return null;
             }
           })}
         </div>
