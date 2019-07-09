@@ -9,6 +9,14 @@ font-family: 'Rajdhani', sans-serif;
 
 .sprintlist-wrapper {
   font-family: 'Rajdhani', sans-serif;
+}
+
+.sprintlist-wrapper::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.sprintlist {
   max-height: 600px;
   /* overflow: scroll;
   scrollbar-width: none;
