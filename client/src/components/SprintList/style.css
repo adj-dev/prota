@@ -5,6 +5,18 @@
 
 .sprintlist-content {
   max-height: 600px;
+  /* overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none; */
+}
+
+.sprintlist-wrapper::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.sprintlist {
+  max-height: 600px;
   overflow: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;

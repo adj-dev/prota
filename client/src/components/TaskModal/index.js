@@ -42,6 +42,9 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, c
   return (
     <div className="modal-backdrop" onClick={e => handleModal(e)}>
       <div className="task-modal">
+        <div className="modal-header">
+          {context === 'create' ? 'Add a Task' : 'Edit a Task'}
+        </div>
         <form onSubmit={e => {
           e.preventDefault()
 
