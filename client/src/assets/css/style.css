@@ -35,13 +35,6 @@ button:focus {
 
 .wrapper {
   padding: 20px 50px;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.wrapper::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
 }
 
 .row {

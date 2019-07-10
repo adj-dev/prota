@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.css'
 
-const ProjectCard = ({ project, team }) => {
+const ProjectCard = ({ project }) => {
   return (
     <div className="wrapper">
       <div className="projectcard-header">
