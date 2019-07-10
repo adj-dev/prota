@@ -1,4 +1,401 @@
 /* -----------------------------------------
+--------------------------------------------
+                   PAGES
+--------------------------------------------
+----------------------------------------- */
+
+/* -----------------------------------------
+                  Landing
+----------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.welcome-message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 5.5rem;
+  position: relative;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.welcome-button-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 2;
+  width: 200px;
+  left: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.welcome-button-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: right;
+  z-index: 2;
+  right: 5.5vw;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.text-black{
+  color: black;
+}
+
+.about-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  z-index: 2;
+  bottom: 20px;
+  width: 200px;
+  left: 50%;
+  margin-left: -100px;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.about-button-animation-appear {
+  height: 15vh;
+}
+
+.about-button-animation-appear.about-button-animation-appear-active {
+  height: 10vh;
+  transition: height 500ms ease-in;
+}
+
+.splash-welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  background-image: url("./assets/img/splash-background.jpg");
+  background-size: cover;
+}
+
+.splash-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #708090;
+  color: white;
+  height: 100vh;
+}
+
+.welcome-message > span {
+  margin: 0 10px;
+}
+
+.brand-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-name > span {
+  margin: 0 5px;
+}
+
+.splash-logo {
+  width: 70px;
+}
+
+.about-info-container {
+  display: flex;
+  width: inherit;
+  padding: 0 30vw;
+  font-size: 1.7rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 75px 20vw 0 20vw;
+  line-height: 1.6em;
+}
+
+.about-info-container > div {
+  font-size: 2.1rem;
+}
+
+.about-content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.splash-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  height: 150px;
+  font-size: 4em;
+  padding-top: 40px;
+}
+
+.team-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+  padding-top: 30px;
+}
+
+.team-cards-container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding-top: 25px;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.faq-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  height: max-content;
+  padding: 80px 30px 0px 30px;
+  background: white;
+}
+
+.faq-continer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.faq-info {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  justify-content: space-around;
+  /* margin: 20px; */
+  padding: 100px 20px;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.faq-info-r {
+  display: flex;
+  flex-flow: row wrap-reverse;
+  justify-content: space-between;
+  justify-content: space-around;
+  /* margin: 20px; */
+  padding: 100px 20px;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.faq-text {
+  word-wrap: normal;
+  width: 56%;
+  padding: 2%;
+  font-size: 1.5em;
+  color: #708090;
+}
+
+.faq-image {
+  width: 40%;
+}
+
+.faq-image img {
+  width: 100%;
+}
+
+/* -----------------------------------------
+              Landing/TeamCard
+----------------------------------------- */
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  margin: 0 10px;
+  width: 90px;
+}
+
+.profile-image {
+  width: 50px;
+  border-radius: 100px;
+}
+
+/* -----------------------------------------
+                  Profile
+----------------------------------------- */
+
+.profile-container {
+  padding: 0 8%;
+  padding-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Rajdhani", sans-serif;
+}
+
+.row {
+  display: flex;
+}
+
+.col-50 {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.col-100 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mytasks-wrapper,
+.projectlist-wrapper,
+.projectcard-wrapper {
+  font-family: "Rajdhani", sans-serif;
+  padding: 20px 50px;
+}
+
+.projectlist-wrapper {
+  padding-bottom: 40px;
+}
+
+@media screen and (max-width: 1000px) {
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .col-50 {
+    width: 600px;
+  }
+}
+
+/* -----------------------------------------
+                  Project
+----------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,700,900&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  background: #f7f7f7;
+}
+
+h1 {
+  margin: 0;
+  font-weight: 300;
+}
+
+button {
+  font-family: 'PT Sans Narrow', sans-serif;
+  border: none;
+  background-color: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+.project-container {
+  padding: 15px 8%;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+}
+
+.col-50 {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.col-100 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.status-buttons {
+  display: flex;
+}
+
+.tasklist-wrapper,
+.sprintlist-wrapper,
+.projectcard-wrapper {
+  padding: 20px 50px;
+}
+
+.sprintlist-wrapper {
+  padding-bottom: 40px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  background-color:rgba(255, 255, 255, 0.5);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left:0;
+  z-index: 10;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+@media screen and (max-width: 1000px) {
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .col-50 {
+    width: 600px;
+  }
+} 
+
+/* -----------------------------------------
+--------------------------------------------
+                 COMPONENTS
+--------------------------------------------
+----------------------------------------- */
+
+/* -----------------------------------------
                AddSprintModal
 ----------------------------------------- */
 

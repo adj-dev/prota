@@ -16,7 +16,7 @@ import API from "../../utils/API";
 import { OPEN, ALL } from "../../helpers";
 
 // CSS
-import "./style.css";
+// import "./style.css";
 
 
 // -------------------------------------------

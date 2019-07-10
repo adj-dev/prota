@@ -6,6 +6,8 @@ import API from "./utils/API";
 import Profile from "./pages/Profile";
 import Landing from "./pages/Landing";
 
+import './style.css'
+
 class App extends Component {
   state = {
     isLoggedIn: ""
