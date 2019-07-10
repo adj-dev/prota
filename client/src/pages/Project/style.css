@@ -1,60 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,700,900&display=swap');
-
-body {
-  margin: 0;
-  font-family: 'Nunito', sans-serif;
-  background: #f7f7f7;
-}
-
-h1 {
-  margin: 0;
-  font-weight: 300;
-}
-
-button {
-  font-family: 'PT Sans Narrow', sans-serif;
-  border: none;
-  background-color: none;
-}
-
-button:focus {
-  outline: none;
-}
-
-.project-container {
+.project {
   padding: 15px 8%;
-  display: flex;
-  flex-direction: column;
 }
 
-.row {
-  display: flex;
-}
 
-.col-50 {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-}
-
-.col-100 {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
 
 .status-buttons {
   display: flex;
-}
-
-.tasklist-wrapper,
-.sprintlist-wrapper,
-.projectcard-wrapper {
-  padding: 20px 50px;
-}
-
-.sprintlist-wrapper {
-  padding-bottom: 40px;
 }
 
 .modal-backdrop {
@@ -74,7 +25,7 @@ button:focus {
     align-items: center;
   }
 
-  .col-50 {
+  .col.half {
     width: 600px;
   }
 } 

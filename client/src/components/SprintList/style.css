@@ -1,22 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
-
-.sprintlist-wrapper {
-  font-family: 'Rajdhani', sans-serif;
-}
-
-.sprintlist-wrapper::-webkit-scrollbar {
+.wrapper::-webkit-scrollbar {
   width: 0px;
   height: 0px;
 }
 
-.sprintlist {
+.sprintlist-content {
   max-height: 600px;
   overflow: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
-.sprintlist::-webkit-scrollbar {
+.sprintlist-content::-webkit-scrollbar {
   width: 0px;
   height: 0px;
 }

@@ -16,7 +16,7 @@ import API from "../../utils/API";
 import { OPEN, ALL } from "../../helpers";
 
 // CSS
-// import "./style.css";
+import "./style.css";
 
 
 // -------------------------------------------
@@ -413,9 +413,9 @@ export default class Project extends Component {
                 avatarUrl={this.state.user.avatar_url}
                 displayName={this.state.user.display_name}
               />
-              <div className="project-container">
+              <div className="project">
                 <div className="row">
-                  <div className="col-100">
+                  <div className="col full">
                     <ProjectCard
                       project={this.state.project}
                       team={this.state.team}
@@ -423,7 +423,7 @@ export default class Project extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-50">
+                  <div className="col half">
                     <SprintList
                       sprints={this.state.sprints}
                       selectSprint={sprintId => this.selectSprint(sprintId)}
@@ -433,7 +433,7 @@ export default class Project extends Component {
                       handleChangeStatus={this.handleChangeStatusSprint}
                     />
                   </div>
-                  <div className="col-50">
+                  <div className="col half">
                     {
                       this.state.currentSprint.length ?
                         <TaskListSelector
