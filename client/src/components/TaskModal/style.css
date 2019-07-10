@@ -1,12 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
-/* 
-font-family: 'Overpass', sans-serif;
-
-font-family: 'PT Sans Narrow', sans-serif;
-
-font-family: 'Rajdhani', sans-serif;
-*/
-
 
 .task-modal {
   width: 600px;
@@ -51,7 +43,6 @@ font-family: 'Rajdhani', sans-serif;
   /* WebKit */
   width: 0px;
 }
-
 
 .team-member-name {
   padding: 0 8px;

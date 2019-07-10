@@ -11,11 +11,9 @@
   border-radius: 5px;
 }
 
-
 /* -----------------------------------------
                    Auth
 ----------------------------------------- */
-
 
 .auth-container {
   display: flex;
@@ -35,9 +33,9 @@
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
-  /* font-family: "Rajdhani", sans-serif; */
   font-weight: bold;
 }
+
 .github-button:hover {
   opacity: 1;
 }
@@ -46,11 +44,9 @@ a {
   text-decoration-line: none;
 }
 
-
 /* -----------------------------------------
                CreateProject
 ----------------------------------------- */
-
 
 .create-project-container {
   position: fixed;
@@ -143,7 +139,6 @@ a {
   transition: opacity 0.2s ease-in;
 }
 
-
 /* -----------------------------------------
            CreateProject/AddedUsers
 ----------------------------------------- */
@@ -198,72 +193,903 @@ a {
      CreateProject/SearchUsers/FuzzyList
 ----------------------------------------- */
 
+.fuzzy-user {
+  cursor: pointer;
+  background-color: white;
+  padding: 5px;
+}
 
+.fuzzy-user:hover {
+  background-color: whitesmoke;
+  cursor: pointer;
+}
+
+.fuzzy-invite {
+  cursor: pointer;
+  background-color: #36c8a3;
+  padding: 5px;
+}
+
+.fuzzy-list-container {
+  position: fixed;
+  z-index: 2000;
+  width: 21vw;
+  min-width: 200px;
+}
+
+.fuzzy-list-container :last-child {
+  border-radius: 0px 0px 5px 5px;
+}
 
 /* -----------------------------------------
                  MyTasks
 ----------------------------------------- */
 
+h1 {
+  margin: 0;
+  font-weight: 300;
+}
 
+.my-tasks-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  height: 73vh;
+  padding: 20px 50px;
+}
+
+@media (max-width: 768px) {
+  .my-tasks-container {
+    width: inherit;
+    min-width: unset;
+  }
+}
+
+/* -----------------------------------------
+           MyTasks/MyProjectPicker
+----------------------------------------- */
+
+@import url("https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap");
+
+.project-picker-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.project-picker-container div {
+  margin-right: 10px;
+}
+
+.project-button {
+  background: none;
+  margin: 2px 7px;
+  border-radius: 8px;
+}
+
+.project-button.active > button {
+  color: #f5f5f5;
+}
+
+.active#ALL {
+  background-color: #d593e8;
+}
+
+.active {
+  background-color: #46a1fd;
+}
+
+/* -----------------------------------------
+             MyTasks/MyTasksList
+----------------------------------------- */
+
+.my-task-list-container {
+  height: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  overflow: scroll;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.my-task-list-container::-webkit-scrollbar {
+  /* WebKit */
+  width: 0px;
+  height: 0px;
+}
+
+.my-task-list-item {
+  background-color: #fff;
+  border: 1px solid #d3d3d3;
+  border-radius: 0.3em;
+  padding: 15px;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-upper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.task-lower {
+  display: flex;
+  align-items: center;
+}
+
+/* -----------------------------------------
+          MyTasks/MyTaskStatusPicker
+----------------------------------------- */
+
+.status-picker-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.status-picker-container div {
+  margin-right: 10px;
+}
+
+.button-bg {
+  background: none;
+  margin: 7px;
+  border-radius: 8px;
+}
+
+.button-bg.active > button {
+  color: #f5f5f5;
+}
+
+.active#all-tasks {
+  background-color: #d593e8;
+}
+
+.active#open-tasks {
+  /* background-color: #36C8A3; */
+  background-color: #36c8a3;
+}
+
+.active#in-progress-tasks {
+  background-color: #46a1fd;
+}
+
+.active#done-tasks {
+  background-color: #fd9e3c;
+}
 
 /* -----------------------------------------
                    NavBar
 ----------------------------------------- */
 
+.nav-bar {
+  padding-top: 20px;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.nav-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+
+.nav-item :first-child {
+  margin-right: 8px;
+}
 
 /* -----------------------------------------
-               PrivateRoute
+ProfileCard
 ----------------------------------------- */
 
+@import url("https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap");
 
+.profile-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-/* -----------------------------------------
-                ProfileCard
------------------------------------------ */
+.dropdown-container {
+  display: flex;
+  position: absolute;
+  padding-top: 30px;
+  top: 60px;
+  right: 2vw;
+  z-index: 10000;
+}
 
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  background-color: #c5ced8;
+  border-radius: 5px;
+  padding: 10px;
+}
 
+.dropdown-item {
+  margin: 5px;
+}
+
+.username {
+  color: #4d4d4d;
+  cursor: default;
+}
+
+.logout-button {
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  font-weight: bolder;
+}
+
+.avatar {
+  width: 60px;
+  border-radius: 5vh;
+}
+
+@media (max-width: 768px) {
+  .profile-card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    height: unset;
+    width: unset;
+  }
+
+  .avatar {
+    width: 100px;
+    border-radius: 150px;
+    margin: 20px;
+  }
+}
+
+#OPEN {
+  background-color: #36C8A3;
+  font-family: "PT Sans Narrow", sans-serif;
+  color: white;
+  margin: 7px;
+  border-radius: 8px;
+}
+#IN_PROGRESS {
+  background-color: #46A1FD;
+  font-family: "PT Sans Narrow", sans-serif;
+  color: white;
+  margin: 7px;
+  border-radius: 8px;
+}
+#DONE {
+  background-color: #FD9E3C;
+  font-family: "PT Sans Narrow", sans-serif;
+  color: white;
+  margin: 7px;
+  border-radius: 8px;
+}
 
 /* -----------------------------------------
                 ProjectCard
 ----------------------------------------- */
 
+@import url("https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap");
 
+.profile-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.dropdown-container {
+  display: flex;
+  position: absolute;
+  padding-top: 30px;
+  top: 60px;
+  right: 2vw;
+  z-index: 10000;
+}
+
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  background-color: #c5ced8;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.dropdown-item {
+  margin: 5px;
+}
+
+.username {
+  color: #4d4d4d;
+  cursor: default;
+}
+
+.logout-button {
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  font-weight: bolder;
+}
+
+.avatar {
+  width: 60px;
+  border-radius: 5vh;
+}
+
+@media (max-width: 768px) {
+  .profile-card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    height: unset;
+    width: unset;
+  }
+
+  .avatar {
+    width: 100px;
+    border-radius: 150px;
+    margin: 20px;
+  }
+}
+
+#OPEN {
+  background-color: #36C8A3;
+  font-family: "PT Sans Narrow", sans-serif;
+  color: white;
+  margin: 7px;
+  border-radius: 8px;
+}
+
+#IN_PROGRESS {
+  background-color: #46A1FD;
+  font-family: "PT Sans Narrow", sans-serif;
+  color: white;
+  margin: 7px;
+  border-radius: 8px;
+}
+
+#DONE {
+  background-color: #FD9E3C;
+  font-family: "PT Sans Narrow", sans-serif;
+  color: white;
+  margin: 7px;
+  border-radius: 8px;
+}
+
+/* -----------------------------------------
+                ProjectList
+----------------------------------------- */
+
+h1 {
+  margin: 0;
+  font-weight: 300;
+}
+
+.project-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-items: space-between;
+  border-radius: 5px;
+  padding: 20px 50px;
+}
+
+.project-list-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  /* border: 1px solid grey; */
+  overflow: scroll;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
+  padding: 0 5px;
+  max-height: 66vh;
+}
+
+.project-list::-webkit-scrollbar {
+  /* WebKit */
+  width: 0px;
+  height: 0px;
+}
+
+.create-project-button {
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  background: #36c8a3;
+  color: white;
+  border-radius: 100%;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+@media (max-width: 768px) {
+  .project-list-container {
+    width: 100%;
+  }
+}
+
+/* -----------------------------------------
+               ProjectListItem
+----------------------------------------- */
+
+.project-list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+  hyphens: auto;
+  background-color: #c5ced8;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  margin: 8px;
+  margin-left: -1px;
+  color: black;
+  padding: 20px;
+}
+
+.project-list-item:hover {
+  background-color: #708090;
+  color: white;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+.created-by {
+  font-size: 0.8rem;
+}
 
 /* -----------------------------------------
                  SprintList
 ----------------------------------------- */
 
+@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
 
+.sprintlist-wrapper {
+  font-family: 'Rajdhani', sans-serif;
+}
 
+.sprintlist-wrapper::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.sprintlist {
+  max-height: 600px;
+  overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sprintlist::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.sprintlist-header {
+  display: flex;
+  align-items: center
+}
+
+.sprint-item{
+  display: flex;
+  flex-direction: column;
+  background-color: #c5ced8;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  margin: 8px;
+  margin-left: -1px;
+  padding: 20px;
+}
+
+.sprint-item.active {
+  background-color: #708090;
+  color: white;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+.sprint-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sprint-name {
+  font-weight: bolder;
+  max-width: 80%;
+  overflow-wrap: break-word;
+}
+
+.sprint-date {
+  font-style: italic;
+  flex: 1;
+}
+
+.expand-btn {
+  position: relative;
+}
+
+img.options-icon {
+  visibility: hidden;
+  position: absolute;
+  top: -10px;
+  right: 0;
+  width: 20px;
+  cursor: pointer;
+  padding: 8px 2px;
+}
+
+.sprint-item:hover img.options-icon {
+  visibility: visible;
+}
+
+.sprint-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+#open {
+  background-color: #36C8A3;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 1.25rem;
+  color: white;
+  margin: 7px;
+  margin-left: -1px;
+  border-radius: 8px;
+}
+
+#in-progress {
+  background-color: #46A1FD;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 1.25rem;
+  color: white;
+  margin: 7px;
+  border-radius: 8px;
+}
+
+#done {
+  background-color: #FD9E3C;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 1.25rem;
+  color: white;
+  margin: 7px;
+  border-radius: 8px;
+}
+
+#closed {
+  background-color: #FF5F58;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 1.25rem;
+  color: white;
+  margin: 7px;
+  border-radius: 8px;
+}
+
+/* -----------------------------------------
+          SprintList/AddSprintButton
+----------------------------------------- */
+
+#add-sprint {
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  background: #36C8A3;
+  color: white;
+  border-radius: 100%;
+  cursor: pointer;
+  margin-left: 15px;
+}
 
 /* -----------------------------------------
                  SprintModal
 ----------------------------------------- */
 
-
-
-
-/* -----------------------------------------
-                 SprintModal
------------------------------------------ */
-
-
+.sprint-modal {
+  width: 600px;
+  background: #f5f5f5;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  margin: 200px auto 0;
+  padding: 40px;
+  border-radius: 5px;
+}
 
 /* -----------------------------------------
                StatusDropdown
 ----------------------------------------- */
 
+.selected-status {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 5px;
+  position: relative;
+  cursor: pointer;
+}
 
+.selected-status:hover .options-wrapper {
+  visibility: visible;
+}
+
+.selected-status:hover {
+  background-color: slategray;
+  color: white;
+}
+
+.status:hover {
+  font-style: italic;
+}
+
+.options-wrapper {
+  word-wrap: normal;
+  visibility: hidden;
+  position: absolute;
+  z-index: 1000;
+  top: 30px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 8px 2px;
+  border-radius: 5px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 90px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: slategray;
+  color: white;
+}
 
 /* -----------------------------------------
               TaskListSelector
 ----------------------------------------- */
 
+@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
 
+.tasklist-wrapper {
+  font-family: 'Rajdhani', sans-serif;
+}
 
+.tasklist-header {
+  display: flex;
+  align-items: center
+}
+
+/*
+Button for creating/adding a task
+*/
+
+#add-task {
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  background: #36C8A3;
+  color: white;
+  border-radius: 100%;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+/*
+Buttons for selecting the status of tasks to show
+*/
+
+button {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 1.25rem;
+  background: none;
+}
+
+.button-bg {
+  background: none;
+  margin: 7px;
+  border-radius: 8px;
+}
+
+.button-bg.active > button{
+  color: #f5f5f5;
+}
+
+.active#all-tasks{
+  background-color: #D593E8;
+}
+
+.active#open-tasks {
+  /* background-color: #36C8A3; */
+  background-color: #36c8a3;
+}
+
+.active#in-progress-tasks{
+  background-color: #46A1FD;
+}
+
+.active#done-tasks {
+  background-color: #FD9E3C;
+}
+
+/* -----------------------------------------
+                  TaskList
+----------------------------------------- */
+
+.sm-avatar {
+  width: 30px;
+  border-radius: 100%;
+}
+
+.task-container {
+  background-color: #fff;
+  border: 1px solid #d3d3d3;
+  border-radius: 0.3em;
+  padding: 15px;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-container:hover {
+  background: #ebebeb;
+  cursor: pointer;
+}
+
+.task-upper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.task-lower {
+  display: flex;
+  align-items: center;
+}
+
+.unassigned-avatar {
+  width: 30px;
+}
+
+.task-description {
+  flex: 1;
+  margin: 0;
+}
+
+.task-name {
+  font-weight: bolder;
+}
 
 /* -----------------------------------------
                   TaskModal
 ----------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
+
+.task-modal {
+  width: 600px;
+  background: #f5f5f5;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  margin: 200px auto 0;
+  padding: 40px;
+  border-radius: 5px;
+}
+
+.task-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.team-member-item {
+  display: flex;
+  align-items: center;
+  padding: 3px 0;
+  border-radius: 8px;
+  width: min-content;
+}
+
+.assignee-header {
+  display: flex;
+  align-items: center;
+}
+
+.task-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.team-member-list {
+  display: flex;
+  overflow: scroll;
+  padding: 5px 0;
+  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.team-member-list::-webkit-scrollbar {
+  /* WebKit */
+  width: 0px;
+}
+
+.team-member-name {
+  padding: 0 8px;
+  cursor: default;
+}
+
+.avatar-sm,
+.assignee-avatar {
+  width: 40px;
+  border-radius: 100%;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.assignee-avatar {
+  padding: 0 20px;
+}
+
+.avatar-sm:hover {
+  border: 1px solid #36C8A3;
+  cursor: pointer;
+}
+
+button.task-button,
+button.task-btn-dlt {
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 8px;
+}
+
+button.task-button:hover {
+  background: #36C8A3;
+  color: #f5f5f5;
+  cursor:pointer;
+}
+
+button.task-btn-dlt:hover {
+  background: #d84733;
+  color: #f5f5f5;
+  cursor: pointer;
+}
+
+.assignee-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+}
+
+#current-status {
+  padding: 0 20px;
+}
+

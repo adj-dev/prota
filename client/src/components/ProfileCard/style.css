@@ -1,19 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap");
 
-/* 
-colours for styling buttons:
-all:
-`background-color: #D593E8;`
-open:
-`background-color: #36C8A3;`
-inprog:
-`background-color: #46A1FD;`
-done:
-`background-color: #FD9E3C;`
-closed:
-`background-color: #FF5F58;` 
-*/
-
 .profile-card-container {
   display: flex;
   flex-direction: column;
