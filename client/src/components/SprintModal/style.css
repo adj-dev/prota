@@ -6,3 +6,28 @@
   padding: 40px;
   border-radius: 5px;
 }
+
+.addsprint-input {
+  padding: 20px 7px;
+}
+
+.addsprint-input > label {
+  padding-right: 15px;
+  font-size: 1.2rem;
+}
+
+input {
+  border: 1px solid #708090;
+  font-size: 1rem;
+  padding: 5px 7px;
+  background-color: unset;
+  color: #708090
+}
+
+input:focus {
+  background-color: #708090;
+  color: white;
+}
+
+
+
