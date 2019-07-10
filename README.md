@@ -17,7 +17,7 @@ Repository: https://github.com/adj-dev/final-project
     * [Nhu Richie](https://github.com/nhurichie) - Project Manger/Styles Designer
 
 * Back End Development Team:
-    * [Adam Schubert](https://github.com/leavinit) - Route/Security Developer
+    * [Adam Schubert](https://github.com/leavinit) - Route Designer/QA Expert
     * [Kieran Anthony](https://github.com/zekkxx) - Database Architect
 
 ## Project Stack:
