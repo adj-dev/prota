@@ -27,9 +27,7 @@ const TaskListSelector = ({ tasks, selectedTasks, trackStatus, handleTaskModal, 
       {/* Header */}
       <div className="tasklist-header">
         <h1>Tasks</h1>
-        <div id="add-task" onClick={() => handleTaskModal()}>
-          +
-          </div>
+        <img className="icon add" src={require('../../assets/img/add.png')} alt="" onClick={handleTaskModal} />
       </div>
       {/* Status buttons */}
       <div className="container selector-row">

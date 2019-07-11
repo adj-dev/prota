@@ -1,7 +1,6 @@
 import React from 'react'
 import moment from 'moment';
 
-import AddSprintButton from './AddSprintButton'
 import SprintListEmpty from './SprintListEmpty';
 import StatusDropdown from '../StatusDropdown';
 // import * as STATUS from '../../helpers';
@@ -21,7 +20,7 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal
     <div className="wrapper">
       <div className="sprintlist-header">
         <h1>Sprints</h1>
-        <AddSprintButton openAddSprintModal={() => openAddSprintModal()} />
+        <img className="icon add" src={require('../../assets/img/add.png')} alt="" onClick={openAddSprintModal} />
       </div>
       <div className="sprintlist-content">
         {
