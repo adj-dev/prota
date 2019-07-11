@@ -18,11 +18,11 @@ h1 {
 
 input {
   padding: 5px 7px;
-  border: 1px solid white;
+  border: 1px solid #d8d8d8;
   border-radius: 3px;
   font-size: 1rem;
   background-color: unset;
-  color: white;
+  color: #eff1f4;
 }
 
 button {
@@ -170,6 +170,68 @@ button:focus {
 
 .task-name {
   font-weight: bolder;
+}
+
+/*---------------------------------------------------
+                       Modals
+---------------------------------------------------*/
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left:0;
+  z-index: 999;
+}
+
+.modal {
+  width: 30vw;
+  min-width: 320px;
+  background: #708090;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  margin: 25vh auto 0;
+  padding: 40px 80px;
+  border-radius: 5px;
+  color: #eff1f4;
+}
+
+.modal-header {
+  padding-bottom: 30px;
+}
+
+.modal-input {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 12px;
+}
+
+.submit-btn {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+}
+
+button.add-button,
+button.dlt-button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 5px;
+  color: #eff1f4;
+  padding: 5px 8px;
+}
+
+button.add-button:hover {
+  background: #36C8A3;
+  color: #f5f5f5;
+  cursor:pointer;
+}
+
+button.dlt-button:hover {
+  background: #d84733;
+  color: #f5f5f5;
+  cursor: pointer;
 }
 
 /*---------------------------------------------------

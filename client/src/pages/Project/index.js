@@ -15,9 +15,6 @@ import API from "../../utils/API";
 // HELPERS
 import { OPEN, ALL } from "../../helpers";
 
-// CSS
-import "./style.css";
-
 
 // -------------------------------------------
 //              PROJECT COMPONENT
@@ -106,7 +103,7 @@ export default class Project extends Component {
   // Toggles the visibility of a modal when user clicks backdrop
   toggleModalVisibility = e => {
     let targetElement = e.target;
-    if (targetElement.closest(".task-modal") || targetElement.closest(".addsprint-modal") || targetElement.closest(".sprint-modal")) return;
+    if (targetElement.closest(".task-modal") || targetElement.closest(".modal") || targetElement.closest(".sprint-modal")) return;
     this.setState({ viewingTask: false, addingSprint: false, viewingSprint: false }); // eventually merge addingSprint with viewingSprint (similar functionality to TaskModal)
   };
 
@@ -412,8 +409,11 @@ export default class Project extends Component {
               <NavBar
                 avatarUrl={this.state.user.avatar_url}
                 displayName={this.state.user.display_name}
+                style={this.state.addingSprint || this.state.viewingSprint || this.state.viewingTask ? { filter: 'blur(3px)' } : null}
               />
-              <div className="page">
+              <div className="page"
+                style={this.state.addingSprint || this.state.viewingSprint || this.state.viewingTask ? { filter: 'blur(3px)' } : null}
+              >
                 <div className="row">
                   <div className="col full">
                     <ProjectCard

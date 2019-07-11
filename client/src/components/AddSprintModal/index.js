@@ -16,7 +16,7 @@ const AddSprintModal = ({ handleModal, handleAddSprint }) => {
 
   return (
     <div className="modal-backdrop" onClick={e => handleModal(e)}>
-      <div className="addsprint-modal">
+      <div className="modal">
         <div className="modal-header">
           Add a Sprint
         </div>
@@ -24,12 +24,12 @@ const AddSprintModal = ({ handleModal, handleAddSprint }) => {
           e.preventDefault()
           validate(sprintName)
         }}>
-          <div className="addsprint-input">
-            <label htmlFor="sprintName">Name:</label>
+          <div className="modal-input">
+            <label htmlFor="sprintName">Name</label>
             <input type="text" name="sprintName" value={sprintName} onChange={e => changeSprintName(e)} />
           </div>
-          <div className="task-button-container">
-            <button className="task-button" id="addsprint" type="submit">Add</button>
+          <div className="submit-btn">
+            <button className="add-button" id="addsprint" type="submit">Add</button>
           </div>
         </form>
       </div>

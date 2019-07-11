@@ -51,7 +51,7 @@ class Profile extends Component {
 
   toggleCreateProjectDialog = e => {
     let targetElement = e.target;
-    if (targetElement.closest(".create-project-content-container")) {
+    if (targetElement.closest(".modal")) {
       return;
     }
 
