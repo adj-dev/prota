@@ -1,11 +1,3 @@
-.project {
-  padding: 15px 8%;
-}
-
-.status-buttons {
-  display: flex;
-}
-
 .modal-backdrop {
   position: fixed;
   background-color:rgba(255, 255, 255, 0.5);
@@ -16,14 +8,3 @@
   z-index: 10;
   font-family: 'Rajdhani', sans-serif;
 }
-
-@media screen and (max-width: 1000px) {
-  .row {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .col.half {
-    width: 600px;
-  }
-} 

@@ -70,7 +70,7 @@ class Profile extends Component {
               avatarUrl={this.state.user.avatar_url}
               displayName={this.state.user.display_name}
             />
-            <div className="profile-container">
+            <div className="page">
               {this.state.creatingProject ? (
                 <CreateProject
                   toggleCreateProjectDialog={this.toggleCreateProjectDialog}
@@ -79,7 +79,7 @@ class Profile extends Component {
               ) : null}
 
               <div className="row">
-                <div className="col-100">
+                <div className="col full">
                   <ProjectCard
                     project={{ name: this.state.user.display_name }}
                     team={[]}
@@ -88,20 +88,18 @@ class Profile extends Component {
               </div>
 
               <div className="row">
-                <div className="col-50">
+                <div className="col half">
                   {this.state.user.projects ? (
                     <ProjectList
-                      className="projectlist-wrapper"
                       toggleCreateProjectDialog={this.toggleCreateProjectDialog}
                       projects={[...this.state.user.projects]}
                     />
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
                 </div>
-                <div className="col-50">
+                <div className="col half">
                   <MyTasks
-                    className="mytasks-wrapper"
                     handleChangeStatus={this.handleChangeStatus}
                     projects={this.state.user.projects}
                     tasks={this.state.tasks}
@@ -112,8 +110,8 @@ class Profile extends Component {
             </div>
           </>
         ) : (
-          ""
-        )}
+            ""
+          )}
       </>
     );
   }

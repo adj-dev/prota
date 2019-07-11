@@ -3,7 +3,6 @@ import MyTaskStatusPicker from "./MyTaskStatusPicker";
 import MyProjectPicker from "./MyProjectPicker";
 import MyTaskList from "./MyTasksList";
 import { ALL, OPEN } from "../../helpers";
-import "./style.css";
 
 const MyTasks = ({ projects, handleChangeStatus, tasks }) => {
   const projectList = [{ _id: ALL, name: "all" }, ...projects];
@@ -71,8 +70,10 @@ const MyTasks = ({ projects, handleChangeStatus, tasks }) => {
   }, [tasks]);
 
   return (
-    <div className="my-tasks-container">
-      <h1>My Tasks</h1>
+    <div className="wrapper">
+      <div className="mytasks-header">
+        <h1>My Tasks</h1>
+      </div>
       <MyProjectPicker
         handleSelectProject={selectProject}
         projects={projectList}

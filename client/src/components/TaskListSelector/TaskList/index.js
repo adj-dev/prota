@@ -21,7 +21,7 @@ const TaskList = ({ tasks, handleTaskModal, status, handleChangeStatus }) => {
           tasks.map(task => {
             return (
               <div
-                className="task-container"
+                className="task-item"
                 key={task._id}
                 onClick={e => handleTaskModal(e, task)}
               >

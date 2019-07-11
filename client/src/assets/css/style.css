@@ -6,15 +6,30 @@ body {
   background: #f7f7f7;
 }
 
+a {
+  text-decoration: none;
+  color: unset;
+}
+
 h1 {
   margin: 0;
   font-weight: 300;
 }
 
+input {
+  padding: 5px 7px;
+  border: 1px solid white;
+  border-radius: 3px;
+  font-size: 1rem;
+  background-color: unset;
+  color: white;
+}
+
 button {
   font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 1.25rem;
   border: none;
-  background-color: none;
+  background: none;
 }
 
 button:focus {
@@ -34,7 +49,7 @@ button:focus {
 }
 
 .wrapper {
-  padding: 20px 50px;
+  padding: 20px 40px;
 }
 
 .row {
@@ -54,3 +69,121 @@ button:focus {
   width: 100%;
 }
 
+.page {
+  padding: 15px 8%;
+}
+
+.projectlist-header,
+.sprintlist-header,
+.tasklist-header,
+.mytasks-header {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.projectlist-content,
+.sprintlist-content {
+  display: flex;
+  flex-direction: column;
+  max-height: 600px;
+  overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.projectlist-content::-webkit-scrollbar,
+.sprintlist-content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/*---------------------------------------------------
+                   Status Selector
+---------------------------------------------------*/
+
+.selector-row {
+  height: 41px;
+  align-items: center;
+}
+
+.button-bg {
+  background: none;
+  margin: 7px;
+  border-radius: 8px;
+}
+
+.button-bg.active > button {
+  color: #f5f5f5;
+}
+
+.active#all-tasks{
+  background-color: #D593E8;
+}
+
+.active#open-tasks {
+  background-color: #36c8a3;
+}
+
+.active#in-progress-tasks{
+  background-color: #46A1FD;
+}
+
+.active#done-tasks {
+  background-color: #FD9E3C;
+}
+
+/*---------------------------------------------------
+                      Tasklist
+---------------------------------------------------*/
+
+.task-item {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 10px;
+  padding: 15px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.task-upper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.task-lower {
+  display: flex;
+  align-items: center;
+}
+
+.unassigned-avatar {
+  width: 30px;
+}
+
+.task-description {
+  flex: 1;
+  margin: 0;
+}
+
+.task-name {
+  font-weight: bolder;
+}
+
+/*---------------------------------------------------
+                    Responsiveness
+---------------------------------------------------*/
+
+
+@media screen and (max-width: 1000px) {
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .col.half {
+    width: 600px;
+  }
+} 

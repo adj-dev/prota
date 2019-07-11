@@ -1,37 +1,17 @@
-.my-task-list-container {
-  height: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  overflow: scroll;
-  overflow-y: scroll;
-  -ms-overflow-style: none; /* IE 10+ */
-  scrollbar-width: none; /* Firefox */
-}
-
-.my-task-list-container::-webkit-scrollbar {
-  /* WebKit */
-  width: 0px;
-  height: 0px;
-}
-
-.my-task-list-item {
-  background-color: #fff;
-  border: 1px solid #d3d3d3;
-  border-radius: 0.3em;
-  padding: 15px;
-  margin: 10px 0;
+.mytasks-content {
   display: flex;
   flex-direction: column;
+  max-height: 500px;
+  overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.task-upper {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  align-items: center;
-}
+.mytasks-content::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+} 
 
-.task-lower {
-  display: flex;
-  align-items: center;
+.task-item.profile:hover {
+  background: #fff;
 }

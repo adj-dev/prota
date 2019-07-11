@@ -413,7 +413,7 @@ export default class Project extends Component {
                 avatarUrl={this.state.user.avatar_url}
                 displayName={this.state.user.display_name}
               />
-              <div className="project">
+              <div className="page">
                 <div className="row">
                   <div className="col full">
                     <ProjectCard

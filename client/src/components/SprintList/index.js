@@ -23,24 +23,6 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal
         <h1>Sprints</h1>
         <AddSprintButton openAddSprintModal={() => openAddSprintModal()} />
       </div>
-
-      {/* As of now, no longer need to show status buttons on sprint list */}
-
-      {/* <div className="status-buttons">
-          <div className="status">
-            <button id="open">open</button>
-          </div>
-          <div className="status">
-            <button id="in-progress">in progress</button>
-          </div>
-          <div className="status">
-            <button id="done">done</button>
-          </div>
-          <div className="status">
-            <button id="closed">closed</button>
-          </div>
-        </div> */}
-
       <div className="sprintlist-content">
         {
           sprints.length ?
@@ -51,40 +33,23 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal
                   onClick={() => handleClick(sprint._id)}
                 >
                   <div className="expand-btn">
-                    <div className="options-wrapper-og">
-                      <img
-                        className="options-icon"
-                        src={require('../../assets/img/options.png')}
-                        alt=""
-                        onClick={() => openSprintModal(sprint)}
-                      />
-                    </div>
-
+                    <img
+                      className="options-icon"
+                      src={require('../../assets/img/options.png')}
+                      alt=""
+                      onClick={() => openSprintModal(sprint)}
+                    />
                   </div>
                   <div className="sprint-header">
                     <span className="sprint-name">{sprint.name}</span>
                   </div>
-                  <div className="sprint-body">
+                  <div className="sprint-content">
                     <span className="sprint-date">start date: {moment(sprint.start_date).format('MMM D, YYYY')}</span>
-                    <span className="sprint-status">
-                      {/* {
-                          sprint.status === STATUS.OPEN ?
-                            'open'
-                            :
-                            sprint.status === STATUS.IN_PROGRESS ?
-                              'in progress'
-                              :
-                              sprint.status === STATUS.DONE ?
-                                'done'
-                                :
-                                null
-                        } */}
-                      <StatusDropdown
-                        selectedStatus={sprint.status}
-                        taskId={sprint._id}
-                        handleChangeStatus={handleChangeStatus}
-                      />
-                    </span>
+                    <StatusDropdown
+                      selectedStatus={sprint.status}
+                      taskId={sprint._id}
+                      handleChangeStatus={handleChangeStatus}
+                    />
                   </div>
                 </div>
               )
