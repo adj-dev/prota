@@ -12,7 +12,8 @@ class Profile extends Component {
   state = {
     user: null,
     tasks: null,
-    creatingProject: false
+    creatingProject: false,
+    blur: false
   };
 
   componentDidMount = async () => {
@@ -57,7 +58,7 @@ class Profile extends Component {
 
     console.log("Create a Project!");
     this.setState(prevState => {
-      return { creatingProject: !prevState.creatingProject };
+      return { creatingProject: !prevState.creatingProject, blur: !prevState.blur };
     });
   };
 
@@ -69,15 +70,9 @@ class Profile extends Component {
             <NavBar
               avatarUrl={this.state.user.avatar_url}
               displayName={this.state.user.display_name}
+              style={this.state.blur ? { filter: 'blur(3px)' } : null}
             />
-            <div className="page">
-              {this.state.creatingProject ? (
-                <CreateProject
-                  toggleCreateProjectDialog={this.toggleCreateProjectDialog}
-                  user={this.state.user}
-                />
-              ) : null}
-
+            <div className="page" style={this.state.blur ? { filter: 'blur(3px)' } : null}>
               <div className="row">
                 <div className="col full">
                   <ProjectCard
@@ -108,6 +103,12 @@ class Profile extends Component {
                 </div>
               </div>
             </div>
+            {this.state.creatingProject ? (
+              <CreateProject
+                toggleCreateProjectDialog={this.toggleCreateProjectDialog}
+                user={this.state.user}
+              />
+            ) : null}
           </>
         ) : (
             ""
