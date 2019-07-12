@@ -36,7 +36,8 @@ export default class Project extends Component {
     showTaskModal: false,
     isLoaded: false,
     context: null,
-    trackedStatus: OPEN
+    trackedStatus: OPEN,
+    blur: false
   };
 
   // Fetches the user object and project object when component first renders
@@ -104,7 +105,7 @@ export default class Project extends Component {
   toggleModalVisibility = e => {
     let targetElement = e.target;
     if (targetElement.closest(".task-modal") || targetElement.closest(".modal") || targetElement.closest(".sprint-modal")) return;
-    this.setState({ viewingTask: false, addingSprint: false, viewingSprint: false }); // eventually merge addingSprint with viewingSprint (similar functionality to TaskModal)
+    this.setState({ viewingTask: false, addingSprint: false, viewingSprint: false, blur: false }); // eventually merge addingSprint with viewingSprint (similar functionality to TaskModal)
   };
 
   // Allows state to keep track of status, which allows for this component to send 
@@ -115,14 +116,15 @@ export default class Project extends Component {
 
   // Triggered when a project owner selects the 'add a project' button
   openAddSprintModal = () => {
-    this.setState({ addingSprint: true });
+    this.setState({ addingSprint: true, blur: true });
   };
 
   openSprintModal = sprint => {
     this.setState({
       viewedSprint: sprint ? sprint : null,
       viewingSprint: true,
-      context: sprint ? 'edit' : 'create'
+      context: sprint ? 'edit' : 'create',
+      blur: true
     })
   }
 
@@ -132,13 +134,13 @@ export default class Project extends Component {
     if (e) {
       // Won't open the modal if user is selecting a status
       if (!e.target.closest('.selected-status')) {
-        this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create' })
+        this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create', blur: true })
       }
     }
 
     // if the user tries to create a task, e won't exist -- could handle this in the event it came from but, meh
     if (!e) {
-      this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create' })
+      this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create', blur: true })
     }
   }
 
@@ -409,11 +411,9 @@ export default class Project extends Component {
               <NavBar
                 avatarUrl={this.state.user.avatar_url}
                 displayName={this.state.user.display_name}
-                style={this.state.addingSprint || this.state.viewingSprint || this.state.viewingTask ? { filter: 'blur(3px)' } : null}
+                style={this.state.blur ? { filter: 'blur(3px)' } : null}
               />
-              <div className="page"
-                style={this.state.addingSprint || this.state.viewingSprint || this.state.viewingTask ? { filter: 'blur(3px)' } : null}
-              >
+              <div className="page" style={this.state.blur ? { filter: 'blur(3px)' } : null}>
                 <div className="row">
                   <div className="col full">
                     <ProjectCard

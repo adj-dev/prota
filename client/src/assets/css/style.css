@@ -118,6 +118,51 @@ img.icon.add {
   cursor: pointer;
 }
 
+/*------------Animation-for-blur-effect------------*/
+
+.blur {
+  filter: blur(3px);
+  /* transition: .5s opacity linear; */
+  opacity: .1;
+  animation: reveal .5s linear forwards
+}
+
+@-webkit-keyframes reveal {
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes reveal {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes reveal {
+  to {
+    opacity: 1;
+  }
+}
+
+/* @-webkit-keyframes blur {
+  to {
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+  }
+}
+@-moz-keyframes blur {
+  to {
+    -moz-filter: blur(3px);
+    filter: blur(3px);
+  }
+}
+@keyframes blur {
+  to {
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    filter: blur(3px);
+  }
+} */
+
 /*---------------------------------------------------
                    Status Selector
 ---------------------------------------------------*/
