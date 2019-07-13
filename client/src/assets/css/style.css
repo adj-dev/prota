@@ -94,6 +94,12 @@ button:focus {
   -ms-overflow-style: none;
 }
 
+.sprintlist-content,
+.tasklist-content,
+.mytasks-content {
+  padding-bottom: 40px;
+}
+
 .projectlist-content::-webkit-scrollbar,
 .sprintlist-content::-webkit-scrollbar {
   width: 0;

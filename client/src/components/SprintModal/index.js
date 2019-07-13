@@ -29,7 +29,7 @@ const SprintModal = ({ sprint, handleModal, handleSprint, handleDeleteSprint }) 
         }}>
           <div className="modal-input">
             <label htmlFor="sprintName">Name</label>
-            <input type="text" name="sprintName" value={sprintName} onChange={e => changeSprintName(e)} />
+            <input autoFocus type="text" name="sprintName" value={sprintName} onChange={e => changeSprintName(e)} />
           </div>
           <div className="submit-btn">
             <button className="add-button" type="submit">{sprint ? 'Save' : 'Add'}</button>

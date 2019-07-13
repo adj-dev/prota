@@ -26,7 +26,7 @@ const AddSprintModal = ({ handleModal, handleAddSprint }) => {
         }}>
           <div className="modal-input">
             <label htmlFor="sprintName">Name</label>
-            <input type="text" name="sprintName" value={sprintName} onChange={e => changeSprintName(e)} />
+            <input autoFocus type="text" name="sprintName" value={sprintName} onChange={e => changeSprintName(e)} />
           </div>
           <div className="submit-btn">
             <button className="add-button" id="addsprint" type="submit">Add</button>
