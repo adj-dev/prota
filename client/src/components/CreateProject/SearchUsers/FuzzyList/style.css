@@ -1,11 +1,13 @@
 .fuzzy-user {
   cursor: pointer;
-  background-color: white;
+  background-color: #c5ced8;
   padding: 5px;
+  color: #708090;
 }
 
 .fuzzy-user:hover {
-  background-color: whitesmoke;
+  background-color: #a4b1bd;
+  color: #eff1f4;
   cursor: pointer;
 }
 
@@ -16,7 +18,9 @@
 }
 
 .fuzzy-list-container {
-  position: fixed;
+  position: relative;
+  top: -1px;
+  left: 2px;
   z-index: 2000;
   width: 21vw;
   min-width: 200px;

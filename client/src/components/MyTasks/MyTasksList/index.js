@@ -6,11 +6,11 @@ import { ALL, OPEN, IN_PROGRESS } from "../../../helpers";
 
 export default function MyTaskList({ tasks, status, handleChangeStatus }) {
   return (
-    <div className="my-task-list-container">
+    <div className="mytasks-content">
       {tasks.length ? (
         tasks.map((task, i) => {
           return (
-            <div className="my-task-list-item" key={task._id}>
+            <div className="task-item profile" key={task._id}>
               <div className="task-upper">
                 <span>{task.name}</span>
                 <span>
@@ -28,18 +28,18 @@ export default function MyTaskList({ tasks, status, handleChangeStatus }) {
           );
         })
       ) : (
-        <div className="empty-task-list">
-          {status === ALL ? (
-            <p>You have no assigned tasks</p>
-          ) : status === OPEN ? (
-            <p>No open tasks</p>
-          ) : status === IN_PROGRESS ? (
-            <p>No tasks in progress</p>
-          ) : (
-            <p>No completed tasks</p>
-          )}
-        </div>
-      )}
+          <div className="empty-task-list">
+            {status === ALL ? (
+              <p>You have no assigned tasks</p>
+            ) : status === OPEN ? (
+              <p>No open tasks</p>
+            ) : status === IN_PROGRESS ? (
+              <p>No tasks in progress</p>
+            ) : (
+                    <p>No completed tasks</p>
+                  )}
+          </div>
+        )}
     </div>
   );
 }

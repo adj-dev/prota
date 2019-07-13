@@ -1,22 +1,18 @@
-.project-list-item {
+.project-item {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
-  margin-bottom: 10px;
   word-wrap: break-word;
   hyphens: auto;
   background-color: #c5ced8;
-  border-radius: 8px;
+  border-radius: 5px;
   font-size: 1.2rem;
-  margin: 8px;
-  margin-left: -1px;
-  color: black;
+  margin: 5px 10px;
   padding: 20px;
 }
 
-.project-list-item:hover {
+.project-item:hover {
   background-color: #708090;
   color: white;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);

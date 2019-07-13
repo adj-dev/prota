@@ -15,9 +15,6 @@ import API from "../../utils/API";
 // HELPERS
 import { OPEN, ALL } from "../../helpers";
 
-// CSS
-import "./style.css";
-
 
 // -------------------------------------------
 //              PROJECT COMPONENT
@@ -39,7 +36,8 @@ export default class Project extends Component {
     showTaskModal: false,
     isLoaded: false,
     context: null,
-    trackedStatus: OPEN
+    trackedStatus: OPEN,
+    blur: false
   };
 
   // Fetches the user object and project object when component first renders
@@ -106,8 +104,8 @@ export default class Project extends Component {
   // Toggles the visibility of a modal when user clicks backdrop
   toggleModalVisibility = e => {
     let targetElement = e.target;
-    if (targetElement.closest(".task-modal") || targetElement.closest(".addsprint-modal") || targetElement.closest(".sprint-modal")) return;
-    this.setState({ viewingTask: false, addingSprint: false, viewingSprint: false }); // eventually merge addingSprint with viewingSprint (similar functionality to TaskModal)
+    if (targetElement.closest(".task-modal") || targetElement.closest(".modal") || targetElement.closest(".sprint-modal")) return;
+    this.setState({ viewingTask: false, addingSprint: false, viewingSprint: false, blur: false }); // eventually merge addingSprint with viewingSprint (similar functionality to TaskModal)
   };
 
   // Allows state to keep track of status, which allows for this component to send 
@@ -118,14 +116,15 @@ export default class Project extends Component {
 
   // Triggered when a project owner selects the 'add a project' button
   openAddSprintModal = () => {
-    this.setState({ addingSprint: true });
+    this.setState({ addingSprint: true, blur: true });
   };
 
   openSprintModal = sprint => {
     this.setState({
       viewedSprint: sprint ? sprint : null,
       viewingSprint: true,
-      context: sprint ? 'edit' : 'create'
+      context: sprint ? 'edit' : 'create',
+      blur: true
     })
   }
 
@@ -135,13 +134,13 @@ export default class Project extends Component {
     if (e) {
       // Won't open the modal if user is selecting a status
       if (!e.target.closest('.selected-status')) {
-        this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create' })
+        this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create', blur: true })
       }
     }
 
     // if the user tries to create a task, e won't exist -- could handle this in the event it came from but, meh
     if (!e) {
-      this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create' })
+      this.setState({ expandedTask: task, viewingTask: true, context: task ? 'edit' : 'create', blur: true })
     }
   }
 
@@ -412,10 +411,11 @@ export default class Project extends Component {
               <NavBar
                 avatarUrl={this.state.user.avatar_url}
                 displayName={this.state.user.display_name}
+                style={this.state.blur ? { filter: 'blur(3px)' } : null}
               />
-              <div className="project-container">
+              <div className="page" style={this.state.blur ? { filter: 'blur(3px)' } : null}>
                 <div className="row">
-                  <div className="col-100">
+                  <div className="col full">
                     <ProjectCard
                       project={this.state.project}
                       team={this.state.team}
@@ -423,7 +423,7 @@ export default class Project extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-50">
+                  <div className="col half">
                     <SprintList
                       sprints={this.state.sprints}
                       selectSprint={sprintId => this.selectSprint(sprintId)}
@@ -433,7 +433,7 @@ export default class Project extends Component {
                       handleChangeStatus={this.handleChangeStatusSprint}
                     />
                   </div>
-                  <div className="col-50">
+                  <div className="col half">
                     {
                       this.state.currentSprint.length ?
                         <TaskListSelector

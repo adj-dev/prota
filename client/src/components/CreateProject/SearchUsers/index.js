@@ -36,9 +36,9 @@ export default class SearchUsers extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <input
-          className="search-contributors-input"
+          // className="search-contributors-input"
           placeholder={`Search for ${this.props.type}`}
           value={this.state.userQuery}
           onChange={this.handleInput("contributorQuery")}
@@ -49,7 +49,7 @@ export default class SearchUsers extends Component {
           handleInviteUser={this.inviteUser}
           handleSelectUser={this.handleSelectUser}
         />
-      </div>
+      </>
     );
   }
 }

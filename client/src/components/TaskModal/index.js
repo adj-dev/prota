@@ -41,9 +41,9 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, c
 
   return (
     <div className="modal-backdrop" onClick={e => handleModal(e)}>
-      <div className="task-modal">
+      <div className="modal">
         <div className="modal-header">
-          {context === 'create' ? 'Add a Task' : 'Edit a Task'}
+          {context === 'create' ? 'Add Task' : 'Edit Task'}
         </div>
         <form onSubmit={e => {
           e.preventDefault()
@@ -55,12 +55,12 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, c
             assignee: assignee
           })
         }}>
-          <div className="task-input">
-            <label htmlFor="taskName">Name:</label>
-            <input type="text" name="taskName" value={taskName} onChange={e => changeTaskName(e)} />
+          <div className="modal-input">
+            <label htmlFor="taskName">Name</label>
+            <input autoFocus type="text" name="taskName" value={taskName} onChange={e => changeTaskName(e)} />
           </div>
-          <div className="task-input">
-            <label htmlFor="taskDescription">Description:</label>
+          <div className="modal-input">
+            <label htmlFor="taskDescription">Description</label>
             <input type="text" name="taskDescription" value={taskDescription} onChange={e => changeTaskDescription(e)} />
           </div>
           <div className="assignee-container">
@@ -111,17 +111,17 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, c
               </div>
             </div>
           </div>
-          <div className="task-button-container">
+          <div className="submit-btn">
             <button
-              className="task-button"
+              className="add-button"
               type="submit"
             >
-              {context === 'create' ? 'Add Task' : 'Save'}
+              {context === 'create' ? 'Add' : 'Save'}
             </button>
             {
               context === 'edit' ?
                 <button
-                  className="task-btn-dlt"
+                  className="dlt-button"
                   onClick={e => {
                     e.preventDefault();
                     handleDeleteTask(expandedTask._id);
