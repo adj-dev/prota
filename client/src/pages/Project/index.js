@@ -174,7 +174,8 @@ export default class Project extends Component {
         sprints: updatedSprints,
         currentSprint: currentSprint,
         selectedTasks: selectedTasks,
-        addingSprint: false
+        addingSprint: false,
+        blur: false
       };
     });
   };
@@ -213,7 +214,8 @@ export default class Project extends Component {
 
       return {
         sprints: newSprints,
-        viewingSprint: false
+        viewingSprint: false,
+        blur: false
       }
     })
   }
@@ -230,7 +232,8 @@ export default class Project extends Component {
         currentSprint: [],
         sprints: newSprints.filter(sprint => sprint._id !== deletedSprint._id),
         selectedTasks: null,
-        viewingSprint: false
+        viewingSprint: false,
+        blur: false
       }
     })
   }
@@ -266,7 +269,8 @@ export default class Project extends Component {
         currentSprint: newCurrentSprint,
         sprints: newSprints,
         selectedTasks: newSelectedTasks,
-        viewingTask: false
+        viewingTask: false,
+        blur: false
       }
     })
   }
@@ -305,7 +309,8 @@ export default class Project extends Component {
         currentSprint: newCurrentSprint,
         sprints: newSprints,
         selectedTasks: newSelectedTasks,
-        viewingTask: false
+        viewingTask: false,
+        blur: false
       }
     })
   }
@@ -341,7 +346,8 @@ export default class Project extends Component {
         currentSprint: newCurrentSprint,
         sprints: newSprints,
         selectedTasks: newSelectedTasks,
-        viewingTask: false
+        viewingTask: false,
+        blur: false
       }
     })
   }
@@ -361,7 +367,8 @@ export default class Project extends Component {
 
       return {
         sprints: newSprints,
-        viewingSprint: false
+        viewingSprint: false,
+        blur: false
       }
     })
   }
@@ -391,7 +398,8 @@ export default class Project extends Component {
         currentSprint: newCurrentSprint,
         sprints: newSprints,
         selectedTasks: newSelectedTasks,
-        viewingTask: false
+        viewingTask: false,
+        blur: false
       }
     })
   }
