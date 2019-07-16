@@ -16,16 +16,21 @@ const AddSprintModal = ({ handleModal, handleAddSprint }) => {
 
   return (
     <div className="modal-backdrop" onClick={e => handleModal(e)}>
-      <div className="addsprint-modal">
+      <div className="modal">
+        <div className="modal-header">
+          Add a Sprint
+        </div>
         <form onSubmit={e => {
           e.preventDefault()
           validate(sprintName)
         }}>
-          <div className="addsprint-input">
-            <label htmlFor="sprintName">Enter a name for the sprint:</label>
-            <input type="text" name="sprintName" value={sprintName} onChange={e => changeSprintName(e)} />
+          <div className="modal-input">
+            <label htmlFor="sprintName">Name</label>
+            <input autoFocus type="text" name="sprintName" value={sprintName} onChange={e => changeSprintName(e)} />
           </div>
-          <button id="addsprint" type="submit">Add</button>
+          <div className="submit-btn">
+            <button className="add-button" id="addsprint" type="submit">Add</button>
+          </div>
         </form>
       </div>
     </div>

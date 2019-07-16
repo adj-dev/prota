@@ -4,7 +4,7 @@ import "./style.css";
 import ProfileCard from "../ProfileCard";
 import logo from "../../assets/img/logo.png";
 
-export default function NavBar({ displayName, avatarUrl }) {
+export default function NavBar({ displayName, avatarUrl, style }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const handleLogout = () => {
     API.logout().then(() => {
@@ -17,7 +17,7 @@ export default function NavBar({ displayName, avatarUrl }) {
   };
 
   return (
-    <div className="nav-bar">
+    <div className="nav-bar" style={style}>
       <div className="nav-item" onClick={() => (window.location = "/")}>
         <img alt="prota" src={logo} style={{ width: "60px" }} />
         <span>Prota</span>

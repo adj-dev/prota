@@ -4,17 +4,12 @@ import "./style.css";
 
 export default function ProjectList({ projects, toggleCreateProjectDialog }) {
   return (
-    <div className="project-list-container">
-      <div className="project-list-header">
+    <div className="wrapper">
+      <div className="projectlist-header">
         <h1>Projects</h1>
-        <div
-          className="create-project-button"
-          onClick={toggleCreateProjectDialog}
-        >
-          +
-        </div>
+        <img className="icon add" src={require('../../assets/img/add.png')} alt="" onClick={toggleCreateProjectDialog} />
       </div>
-      <div className="project-list">
+      <div className="projectlist-content">
         {projects.map((project, key) => (
           <ProjectListItem lang="en" key={key} project={project} />
         ))}

@@ -40,7 +40,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
-  width: 90px;
+  width: max-content;
   padding: 5px;
   border-radius: 5px;
   background-color: slategray;

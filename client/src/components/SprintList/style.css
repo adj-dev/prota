@@ -1,53 +1,21 @@
-@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
-/* 
-font-family: 'Overpass', sans-serif;
-
-font-family: 'PT Sans Narrow', sans-serif;
-
-font-family: 'Rajdhani', sans-serif;
-*/
-
-.sprintlist-wrapper {
-  font-family: 'Rajdhani', sans-serif;
-}
-
-.sprintlist-wrapper::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
-}
-
-.sprintlist {
-  max-height: 600px;
-  overflow: scroll;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.sprintlist::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
-}
-
-.sprintlist-header {
-  display: flex;
-  align-items: center
-}
-
-.sprint-item{
+.sprint-item {
   display: flex;
   flex-direction: column;
-  background-color: #c5ced8;
-  border-radius: 8px;
-  font-size: 1.2rem;
-  margin: 8px;
-  margin-left: -1px;
+  margin: 5px 10px;
   padding: 20px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  background-color: #c5ced8;
 }
 
 .sprint-item.active {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
   background-color: #708090;
   color: white;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+.sprint-item:hover img.options-icon {
+  visibility: visible;
 }
 
 .sprint-header {
@@ -59,11 +27,6 @@ font-family: 'Rajdhani', sans-serif;
   font-weight: bolder;
   max-width: 80%;
   overflow-wrap: break-word;
-}
-
-.sprint-date {
-  font-style: italic;
-  flex: 1;
 }
 
 .expand-btn {
@@ -80,50 +43,11 @@ img.options-icon {
   padding: 8px 2px;
 }
 
-.sprint-item:hover img.options-icon {
-  visibility: visible;
-}
-
-.sprint-body {
+.sprint-content {
   display: flex;
-  justify-content: space-between;
 }
 
-
-
-#open {
-  background-color: #36C8A3;
-  font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 1.25rem;
-  color: white;
-  margin: 7px;
-  margin-left: -1px;
-  border-radius: 8px;
+.sprint-date {
+  font-style: italic;
+  flex: 1;
 }
-
-#in-progress {
-  background-color: #46A1FD;
-  font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 1.25rem;
-  color: white;
-  margin: 7px;
-  border-radius: 8px;
-}
-#done {
-  background-color: #FD9E3C;
-  font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 1.25rem;
-  color: white;
-  margin: 7px;
-  border-radius: 8px;
-}
-
-#closed {
-  background-color: #FF5F58;
-  font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 1.25rem;
-  color: white;
-  margin: 7px;
-  border-radius: 8px;
-}
-

@@ -22,52 +22,36 @@ const TaskListSelector = ({ tasks, selectedTasks, trackStatus, handleTaskModal, 
     trackStatus(status)
   }
 
-  // Passes up the click handler on a task up to the parent (Project) component.
-  // const handleTaskModal = task => {
-  //   handleClick(task);
-  // }
-
   return (
-    <div className="tasklist-wrapper">
-      <div className="tasklist-container">
-        <div className="tasklist-header">
-          <h1>Tasks</h1>
-          <div id="add-task" onClick={() => handleTaskModal()}>
-            +
-          </div>
+    <div className="wrapper">
+      {/* Header */}
+      <div className="tasklist-header">
+        <h1>Tasks</h1>
+        <img className="icon add" src={require('../../assets/img/add.png')} alt="" onClick={handleTaskModal} />
+      </div>
+      {/* Status buttons */}
+      <div className="container selector-row">
+        <div className={`button-bg ${status === STATUS.ALL ? 'active' : ''}`} id="all-tasks">
+          <button onClick={() => userSelectsTasks(STATUS.ALL)}>all</button>
         </div>
-
-        {/* Status buttons */}
-        <div className="status-buttons">
-          <div className="status">
-            <div className={`button-bg ${status === STATUS.ALL ? 'active' : ''}`} id="all-tasks">
-              <button onClick={() => userSelectsTasks(STATUS.ALL)}>all</button>
-            </div>
-          </div>
-          <div className="status">
-            <div className={`button-bg ${status === STATUS.OPEN ? 'active' : ''}`} id="open-tasks">
-              <button onClick={() => userSelectsTasks(STATUS.OPEN)}>open</button>
-            </div>
-          </div>
-          <div className="status">
-            <div className={`button-bg ${status === STATUS.IN_PROGRESS ? 'active' : ''}`} id="in-progress-tasks">
-              <button onClick={() => userSelectsTasks(STATUS.IN_PROGRESS)}>in progress</button>
-            </div>
-          </div>
-          <div className="status">
-            <div className={`button-bg ${status === STATUS.DONE ? 'active' : ''}`} id="done-tasks">
-              <button onClick={() => userSelectsTasks(STATUS.DONE)}>done</button>
-            </div>
-          </div>
+        <div className={`button-bg ${status === STATUS.OPEN ? 'active' : ''}`} id="open-tasks">
+          <button onClick={() => userSelectsTasks(STATUS.OPEN)}>open</button>
         </div>
-
+        <div className={`button-bg ${status === STATUS.IN_PROGRESS ? 'active' : ''}`} id="in-progress-tasks">
+          <button onClick={() => userSelectsTasks(STATUS.IN_PROGRESS)}>in progress</button>
+        </div>
+        <div className={`button-bg ${status === STATUS.DONE ? 'active' : ''}`} id="done-tasks">
+          <button onClick={() => userSelectsTasks(STATUS.DONE)}>done</button>
+        </div>
+      </div>
+      {/* Task list */}
+      <div className="tasklist-content">
         <TaskList
           tasks={selectTasks}
           handleTaskModal={handleTaskModal}
           status={status}
           handleChangeStatus={handleChangeStatus}
         />
-
       </div>
     </div>
   )

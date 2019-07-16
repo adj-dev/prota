@@ -17,7 +17,7 @@ Repository: https://github.com/adj-dev/final-project
     * [Nhu Richie](https://github.com/nhurichie) - Project Manger/Styles Designer
 
 * Back End Development Team:
-    * [Adam Schubert](https://github.com/leavinit) - Route/Security Developer
+    * [Adam Schubert](https://github.com/leavinit) - Route Designer/QA Expert
     * [Kieran Anthony](https://github.com/zekkxx) - Database Architect
 
 ## Project Stack:
@@ -52,16 +52,19 @@ npm run start
 
 ## App Preview
 
+<img src='https://github.com/adj-dev/final-project/blob/master/client/public/assets/img/Prota.png?raw=true' width=600 />  
+
 **Splash Page**: Has information regarding the development team and features of the application. It also features a login button that utiliizes _Passport_ with a Github authentication strategy to log the user into our application.
- <img src='https://github.com/adj-dev/final-project/blob/master/client/public/assets/img/Prota.png?raw=true' width=400 />
 
- **Profile Page**: This page will allow the user to see all of their active projects in the lefthand column, and all tasks assigned to them in the right. They can filter through their open tasks and even adjust the status of the tasks under their name from this page. They can also create a project by pressing the '+' button next to the project title. By selecting a project they will be moved into the Tasks/Sprints page.
- <img src='https://github.com/adj-dev/final-project/blob/master/client/public/assets/img/projects-tasks.png?raw=true' width=400 />
+<img src='https://github.com/adj-dev/final-project/blob/master/client/public/assets/img/projects-tasks.png?raw=true' width=600 />  
 
- **Project Page**: All of a project's sprints are shown in the left-hand column. Selecting one will open the tasks assigned to the sprint in the righthand column. You can also edit a Sprint, and change the sprint's status from this menu. On the right hand side are the sprint's tasks. You can edit these tasks by clicking on them, and adjust the status from the main window. Similar to the projects page, you can create a new sprint or task by clicking the '+' button next to the title.
- <img src='https://github.com/adj-dev/final-project/blob/master/client/public/assets/img/sprints-tasks.png?raw=true' width=400 />
+**Profile Page**: This page will allow the user to see all of their active projects in the lefthand column, and all tasks assigned to them in the right. They can filter through their open tasks and even adjust the status of the tasks under their name from this page. They can also create a project by pressing the '+' button next to the project title. By selecting a project they will be moved into the Tasks/Sprints page.
 
- ### Additional Features
+<img src='https://github.com/adj-dev/final-project/blob/master/client/public/assets/img/sprints-tasks.png?raw=true' width=600 />  
+
+**Project Page**: All of a project's sprints are shown in the left-hand column. Selecting one will open the tasks assigned to the sprint in the righthand column. You can also edit a Sprint, and change the sprint's status from this menu. On the right hand side are the sprint's tasks. You can edit these tasks by clicking on them, and adjust the status from the main window. Similar to the projects page, you can create a new sprint or task by clicking the '+' button next to the title.
+
+### Additional Features
 
 **Inviting a user to a Project**: In the event that a user does not have an account with Prota, but has a Github account, you may invite them to the project by typing their Github account name and clicking invite on the pop-up window. This will create a temporary account for them that will hold onto the projects that they are included in until they login to Prota for the first time to see their projects.
 

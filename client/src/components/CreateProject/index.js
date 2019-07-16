@@ -153,22 +153,23 @@ export default class CreateProject extends Component {
         >
           <div
             key="1"
-            className="create-project-container"
+            className="modal-backdrop"
             onClick={this.props.toggleCreateProjectDialog}
           >
-            <div className="create-project-content-container">
-              <div className="project-input-container">
-                <div className="title">Create a new project</div>
+            <div className="modal">
+              <div className="modal-header">Create a New Project</div>
+              <div className="modal-input">
+                <label htmlFor="projectTitle">Project Title</label>
                 <input
                   autoFocus
-                  className="add-project-title-input"
+                  name="projectTitle"
                   placeholder="Project Title"
                   onChange={this.handleInput("name")}
                 />
-                <div className="error-message">{this.state.errorMessage}</div>
               </div>
-              <div className="project-input-container">
-                <div className="input-title"> Project Owners</div>
+              <div className="error-message">{this.state.errorMessage}</div>
+              <div className="modal-input">
+                <label>Project Owners</label>
                 <AddedUsers
                   handleRemoveUser={this.handleRemoveOwner}
                   currentUser={this.state.created_by}
@@ -181,8 +182,8 @@ export default class CreateProject extends Component {
                   handleAddUser={this.handleAddOwner}
                 />
               </div>
-              <div className="project-input-container">
-                <div className="input-title">Contributors</div>
+              <div className="modal-input">
+                <label>Contributors</label>
                 <AddedUsers
                   handleRemoveUser={this.handleRemoveContributor}
                   users={this.state.contributors}
@@ -194,12 +195,15 @@ export default class CreateProject extends Component {
                   handleAddUser={this.handleAddContributor}
                 />
               </div>
-              <div
-                className="add-project-button"
-                onClick={this.handleCreateProject}
-              >
-                Create Project
+              <div className="submit-btn">
+                <div
+                  className="add-project-button"
+                  onClick={this.handleCreateProject}
+                >
+                  Create Project
               </div>
+              </div>
+
             </div>
           </div>
         </ReactCSSTransitionGroup>

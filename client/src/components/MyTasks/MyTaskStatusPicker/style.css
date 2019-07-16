@@ -6,30 +6,3 @@
 .status-picker-container div {
   margin-right: 10px;
 }
-
-.button-bg {
-  background: none;
-  margin: 7px;
-  border-radius: 8px;
-}
-
-.button-bg.active > button {
-  color: #f5f5f5;
-}
-
-.active#all-tasks {
-  background-color: #d593e8;
-}
-
-.active#open-tasks {
-  /* background-color: #36C8A3; */
-  background-color: #36c8a3;
-}
-
-.active#in-progress-tasks {
-  background-color: #46a1fd;
-}
-
-.active#done-tasks {
-  background-color: #fd9e3c;
-}

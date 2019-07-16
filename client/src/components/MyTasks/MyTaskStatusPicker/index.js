@@ -11,42 +11,32 @@ export default function MyTaskStatusPicker({ handleSelectStatus }) {
   };
 
   return (
-    <div className="status-picker-container">
-      <div className="status-buttons">
-        <div className="status">
-          <div
-            className={`button-bg ${status === ALL ? "active" : ""}`}
-            id="all-tasks"
-          >
-            <button onClick={() => selectStatus(ALL)}>all</button>
-          </div>
-        </div>
-        <div className="status">
-          <div
-            className={`button-bg ${status === OPEN ? "active" : ""}`}
-            id="open-tasks"
-          >
-            <button onClick={() => selectStatus(OPEN)}>open</button>
-          </div>
-        </div>
-        <div className="status">
-          <div
-            className={`button-bg ${status === IN_PROGRESS ? "active" : ""}`}
-            id="in-progress-tasks"
-          >
-            <button onClick={() => selectStatus(IN_PROGRESS)}>
-              in progress
+    <div className="container selector-row">
+      <div
+        className={`button-bg ${status === ALL ? "active" : ""}`}
+        id="all-tasks"
+      >
+        <button onClick={() => selectStatus(ALL)}>all</button>
+      </div>
+      <div
+        className={`button-bg ${status === OPEN ? "active" : ""}`}
+        id="open-tasks"
+      >
+        <button onClick={() => selectStatus(OPEN)}>open</button>
+      </div>
+      <div
+        className={`button-bg ${status === IN_PROGRESS ? "active" : ""}`}
+        id="in-progress-tasks"
+      >
+        <button onClick={() => selectStatus(IN_PROGRESS)}>
+          in progress
             </button>
-          </div>
-        </div>
-        <div className="status">
-          <div
-            className={`button-bg ${status === DONE ? "active" : ""}`}
-            id="done-tasks"
-          >
-            <button onClick={() => selectStatus(DONE)}>done</button>
-          </div>
-        </div>
+      </div>
+      <div
+        className={`button-bg ${status === DONE ? "active" : ""}`}
+        id="done-tasks"
+      >
+        <button onClick={() => selectStatus(DONE)}>done</button>
       </div>
     </div>
   );

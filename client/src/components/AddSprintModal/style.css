@@ -1,8 +1,16 @@
-.addsprint-modal {
-  width: 600px;
-  background: #f5f5f5;
+/* .addsprint-modal {
+  width: max-content;
+  background: #708090;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  margin: 200px auto 0;
+  margin: 25vh auto 0;
   padding: 40px;
   border-radius: 5px;
+  color: white;
+} */
+
+.modal-header {
+  display: flex;
+  font-size: 2rem;
+  justify-content: center;
 }
+

@@ -1,27 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
-/* 
-font-family: 'Overpass', sans-serif;
-
-font-family: 'PT Sans Narrow', sans-serif;
-
-font-family: 'Rajdhani', sans-serif;
-*/
-
-
-.task-modal {
-  width: 600px;
-  background: #f5f5f5;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  margin: 200px auto 0;
-  padding: 40px;
-  border-radius: 5px;
-}
-
-.task-input {
-  display: flex;
-  flex-direction: column;
-}
-
 .team-member-item {
   display: flex;
   align-items: center;
@@ -35,11 +11,6 @@ font-family: 'Rajdhani', sans-serif;
   align-items: center;
 }
 
-.task-button-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .team-member-list {
   display: flex;
   overflow: scroll;
@@ -48,10 +19,8 @@ font-family: 'Rajdhani', sans-serif;
   scrollbar-width: none; /* Firefox */
 }
 .team-member-list::-webkit-scrollbar {
-  /* WebKit */
   width: 0px;
 }
-
 
 .team-member-name {
   padding: 0 8px;
@@ -71,26 +40,6 @@ font-family: 'Rajdhani', sans-serif;
 
 .avatar-sm:hover {
   border: 1px solid #36C8A3;
-  cursor: pointer;
-}
-
-button.task-button,
-button.task-btn-dlt {
-  cursor: pointer;
-  background: none;
-  border: none;
-  border-radius: 8px;
-}
-
-button.task-button:hover {
-  background: #36C8A3;
-  color: #f5f5f5;
-  cursor:pointer;
-}
-
-button.task-btn-dlt:hover {
-  background: #d84733;
-  color: #f5f5f5;
   cursor: pointer;
 }
 

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import './style.css'
 
 const SprintModal = ({ sprint, handleModal, handleSprint, handleDeleteSprint }) => {
 
@@ -17,7 +16,10 @@ const SprintModal = ({ sprint, handleModal, handleSprint, handleDeleteSprint }) 
 
   return (
     <div className="modal-backdrop" onClick={e => handleModal(e)}>
-      <div className="sprint-modal">
+      <div className="modal">
+        <div className="modal-header">
+          Edit Sprint
+        </div>
         <form onSubmit={e => {
           e.preventDefault()
           validate({
@@ -25,25 +27,27 @@ const SprintModal = ({ sprint, handleModal, handleSprint, handleDeleteSprint }) 
             name: sprintName
           })
         }}>
-          <div className="addsprint-input">
-            <label htmlFor="sprintName">Name:</label>
-            <input type="text" name="sprintName" value={sprintName} onChange={e => changeSprintName(e)} />
+          <div className="modal-input">
+            <label htmlFor="sprintName">Name</label>
+            <input autoFocus type="text" name="sprintName" value={sprintName} onChange={e => changeSprintName(e)} />
           </div>
-          <button id="addsprint" type="submit">{sprint ? 'Save' : 'Add'}</button>
-          {
-            sprint ?
-              <button
-                className="task-btn-dlt"
-                onClick={e => {
-                  e.preventDefault();
-                  handleDeleteSprint(sprint._id)
-                }}
-              >
-                Delete
+          <div className="submit-btn">
+            <button className="add-button" type="submit">{sprint ? 'Save' : 'Add'}</button>
+            {
+              sprint ?
+                <button
+                  className="dlt-button"
+                  onClick={e => {
+                    e.preventDefault();
+                    handleDeleteSprint(sprint._id)
+                  }}
+                >
+                  Delete
               </button>
-              :
-              null
-          }
+                :
+                null
+            }
+          </div>
         </form>
       </div>
     </div>

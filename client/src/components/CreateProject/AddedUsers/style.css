@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding-bottom: 3px;
 }
 
 .added-contributor-container {
@@ -10,9 +11,8 @@
   align-content: space-between;
   padding: 2px;
   padding-left: 10px;
-  background-color: white;
-  border: 1px solid lightgray;
-  border-radius: 20px;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
   width: inherit;
   cursor: default;
   margin: 2px;
