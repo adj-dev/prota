@@ -5,7 +5,7 @@ App for Project Managment
 ## About Prota
 A project management tool for GitHub developers - invite collaborators, develop projects, view sprints, and take on tasks in an agile-inspired service. 
 
-Deployed at: https://majestic-mesa-verde-10359.herokuapp.com/  
+Deployed at: https://prota.herokuapp.com/  
 Repository: https://github.com/adj-dev/final-project  
 
 # Development:
