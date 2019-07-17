@@ -1,6 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,700,900&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
 
+/*---------------------------------------------------
+                 Variable Measurements 
+---------------------------------------------------*/
+
+* {
+  --diff: calc(var(--max-size) - var(--min-size));
+  --responsive: calc((var(--min-size) * 1rem) + var(--diff) * ((100vw - 26.25rem) / (75 - 26.25))); /* Ranges from 421px to 1199px */
+}
+
+/*---------------------------------------------------
+                Universal Laws of CSS
+---------------------------------------------------*/
+
 body {
   margin: 0;
   font-family: 'Nunito', sans-serif;
@@ -124,50 +137,6 @@ img.icon.add {
   cursor: pointer;
 }
 
-/*------------Animation-for-blur-effect------------*/
-
-.blur {
-  filter: blur(3px);
-  /* transition: .5s opacity linear; */
-  opacity: .1;
-  animation: reveal .5s linear forwards
-}
-
-@-webkit-keyframes reveal {
-  to {
-    opacity: 1;
-  }
-}
-@-moz-keyframes reveal {
-  to {
-    opacity: 1;
-  }
-}
-@keyframes reveal {
-  to {
-    opacity: 1;
-  }
-}
-
-/* @-webkit-keyframes blur {
-  to {
-    -webkit-filter: blur(3px);
-    filter: blur(3px);
-  }
-}
-@-moz-keyframes blur {
-  to {
-    -moz-filter: blur(3px);
-    filter: blur(3px);
-  }
-}
-@keyframes blur {
-  to {
-    -webkit-filter: blur(3px);
-    -moz-filter: blur(3px);
-    filter: blur(3px);
-  }
-} */
 
 /*---------------------------------------------------
                    Status Selector

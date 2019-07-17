@@ -12,7 +12,9 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  font-size: 5.5rem;
+  --max-size: 5.5;
+  --min-size: 2.5;
+  font-size: var(--responsive);
   position: relative;
   font-family: 'Rajdhani', sans-serif;
 }
