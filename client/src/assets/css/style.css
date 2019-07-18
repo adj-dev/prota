@@ -33,6 +33,9 @@ a {
 h1 {
   margin: 0;
   font-weight: 300;
+  --max-size: 3;
+  --min-size: 1.6;
+  font-size: var(--responsive);
 }
 
 input {
@@ -293,3 +296,17 @@ button.dlt-button:hover {
     width: 600px;
   }
 } 
+
+@media screen and (max-width: 420px) {
+  .page {
+    padding: 1rem 1.3rem;
+  }
+
+  .wrapper {
+    padding: 1.5rem 0;
+  }
+
+  .col.half {
+    width: 100%;
+  }
+}
