@@ -5,10 +5,14 @@
   align-items: center;
   font-size: 0.8rem;
   margin: 0 10px;
-  width: 90px;
+  --max-size: 7.5;
+  --min-size: 6;
+  width: var(--responsive);
 }
 
 .profile-image {
-  width: 50px;
+  --max-size: 3.8;
+  --min-size: 2;
+  width: var(--responsive);
   border-radius: 100px;
 }

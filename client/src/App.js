@@ -6,7 +6,14 @@ import API from "./utils/API";
 import Profile from "./pages/Profile";
 import Landing from "./pages/Landing";
 
+
 import './assets/css/style.css'
+
+// smoothscroll polyfill is an NPM package that brings smoothscroll functionality to
+// browsers like Safari, Edge, and IE. 
+import smoothscroll from 'smoothscroll-polyfill';
+smoothscroll.polyfill();
+
 
 class App extends Component {
   state = {

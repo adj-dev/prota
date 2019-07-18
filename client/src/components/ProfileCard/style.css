@@ -54,10 +54,4 @@
     height: unset;
     width: unset;
   }
-
-  .avatar {
-    width: 100px;
-    border-radius: 150px;
-    margin: 20px;
-  }
 }

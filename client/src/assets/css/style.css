@@ -1,6 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,700,900&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Overpass|PT+Sans+Narrow|Rajdhani&display=swap');
 
+/*---------------------------------------------------
+                 Variable Measurements 
+---------------------------------------------------*/
+
+* {
+  /* Intended for use with responsive font-sizes */
+  --diff: calc(var(--max-size) - var(--min-size));
+  --responsive: calc((var(--min-size) * 1rem) + var(--diff) * ((100vw - 26.25rem) / (75 - 26.25))); /* Ranges from 421px to 1199px */
+  /* Intended for use with responsive line-heights */
+  --diff-height: calc(var(--max-height) - var(--min-height));
+  --responsive-height: calc((var(--min-height) * 1rem) + var(--diff-height) * ((100vw - 26.25rem) / (75 - 26.25))); /* Ranges from 421px to 1199px */
+}
+
+/*---------------------------------------------------
+                Universal Laws of CSS
+---------------------------------------------------*/
+
 body {
   margin: 0;
   font-family: 'Nunito', sans-serif;
@@ -16,6 +33,9 @@ a {
 h1 {
   margin: 0;
   font-weight: 300;
+  --max-size: 3;
+  --min-size: 1.6;
+  font-size: var(--responsive);
 }
 
 input {
@@ -124,50 +144,6 @@ img.icon.add {
   cursor: pointer;
 }
 
-/*------------Animation-for-blur-effect------------*/
-
-.blur {
-  filter: blur(3px);
-  /* transition: .5s opacity linear; */
-  opacity: .1;
-  animation: reveal .5s linear forwards
-}
-
-@-webkit-keyframes reveal {
-  to {
-    opacity: 1;
-  }
-}
-@-moz-keyframes reveal {
-  to {
-    opacity: 1;
-  }
-}
-@keyframes reveal {
-  to {
-    opacity: 1;
-  }
-}
-
-/* @-webkit-keyframes blur {
-  to {
-    -webkit-filter: blur(3px);
-    filter: blur(3px);
-  }
-}
-@-moz-keyframes blur {
-  to {
-    -moz-filter: blur(3px);
-    filter: blur(3px);
-  }
-}
-@keyframes blur {
-  to {
-    -webkit-filter: blur(3px);
-    -moz-filter: blur(3px);
-    filter: blur(3px);
-  }
-} */
 
 /*---------------------------------------------------
                    Status Selector
@@ -320,3 +296,17 @@ button.dlt-button:hover {
     width: 600px;
   }
 } 
+
+@media screen and (max-width: 420px) {
+  .page {
+    padding: 1rem 1.3rem;
+  }
+
+  .wrapper {
+    padding: 1.5rem 0;
+  }
+
+  .col.half {
+    width: 100%;
+  }
+}

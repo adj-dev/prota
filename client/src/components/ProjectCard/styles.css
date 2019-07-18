@@ -5,5 +5,9 @@
 }
 
 .projectcard-header h1 {
-  font-size: calc(40px + (60 - 40) * ((100vw - 300px) / (1600 - 300)));
+  --max-size: 3.2;
+  --min-size: 2;
+  font-size: var(--responsive);
 }
+
+
