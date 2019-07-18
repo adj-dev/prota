@@ -6,8 +6,12 @@
 ---------------------------------------------------*/
 
 * {
+  /* Intended for use with responsive font-sizes */
   --diff: calc(var(--max-size) - var(--min-size));
   --responsive: calc((var(--min-size) * 1rem) + var(--diff) * ((100vw - 26.25rem) / (75 - 26.25))); /* Ranges from 421px to 1199px */
+  /* Intended for use with responsive line-heights */
+  --diff-height: calc(var(--max-height) - var(--min-height));
+  --responsive-height: calc((var(--min-height) * 1rem) + var(--diff-height) * ((100vw - 26.25rem) / (75 - 26.25))); /* Ranges from 421px to 1199px */
 }
 
 /*---------------------------------------------------

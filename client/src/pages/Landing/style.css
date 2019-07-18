@@ -119,17 +119,24 @@
   display: flex;
   width: inherit;
   padding: 0 30vw;
-  font-size: 1.7rem;
+  --max-size: 1.8;
+  --min-size: 1.4;
+  font-size: var(--responsive);
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 75px 20vw 0 20vw;
-  line-height: 1.6em;
+  --max-height: 3;
+  --min-height: 2;
+  line-height: var(--responsive-height);
 }
 
 .about-info-container > div {
-  font-size: 2.1rem;
+  --max-size: 2.1;
+  --min-size: 1.7;
+  font-size: var(--responsive);
+  padding-top: 3vw;
 }
 
 .about-content-container {
@@ -145,9 +152,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 3rem;
   height: 150px;
-  font-size: 4em;
+  --max-size: 4;
+  --min-size: 2;
+  font-size: var(--responsive);
   padding-top: 40px;
 }
 
@@ -193,8 +201,6 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  justify-content: space-around;
-  /* margin: 20px; */
   padding: 100px 20px;
   font-family: 'Rajdhani', sans-serif;
 }
@@ -204,7 +210,6 @@
   flex-flow: row wrap-reverse;
   justify-content: space-between;
   justify-content: space-around;
-  /* margin: 20px; */
   padding: 100px 20px;
   font-family: 'Rajdhani', sans-serif;
 }
@@ -223,5 +228,45 @@
 
 .faq-image img {
   width: 100%;
-  /* border: 2px solid #708090; */
+}
+
+@media screen and (max-width: 420px) {
+  .splash-welcome {
+    justify-content: unset;
+  }
+
+  .welcome-message {
+    padding-top: 8rem;
+  }
+
+  .about-button {
+    bottom: 7rem;
+  }
+
+  .about-info-container {
+    padding: 1rem;
+  }
+
+  .faq-info {
+    flex-direction: column-reverse;
+  }
+  
+  .faq-info-r {
+    flex-direction: column;
+  }
+  
+  .faq-image {
+    width: 100%;
+  }
+
+  .faq-text {
+    text-align: center;
+    width: unset;
+    padding-bottom: 1rem;
+  }
+
+  .faq-info,
+  .faq-info-r {
+    padding: 3rem 1.2rem;
+  }
 }
