@@ -13,7 +13,7 @@
   justify-content: center;
   flex-wrap: wrap;
   --max-size: 5.5;
-  --min-size: 2.5;
+  --min-size: 3.6;
   font-size: var(--responsive);
   position: relative;
   font-family: 'Rajdhani', sans-serif;
@@ -231,6 +231,18 @@
 }
 
 @media screen and (max-width: 420px) {
+  .splash-section {
+    position: relative;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .welcome-button-center {
+    position: absolute;
+    bottom: 3rem;
+    left: unset;
+  }
+
   .splash-welcome {
     justify-content: unset;
   }
@@ -240,11 +252,23 @@
   }
 
   .about-button {
-    bottom: 7rem;
+    bottom: 3rem;
   }
 
   .about-info-container {
     padding: 1rem;
+  }
+
+  .about-info-container > div {
+    padding-top: 2rem;
+  }
+
+  .splash-title {
+    height: unset;
+  }
+  
+  .splash-title > h1 {
+    font-size: 2rem;
   }
 
   .faq-info {
@@ -267,6 +291,10 @@
 
   .faq-info,
   .faq-info-r {
-    padding: 3rem 1.2rem;
+    padding: 4rem 1.2rem;
+  }
+
+  .faq-section {
+    padding: 0;
   }
 }
