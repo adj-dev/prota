@@ -297,4 +297,8 @@
   .faq-section {
     padding: 0;
   }
+
+  .welcome-button-right.text-black {
+    padding-bottom: 2.5rem;
+  }
 }
