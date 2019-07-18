@@ -11,7 +11,9 @@ export default function TeamCard({ imageUrl, name, githubUrl }) {
           alt={name + " profile image"}
         />
       </a>
-      {name}
+      <div className="member-name">
+        {name}
+      </div>
     </div>
   );
 }

@@ -241,7 +241,7 @@
 
   .welcome-button-center {
     position: absolute;
-    bottom: 3rem;
+    bottom: 2rem;
     left: unset;
   }
 
@@ -262,7 +262,7 @@
   }
 
   .about-info-container > div {
-    padding-top: 2rem;
+    padding-top: 2vh;
   }
 
   .splash-title {
@@ -305,6 +305,19 @@
   }
 
   .team-cards-container {
-    padding-bottom: 10rem;
+    padding: 0;
+  }
+
+  .team-container {
+    padding-top: 0;
+  }
+
+  /* hide display names when on mobile */
+  .member-name {
+    display: none;
+  }
+
+  .team-cards-container .team-card {
+    width: unset;
   }
 }
