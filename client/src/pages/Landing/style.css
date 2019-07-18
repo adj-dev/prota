@@ -235,6 +235,8 @@
     position: relative;
     justify-content: flex-start;
     align-items: center;
+    min-height: 100vh;
+    height: auto;
   }
 
   .welcome-button-center {
@@ -300,5 +302,9 @@
 
   .welcome-button-right.text-black {
     padding-bottom: 2.5rem;
+  }
+
+  .team-cards-container {
+    padding-bottom: 10rem;
   }
 }
