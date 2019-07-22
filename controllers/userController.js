@@ -8,9 +8,9 @@ module.exports = {
   },
 
   getOne: function(userId) { //get a user object by req.user
-    return db.User.find({ _id: userId })
+    return db.User.findOne({ _id: userId })
       .populate({ path: "projects" })
-      .then(dbUser => dbUser[0])
+      .then(dbUser => dbUser)
       .catch(err => err);
   },
 

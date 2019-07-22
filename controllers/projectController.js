@@ -2,12 +2,12 @@ const db = require("../models");
 
 assignProjectToUser = (userId, projectId) => { //puts a project into a user's projects field
     console.log("Updating User: "+userId+" with project: "+projectId);
-    return db.User.find({_id: userId})
+    return db.User.findOne({_id: userId})
         .then(result => { //result is an array of users, we just want the first one
-            if(result[0].projects.indexOf(projectId) == -1){
-                result[0].projects.push(projectId);
-                return db.User.updateOne({_id: userId}, result[0], {new: true}) //update returns the new user with new: true
-                    .then(result => /*return*/ "Success");
+            if(result.projects.indexOf(projectId) == -1){
+                result.projects.push(projectId);
+                return db.User.updateOne({_id: userId}, result, {new: true, useFindAndModify: false}) //update returns the new user with new: true
+                    .then(update => "Success");
             } else {
                 throw "User already has this project.";
             }
@@ -16,60 +16,60 @@ assignProjectToUser = (userId, projectId) => { //puts a project into a user's pr
 
 removeProjectFromUser = (userId, projectId) => { //removes a project from a user's projects field
     console.log("Updating User: "+userId+" with project: "+projectId);
-    return db.User.find({_id: userId})
+    return db.User.findOne({_id: userId})
         .then(result => { //result is an array of user, we just want the first one
-            result[0].projects = result[0].projects.filter( //returns a filtered array where
+            result.projects = result.projects.filter( //returns a filtered array where
                 id => id != projectId //the id of the project is not the project being removed
             );
-            return db.User.updateOne({_id: userId}, result[0], {new: true})
-                .then(result => /*return*/ "Success");
+            return db.User.updateOne({_id: userId}, result, {new: true, useFindAndModify: false})
+                .then(update => /*return*/ "Success");
         }).catch(err => err);
 }
 
 assignUserToProject = (params, userType) => { //puts a user into a project's owner or contributor fields
     console.log("Updating project: " + params.projectId + " with User: " + params.userId)
-    return db.Project.find({_id: params.projectId})
+    return db.Project.findOne({_id: params.projectId})
         .then(result => { //result is an array of projects, we just want the first one
-            if(result[0].owners.indexOf(params.userId) != -1 || result[0].contributors.indexOf(params.userId) != -1){
+            if(result.owners.indexOf(params.userId) != -1 || result.contributors.indexOf(params.userId) != -1){
                 throw "User is already a part of the project."
             }
             if(userType === "owner"){ //if user is being added as owner
-                result[0].owners.push(params.userId); //push to owners
+                result.owners.push(params.userId); //push to owners
             }
             if(userType === "contributor"){ //if user is being added as contributor
-                result[0].contributors.push(params.userId); //push to contributors
+                result.contributors.push(params.userId); //push to contributors
             }
-            return db.Project.updateOne({_id: params.projectId}, result[0], {new: true})
-                .then(result => /*return*/ "Success");
+            return db.Project.updateOne({_id: params.projectId}, result, {new: true, useFindAndModify: false})
+                .then(update => /*return*/ "Success");
         }).catch(err => err);
 }
 
 removeUserFromProject = (params, userType) => { //removes a user from a project's owner or contributor fields
     console.log("Updating project: " + params.projectId + " with User: " + params.userId)
-    return db.Project.find({_id: params.projectId})
+    return db.Project.findOne({_id: params.projectId})
         .then(result => { //result is an array of projects, we just want the first one
-            if(userType === "owner" && result[0].owners.length == 1){ //if the user being removed is an owner, AND there is more than one owner
+            if(userType === "owner" && result.owners.length == 1){ //if the user being removed is an owner, AND there is more than one owner
                 throw "Prota does not allow for ownerless projects.";
             } else if(userType === "owner"){
-                result[0].owners = result[0].owners.filter( //returns a filtered array where
+                result.owners = result.owners.filter( //returns a filtered array where
                     id => id !== params.userId //the username of the User is not the User being removed
                 );
             }
             if(userType === "contributor"){ //if the user being removed is a contributor
-                result[0].contributors = result[0].contributors.filter( //returns a filtered array where
+                result.contributors = result.contributors.filter( //returns a filtered array where
                     id => id !== params.userId //the username of the User is not the User being removed
                 );
             }
-            return db.Project.updateOne({_id: params.projectId}, result[0], {new: true})
-                .then(result => /*return*/ "Success");
+            return db.Project.updateOne({_id: params.projectId}, result, {new: true, useFindAndModify: false})
+                .then(update => /*return*/ "Success");
         }).catch(err => err);
 }
 
 module.exports = {
     getAllByUser: function(userId){ //get all projects by req.user
         return db.User
-            .find({_id: userId}).populate({path: 'projects'}) //populates all the project data in User's projects
-            .then(results => results[0].projects) //returns just the projects
+            .findOne({_id: userId}).populate({path: 'projects'}) //populates all the project data in User's projects
+            .then(result => result.projects) //returns just the projects
             .catch(err=> err); 
     },
 
@@ -98,7 +98,7 @@ module.exports = {
             .findByIdAndUpdate(
                 projectId, 
                 project,
-                {new: true}
+                {new: true, useFindAndModify: false}
             )
             .then(results => results)
             .catch(err => err);

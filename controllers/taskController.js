@@ -2,23 +2,23 @@ const db = require("../models");
 
 assignTaskToSprint = (taskId, sprintId) => { //puts a task into a sprint's tasks field
     console.log("Updating Sprint: " + sprintId + " with task: " + taskId);
-    db.Sprint.find({ _id: sprintId })
+    db.Sprint.findOne({ _id: sprintId })
         .then(result => { //results in an array of sprints, we just want the first one
-            result[0].tasks.push(taskId);
-            db.Sprint.updateOne({ _id: sprintId }, result[0], { new: true }) //update returns the new project with new: true
-                .then(result => result);
+            result.tasks.push(taskId);
+            db.Sprint.updateOne({ _id: sprintId }, result, { new: true, useFindAndModify: false }) //update returns the new project with new: true
+                .then(update => update);
         }).catch(err => err);
 }
 
 removeTaskFromSprint = (taskId, sprintId) => { //removes a task from a sprint's tasks field
     console.log("Updating Sprint: " + sprintId + " with task: " + taskId);
-    db.Sprint.find({ _id: sprintId })
+    db.Sprint.findOne({ _id: sprintId })
         .then(result => { //results in an array of sprints, we just want the first one
-            result[0].tasks = result[0].tasks.filter( //returns a filtered array where
+            result.tasks = result.tasks.filter( //returns a filtered array where
                 id => id != taskId //the id of the task is not the task being removed
             );
-            db.Sprint.updateOne({ _id: sprintId }, result[0], { new: true })
-                .then(result => result);
+            db.Sprint.updateOne({ _id: sprintId }, result, { new: true, useFindAndModify: false })
+                .then(update => update);
         }).catch(err => err);
 }
 
@@ -33,8 +33,8 @@ module.exports = {
 
     getAllBySprint: function (sprintId) { //get all tasks by sprintId
         return db.Sprint
-            .find({ _id: sprintId }).populate({ path: 'tasks' }) //populate all task data in Sprint's tasks field
-            .then(results => results[0].tasks) //Return only the task data
+            .findOne({ _id: sprintId }).populate({ path: 'tasks' }) //populate all task data in Sprint's tasks field
+            .then(result => result.tasks) //Return only the task data
             .catch(err => err);
     },
 
@@ -61,7 +61,7 @@ module.exports = {
             .findByIdAndUpdate(
                 taskId,
                 task,
-                { new: true }
+                { new: true, useFindAndModify: false }
             ).populate({ path: "assignee" })
             .then(results => results)
             .catch(err => err);

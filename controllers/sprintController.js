@@ -2,23 +2,23 @@ const db = require("../models");
 
 assignSprintToProject = (sprintId, projectId) => { //puts a sprint into a project's sprints field
     console.log("Updating Project: " + projectId + " with sprint: " + sprintId);
-    db.Project.find({ _id: projectId })
+    db.Project.findOne({ _id: projectId })
         .then(result => { //result is an array of projects, we just want the first one
-            result[0].sprints.push(sprintId);
-            db.Project.updateOne({ _id: projectId }, result[0], { new: true }) //update returns the new project with new: true
-                .then(result => result);
+            result.sprints.push(sprintId);
+            db.Project.updateOne({ _id: projectId }, result, { new: true, useFindAndModify: false }) //update returns the new project with new: true
+                .then(update => update);
         }).catch(err => err);
 }
 
 removeSprintFromProject = (sprintId, projectId) => { //removes a sprint from a project's sprints field
     console.log("Updating Project: " + projectId + " with sprint: " + sprintId);
-    db.Project.find({ _id: projectId })
+    db.Project.findOne({ _id: projectId })
         .then(result => { //results is an array of projects, we just want the first one
-            result[0].sprints = result[0].sprints.filter( //returns a filtered array where
+            result.sprints = result.sprints.filter( //returns a filtered array where
                 id => id != sprintId //the id of the sprint is not the sprint being removed
             );
-            db.Project.updateOne({ _id: projectId }, result[0], { new: true })
-                .then(result => result);
+            db.Project.updateOne({ _id: projectId }, result, { new: true, useFindAndModify: false })
+                .then(update => update);
         }).catch(err => err);
 }
 
@@ -26,8 +26,8 @@ module.exports = {
 
     getAllByProject: function (projectId) { //get all sprints by projectId
         return db.Project
-            .find({ _id: projectId }).populate({ path: 'sprints', populate: { path: 'tasks' } }) //populates all the sprint data in Project's sprints
-            .then(results => results[0].sprints) //returns just the sprints
+            .findOne({ _id: projectId }).populate({ path: 'sprints', populate: { path: 'tasks' } }) //populates all the sprint data in Project's sprints
+            .then(result => result.sprints) //returns just the sprints
             .catch(err => err);
     },
 
@@ -46,7 +46,7 @@ module.exports = {
             .findByIdAndUpdate(
                 sprintId,
                 sprint,
-                { new: true }
+                { new: true, useFindAndModify: false }
             )
             .then(results => results)
             .catch(err => err);
