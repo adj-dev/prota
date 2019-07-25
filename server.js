@@ -74,9 +74,12 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
+//OLD Code 7-25 AS
 // app.listen(PORT, () => {
 //   console.log(`🌎 ==> API server now on port ${PORT}!`);
 // });
+
+//SocketIO Test Code //
 //require the http module for socketIO 
 const http = require("http").Server(app);
 // require the socket.io module
@@ -98,18 +101,22 @@ socket.on("connection", socket => {
     console.log("user disconnected");
     total_connections -= 1;
     console.log("|Server| Total socketIO client connections: ",total_connections);
-
-    
   });
+
   socket.on("UserMessage", function(user) {
     console.log(user.username + " logged in.");
     console.log("Avatar located at: ",user.avatar_url);
     console.log("They have "+user.projects.length+" projects on their account.");
+    socket.emit("FromServerAvatarUrl",user.avatar_url)
   });
+  
   socket.on("TasksMessage", function(tasks) {
     console.log("They have "+tasks.length+" tasks on their account.");
   });
 });
+// end socketIO test code //
+
+//Connect Server
 //socketIO required change from app.listen to http.listen
 http.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);

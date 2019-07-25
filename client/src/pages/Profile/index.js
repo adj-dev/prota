@@ -44,10 +44,13 @@ class Profile extends Component {
   const { endpoint } = this.state;
   const socket = socketIOClient(endpoint);
   //if data comes in from socketIO with the FromAPI tag, it will be put into state
-  socket.on("FromAPI", data => this.setState({ response: data }));
-  // socket.emit("UserTest", 'Sample Client Msg');
+  socket.on("FromServerAvatarUrl", data => {
+    this.setState({ response: data })
+    console.log("|Server| Avatar Url from server socketIO" + data)
+  });
   socket.emit("UserMessage",this.state.user);
   socket.emit("TasksMessage",this.state.tasks);
+  // end socketIO test code
   };
 
   handleChangeStatus = (taskId, status) => {
