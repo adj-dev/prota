@@ -101,12 +101,22 @@ class Profile extends Component {
               style={this.state.blur ? { filter: 'blur(3px)' } : null}
             />
             {/* socketIO test */}
-            <div className="socketIO-test">
-              <h4>Last logged in user:
-              <img src={this.state.response} alt='lastLoggedinUser'
-                style={{borderRadius: '50%' , height: '30px'}}
-              />
-              At: {this.state.lastUserTime}
+            <div className="socketIO-test"  style={{
+                    float: 'right',
+                    paddingRight: '1vw'
+                  }}>
+              <h4>Last logged in user:</h4>
+              <h4>
+                <img 
+                  src={this.state.response ? this.state.response : "" } 
+                  alt='lastLoggedinUser'
+                  style={{
+                    borderRadius: '50%' , 
+                    height: '30px',
+                    
+                  }}
+                />
+                At: {this.state.lastUserTime}
               </h4>
             </div>
            {/* end socketIO test */}

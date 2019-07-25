@@ -102,7 +102,7 @@ socket.on("connection", socket => {
     total_connections -= 1;
     console.log("|Server| Total socketIO client connections: ",total_connections);
   });
-
+  //user object coming from client (code needs work)
   socket.on("UserMessage", function(user) {
     console.log(user.username + " logged in.");
     console.log("They have "+user.projects.length+" projects on their account.");
