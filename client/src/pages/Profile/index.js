@@ -20,6 +20,7 @@ class Profile extends Component {
 
     //socketIO response will go in response
     response: false,
+    lastUserTime: false,
     endpoint: "http://localhost:3001",
     //end socketIO test
     
@@ -43,11 +44,17 @@ class Profile extends Component {
   // socketIO test sending Username to messaging    
   const { endpoint } = this.state;
   const socket = socketIOClient(endpoint);
-  //if data comes in from socketIO with the FromAPI tag, it will be put into state
+  //if data comes in from socketIO on the FromServerAvatar channel, it will be put into state
   socket.on("FromServerAvatarUrl", data => {
     this.setState({ response: data })
-    console.log("|Server| Avatar Url from server socketIO" + data)
+    console.log("|Server| Avatar Url from server socketIO: " + data)
   });
+  socket.on("LastUserTime", data => {
+    this.setState({ lastUserTime: data })
+    console.log("|Server| Last User Time server socketIO: " + data)
+  });
+  //sample emit calls from this user to all other connected parties
+  //(except itself)
   socket.emit("UserMessage",this.state.user);
   socket.emit("TasksMessage",this.state.tasks);
   // end socketIO test code
@@ -93,6 +100,17 @@ class Profile extends Component {
               displayName={this.state.user.display_name}
               style={this.state.blur ? { filter: 'blur(3px)' } : null}
             />
+            {/* socketIO test */}
+            <div className="socketIO-test">
+              <h4>Last logged in user:
+              <img src={this.state.response} alt='lastLoggedinUser'
+                style={{borderRadius: '50%' , height: '30px'}}
+              />
+              At: {this.state.lastUserTime}
+              </h4>
+            </div>
+           {/* end socketIO test */}
+
             <div className="page" style={this.state.blur ? { filter: 'blur(3px)' } : null}>
               <div className="row">
                 <div className="col full">

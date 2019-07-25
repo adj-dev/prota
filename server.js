@@ -105,9 +105,14 @@ socket.on("connection", socket => {
 
   socket.on("UserMessage", function(user) {
     console.log(user.username + " logged in.");
-    console.log("Avatar located at: ",user.avatar_url);
     console.log("They have "+user.projects.length+" projects on their account.");
+    console.log("Avatar located at: ",user.avatar_url);
+    console.log("Broadcasting avatarUrl")
+    //sends avatarUrl received from one user back to all users
     socket.emit("FromServerAvatarUrl",user.avatar_url)
+    let timeStamp = new Date().toLocaleTimeString();
+    //sends the time last user logged in
+    socket.emit("LastUserTime", timeStamp)
   });
   
   socket.on("TasksMessage", function(tasks) {
