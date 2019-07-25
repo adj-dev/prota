@@ -74,6 +74,43 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-app.listen(PORT, () => {
+// app.listen(PORT, () => {
+//   console.log(`🌎 ==> API server now on port ${PORT}!`);
+// });
+//require the http module for socketIO 
+const http = require("http").Server(app);
+// require the socket.io module
+const io = require("socket.io");
+//integrating socketio
+socket = io(http);
+// demo socketIO code //
+socket.on("connection", socket => {
+  console.log("user connected");
+  if(typeof(total_connections) === "undefined"){
+    total_connections = 0;
+    // console.log("total connections = ",total_connections);
+
+  }
+  total_connections ++;
+  console.log("|Server| Total socketIO client connections: ",total_connections);
+
+  socket.on("disconnect", function() {
+    console.log("user disconnected");
+    total_connections -= 1;
+    console.log("|Server| Total socketIO client connections: ",total_connections);
+
+    
+  });
+  socket.on("UserMessage", function(user) {
+    console.log(user.username + " logged in.");
+    console.log("Avatar located at: ",user.avatar_url);
+    console.log("They have "+user.projects.length+" projects on their account.");
+  });
+  socket.on("TasksMessage", function(tasks) {
+    console.log("They have "+tasks.length+" tasks on their account.");
+  });
+});
+//socketIO required change from app.listen to http.listen
+http.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });

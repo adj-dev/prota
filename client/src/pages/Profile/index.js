@@ -7,13 +7,23 @@ import "./style.css";
 import CreateProject from "../../components/CreateProject";
 import NavBar from "../../components/NavBar";
 import ProjectCard from "../../components/ProjectCard";
+// socketIO test code
+import socketIOClient from "socket.io-client";
+// end socketIO test
 
 class Profile extends Component {
   state = {
     user: null,
     tasks: null,
     creatingProject: false,
-    blur: false
+    blur: false,
+
+    //socketIO response will go in response
+    response: false,
+    endpoint: "http://localhost:3001",
+    //end socketIO test
+    
+    
   };
 
   componentDidMount = async () => {
@@ -30,6 +40,14 @@ class Profile extends Component {
       });
       this.setState({ user, tasks });
     }
+  // socketIO test sending Username to messaging    
+  const { endpoint } = this.state;
+  const socket = socketIOClient(endpoint);
+  //if data comes in from socketIO with the FromAPI tag, it will be put into state
+  socket.on("FromAPI", data => this.setState({ response: data }));
+  // socket.emit("UserTest", 'Sample Client Msg');
+  socket.emit("UserMessage",this.state.user);
+  socket.emit("TasksMessage",this.state.tasks);
   };
 
   handleChangeStatus = (taskId, status) => {
