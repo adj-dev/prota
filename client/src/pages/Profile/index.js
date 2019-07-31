@@ -103,21 +103,28 @@ class Profile extends Component {
             {/* socketIO test */}
             <div className="socketIO-test"  style={{
                     float: 'right',
-                    paddingRight: '1vw'
-                  }}>
-              <h4>Last logged in user:</h4>
-              <h4>
+                    // padding: '.5vw',
+                    backgroundColor: '#c5ced8',
+                    borderRadius: '2px',
+                    marginTop: '50px',
+                    marginRight: '10px'
+            }}>
+              <h5>
                 <img 
                   src={this.state.response ? this.state.response : "" } 
                   alt='lastLoggedinUser'
                   style={{
-                    borderRadius: '50%' , 
+                    borderRadius: '50%', 
                     height: '30px',
-                    
+                    padding: '5px'
                   }}
                 />
                 At: {this.state.lastUserTime}
-              </h4>
+              </h5>
+              <h5 style={{
+                padding: '3px'
+              }}>(Last logged in user)</h5>
+              
             </div>
            {/* end socketIO test */}
 
