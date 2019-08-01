@@ -12,26 +12,8 @@ import "./style.css";
 import TeamCard from "./TeamCard";
 
 export default function Landing() {
-  function scrollToAbout() {
-    let to = document.getElementById("about").offsetTop;
-    window.scrollTo({
-      top: to,
-      left: 0,
-      behavior: "smooth"
-    });
-  }
-
-  function scrollToFAQ() {
-    let to = document.getElementById("faq").offsetTop;
-    window.scrollTo({
-      top: to,
-      left: 0,
-      behavior: "smooth"
-    });
-  }
-
-  function scrollToTop() {
-    let to = document.getElementById("welcome").offsetTop;
+  function scrollTo(section) {
+    let to = document.getElementById(section).offsetTop;
     window.scrollTo({
       top: to,
       left: 0,
@@ -61,7 +43,7 @@ export default function Landing() {
           transitionEnter={false}
           transitionLeave={false}
         >
-          <div key={1} className="about-button" onClick={scrollToAbout}>
+          <div key={1} className="about-button" onClick={() => scrollTo("about")}>
             More Info
             <FontAwesomeIcon icon={faArrowDown} />
           </div>
@@ -110,7 +92,7 @@ export default function Landing() {
             />
           </div>
         </div>
-        <div className="welcome-button-center" onClick={scrollToFAQ}>
+        <div className="welcome-button-center" onClick={() => scrollTo("faq")}>
             Features
             <FontAwesomeIcon icon={faArrowDown} />
         </div>
@@ -152,7 +134,7 @@ export default function Landing() {
               </div>
             </div>
           </div>
-          <div className="welcome-button-right text-black" onClick={scrollToTop}>
+          <div className="welcome-button-right text-black" onClick={() => scrollTo("welcome")}>
             Back to Top &nbsp;
             <FontAwesomeIcon icon={faArrowUp} />
           </div>
