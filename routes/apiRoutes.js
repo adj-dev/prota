@@ -1,6 +1,5 @@
 var router = require("express").Router();
 var Controller = require('../controllers');
-//router.use(require("./protection"));
 
 var checkLogin = (req, res, next) => {
     if(req.user){
