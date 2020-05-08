@@ -1,12 +1,9 @@
-# Final Project: Prota
-App for Project Managment
-**Created**: `2019 June 09`
-
-## About Prota
+## Prota
 A project management tool for GitHub developers - invite collaborators, develop projects, view sprints, and take on tasks in an agile-inspired service. 
 
+**Created**: `2019 June 09`
 Deployed at: https://prota.herokuapp.com/  
-Repository: https://github.com/adj-dev/final-project  
+Repository: https://github.com/adj-dev/prota  
 
 # Development:
 ## Project Team:
@@ -36,12 +33,10 @@ __N__ ode :  Node.js, A Javascript runtime environment that allows for server-si
 ### Dependencies in the project also include:
 
 __mongoose, axios, cookie-parser, and passport__.  
-For a full list of dependencies reference the _package.json_ file included in the project.
+For a full list of dependencies reference the _package.json_ file(s) included in the project.
 
-## Project Requirements:
-In order to use this application, you will need to visit the deploy link referenced above and have a GitHub user account. If you don't have one, you'll need to create one. There is currently no independent login functionality associated with the application.  
-
-If hosting this application or trying to run it locally, you will need __MongoDB__ installed on your machine and will need to be run `mongod` on a terminal/command line. Next you will need to run `npm run start` in the terminal from the top level of the project where `server.js` lives.  
+## Project Installation:
+If hosting this application or trying to run it locally, you will need __MongoDB__ installed on your machine and will need to be running `mongod` on a terminal. Then, in a new terminal, you will need to run `npm run start` at the top level of the project where `server.js` lives.  
 ```
 mongod
 ```
@@ -50,7 +45,8 @@ mongod
 npm run start
 ```
 
-## App Preview
+# Application Preview
+In order to use this application, you will need to visit the deploy link referenced above and have a GitHub user account. If you don't have one, you'll need to create one. There is currently no independent login functionality associated with the application.
 
 <img src='https://github.com/adj-dev/final-project/blob/master/client/public/assets/img/Prota.png?raw=true' width=600 />  
 

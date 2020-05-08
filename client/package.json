@@ -1,7 +1,7 @@
 {
-  "name": "mern",
+  "name": "prota",
   "version": "0.1.0",
-  "description": "Mern Demo",
+  "description": "Prota Client Application",
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
@@ -9,7 +9,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.0.1"
+    "react-scripts": "^3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
