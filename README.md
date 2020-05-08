@@ -1,4 +1,4 @@
-## About Prota
+## Prota
 A project management tool for GitHub developers - invite collaborators, develop projects, view sprints, and take on tasks in an agile-inspired service. 
 
 **Created**: `2019 June 09`
