@@ -1,7 +1,7 @@
 {
-  "name": "mern",
+  "name": "prota",
   "version": "1.0.0",
-  "description": "Mern Demo",
+  "description": "Prota Application",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -12,8 +12,18 @@
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
-  "author": "",
+  "author": "Andrew Johnson",
+  "contributors": [
+    "Kieran Anthony <zekkxx@gmail.com> (https://zekkxx.github.io/portfolio/)",
+    "John Blake",
+    "Nhu Richie",
+    "Adam Schubert"
+  ],
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adj-dev/prota.git"
+  },
   "devDependencies": {
     "concurrently": "^4.1.0",
     "nodemon": "^1.18.7"
@@ -22,7 +32,6 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "axios": "^0.19.0",
     "connect-ensure-login": "^0.1.1",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.0.0",
