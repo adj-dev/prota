@@ -27,10 +27,8 @@ module.exports = {
             .find({username: userName})
             .then(dbUser => { //returns an array of user objects
                 if(dbUser.length > 0){
-                    //console.log(dbUser[0].username+" exists");
                     throw "User Exists";
                 } else {
-                    //console.log("User does not exist");
                     return this.create({username: userName});
                 }
             }).catch(err => err);
@@ -56,10 +54,8 @@ module.exports = {
             .find({username: user.username})
             .then(dbUser => { //returns an array of user objects
                 if(dbUser.length > 0){
-                    //console.log(dbUser[0].username+" exists");
                     return this.update(user);
                 } else {
-                    //console.log("User does not exist");
                     return this.create(user);
                 }
             }).catch(err => err);

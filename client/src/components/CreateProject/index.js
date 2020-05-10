@@ -22,13 +22,10 @@ export default class CreateProject extends Component {
   };
 
   handleRemoveContributor = toRemove => {
-    console.log("Removing: ", toRemove);
-
     let contributors = this.state.contributors.filter(
       contributor => contributor.username !== toRemove.username
     );
 
-    console.log(contributors);
     this.setState({ contributors });
   };
 
@@ -51,16 +48,8 @@ export default class CreateProject extends Component {
   };
 
   handleRemoveOwner = toRemove => {
-    console.log("Removing: ", toRemove);
-    if (toRemove.username === this.props.user.username) {
-      return;
-    }
-
-    let owners = this.state.owners.filter(
-      owner => owner.username !== toRemove.username
-    );
-    console.log(owners);
-
+    if (toRemove.username === this.props.user.username) return;
+    let owners = this.state.owners.filter(owner => owner.username !== toRemove.username);
     this.setState({ owners });
   };
 
@@ -133,8 +122,6 @@ export default class CreateProject extends Component {
       owners,
       contributors
     };
-
-    console.log(newProject);
 
     API.createProject(newProject).then(project => {
       window.location = `/project/${project._id}`;

@@ -19,15 +19,10 @@ class Profile extends Component {
   componentDidMount = async () => {
     if (!this.state.user) {
       let user = await API.getUser().then(user => {
-        console.log("User:", user);
-        console.log("Projects: ", user.projects);
         user.projects = user.projects.reverse();
         return user;
       });
-      let tasks = await API.getTasksByUser(user._id).then(tasks => {
-        console.log("Tasks:", tasks);
-        return tasks;
-      });
+      let tasks = await API.getTasksByUser(user._id).then(tasks => { return tasks });
       this.setState({ user, tasks });
     }
   };
@@ -42,21 +37,13 @@ class Profile extends Component {
           return { ...task };
         }
       });
-      console.log("Previous Tasks:");
-      console.table(this.state.tasks);
-      console.log("New Tasks:");
-      console.table(newTasks);
       this.setState({ tasks: newTasks });
     });
   };
 
   toggleCreateProjectDialog = e => {
     let targetElement = e.target;
-    if (targetElement.closest(".modal")) {
-      return;
-    }
-
-    console.log("Create a Project!");
+    if (targetElement.closest(".modal")) return;
     this.setState(prevState => {
       return { creatingProject: !prevState.creatingProject, blur: !prevState.blur };
     });
