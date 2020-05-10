@@ -25,13 +25,8 @@ export default class SearchUsers extends Component {
 
   handleInput = field => event => {
     const { value } = event.target;
-
     if (value === "") return this.setState({ users: [], userQuery: "" });
-
-    API.getUsersFuzzy(value).then(users => {
-      console.log(users);
-      this.setState({ users, userQuery: value });
-    });
+    API.getUsersFuzzy(value).then(users => this.setState({ users, userQuery: value }));
   };
 
   render() {

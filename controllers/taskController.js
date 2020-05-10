@@ -1,7 +1,6 @@
 const db = require("../models");
 
 assignTaskToSprint = (taskId, sprintId) => { //puts a task into a sprint's tasks field
-    console.log("Updating Sprint: " + sprintId + " with task: " + taskId);
     db.Sprint.findOne({ _id: sprintId })
         .then(result => { //results in an array of sprints, we just want the first one
             result.tasks.push(taskId);
@@ -11,7 +10,6 @@ assignTaskToSprint = (taskId, sprintId) => { //puts a task into a sprint's tasks
 }
 
 removeTaskFromSprint = (taskId, sprintId) => { //removes a task from a sprint's tasks field
-    console.log("Updating Sprint: " + sprintId + " with task: " + taskId);
     db.Sprint.findOne({ _id: sprintId })
         .then(result => { //results in an array of sprints, we just want the first one
             result.tasks = result.tasks.filter( //returns a filtered array where

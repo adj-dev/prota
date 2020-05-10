@@ -7,7 +7,6 @@ export default function AddedUsers({ users, handleRemoveUser, currentUser }) {
     <div className="added-contributor-list-container">
       {users.length > 0
         ? users.map((user, i) => {
-            console.log("user:", user);
             return (
               <div className="added-contributor-container" key={i}>
                 <span>{user.username}</span>

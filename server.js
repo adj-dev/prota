@@ -36,7 +36,6 @@ passport.serializeUser((user, done) => done(null, user));
 
 passport.deserializeUser((profile, done) => {
   if (!profile) done(null, {});
-  //console.log(profile);
   user = {
     username: profile.username,
     avatar_url: profile._json.avatar_url, //profile.photos[0].value, 
@@ -74,6 +73,4 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-app.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
-});
+app.listen(PORT);

@@ -1,7 +1,6 @@
 const db = require("../models");
 
 assignProjectToUser = (userId, projectId) => { //puts a project into a user's projects field
-    console.log("Updating User: "+userId+" with project: "+projectId);
     return db.User.findOne({_id: userId})
         .then(result => { //result is an array of users, we just want the first one
             if(result.projects.indexOf(projectId) == -1){
@@ -15,7 +14,6 @@ assignProjectToUser = (userId, projectId) => { //puts a project into a user's pr
 }
 
 removeProjectFromUser = (userId, projectId) => { //removes a project from a user's projects field
-    console.log("Updating User: "+userId+" with project: "+projectId);
     return db.User.findOne({_id: userId})
         .then(result => { //result is an array of user, we just want the first one
             result.projects = result.projects.filter( //returns a filtered array where
@@ -27,7 +25,6 @@ removeProjectFromUser = (userId, projectId) => { //removes a project from a user
 }
 
 assignUserToProject = (params, userType) => { //puts a user into a project's owner or contributor fields
-    console.log("Updating project: " + params.projectId + " with User: " + params.userId)
     return db.Project.findOne({_id: params.projectId})
         .then(result => { //result is an array of projects, we just want the first one
             if(result.owners.indexOf(params.userId) != -1 || result.contributors.indexOf(params.userId) != -1){
@@ -45,7 +42,6 @@ assignUserToProject = (params, userType) => { //puts a user into a project's own
 }
 
 removeUserFromProject = (params, userType) => { //removes a user from a project's owner or contributor fields
-    console.log("Updating project: " + params.projectId + " with User: " + params.userId)
     return db.Project.findOne({_id: params.projectId})
         .then(result => { //result is an array of projects, we just want the first one
             if(userType === "owner" && result.owners.length == 1){ //if the user being removed is an owner, AND there is more than one owner
