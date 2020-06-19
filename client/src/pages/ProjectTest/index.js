@@ -11,13 +11,7 @@ class ProjectTest extends Component {
 
   componentWillMount() {
     mockAPI.getProject(this.props.match.params.id).then(project => {
-      console.log("project:");
-      console.log(project);
-
-      if (project.unauthorized) {
-        window.location = "/";
-      }
-
+      if (project.unauthorized) window.location = "/";
       let { _id, name, status, created_by } = project;
       this.setState({ _id, name, status, created_by });
     });

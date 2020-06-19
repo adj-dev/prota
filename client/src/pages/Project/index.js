@@ -316,7 +316,6 @@ export default class Project extends Component {
   }
 
   handleChangeStatus = async (taskId, status) => {
-    // console.log(taskId, status)
     let updatedTask = await API.updateTask(taskId, { status: status })
 
     this.setState(prevState => {
@@ -353,9 +352,7 @@ export default class Project extends Component {
   }
 
   handleChangeStatusSprint = async (sprintId, status) => {
-    console.log('hello', sprintId, status)
     let updatedSprint = await API.updateSprint(sprintId, { status: status })
-    console.log(updatedSprint);
 
     this.setState(prevState => {
       let newSprints = [...prevState.sprints];

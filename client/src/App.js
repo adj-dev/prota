@@ -29,7 +29,7 @@ class App extends Component {
       .then(status => {
         return this.setState({ isLoggedIn: status });
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err)); // todo: improve error handling
   };
 
   render() {

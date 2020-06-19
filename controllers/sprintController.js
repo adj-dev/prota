@@ -1,7 +1,6 @@
 const db = require("../models");
 
 assignSprintToProject = (sprintId, projectId) => { //puts a sprint into a project's sprints field
-    console.log("Updating Project: " + projectId + " with sprint: " + sprintId);
     db.Project.findOne({ _id: projectId })
         .then(result => { //result is an array of projects, we just want the first one
             result.sprints.push(sprintId);
@@ -11,7 +10,6 @@ assignSprintToProject = (sprintId, projectId) => { //puts a sprint into a projec
 }
 
 removeSprintFromProject = (sprintId, projectId) => { //removes a sprint from a project's sprints field
-    console.log("Updating Project: " + projectId + " with sprint: " + sprintId);
     db.Project.findOne({ _id: projectId })
         .then(result => { //results is an array of projects, we just want the first one
             result.sprints = result.sprints.filter( //returns a filtered array where
