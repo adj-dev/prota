@@ -21,6 +21,9 @@
 /* .project-input-container {
   margin-bottom: 30px;
 } */
+::placeholder {
+  color: #AAAAAA;
+}
 
 .add-project-title-input {
   width: 97%;
