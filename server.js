@@ -10,7 +10,7 @@ const userController = require('./controllers/userController');
 //connect to MongodDB
 const MONGODB_URI = process.env.MONGODB_URI
   || "mongodb://localhost/sitedb";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 let session = require("express-session")({
   secret: process.env.SESSION_SECRET,
