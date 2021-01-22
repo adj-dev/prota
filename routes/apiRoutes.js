@@ -251,41 +251,19 @@ router.put("/tasks/:taskId", checkLogin, (req, res) => {
 });
 
 //DELETE ROUTES
-
-//Delete a project**
-router.delete("/projects/:projectId", checkLogin, (req, res) => {
-    Controller.Project
-        .deleteOneById(req.params.projectId)
+router.delete("/:table/:id", checkLogin, (req, res) => {
+    let tableParam = req.params.table
+    const table = tableParam.charAt(0).toUpperCase() + tableParam.slice(1, tableParam.length-1)
+    Controller[table]
+        .deleteOneById(req.params.id)
         .then(results => res.json(results))
-        .catch(err => res.json(
-            {error: 
-                { message: "Couldn't Delete Project",
-                value: err}
-            }));
-});
-
-//Delete a sprint**
-router.delete("/sprints/:sprintId", checkLogin, (req, res) => {
-    Controller.Sprint
-        .deleteOneById(req.params.sprintId)
-        .then(results => res.json(results))
-        .catch(err => res.json(
-            {error: 
-                { message: "Couldn't Delete Sprint",
-                value: err}
-            }));
-});
-
-//Delete a task **
-router.delete("/tasks/:taskId", checkLogin, (req, res) => {
-    Controller.Task
-        .deleteOneById(req.params.taskId)
-        .then(results => res.json(results))
-        .catch(err => res.json(
-            {error: 
-                { message: "Couldn't Delete Project",
-                value: err}
-            }));
-});
+        .catch(err => res.json({
+            error:
+                {
+                    message: `Couldn't Delete ${table}`,
+                    value: err
+                }
+        }))
+})
 
 module.exports = router;
