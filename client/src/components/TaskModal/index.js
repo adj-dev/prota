@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import * as STATUS from '../../helpers';
 
 import './style.css'
+import unassignedAvatarImg from '../../../assets/img/unassigned-avatar.png';
 
 
 // const status = [STATUS.OPEN, STATUS.IN_PROGRESS, STATUS.CLOSED]
@@ -66,7 +67,7 @@ const TaskModal = ({ handleModal, team, currentUser, expandedTask, handleTask, c
           <div className="assignee-container">
             <div className="assignee-header">
               <h3>ASSIGNED TO: </h3>
-              <img className="assignee-avatar" src={assignee ? avatar : require('../../assets/img/unassigned-avatar.png')} alt="" />
+              <img className="assignee-avatar" src={assignee ? avatar : unassignedAvatarImg} alt="" />
             </div>
             <div className="team-member-list">
               {

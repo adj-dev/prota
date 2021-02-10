@@ -7,6 +7,8 @@ import StatusDropdown from '../StatusDropdown';
 // import moment from 'moment'
 
 import "./style.css"
+import addButtonImg from '../../assets/img/add.png';
+import optionsImg from '../../assets/img/options.png';
 
 
 const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal, currentSprintId, handleChangeStatus }) => {
@@ -20,7 +22,7 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal
     <div className="wrapper">
       <div className="sprintlist-header">
         <h1>Sprints</h1>
-        <img className="icon add" src={require('../../assets/img/add.png')} alt="" onClick={openAddSprintModal} />
+        <img className="icon add" src={addButtonImg} alt="" onClick={openAddSprintModal} />
       </div>
       <div className="sprintlist-content">
         {
@@ -34,7 +36,7 @@ const SprintList = ({ sprints, selectSprint, openAddSprintModal, openSprintModal
                   <div className="expand-btn">
                     <img
                       className="options-icon"
-                      src={require('../../assets/img/options.png')}
+                      src={optionsImg}
                       alt=""
                       onClick={() => openSprintModal(sprint)}
                     />

@@ -3,6 +3,7 @@ import StatusDropdown from '../../StatusDropdown'
 
 import { ALL, OPEN, IN_PROGRESS } from '../../../helpers';
 import "./style.css"
+import unassignedAvatarImg from '../../../assets/img/unassigned-avatar.png';
 
 
 
@@ -44,7 +45,7 @@ const TaskList = ({ tasks, handleTaskModal, status, handleChangeStatus }) => {
                         alt=""
                       />
                       :
-                      <img className="unassigned-avatar" src={require('../../../assets/img/unassigned-avatar.png')} alt=""></img>
+                      <img className="unassigned-avatar" src={unassignedAvatarImg} alt=""></img>
                   }
                 </div>
 

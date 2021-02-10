@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-const deleteButton = require("../../../assets/img/delete-icon.jpg");
+import deleteButtonImg from '../../../assets/img/delete-icon.jpg';
 
 export default function AddedUsers({ users, handleRemoveUser, currentUser }) {
   return (
@@ -14,7 +14,7 @@ export default function AddedUsers({ users, handleRemoveUser, currentUser }) {
                   <img
                     className="remove-contributor-button"
                     alt="remove"
-                    src={deleteButton}
+                    src={deleteButtonImg}
                     onClick={() => handleRemoveUser(user)}
                   />
                 ) : null}
